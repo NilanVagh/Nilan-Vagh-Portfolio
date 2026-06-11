@@ -50,7 +50,7 @@
 <section class="page-hero">
   <div class="container">
     <span class="page-eyebrow">The Builds</span>
-    <h1 class="page-title">Four proof objects.<br><span class="page-title--accent">One decision architecture.</span></h1>
+    <h1 class="page-title">Five proof objects.<br><span class="page-title--accent">One decision architecture.</span></h1>
     <p class="page-hero-sub">Each tool exists because of a deliberate design decision about how a People decision should be governed — not because a system needed configuring. The case study for each leads with the problem and the thinking, not the features.</p>
   </div>
 </section>
@@ -323,12 +323,81 @@
   </div>
 </section>
 
-<!-- TOOL 05 -->
-<section class="tool-section" id="internal-moves">
+<!-- TOOL 05 — EOR MATRIX -->
+<section class="tool-section" id="eor-matrix">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">05</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--building">
+            <span class="tool-status-dot"></span>
+            Live demo available
+          </div>
+          <div class="tool-proof-type">Governance decision tool</div>
+          <h2 class="tool-title">EOR Entity Readiness Matrix</h2>
+          <p class="tool-subtitle">When to exit EOR and establish a legal entity — governed, weighted, auditable</p>
+        </div>
+      </div>
+
+      <div class="tool-body">
+        <div class="tool-col tool-col--main">
+          <div class="tool-block">
+            <h3 class="tool-block-label">The problem</h3>
+            <p>Onyx operates in 14 countries. 12 run on EOR. As headcount grows in key markets, the question of when to convert to a legal entity becomes urgent — but it's a decision that spans Finance (Tax PE risk, break-even), Legal (compliance obligations), and Business (strategic commitment). Without a shared decision framework, each stakeholder makes the call from their own lens. The People team gets stuck in the middle with no defensible, auditable basis for a multi-million dollar recommendation.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The design decision</h3>
+            <p>People Team cannot own this in a silo. If People Team dictates Tax PE risk, Finance won't trust it. If People dictates compliance triggers, Legal will override it. The right model: People Team architects the system, domain experts own their inputs. The matrix has two lanes — quantitative (automated from headcount, payroll, and break-even data) and qualitative (human-assessed ratings owned by Finance, Legal, and Business). The People Team operates the framework and holds the governance layer together.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The governance logic</h3>
+            <ul class="tool-governance-list">
+              <li>7 weighted exit triggers — Finance owns Tax PE (25%) and Break-Even (20%), Business owns Strategic Commitment (15%), People owns Headcount and Permanence</li>
+              <li>Hard Override Rule: Tax PE Risk = 3 triggers RED automatically — you cannot average away existential legal risk</li>
+              <li>RAG scoring: Green (stay on EOR) → Amber (monitor feasibility) → Red (initiate entity setup workstream)</li>
+              <li>RED status automatically triggers an escalation alert to Finance, Legal, and the CPO</li>
+              <li>Every input change logged with timestamp, actor role, and business reason — full audit trail for decisions that justify multi-million dollar entity setup costs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-col tool-col--side">
+          <div class="tool-meta-card">
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Built for</span>
+              <span class="tool-meta-value">Onyx — 12 EOR markets</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Tech stack</span>
+              <span class="tool-meta-value">Google Apps Script</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Decision domain</span>
+              <span class="tool-meta-value">Global workforce governance</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Stakeholders</span>
+              <span class="tool-meta-value">Finance · Legal · Business · People</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Status</span>
+              <span class="tool-meta-value" style="color:var(--green);">Live demo available</span>
+            </div>
+          </div>
+          <a href="eor-matrix.html" target="_blank" class="btn btn--primary" style="display:block;text-align:center;margin-top:var(--space-4);">Open live demo →</a>
+          <p style="font-size:var(--text-xs);color:var(--mist);margin-top:var(--space-3);line-height:1.6;">Try the demo: update UK Tax PE Risk to 3 in Tab 2 to trigger the Hard Override and see the escalation alert fire.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 06 (was 05) -->
   <div class="container">
     <div class="tool-card tool-card--future">
       <div class="tool-card-header">
-        <div class="tool-number">05</div>
+        <div class="tool-number">06</div>
         <div class="tool-header-content">
           <div class="tool-status tool-status--planned">
             <span class="tool-status-dot"></span>
@@ -383,7 +452,7 @@
   <div class="container">
     <div class="tool-card">
       <div class="tool-card-header">
-        <div class="tool-number">06</div>
+        <div class="tool-number">07</div>
         <div class="tool-header-content">
           <div class="tool-status tool-status--planned">
             <span class="tool-status-dot"></span>

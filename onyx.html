@@ -183,7 +183,7 @@
           <div class="stat-card"><div class="label">ARR</div><div class="value">$58M</div><div class="sub">44% YoY growth</div></div>
           <div class="stat-card"><div class="label">Regions</div><div class="value">ANZ + US</div><div class="sub">Melbourne HQ · SF office</div></div>
         </div>
-        <p class="company-desc">Onyx is an AI-native SaaS platform that helps enterprise operations, compliance, and finance teams orchestrate complex workflows across fragmented systems — replacing manual routing, approvals, and decision handoffs with governed, AI-assisted process intelligence. Founded in Melbourne in 2019, Onyx serves mid-market and enterprise customers across financial services, professional services, and tech. The company operates across ANZ and the US, with 247 FTE and a remote-first culture.</p>
+        <p class="company-desc">Onyx is an AI-native SaaS platform that helps enterprise operations, compliance, and finance teams orchestrate complex workflows across fragmented systems. Founded in Melbourne in 2019, Onyx operates across ANZ and the US with 247 FTE — plus contractors and EOR-hired staff across 12 additional countries. The company has never been on Workday. It runs a fragmented People tech stack across multiple tools, none of which talk to each other cleanly. That's the environment the tools in this portfolio were built to serve.</p>
         <div class="tag-row">
           <span class="tag">AI-native SaaS</span><span class="tag">Workflow Intelligence</span><span class="tag">Series C</span><span class="tag">Melbourne HQ</span><span class="tag">ANZ + US</span><span class="tag">Remote-first</span><span class="tag">Enterprise</span><span class="tag">247 FTE</span>
         </div>
@@ -262,7 +262,85 @@
         </div>
       </div>
 
-      <!-- LEADERSHIP -->
+      <!-- HR TECH STACK -->
+      <div class="section">
+        <div class="section-label">People Tech Stack — Why the tools exist</div>
+        <div class="onyx-stack-intro">
+          <p>Onyx has never been on Workday. Like most companies at Series C, it runs a fragmented stack of best-of-breed tools that each solve one problem — none of which integrate cleanly. The People team is the integration layer. That's not a failure of vendor selection. It's the operating reality for companies that scaled fast and bought tools as needs emerged.</p>
+          <p style="margin-top:10px;">The tools in this portfolio exist because this stack creates real decision-infrastructure gaps that no single vendor fills — and because Workday can't do what these tools do even if Onyx could afford it.</p>
+        </div>
+        <div class="stack-grid">
+          <div class="stack-card">
+            <div class="stack-card-tool">BambooHR</div>
+            <div class="stack-card-role">Core HRIS</div>
+            <div class="stack-card-desc">System of record for employee data, org structure, leave, and basic reporting. Excellent at storing what happened. No workflow logic.</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-card-tool">Lattice</div>
+            <div class="stack-card-role">Performance & Engagement</div>
+            <div class="stack-card-desc">Goal-setting, performance reviews, 1:1s, and engagement surveys. Holds final ratings. Cannot support calibration workflows, distribution guardrails, or promotion routing.</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-card-tool">Deel</div>
+            <div class="stack-card-role">EOR & Contractor Management</div>
+            <div class="stack-card-desc">Manages EOR employment across 12 countries. Handles local compliance, payroll, and contracts. No decision logic for when to exit EOR and establish a legal entity.</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-card-tool">ChartHop</div>
+            <div class="stack-card-role">Org & Headcount Planning</div>
+            <div class="stack-card-desc">Org visualisation and headcount planning. Good for structural views. Doesn't integrate performance or engagement signals into workforce visibility.</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-card-tool">Google Workspace</div>
+            <div class="stack-card-role">Build layer</div>
+            <div class="stack-card-desc">Sheets, Forms, Drive, and Apps Script. The glue layer where governed workflows, decision-support tools, and automation are built when no vendor tool exists for the job.</div>
+          </div>
+          <div class="stack-card">
+            <div class="stack-card-tool">Slack + Email</div>
+            <div class="stack-card-role">Informal process layer</div>
+            <div class="stack-card-desc">Where approvals actually happen. Where context lives. Where decisions get made and then recorded elsewhere. The gap between this and the system of record is the infrastructure problem.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EOR HIRING CONTEXT -->
+      <div class="section">
+        <div class="section-label">Global Workforce — EOR Hiring Map</div>
+        <div class="onyx-stack-intro">
+          <p>Onyx operates legal entities in Australia and the United States. The remaining 12 countries run on EOR through Deel. As the company scales, some of these markets are approaching thresholds where EOR is no longer legally safe, financially rational, or operationally adequate. The EOR Entity Readiness Matrix was built to bring governance to that decision — replacing ad hoc spreadsheets and fragmented Finance / Legal / People conversations with a weighted, auditable decision framework.</p>
+        </div>
+        <div class="eor-grid">
+          <div class="eor-entity">
+            <div class="eor-entity-label">Legal entities</div>
+            <div class="eor-entity-countries">
+              <span class="eor-country eor-country--entity">🇦🇺 Australia — Melbourne HQ</span>
+              <span class="eor-country eor-country--entity">🇺🇸 United States — SF Office</span>
+            </div>
+          </div>
+          <div class="eor-eor">
+            <div class="eor-entity-label">EOR via Deel — 12 markets</div>
+            <div class="eor-entity-countries">
+              <span class="eor-country eor-country--red">🇬🇧 United Kingdom</span>
+              <span class="eor-country eor-country--amber">🇸🇬 Singapore</span>
+              <span class="eor-country eor-country--amber">🇩🇪 Germany</span>
+              <span class="eor-country eor-country--amber">🇫🇷 France</span>
+              <span class="eor-country eor-country--amber">🇪🇸 Spain</span>
+              <span class="eor-country eor-country--green">🇮🇳 India</span>
+              <span class="eor-country eor-country--green">🇳🇱 Netherlands</span>
+              <span class="eor-country eor-country--green">🇧🇷 Brazil</span>
+              <span class="eor-country eor-country--green">🇨🇦 Canada</span>
+              <span class="eor-country eor-country--green">🇳🇿 New Zealand</span>
+              <span class="eor-country eor-country--green">🇮🇪 Ireland</span>
+              <span class="eor-country eor-country--green">🇵🇭 Philippines</span>
+            </div>
+            <div class="eor-legend">
+              <span class="eor-legend-item eor-legend-red">■ Red — initiate entity setup</span>
+              <span class="eor-legend-item eor-legend-amber">■ Amber — monitor feasibility</span>
+              <span class="eor-legend-item eor-legend-green">■ Green — stay on EOR</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="section">
         <div class="section-label">Fictional Leadership Team</div>
         <div class="leadership-grid">

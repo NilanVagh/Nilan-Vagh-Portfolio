@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EOR Entity Readiness Matrix — Onyx</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:      #0A0A0A;
+  --ink:        #111111;
+  --charcoal:   #1A1A1A;
+  --slate:      #242424;
+  --border:     #2A2A2A;
+  --border-lt:  #333333;
+  --mid:        #5A5A5A;
+  --mist:       #888888;
+  --white-dim:  #C8C8C8;
+  --white:      #F0F0F0;
+  --white-pure: #FFFFFF;
+  --red:        #C0392B;
+  --red-light:  #E8503F;
+  --red-dim:    #1E0E0C;
+  --amber:      #E8B84B;
+  --amber-dim:  #1E1608;
+  --green:      #2ECC71;
+  --green-dim:  #0A1E12;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--white);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-brand { display: flex; align-items: center; gap: 12px; }
+.topbar-logo {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--charcoal);
+  border: 1px solid var(--border-lt);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 700;
+  color: var(--red-light);
+}
+.topbar-name { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--white-pure); }
+.topbar-sub { font-size: 11px; color: var(--mist); margin-top: 1px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; }
+.role-select {
+  background: var(--charcoal);
+  border: 1px solid var(--border-lt);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+.btn-reset {
+  background: var(--red-dim);
+  border: 1px solid var(--red);
+  color: var(--red-light);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-reset:hover { background: rgba(192,57,43,0.25); }
+
+/* ── INSTRUCTION BANNER ── */
+.instruction-banner {
+  background: var(--charcoal);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.instruction-banner-icon {
+  color: var(--amber);
+  font-size: 16px;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+.instruction-banner-text { font-size: 12px; color: var(--mist); line-height: 1.6; }
+.instruction-banner-text strong { color: var(--white-dim); }
+.instruction-dismiss {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--mid);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 4px;
+}
+.instruction-dismiss:hover { color: var(--white); }
+
+/* ── TABS ── */
+.tabs-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--ink);
+}
+.tabs { display: flex; }
+.tab {
+  padding: 14px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--mist);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+.tab:hover { color: var(--white); }
+.tab.active { color: var(--white-pure); border-bottom-color: var(--red); }
+.sample-alert-btn {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--red-light);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.sample-alert-btn:hover { color: var(--white); }
+
+/* ── MAIN LAYOUT ── */
+.main { padding: 24px; max-width: 1200px; margin: 0 auto; }
+
+/* ── MATRIX TABLE ── */
+.matrix-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.matrix-table { width: 100%; border-collapse: collapse; }
+.matrix-table thead tr {
+  background: var(--charcoal);
+}
+.matrix-table th {
+  padding: 12px 16px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mist);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.matrix-table th.center { text-align: center; }
+.matrix-table td {
+  padding: 14px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.matrix-table tbody tr:last-child td { border-bottom: none; }
+.matrix-table tbody tr {
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.matrix-table tbody tr:hover { background: var(--charcoal); }
+.td-country { font-family: var(--font-display); font-weight: 600; color: var(--white-pure); }
+.td-region { color: var(--mist); font-size: 12px; }
+.td-num { font-variant-numeric: tabular-nums; }
+.td-center { text-align: center; }
+.td-score { text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.td-action { font-size: 12px; color: var(--mist); }
+
+/* RAG badges */
+.rag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.rag-red { background: var(--red-dim); color: var(--red-light); border: 1px solid rgba(192,57,43,0.3); }
+.rag-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(232,184,75,0.3); }
+.rag-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(46,204,113,0.3); }
+.rag-dot { width: 6px; height: 6px; border-radius: 50%; }
+.rag-red .rag-dot { background: var(--red-light); box-shadow: 0 0 4px var(--red); }
+.rag-amber .rag-dot { background: var(--amber); }
+.rag-green .rag-dot { background: var(--green); }
+
+/* ── INPUT FORM ── */
+.form-wrap { max-width: 720px; margin: 0 auto; }
+.form-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.form-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mist); }
+.field select, .field input {
+  background: var(--charcoal);
+  border: 1px solid var(--border-lt);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+.field select:focus, .field input:focus { border-color: var(--red-light); }
+.field-hint { font-size: 11px; color: var(--mid); margin-top: -2px; }
+.input-prefix { position: relative; }
+.input-prefix span {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  color: var(--mist); font-size: 13px; pointer-events: none;
+}
+.input-prefix input { padding-left: 22px; }
+.btn-submit {
+  width: 100%;
+  background: var(--red);
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--white-pure);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 8px;
+}
+.btn-submit:hover { background: var(--red-light); }
+.btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── GOVERNANCE ── */
+.gov-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 20px; }
+.gov-metric {
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+.gov-metric-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mist); }
+.gov-metric-value { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--white-pure); margin: 6px 0 4px; }
+.gov-metric-sub { font-size: 11px; color: var(--mid); }
+.gov-tables { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; }
+.gov-table-card {
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+.gov-table-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+.mini-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.mini-table th { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); padding: 0 0 8px; text-align: left; border-bottom: 1px solid var(--border); }
+.mini-table td { padding: 8px 0; border-bottom: 1px solid var(--border); color: var(--mist); vertical-align: top; }
+.mini-table tr:last-child td { border-bottom: none; }
+.mini-table td:first-child { color: var(--white-dim); font-weight: 500; }
+.audit-old { color: var(--mid); }
+.audit-new { color: var(--green); }
+.audit-mono { font-family: ui-monospace, monospace; font-size: 10px; line-height: 1.7; }
+.footer-note {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+/* ── SCORECARD MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 24px;
+}
+.modal-overlay.open { display: flex; }
+.modal-card {
+  background: var(--charcoal);
+  border: 1px solid var(--border-lt);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 520px;
+  padding: 28px;
+  position: relative;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: none; border: none; color: var(--mist);
+  font-size: 20px; cursor: pointer;
+}
+.modal-close:hover { color: var(--white); }
+.modal-header { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.modal-country { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--white-pure); }
+.modal-region { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red-light); margin-top: 4px; }
+.modal-score-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--slate);
+  border: 1px solid var(--border-lt);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+}
+.modal-score-num { font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--white-pure); }
+.modal-score-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mist); }
+.driver-bars { display: flex; flex-direction: column; gap: 12px; }
+.driver-row { display: flex; flex-direction: column; gap: 4px; }
+.driver-label-row { display: flex; justify-content: space-between; align-items: center; }
+.driver-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--mist); }
+.driver-score { font-size: 11px; font-weight: 700; color: var(--white-dim); }
+.driver-bar-bg { height: 6px; background: var(--slate); border-radius: 3px; overflow: hidden; }
+.driver-bar-fill { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+.bar-red { background: var(--red-light); }
+.bar-amber { background: var(--amber); }
+.bar-green { background: var(--green); }
+
+/* ── EMAIL MODAL ── */
+.email-modal-card {
+  background: var(--white-pure);
+  color: #1a1a1a;
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 600px;
+  padding: 32px;
+  border-top: 8px solid var(--red);
+  position: relative;
+}
+.email-modal-close {
+  position: absolute; top: 12px; right: 16px;
+  background: none; border: none; color: #999;
+  font-size: 22px; cursor: pointer;
+}
+.email-modal-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.email-modal-sub { font-size: 12px; color: #888; margin-bottom: 20px; }
+.email-header-block {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 12px;
+  font-family: ui-monospace, monospace;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.email-trigger-block {
+  background: #fff5f5;
+  border-left: 6px solid var(--red);
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+}
+.email-trigger-label { font-weight: 700; color: #c0392b; text-decoration: underline; margin-bottom: 8px; font-size: 13px; }
+.email-trigger-body { font-size: 13px; line-height: 1.7; color: #333; }
+.email-badge {
+  display: inline-block;
+  background: #fee2e2;
+  color: #c0392b;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.email-ack-btn {
+  width: 100%;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+/* ── PHILOSOPHY CALLOUT ── */
+.philosophy-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.philosophy-card {
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+.philosophy-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: 6px;
+}
+.philosophy-card-text {
+  font-size: 13px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+.philosophy-card-text strong { color: var(--white-pure); }
+
+/* ── HARD OVERRIDE NOTE ── */
+.override-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--red-dim);
+  border: 1px solid rgba(192,57,43,0.3);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: var(--white-dim);
+  line-height: 1.6;
+}
+.override-note-icon { color: var(--red-light); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.override-note strong { color: var(--red-light); }
+
+/* ── WEIGHT TABLE ── */
+.weight-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.weight-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.weight-table th { padding: 10px 14px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mist); background: var(--charcoal); border-bottom: 1px solid var(--border); text-align: left; }
+.weight-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--mist); }
+.weight-table tr:last-child td { border-bottom: none; }
+.weight-table td:first-child { color: var(--white-dim); font-weight: 500; }
+.weight-pct { font-family: var(--font-display); font-weight: 700; color: var(--white-pure); }
+.weight-owner-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--slate);
+  border: 1px solid var(--border-lt);
+  color: var(--mist);
+}
+.weight-owner-finance { background: rgba(74,144,217,0.1); border-color: rgba(74,144,217,0.3); color: #4a90d9; }
+.weight-owner-legal { background: rgba(159,122,234,0.1); border-color: rgba(159,122,234,0.3); color: #9f7aea; }
+.weight-owner-people { background: rgba(232,184,75,0.1); border-color: rgba(232,184,75,0.3); color: var(--amber); }
+.weight-owner-business { background: rgba(46,204,113,0.1); border-color: rgba(46,204,113,0.3); color: var(--green); }
+
+/* ── VIEW TOGGLE ── */
+.view { display: none; }
+.view.active { display: block; }
+
+@media (max-width: 768px) {
+  .gov-grid { grid-template-columns: 1fr 1fr; }
+  .gov-tables { grid-template-columns: 1fr; }
+  .philosophy-bar { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid-3 { grid-template-columns: 1fr; }
+  .topbar { flex-wrap: wrap; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo">O</div>
+    <div>
+      <div class="topbar-name">Onyx — EOR Entity Readiness Matrix</div>
+      <div class="topbar-sub">Global workforce · Entity setup decision support · Governance audit trail</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <select class="role-select" id="roleSelector">
+      <option value="People Ops">People Ops</option>
+      <option value="Finance/Tax">Finance / Tax</option>
+      <option value="Legal/People">Legal / People</option>
+      <option value="Business">Business</option>
+    </select>
+    <button class="btn-reset" onclick="triggerReset()">Reset to baseline</button>
+  </div>
+</div>
+
+<!-- INSTRUCTION BANNER -->
+<div class="instruction-banner" id="instructionBanner">
+  <span class="instruction-banner-icon">▶</span>
+  <div class="instruction-banner-text">
+    <strong>How to use this demo:</strong> Tab 1 shows the live matrix — click any country row for its full scorecard. Tab 2 lets you update drivers and financial inputs (try raising UK Tax PE Risk to 3 to trigger a Hard Override). Tab 3 shows the full audit log. The <strong>Sample Alert</strong> button above shows what an automated escalation email looks like when a country hits RED.
+  </div>
+  <button class="instruction-dismiss" onclick="document.getElementById('instructionBanner').style.display='none'">×</button>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <div class="tabs">
+    <div class="tab active" id="tab-matrix" onclick="switchTab('matrix')">1. Trigger Matrix</div>
+    <div class="tab" id="tab-input" onclick="switchTab('input')">2. Matrix Inputs &amp; Overrides</div>
+    <div class="tab" id="tab-governance" onclick="switchTab('governance')">3. Governance &amp; Audit Log</div>
+  </div>
+  <button class="sample-alert-btn" onclick="showEmailModal('United Kingdom')">✉ Sample Alert</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- VIEW: MATRIX -->
+  <div class="view active" id="view-matrix">
+
+    <div class="philosophy-bar">
+      <div class="philosophy-card">
+        <div class="philosophy-card-label">The problem</div>
+        <div class="philosophy-card-text">Onyx operates in <strong>14 countries</strong>. 12 are on EOR. No repeatable system existed to assess when entity setup was legally required, financially justified, or strategically necessary.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-card-label">The design principle</div>
+        <div class="philosophy-card-text">People Team <strong>cannot own this in a silo</strong>. Finance owns Tax PE risk. Legal owns compliance triggers. Business owns strategic commitment. People Team architects the system — domain experts own the inputs.</div>
+      </div>
+      <div class="philosophy-card">
+        <div class="philosophy-card-label">The output</div>
+        <div class="philosophy-card-text">A weighted composite score across 7 drivers. <strong>RAG status</strong> drives action. RED triggers an automatic entity setup workstream. Every input change is logged with actor, role, and reason.</div>
+      </div>
+    </div>
+
+    <div class="override-note">
+      <span class="override-note-icon">⚠</span>
+      <div><strong>Hard Override Rule:</strong> Tax PE / Business Activity Risk = 3 (High) automatically triggers RED status — regardless of composite score. You cannot average away existential legal risk. If local entity is legally required (visas, local invoicing, authority presence), the matrix forces escalation.</div>
+    </div>
+
+    <div class="matrix-wrap">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Region</th>
+            <th>HC</th>
+            <th>Payroll %</th>
+            <th class="center">Break-even</th>
+            <th class="center">Score</th>
+            <th class="center">RAG</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="matrixTbody">
+          <tr><td colspan="8" style="text-align:center;padding:40px;color:var(--mist);">Loading matrix…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:var(--mid);">Click any row to view the full country scorecard and driver breakdown.</div>
+  </div>
+
+  <!-- VIEW: INPUTS -->
+  <div class="view" id="view-input">
+    <div class="form-wrap">
+
+      <div class="weight-table-wrap">
+        <table class="weight-table">
+          <thead>
+            <tr><th>Exit Trigger</th><th>Weight</th><th>Owner</th><th>Lane</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Tax PE / Business Activity Risk</td><td><span class="weight-pct">25%</span></td><td><span class="weight-owner-tag weight-owner-finance">Finance / Tax</span></td><td>Qualitative</td></tr>
+            <tr><td>EOR vs Entity Break-Even</td><td><span class="weight-pct">20%</span></td><td><span class="weight-owner-tag weight-owner-finance">Finance</span></td><td>Quantitative</td></tr>
+            <tr><td>Headcount In-Country</td><td><span class="weight-pct">15%</span></td><td><span class="weight-owner-tag weight-owner-people">People Team</span></td><td>Quantitative</td></tr>
+            <tr><td>Strategic Market Commitment</td><td><span class="weight-pct">15%</span></td><td><span class="weight-owner-tag weight-owner-business">Business / Finance</span></td><td>Qualitative</td></tr>
+            <tr><td>Payroll % of Global</td><td><span class="weight-pct">10%</span></td><td><span class="weight-owner-tag weight-owner-finance">Finance</span></td><td>Quantitative</td></tr>
+            <tr><td>EOR Capability Gap</td><td><span class="weight-pct">10%</span></td><td><span class="weight-owner-tag weight-owner-legal">Legal / People</span></td><td>Qualitative</td></tr>
+            <tr><td>Workforce Permanence</td><td><span class="weight-pct">5%</span></td><td><span class="weight-owner-tag weight-owner-people">People Team</span></td><td>Quantitative</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-section-label">Select country &amp; context</div>
+      <div class="form-grid" style="margin-bottom:20px;">
+        <div class="field">
+          <label>Country to update</label>
+          <select id="formCountry" onchange="populateForm()">
+            <option value="" disabled selected>— Select —</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Context of update</label>
+          <select id="formReason">
+            <option>Quarterly Review</option>
+            <option>Strategy Shift</option>
+            <option>Compliance Event</option>
+            <option>New Market Signal</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section-label">Qualitative ratings (1 = Low · 2 = Medium · 3 = High)</div>
+      <div class="form-grid form-grid-3" style="margin-bottom:24px;">
+        <div class="field">
+          <label>Tax PE Risk</label>
+          <select id="formTax">
+            <option value="1">1 — Low</option>
+            <option value="2">2 — Medium</option>
+            <option value="3">3 — High ⚠ Hard Override</option>
+          </select>
+          <div class="field-hint">Owned by Finance / Tax</div>
+        </div>
+        <div class="field">
+          <label>Strategic Market</label>
+          <select id="formStrat">
+            <option value="1">1 — Low</option>
+            <option value="2">2 — Medium</option>
+            <option value="3">3 — High</option>
+          </select>
+          <div class="field-hint">Owned by Business / Finance</div>
+        </div>
+        <div class="field">
+          <label>EOR Capability Gap</label>
+          <select id="formOps">
+            <option value="1">1 — Low</option>
+            <option value="2">2 — Medium</option>
+            <option value="3">3 — High</option>
+          </select>
+          <div class="field-hint">Owned by Legal / People</div>
+        </div>
+      </div>
+
+      <div class="form-section-label">Financial drivers (USD annual)</div>
+      <div class="form-grid form-grid-3" style="margin-bottom:24px;">
+        <div class="field">
+          <label>Annual EOR Fees</label>
+          <div class="input-prefix"><span>$</span><input type="number" id="formEor" placeholder="0"></div>
+          <div class="field-hint">Total EOR vendor cost</div>
+        </div>
+        <div class="field">
+          <label>Est. Entity Run Cost</label>
+          <div class="input-prefix"><span>$</span><input type="number" id="formRun" placeholder="0"></div>
+          <div class="field-hint">Annual cost if legal entity established</div>
+        </div>
+        <div class="field">
+          <label>One-Time Setup Cost</label>
+          <div class="input-prefix"><span>$</span><input type="number" id="formSetup" placeholder="0"></div>
+          <div class="field-hint">Legal, compliance, incorporation</div>
+        </div>
+      </div>
+
+      <button class="btn-submit" id="submitBtn" onclick="submitForm()">Update Matrix &amp; Log to Audit Trail</button>
+    </div>
+  </div>
+
+  <!-- VIEW: GOVERNANCE -->
+  <div class="view" id="view-governance">
+    <div class="gov-grid">
+      <div class="gov-metric">
+        <div class="gov-metric-label">Total updates</div>
+        <div class="gov-metric-value" id="govTotal">—</div>
+        <div class="gov-metric-sub">logged decisions</div>
+      </div>
+      <div class="gov-metric">
+        <div class="gov-metric-label">Red countries</div>
+        <div class="gov-metric-value" id="govRed" style="color:var(--red-light);">—</div>
+        <div class="gov-metric-sub">initiate entity setup</div>
+      </div>
+      <div class="gov-metric">
+        <div class="gov-metric-label">Amber countries</div>
+        <div class="gov-metric-value" id="govAmber" style="color:var(--amber);">—</div>
+        <div class="gov-metric-sub">monitor feasibility</div>
+      </div>
+      <div class="gov-metric">
+        <div class="gov-metric-label">Hard overrides</div>
+        <div class="gov-metric-value" id="govOverrides" style="color:var(--red-light);">—</div>
+        <div class="gov-metric-sub">tax PE = 3 triggers</div>
+      </div>
+      <div class="gov-metric">
+        <div class="gov-metric-label">Audit entries</div>
+        <div class="gov-metric-value" id="govAuditCount">—</div>
+        <div class="gov-metric-sub">full change log</div>
+      </div>
+    </div>
+
+    <div class="gov-tables">
+      <div class="gov-table-card">
+        <div class="gov-table-title">Audit log — recent changes</div>
+        <table class="mini-table">
+          <thead>
+            <tr><th style="width:90px;">Timestamp</th><th style="width:100px;">Country</th><th>Change record</th><th style="width:80px;">Actor role</th><th style="width:80px;">Context</th></tr>
+          </thead>
+          <tbody id="auditTbody">
+            <tr><td colspan="5" style="color:var(--mid);padding:16px 0;">No changes logged yet. Update a country in Tab 2 to see entries here.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="gov-table-card">
+        <div class="gov-table-title">Current status by country</div>
+        <table class="mini-table">
+          <thead><tr><th>Country</th><th>Score</th><th>Status</th></tr></thead>
+          <tbody id="statusTbody"></tbody>
+        </table>
+        <div class="footer-note" style="margin-top:12px;">
+          Every qualitative input change is logged with timestamp, actor role, and business reason — providing a defensible audit trail for multi-million dollar entity setup decisions. People Team architects the system. Domain experts own the inputs.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- SCORECARD MODAL -->
+<div class="modal-overlay" id="scorecardModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal('scorecardModal')">×</button>
+    <div class="modal-header">
+      <div class="modal-country" id="scCountry">—</div>
+      <div class="modal-region" id="scRegion">—</div>
+    </div>
+    <div class="modal-score-row">
+      <div>
+        <div class="modal-score-label">Composite Score</div>
+        <div class="modal-score-num" id="scScore">—</div>
+      </div>
+      <div id="scRag"></div>
+    </div>
+    <div class="driver-bars" id="scBars"></div>
+  </div>
+</div>
+
+<!-- EMAIL MODAL -->
+<div class="modal-overlay" id="emailModal">
+  <div class="email-modal-card">
+    <button class="email-modal-close" onclick="closeModal('emailModal')">×</button>
+    <div class="email-modal-title">Escalation Alert</div>
+    <div class="email-modal-sub">Automated workflow — triggered by matrix RED status</div>
+    <div class="email-header-block">
+      <div><strong>To:</strong> finance-leadership@onyx.io; legal@onyx.io; cpo@onyx.io</div>
+      <div><strong>CC:</strong> cfo@onyx.io</div>
+      <div><strong>Subject:</strong> TRIGGER: Entity Feasibility Review — <span id="emailCountry">—</span></div>
+      <div><strong>Priority:</strong> High</div>
+    </div>
+    <div class="email-trigger-block">
+      <div class="email-trigger-label">⚠ Status Breach Detected</div>
+      <div class="email-trigger-body">
+        The EOR Entity Readiness Matrix has flagged <strong id="emailCountry2">—</strong> as <span class="email-badge">RED</span>. This triggers an immediate cross-functional review of local entity setup requirements.<br><br>
+        Finance / Tax to confirm permanent establishment exposure. Legal to confirm compliance and employment law obligations. People Ops to confirm headcount trajectory and EOR capability gaps. Next step: entity feasibility workstream initiated within 5 business days.
+      </div>
+    </div>
+    <button class="email-ack-btn" onclick="closeModal('emailModal')">Acknowledge Alert</button>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+const COUNTRIES_DATA = [
+  { name:'United Kingdom', region:'EMEA', status:'EOR', hc:18, payrollPct:12, contractors:20 },
+  { name:'Singapore', region:'APAC', status:'EOR', hc:9, payrollPct:7, contractors:55 },
+  { name:'Germany', region:'EMEA', status:'EOR', hc:7, payrollPct:8, contractors:40 },
+  { name:'France', region:'EMEA', status:'EOR', hc:5, payrollPct:5, contractors:45 },
+  { name:'Spain', region:'EMEA', status:'EOR', hc:4, payrollPct:4, contractors:50 },
+  { name:'India', region:'APAC', status:'EOR', hc:6, payrollPct:3, contractors:80 },
+  { name:'Netherlands', region:'EMEA', status:'EOR', hc:3, payrollPct:3, contractors:60 },
+  { name:'Brazil', region:'LATAM', status:'EOR', hc:4, payrollPct:4, contractors:55 },
+  { name:'Canada', region:'Americas', status:'EOR', hc:3, payrollPct:3, contractors:65 },
+  { name:'New Zealand', region:'ANZ', status:'EOR', hc:2, payrollPct:2, contractors:70 },
+  { name:'Ireland', region:'EMEA', status:'EOR', hc:3, payrollPct:3, contractors:60 },
+  { name:'Philippines', region:'APAC', status:'EOR', hc:4, payrollPct:2, contractors:85 },
+];
+
+const QUAL_DEFAULTS = {
+  'United Kingdom': { tax:2, strat:3, ops:3, fees:150000, run:60000, setup:80000 },
+  'Singapore':      { tax:2, strat:2, ops:2, fees:140000, run:80000, setup:200000 },
+  'Germany':        { tax:2, strat:2, ops:2, fees:160000, run:120000, setup:150000 },
+  'France':         { tax:2, strat:2, ops:2, fees:120000, run:70000, setup:180000 },
+  'Spain':          { tax:2, strat:2, ops:2, fees:85000, run:65000, setup:140000 },
+  'India':          { tax:1, strat:1, ops:1, fees:70000, run:50000, setup:120000 },
+  'Netherlands':    { tax:1, strat:2, ops:1, fees:60000, run:55000, setup:95000 },
+  'Brazil':         { tax:1, strat:2, ops:1, fees:100000, run:70000, setup:150000 },
+  'Canada':         { tax:1, strat:1, ops:1, fees:65000, run:60000, setup:80000 },
+  'New Zealand':    { tax:1, strat:1, ops:1, fees:45000, run:45000, setup:60000 },
+  'Ireland':        { tax:1, strat:2, ops:1, fees:55000, run:50000, setup:85000 },
+  'Philippines':    { tax:1, strat:1, ops:1, fees:60000, run:40000, setup:90000 },
+};
+
+let qualData = JSON.parse(JSON.stringify(QUAL_DEFAULTS));
+let auditLog = [
+  { ts:'System init', country:'All', change:'Matrix initialised to baseline', old:'—', newVal:'Baseline data loaded', role:'System', reason:'Initial setup' }
+];
+
+// ── COMPUTE ──
+function compute(cName) {
+  const cd = COUNTRIES_DATA.find(c => c.name === cName);
+  const qd = qualData[cName];
+  if (!cd || !qd) return null;
+
+  const hcScore = cd.hc >= 10 ? 3 : (cd.hc >= 5 ? 2 : 1);
+  const payScore = cd.payrollPct >= 10 ? 3 : (cd.payrollPct >= 5 ? 2 : 1);
+  const permScore = cd.contractors > 70 ? 1 : (cd.contractors >= 30 ? 2 : 3);
+
+  const savings = qd.fees - qd.run;
+  const beMonths = savings > 0 ? (qd.setup / savings) * 12 : 999;
+  const costScore = savings > 0 ? (beMonths <= 12 ? 3 : (beMonths <= 24 ? 2 : 1)) : 1;
+  const beDisplay = savings > 0 ? Math.round(beMonths) + ' mo' : 'N/A';
+
+  const composite = (qd.tax*0.25) + (costScore*0.20) + (hcScore*0.15) + (qd.strat*0.15) + (payScore*0.10) + (qd.ops*0.10) + (permScore*0.05);
+  const rag = (qd.tax === 3 || composite > 2.0) ? 'Red' : (composite > 1.5 ? 'Amber' : 'Green');
+  const action = rag === 'Red' ? 'Initiate entity setup' : (rag === 'Amber' ? 'Monitor feasibility' : 'Stay on EOR');
+
+  return {
+    name: cName, region: cd.region, hc: cd.hc, payrollPct: cd.payrollPct,
+    composite: composite.toFixed(2), beDisplay, rag, action,
+    drivers: {
+      'Tax PE / Business Risk': qd.tax,
+      'EOR vs Entity Break-Even': costScore,
+      'Headcount In-Country': hcScore,
+      'Strategic Market': qd.strat,
+      'Payroll % of Global': payScore,
+      'EOR Capability Gap': qd.ops,
+      'Workforce Permanence': permScore
+    }
+  };
+}
+
+function getAllResults() {
+  return COUNTRIES_DATA.map(c => compute(c.name)).filter(Boolean);
+}
+
+// ── RENDER MATRIX ──
+function renderMatrix() {
+  const results = getAllResults();
+  const sorted = [...results].sort((a,b) => parseFloat(b.composite) - parseFloat(a.composite));
+  let html = '';
+  sorted.forEach(r => {
+    const ragClass = r.rag === 'Red' ? 'rag-red' : r.rag === 'Amber' ? 'rag-amber' : 'rag-green';
+    html += `<tr onclick="openScorecard('${r.name}')">
+      <td class="td-country">${r.name}</td>
+      <td class="td-region">${r.region}</td>
+      <td class="td-num">${r.hc}</td>
+      <td class="td-num">${r.payrollPct}%</td>
+      <td class="td-center td-num">${r.beDisplay}</td>
+      <td class="td-score" style="color:${r.rag==='Red'?'var(--red-light)':r.rag==='Amber'?'var(--amber)':'var(--green)'}">${r.composite}</td>
+      <td class="td-center"><span class="rag ${ragClass}"><span class="rag-dot"></span>${r.rag}</span></td>
+      <td class="td-action">${r.action}</td>
+    </tr>`;
+  });
+  document.getElementById('matrixTbody').innerHTML = html;
+  renderGovernanceSummary(results);
+}
+
+// ── SCORECARD ──
+function openScorecard(name) {
+  const r = compute(name);
+  document.getElementById('scCountry').textContent = r.name;
+  document.getElementById('scRegion').textContent = r.region;
+  document.getElementById('scScore').textContent = r.composite;
+  const ragClass = r.rag === 'Red' ? 'rag-red' : r.rag === 'Amber' ? 'rag-amber' : 'rag-green';
+  document.getElementById('scRag').innerHTML = `<span class="rag ${ragClass}"><span class="rag-dot"></span>${r.rag}</span>`;
+
+  let barsHtml = '';
+  Object.entries(r.drivers).forEach(([label, score]) => {
+    const barClass = score === 3 ? 'bar-red' : score === 2 ? 'bar-amber' : 'bar-green';
+    const pct = (score / 3) * 100;
+    barsHtml += `<div class="driver-row">
+      <div class="driver-label-row">
+        <span class="driver-label">${label}</span>
+        <span class="driver-score">${score}/3</span>
+      </div>
+      <div class="driver-bar-bg"><div class="driver-bar-fill ${barClass}" style="width:${pct}%"></div></div>
+    </div>`;
+  });
+  document.getElementById('scBars').innerHTML = barsHtml;
+  document.getElementById('scorecardModal').classList.add('open');
+}
+
+// ── FORM ──
+function populateFormSelects() {
+  const sel = document.getElementById('formCountry');
+  sel.innerHTML = '<option value="" disabled selected>— Select —</option>';
+  COUNTRIES_DATA.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.name; opt.textContent = c.name;
+    sel.appendChild(opt);
+  });
+}
+
+function populateForm() {
+  const name = document.getElementById('formCountry').value;
+  if (!name) return;
+  const qd = qualData[name];
+  document.getElementById('formTax').value = qd.tax;
+  document.getElementById('formStrat').value = qd.strat;
+  document.getElementById('formOps').value = qd.ops;
+  document.getElementById('formEor').value = qd.fees;
+  document.getElementById('formRun').value = qd.run;
+  document.getElementById('formSetup').value = qd.setup;
+}
+
+function submitForm() {
+  const country = document.getElementById('formCountry').value;
+  if (!country) { alert('Select a country first.'); return; }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.textContent = 'Updating…';
+
+  const oldQd = { ...qualData[country] };
+  const newQd = {
+    tax: parseInt(document.getElementById('formTax').value),
+    strat: parseInt(document.getElementById('formStrat').value),
+    ops: parseInt(document.getElementById('formOps').value),
+    fees: parseFloat(document.getElementById('formEor').value) || oldQd.fees,
+    run: parseFloat(document.getElementById('formRun').value) || oldQd.run,
+    setup: parseFloat(document.getElementById('formSetup').value) || oldQd.setup,
+  };
+
+  const oldStr = `Tax PE: ${oldQd.tax} | Strategic: ${oldQd.strat} | Cap Gap: ${oldQd.ops} | EOR Fees: $${oldQd.fees.toLocaleString()} | Entity Run: $${oldQd.run.toLocaleString()} | Setup: $${oldQd.setup.toLocaleString()}`;
+  const newStr = `Tax PE: ${newQd.tax} | Strategic: ${newQd.strat} | Cap Gap: ${newQd.ops} | EOR Fees: $${newQd.fees.toLocaleString()} | Entity Run: $${newQd.run.toLocaleString()} | Setup: $${newQd.setup.toLocaleString()}`;
+  const role = document.getElementById('roleSelector').value;
+  const reason = document.getElementById('formReason').value;
+
+  qualData[country] = newQd;
+  auditLog.unshift({ ts: new Date().toLocaleString(), country, change: 'Matrix Drivers Updated', old: oldStr, newVal: newStr, role, reason });
+
+  setTimeout(() => {
+    btn.disabled = false; btn.textContent = 'Update Matrix & Log to Audit Trail';
+    renderMatrix();
+    const result = compute(country);
+    if (result.rag === 'Red') showEmailModal(country);
+    else { switchTab('matrix'); }
+  }, 600);
+}
+
+// ── GOVERNANCE ──
+function renderGovernanceSummary(results) {
+  const red = results.filter(r => r.rag === 'Red').length;
+  const amber = results.filter(r => r.rag === 'Amber').length;
+  const overrides = Object.values(qualData).filter(q => q.tax === 3).length;
+
+  document.getElementById('govTotal').textContent = COUNTRIES_DATA.length;
+  document.getElementById('govRed').textContent = red;
+  document.getElementById('govAmber').textContent = amber;
+  document.getElementById('govOverrides').textContent = overrides;
+  document.getElementById('govAuditCount').textContent = auditLog.length;
+
+  // Audit table
+  let auditHtml = '';
+  auditLog.slice(0, 12).forEach(a => {
+    auditHtml += `<tr>
+      <td style="font-size:10px;color:var(--mid);">${a.ts}</td>
+      <td style="font-weight:600;">${a.country}</td>
+      <td class="audit-mono"><span class="audit-old">Old: ${a.old}</span><br><span class="audit-new">New: ${a.newVal}</span></td>
+      <td>${a.role}</td>
+      <td style="font-style:italic;color:var(--mid);">${a.reason}</td>
+    </tr>`;
+  });
+  document.getElementById('auditTbody').innerHTML = auditHtml || '<tr><td colspan="5" style="color:var(--mid);padding:16px 0;">No changes logged yet.</td></tr>';
+
+  // Status table
+  const sorted = [...results].sort((a,b) => parseFloat(b.composite) - parseFloat(a.composite));
+  let statusHtml = '';
+  sorted.forEach(r => {
+    const ragClass = r.rag === 'Red' ? 'rag-red' : r.rag === 'Amber' ? 'rag-amber' : 'rag-green';
+    statusHtml += `<tr><td>${r.name}</td><td style="font-weight:700;">${r.composite}</td><td><span class="rag ${ragClass}" style="font-size:10px;padding:2px 8px;"><span class="rag-dot"></span>${r.rag}</span></td></tr>`;
+  });
+  document.getElementById('statusTbody').innerHTML = statusHtml;
+}
+
+// ── RESET ──
+function triggerReset() {
+  if (!confirm('Reset all matrix data to baseline? This will clear your updates but keep the audit log.')) return;
+  qualData = JSON.parse(JSON.stringify(QUAL_DEFAULTS));
+  auditLog.unshift({ ts: new Date().toLocaleString(), country: 'All', change: 'Matrix reset to baseline', old: '—', newVal: 'All metrics restored', role: 'System', reason: 'Manual reset' });
+  renderMatrix();
+}
+
+// ── TAB SWITCH ──
+function switchTab(name) {
+  ['matrix','input','governance'].forEach(t => {
+    document.getElementById('view-'+t).classList.toggle('active', t === name);
+    document.getElementById('tab-'+t).classList.toggle('active', t === name);
+  });
+  if (name === 'governance') renderGovernanceSummary(getAllResults());
+}
+
+// ── MODALS ──
+function showEmailModal(country) {
+  document.getElementById('emailCountry').textContent = country;
+  document.getElementById('emailCountry2').textContent = country;
+  document.getElementById('emailModal').classList.add('open');
+  switchTab('matrix');
+}
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// ── INIT ──
+populateFormSelects();
+renderMatrix();
+</script>
+</body>
+</html>

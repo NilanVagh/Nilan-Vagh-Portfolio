@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-page="about">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Nilan Vagh</title>
+<meta name="description" content="13+ years in HR. The shift from running People processes to redesigning the infrastructure those processes run on.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="NV monogram">
+        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
+        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
+        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
+      </svg>
+      <span class="nav-name">Nilan Vagh</span>
+    </a>
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="about.html" class="nav-link nav-link--active">About</a>
+      <a href="thinking.html" class="nav-link">The Thinking</a>
+      <a href="onyx.html" class="nav-link">Onyx</a>
+      <a href="builds.html" class="nav-link">The Builds</a>
+      <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
+    </nav>
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="about.html" class="nav-mobile-link">About</a>
+    <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
+    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
+    <a href="builds.html" class="nav-mobile-link">The Builds</a>
+    <a href="connect.html" class="nav-mobile-link">Connect</a>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">About</span>
+    <h1 class="page-title">I stopped running<br>People processes.<br><span class="page-title--accent">I started redesigning<br>the infrastructure<br>they run on.</span></h1>
+  </div>
+</section>
+
+<!-- NARRATIVE BODY -->
+<section class="about-body">
+  <div class="container container--narrow">
+
+    <div class="about-section">
+      <h2 class="about-h2">Thirteen years in HR.</h2>
+      <p>I started where most People professionals start: running processes. Onboarding cycles. Performance reviews. Compensation planning. The work of getting the right information to the right manager at the right time so they could make a decision.</p>
+      <p>The problem was the infrastructure. Every process was held together by a combination of policy documents, spreadsheet templates, calendar reminders, and tribal knowledge. The systems of record — the HRISes, the performance platforms, the comp tools — were excellent at storing outcomes. They were almost entirely useless at governing the decision-making that produced those outcomes.</p>
+      <p>The result: every significant workforce decision came with invisible risk. Inconsistency nobody could audit. Approval gaps nobody could see. Decisions made in the wrong order, by the wrong people, without the right information in front of them. Not because anyone was negligent. Because the infrastructure didn't exist to do it differently.</p>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">The shift.</h2>
+      <p>About five years ago, I started building instead of configuring. Not implementing vendor products — building the governance layer that vendor products had never thought to include. Routing logic. Decision rights architecture. Workflow state. Exception management. The scaffolding that turns a process into a governed system.</p>
+      <p>The first builds were rough. Google Apps Script, built in evenings and weekends, deployed because the business needed the capability and no vendor was going to provide it. But something became clear quickly: the work wasn't really about the technology. The technology was just the only medium that let you make governance explicit, repeatable, and auditable. The real work was about redesigning how decisions get made.</p>
+      <p>That framing changed everything. It changed what questions I asked at the start of a project. It changed what I looked for in a system implementation. It changed how I evaluated whether a People function was working well — not by process maturity or employee satisfaction scores, but by the quality of its decision infrastructure.</p>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">What I've observed.</h2>
+      <p>Most People functions have reached a plateau. They have capable teams, reasonable tools, and well-documented processes. They're not failing. But they're also not getting better in ways that scale.</p>
+      <p>The constraint is almost never people or process. It's infrastructure. The layer between workforce intent and workforce outcome — the logic that routes decisions, surfaces the right data, enforces the right guardrails, and creates visibility into what's actually happening — that layer is missing or improvised in most organisations.</p>
+      <p>Meanwhile, the organisations that are getting further ahead have started treating People work as a systems problem. Not in the IT sense, but in the design sense: understanding the decision flows, the decision rights, the information dependencies, and building the infrastructure those decisions need to be made well at scale.</p>
+      <p>That's the shift I've been making for five years. And it's the shift I'm most interested in working on.</p>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">What I believe.</h2>
+      <div class="belief-list">
+        <div class="belief-item">
+          <span class="belief-marker" aria-hidden="true">—</span>
+          <p>The most important design question in People work isn't "what process should we run?" It's "what decision needs to be made, by whom, in what order, with what information, and what happens when something goes wrong?"</p>
+        </div>
+        <div class="belief-item">
+          <span class="belief-marker" aria-hidden="true">—</span>
+          <p>Workflow automation without governance design is just faster chaos. The value is in the logic, not the automation.</p>
+        </div>
+        <div class="belief-item">
+          <span class="belief-marker" aria-hidden="true">—</span>
+          <p>AI in People work is interesting precisely where it can support decision-making — surfacing patterns, flagging anomalies, routing exceptions. It is almost entirely uninteresting when it's applied to generating content nobody reads.</p>
+        </div>
+        <div class="belief-item">
+          <span class="belief-marker" aria-hidden="true">—</span>
+          <p>Most People leaders can articulate a vision. Most can't build it. The people who can do both are rare and are building something the market hasn't fully named yet.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2 class="about-h2">What I'm building toward.</h2>
+      <p>People Infrastructure as a recognised category inside scaling technology companies. A function that doesn't just run workforce processes — that designs, builds, and governs the orchestration layer those processes run on. Close to the business, close to the technology, and distinctly not a support function.</p>
+      <p>The tools in this portfolio are proof of what that looks like in practice. Six real builds, one fictional company, and the thinking behind every design decision.</p>
+    </div>
+
+    <div class="about-cta-row">
+      <a href="thinking.html" class="btn btn--primary">Read the thesis</a>
+      <a href="builds.html" class="btn btn--ghost">See the builds</a>
+    </div>
+
+    <div class="about-links-row">
+      <a href="connect.html" class="text-link">Resume & LinkedIn <span aria-hidden="true">→</span></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-name">Nilan Vagh</span>
+        <span class="footer-role">People Infrastructure · Melbourne, AU</span>
+      </div>
+      <div class="footer-right">
+        <a href="connect.html" class="footer-link">Connect</a>
+        <a href="https://linkedin.com/in/nilanvagh" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-note">The data is dummy. The thinking is not.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

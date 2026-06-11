@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" data-page="thinking">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Thinking — Nilan Vagh</title>
+<meta name="description" content="The People Infrastructure thesis. The problem with systems of record, the shift to decision infrastructure, and the Orchestration Test.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="NV monogram">
+        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
+        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
+        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
+      </svg>
+      <span class="nav-name">Nilan Vagh</span>
+    </a>
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="about.html" class="nav-link">About</a>
+      <a href="thinking.html" class="nav-link nav-link--active">The Thinking</a>
+      <a href="onyx.html" class="nav-link">Onyx</a>
+      <a href="builds.html" class="nav-link">The Builds</a>
+      <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
+    </nav>
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="about.html" class="nav-mobile-link">About</a>
+    <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
+    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
+    <a href="builds.html" class="nav-mobile-link">The Builds</a>
+    <a href="connect.html" class="nav-mobile-link">Connect</a>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">The Thinking</span>
+    <h1 class="page-title">The People<br>Infrastructure<br><span class="page-title--accent">Thesis</span></h1>
+    <p class="page-hero-sub">The intellectual core of this portfolio. The problem, the design shift, and the frameworks behind every tool.</p>
+  </div>
+</section>
+
+<!-- TOC -->
+<div class="thinking-toc-bar">
+  <div class="container">
+    <nav class="thinking-toc" aria-label="Page contents">
+      <a href="#the-problem" class="toc-link">The Problem</a>
+      <a href="#the-shift" class="toc-link">The Shift</a>
+      <a href="#orchestration-test" class="toc-link">The Orchestration Test</a>
+      <a href="#key-concepts" class="toc-link">Key Concepts</a>
+      <a href="#external" class="toc-link">External Writing</a>
+    </nav>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<section class="thinking-body">
+  <div class="container container--narrow">
+
+    <div class="thinking-section" id="the-problem">
+      <span class="thinking-section-label">Part 1</span>
+      <h2 class="thinking-h2">The problem with systems of record</h2>
+
+      <p>The dominant paradigm in People technology for the last twenty years has been the system of record. Build a single source of truth. Centralise the data. Make the reports accurate. The assumption baked into every HRIS, every performance platform, every compensation tool: the job of People technology is to store what happened.</p>
+
+      <p>That assumption isn't wrong. But it's incomplete. And the gap between what it captures and what actually matters — workforce decisions — is where most People functions quietly struggle.</p>
+
+      <p>Here's the actual sequence of events in any significant workforce decision: someone identifies a need, someone decides who should be in the room, information gets gathered (often manually, often inconsistently), a judgment is made, approvals are sought (often ad hoc), an outcome is recorded. The system of record sees the last step. It has no visibility into, and no influence over, everything that came before it.</p>
+
+      <p>The result is a function that generates high-quality data about past decisions and low-quality infrastructure for current ones. Performance rating distributions are visible; whether the rating process was consistent across managers is not. Compensation ranges exist; whether compensation decisions were made with those ranges in front of the decision-makers is unknowable. Headcount data is current; whether the headcount request was routed to the right approvers in the right order is anyone's guess.</p>
+
+      <p>This is not a data quality problem. It's a decision infrastructure problem. And it doesn't get solved by upgrading the system of record. It gets solved by building the layer that sits between the process and the record — the layer that governs how decisions actually get made.</p>
+    </div>
+
+    <div class="thinking-divider" aria-hidden="true"></div>
+
+    <div class="thinking-section" id="the-shift">
+      <span class="thinking-section-label">Part 2</span>
+      <h2 class="thinking-h2">The shift to decision infrastructure</h2>
+
+      <p>Decision infrastructure is the governed layer between workforce intent and workforce outcome. It's not the policy. It's not the system. It's the logic that routes decisions to the right people, surfaces the right information at the right moment, enforces the right guardrails, and creates a legible audit trail of what happened and why.</p>
+
+      <p>When you design a People process as a decision infrastructure problem, the questions change. Instead of asking "what steps does this process have?" you ask:</p>
+
+      <div class="thinking-question-block">
+        <div class="thinking-question">What decision is actually being made here?</div>
+        <div class="thinking-question">Who has the right to make it — and at what threshold does that change?</div>
+        <div class="thinking-question">What information does the decision-maker need in front of them at the moment of decision?</div>
+        <div class="thinking-question">What are the guardrails — the conditions under which the decision cannot proceed?</div>
+        <div class="thinking-question">What exceptions exist, who handles them, and how are they tracked?</div>
+        <div class="thinking-question">What is the audit trail — not just what was decided, but who decided, when, with what information?</div>
+      </div>
+
+      <p>These questions don't get answered by buying better software. They get answered by design — by making the decision logic explicit, building it into the workflow, and governing it over time.</p>
+
+      <p>The tools in this portfolio are each an answer to these questions for a specific workforce decision domain. Not features. Not automations. Governed decision infrastructure — where the logic is the product.</p>
+    </div>
+
+    <div class="thinking-divider" aria-hidden="true"></div>
+
+    <div class="thinking-section" id="orchestration-test">
+      <span class="thinking-section-label">Part 3</span>
+      <h2 class="thinking-h2">The Orchestration Test</h2>
+      <p class="thinking-intro-p">A practical heuristic for identifying where decision infrastructure should exist.</p>
+
+      <div class="orchestration-test-box">
+        <div class="orchestration-test-header">The Orchestration Test</div>
+        <div class="orchestration-test-body">
+          <div class="test-question">Ask of any People process:</div>
+          <div class="test-branches">
+            <div class="test-branch test-branch--admin">
+              <div class="test-branch-label">Administrative</div>
+              <p>If the work is mainly about <strong>updating a record</strong> — capturing what was decided, storing an outcome, maintaining data currency — keep it administrative. Automate it if possible. But don't redesign it as a workflow.</p>
+            </div>
+            <div class="test-branch test-branch--governed">
+              <div class="test-branch-label">Governed Workflow</div>
+              <p>If the work is mainly about <strong>helping the right people make the right decision in the right order</strong> — routing information, enforcing guardrails, managing exceptions, creating accountability — redesign it as a governed workflow.</p>
+            </div>
+          </div>
+          <div class="test-insight">Most People processes contain both elements. The Orchestration Test is about identifying which element is primary — and designing accordingly.</div>
+        </div>
+      </div>
+
+      <p>Performance calibration is primarily a governed workflow: it's about routing judgment across a population of employees, enforcing distribution guardrails, managing escalations, and making the decision process auditable. That's why a system of record is insufficient — and why the Calibration Engine exists.</p>
+
+      <p>Compensation planning is primarily a governed workflow: it's about routing budget to managers, constraining individual decisions within cohort logic, tracking spend against allocation, and producing governance-ready outputs. That's why a spreadsheet is insufficient — and why the TR Planning Workbench exists.</p>
+
+      <p>A promotion record is primarily administrative. A promotion decision — who reviews it, what criteria apply, what approval chain governs it — is a governed workflow. Same domain. Different design requirements.</p>
+    </div>
+
+    <div class="thinking-divider" aria-hidden="true"></div>
+
+    <div class="thinking-section" id="key-concepts">
+      <span class="thinking-section-label">Part 4</span>
+      <h2 class="thinking-h2">Key concepts</h2>
+      <p>The vocabulary of People Infrastructure. These concepts appear throughout the builds.</p>
+
+      <div class="concepts-grid">
+        <div class="concept-card">
+          <h3 class="concept-title">Workflow State</h3>
+          <p class="concept-body">The explicit representation of where a decision sits in a governed process — initiated, under review, pending approval, approved, exception, closed. State makes workflow visible. Without it, every process is a black box between submission and outcome.</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Decision Rights Architecture</h3>
+          <p class="concept-body">The explicit mapping of who can make which decisions under which conditions. Not an org chart — a governance layer. Who approves a promotion at L4 vs L6? What happens when budget authority is exceeded? Who can override a guardrail, and what does that create in the audit log?</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Governance by Design</h3>
+          <p class="concept-body">Building compliance into the workflow itself, rather than auditing for it after the fact. Guardrails that prevent decisions from proceeding when criteria aren't met. Approval gates that can't be skipped. Audit trails that are a natural byproduct of the process, not a separate activity.</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Human-in-the-Loop Systems</h3>
+          <p class="concept-body">Decision infrastructure that keeps humans in authority over judgment calls while automating the surrounding work — routing, data surfacing, guardrail enforcement, exception flagging. AI-assist where it's useful. Human decision where it matters. Explicit about which is which.</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Role-Based Visibility</h3>
+          <p class="concept-body">Information surfaces that show people exactly what they need and nothing they shouldn't have. Not a dashboard for everyone — a visibility layer designed around decision roles. The executive sees cross-divisional distribution. The manager sees their cohort. The People team sees exceptions and outliers.</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Exception Management</h3>
+          <p class="concept-body">The deliberate design of what happens when a decision falls outside normal parameters. Not an error state — a workflow state. Who is notified? Who reviews? What documentation is required? What is the audit entry? Well-designed exception management is often what separates a governed process from an administrative one.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="thinking-divider" aria-hidden="true"></div>
+
+    <div class="thinking-section" id="external">
+      <span class="thinking-section-label">Part 5</span>
+      <h2 class="thinking-h2">External writing</h2>
+      <p>Published thinking and external appearances — added as they go live.</p>
+
+      <div class="external-placeholder">
+        <div class="external-placeholder-inner">
+          <div class="external-placeholder-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <p class="external-placeholder-text">Range podcast episode and newsletter feature incoming. Links will appear here when live.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="thinking-nav-row">
+      <a href="onyx.html" class="btn btn--primary">Meet Onyx <span aria-hidden="true">→</span></a>
+      <a href="builds.html" class="btn btn--ghost">See the builds</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-name">Nilan Vagh</span>
+        <span class="footer-role">People Infrastructure · Melbourne, AU</span>
+      </div>
+      <div class="footer-right">
+        <a href="connect.html" class="footer-link">Connect</a>
+        <a href="https://linkedin.com/in/nilanvagh" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-note">The data is dummy. The thinking is not.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

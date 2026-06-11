@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" data-page="builds">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Builds — Nilan Vagh</title>
+<meta name="description" content="Six tools built for Onyx. Real governance logic, real workflow architecture, synthetic data. People Infrastructure in practice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="NV monogram">
+        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
+        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
+        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
+      </svg>
+      <span class="nav-name">Nilan Vagh</span>
+    </a>
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="about.html" class="nav-link">About</a>
+      <a href="thinking.html" class="nav-link">The Thinking</a>
+      <a href="onyx.html" class="nav-link">Onyx</a>
+      <a href="builds.html" class="nav-link nav-link--active">The Builds</a>
+      <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
+    </nav>
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="about.html" class="nav-mobile-link">About</a>
+    <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
+    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
+    <a href="builds.html" class="nav-mobile-link">The Builds</a>
+    <a href="connect.html" class="nav-mobile-link">Connect</a>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">The Builds</span>
+    <h1 class="page-title">Six tools.<br><span class="page-title--accent">One operating model.</span></h1>
+    <p class="page-hero-sub">Each tool exists because of a design decision about how People work should be redesigned — not because a system needed configuring. The case study for each leads with the problem and the thinking, not the features.</p>
+  </div>
+</section>
+
+<!-- BUILDS NOTE -->
+<div class="builds-note-bar">
+  <div class="container">
+    <div class="builds-note">
+      <span class="builds-note-label">Sandbox environment</span>
+      All tools are built for <a href="onyx.html" class="builds-note-link">Onyx</a> — a fictional 247-person AI-native SaaS company. Same data environment across every demo. <a href="onyx.html" class="builds-note-link">Meet Onyx →</a>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL 01 -->
+<section class="tool-section" id="calibration">
+  <div class="container">
+    <div class="tool-card tool-card--priority">
+      <div class="tool-card-header">
+        <div class="tool-number">01</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--building">
+            <span class="tool-status-dot"></span>
+            In build
+          </div>
+          <h2 class="tool-title">Calibration Engine</h2>
+          <p class="tool-subtitle">Global performance cycle management as governed workflow</p>
+        </div>
+      </div>
+
+      <div class="tool-body">
+        <div class="tool-col tool-col--main">
+          <div class="tool-block">
+            <h3 class="tool-block-label">The problem</h3>
+            <p>Performance calibration at scale is a decision coordination problem. Multiple managers, multiple divisions, inconsistent rating distributions, promotion recommendations without guardrails, and no visibility into whether the process is running consistently or fairly across the organisation. Most companies run calibration via spreadsheets and calendar invites. The outcome is recorded in the HRIS. Everything in between is ungoverned.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The design decision</h3>
+            <p>Build the calibration process as a governed workflow — not a meeting facilitation tool, not a reporting dashboard. Async triage before live calibration, so managers arrive prepared rather than deliberating in real time. Role-based visibility so executives see cross-divisional distribution while managers see only their cohort. Promotion guardrails that surface eligibility criteria at the point of recommendation, not after. Decision state that persists and is auditable.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The governance logic</h3>
+            <ul class="tool-governance-list">
+              <li>Rating distribution guardrails enforce cohort-level parameters before finalisation</li>
+              <li>Promotion recommendations require eligibility confirmation before routing for approval</li>
+              <li>Role-based access controls what each participant can see and act on</li>
+              <li>Divisional and executive views aggregate without exposing individual manager data cross-functionally</li>
+              <li>Full audit trail: who changed what, when, and from what state</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-col tool-col--side">
+          <div class="tool-meta-card">
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Built for</span>
+              <span class="tool-meta-value">Onyx — 247 FTE</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Tech stack</span>
+              <span class="tool-meta-value">Google Apps Script</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Decision domain</span>
+              <span class="tool-meta-value">Performance calibration</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Status</span>
+              <span class="tool-meta-value tool-meta-value--building">In build</span>
+            </div>
+          </div>
+          <div class="tool-coming-soon">
+            <div class="tool-coming-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <p class="tool-coming-text">Live sandbox coming when the Calibration Engine ships. You'll be able to click through the full Onyx cycle — async triage, live calibration, promotion routing, executive view.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 02 -->
+<section class="tool-section" id="tr-workbench">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">02</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--building">
+            <span class="tool-status-dot"></span>
+            In build
+          </div>
+          <h2 class="tool-title">TR Planning Workbench</h2>
+          <p class="tool-subtitle">Pre-cycle compensation modelling as governed decision infrastructure</p>
+        </div>
+      </div>
+
+      <div class="tool-body">
+        <div class="tool-col tool-col--main">
+          <div class="tool-block">
+            <h3 class="tool-block-label">The problem</h3>
+            <p>Compensation planning is typically run in spreadsheets distributed to managers, consolidated manually by People, and governed by a process document that nobody follows consistently. Individual decisions are made without visibility into cohort distribution. Budget overruns are discovered at consolidation, not prevented at allocation. The governance exists on paper. It isn't built into the tool.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The design decision</h3>
+            <p>Build compensation planning as a pre-cycle modelling environment with governance embedded — not a spreadsheet with more columns. Managers work within allocated budget envelopes. Scenario modelling shows the distribution impact of decisions before they're submitted. Cohort-level logic prevents outliers without manual review. STI planning outputs are governance-ready, not just exportable.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The governance logic</h3>
+            <ul class="tool-governance-list">
+              <li>Budget allocation enforced at manager level — cannot exceed envelope without escalation</li>
+              <li>Compensation positioning analysis surfaces compa-ratio and band placement at point of decision</li>
+              <li>Cohort distribution logic flags outliers before submission</li>
+              <li>Eligibility rules applied automatically — parental leave, PIPs, recent joiners</li>
+              <li>Governance-ready outputs structured for Finance and Board review</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-col tool-col--side">
+          <div class="tool-meta-card">
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Built for</span>
+              <span class="tool-meta-value">Onyx — FY26 cycle</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Tech stack</span>
+              <span class="tool-meta-value">Google Apps Script</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Decision domain</span>
+              <span class="tool-meta-value">Compensation planning</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Status</span>
+              <span class="tool-meta-value tool-meta-value--building">In build</span>
+            </div>
+          </div>
+          <div class="tool-coming-soon">
+            <div class="tool-coming-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <p class="tool-coming-text">Live sandbox coming. You'll model Onyx's FY26 cycle — allocate budgets, run scenarios, review distribution, produce governance outputs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 03 -->
+<section class="tool-section" id="workforce-intelligence">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">03</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--planned">
+            <span class="tool-status-dot"></span>
+            Planned
+          </div>
+          <h2 class="tool-title">Workforce Intelligence Layer</h2>
+          <p class="tool-subtitle">From descriptive headcount reporting to decision-ready visibility</p>
+        </div>
+      </div>
+
+      <div class="tool-body">
+        <div class="tool-col tool-col--main">
+          <div class="tool-block">
+            <h3 class="tool-block-label">The problem</h3>
+            <p>Most headcount reporting tells you what happened — FTE by division, attrition rate, tenure distribution. It doesn't tell you what to do about it. Performance, engagement, FTE, and lifecycle data sit in separate systems, pulled manually, reported separately. By the time the report reaches a decision-maker it's already stale and the interpretation is left to the reader.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The design decision</h3>
+            <p>Integrate the data sources that actually drive workforce decisions — not just headcount, but performance tier, engagement signal, flight risk, lifecycle stage — and surface them in a single decision-ready layer. The output isn't a dashboard. It's a set of prioritised signals with clear decision prompts attached.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">What it demonstrates</h3>
+            <ul class="tool-governance-list">
+              <li>Cross-source data integration without a data warehouse</li>
+              <li>Signal-based visibility design vs. metric-based reporting design</li>
+              <li>How role-based visibility works across executive, People team, and manager layers</li>
+              <li>The difference between a dashboard and a decision support surface</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-col tool-col--side">
+          <div class="tool-meta-card">
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Built for</span>
+              <span class="tool-meta-value">Onyx — all divisions</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Decision domain</span>
+              <span class="tool-meta-value">Workforce visibility</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Status</span>
+              <span class="tool-meta-value tool-meta-value--planned">Planned — Tool 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 04 -->
+<section class="tool-section" id="job-levelling">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">04</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--planned">
+            <span class="tool-status-dot"></span>
+            Planned
+          </div>
+          <h2 class="tool-title">Job Levelling Tool</h2>
+          <p class="tool-subtitle">Structured role evaluation with governance and audit integration</p>
+        </div>
+      </div>
+
+      <div class="tool-body">
+        <div class="tool-col tool-col--main">
+          <div class="tool-block">
+            <h3 class="tool-block-label">The problem</h3>
+            <p>Job levelling decisions are some of the most consequential and inconsistent in any People function. Without a structured evaluation rubric, level and band recommendations vary by manager, by division, by who's in the room. The decision exists but the logic behind it is invisible — and unauditable.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The design decision</h3>
+            <p>Evaluate roles against a structured rubric and output a level recommendation with the reasoning made explicit. Not a classification tool — a decision support tool that surfaces the inputs, applies the logic, and produces a recommendation the governance layer can act on. The output integrates directly into approval workflows and audit records.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">What it demonstrates</h3>
+            <ul class="tool-governance-list">
+              <li>Rubric-based evaluation as a governed decision rather than a judgment call</li>
+              <li>How levelling integrates into compensation band governance</li>
+              <li>Audit trail design for classification decisions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-col tool-col--side">
+          <div class="tool-meta-card">
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Decision domain</span>
+              <span class="tool-meta-value">Job architecture</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Status</span>
+              <span class="tool-meta-value tool-meta-value--planned">Planned — Tool 4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 05 -->
+<section class="tool-section" id="crossboarding">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">05</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--planned">
+            <span class="tool-status-dot"></span>
+            Planned
+          </div>
+          <h2 class="tool-title">Crossboarding Governance Design</h2>
+          <p class="tool-subtitle">Internal mobility as governed workflow, not form-based administration</p>
+        </div>
+      </div>
+
+      <div class="tool-body">
+        <div class="tool-col tool-col--main">
+          <div class="tool-block">
+            <h3 class="tool-block-label">The problem</h3>
+            <p>Internal mobility is typically managed through a combination of forms, email chains, and manual system updates. The approvals that need to happen — from both releasing and receiving managers, from Finance for compensation changes, from HR for system updates — are uncoordinated. Things fall through gaps. Decisions are made without the right people in the loop. The move happens but the governance didn't.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The design decision</h3>
+            <p>Redesign internal mobility as a governed workflow with structured approval routing, explicit decision boundaries, and cross-system integration. The process doesn't move forward until each decision gate is cleared. The audit trail is a natural output of the workflow, not a manual record. Finance, HR, and business stakeholders have defined roles with defined information visibility.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">What it demonstrates</h3>
+            <ul class="tool-governance-list">
+              <li>Multi-stakeholder approval routing with explicit decision rights</li>
+              <li>Cross-system integration across HR, Finance, and business workflows</li>
+              <li>How governance-by-design works in a mobility context</li>
+              <li>Exception handling when approval chains have conflicts</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-col tool-col--side">
+          <div class="tool-meta-card">
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Decision domain</span>
+              <span class="tool-meta-value">Internal mobility</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Status</span>
+              <span class="tool-meta-value tool-meta-value--planned">Planned — Tool 5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 06 -->
+<section class="tool-section" id="manager-portal">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">06</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--planned">
+            <span class="tool-status-dot"></span>
+            Planned
+          </div>
+          <h2 class="tool-title">Manager Operating Portal</h2>
+          <p class="tool-subtitle">One-page orchestration layer, not a dashboard</p>
+        </div>
+      </div>
+
+      <div class="tool-body">
+        <div class="tool-col tool-col--main">
+          <div class="tool-block">
+            <h3 class="tool-block-label">The problem</h3>
+            <p>Managers make workforce decisions every week — performance conversations, recognition, compensation inputs, mobility decisions, escalations — but their information is scattered across five systems, none of which surface what they actually need at the moment they need it. The result is decisions made with incomplete information, or not made at all because the friction of finding the information is too high.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">The design decision</h3>
+            <p>Build a single operating layer that pulls from BambooHR, Lattice, and internal tools — not to aggregate data into a dashboard, but to surface the decisions a manager has pending right now. What requires your action? What's at risk in your team? What context do you need for the conversation you're about to have? An orchestration surface, not a reporting view.</p>
+          </div>
+          <div class="tool-block">
+            <h3 class="tool-block-label">What it demonstrates</h3>
+            <ul class="tool-governance-list">
+              <li>The difference between a data dashboard and a decision interface</li>
+              <li>Cross-system data integration at the manager layer</li>
+              <li>How human-in-the-loop design works for frontline People decisions</li>
+              <li>Pending action surfacing vs. passive metric display</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-col tool-col--side">
+          <div class="tool-meta-card">
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Decision domain</span>
+              <span class="tool-meta-value">Manager operating layer</span>
+            </div>
+            <div class="tool-meta-row">
+              <span class="tool-meta-label">Status</span>
+              <span class="tool-meta-value tool-meta-value--planned">Planned — Tool 6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDS FOOTER CTA -->
+<section class="builds-cta-section">
+  <div class="container">
+    <div class="builds-cta-inner">
+      <p class="builds-cta-text">The tools are not the point. The thinking behind the tools is the point.</p>
+      <div class="builds-cta-actions">
+        <a href="thinking.html" class="btn btn--primary">Read the thesis</a>
+        <a href="connect.html" class="btn btn--ghost">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-name">Nilan Vagh</span>
+        <span class="footer-role">People Infrastructure · Melbourne, AU</span>
+      </div>
+      <div class="footer-right">
+        <a href="connect.html" class="footer-link">Connect</a>
+        <a href="https://linkedin.com/in/nilanvagh" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-note">The data is dummy. The thinking is not.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

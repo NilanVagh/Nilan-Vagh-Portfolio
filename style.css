@@ -1224,8 +1224,10 @@ p, li { text-wrap: pretty; }
 /* In-development tray on homepage */
 .builds-in-development {
   margin-top: var(--space-10);
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--border);
+  padding: var(--space-8) var(--space-8);
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
 }
 .section-eyebrow--muted { color: var(--mid); }
 .builds-future-row {
@@ -1242,10 +1244,11 @@ p, li { text-wrap: pretty; }
   padding: var(--space-5) var(--space-6);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
+  background: var(--bg);
   text-decoration: none;
   transition: border-color var(--transition), background var(--transition);
 }
-.build-future-item:hover { border-color: var(--border-lt); background: var(--charcoal); }
+.build-future-item:hover { border-color: var(--border-lt); background: rgba(255,255,255,0.03); }
 .build-future-title {
   font-size: var(--text-base);
   font-weight: 600;
@@ -1258,33 +1261,81 @@ p, li { text-wrap: pretty; }
   line-height: 1.6;
 }
 
-/* Compact Onyx note */
+/* Onyx sandbox section — full section, not a footnote */
 .section-onyx-note {
-  padding: var(--space-6) 0;
+  padding: var(--space-16) 0;
   border-top: 1px solid var(--border);
 }
 .onyx-note-inner {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-4);
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .onyx-note-inner { grid-template-columns: 1fr; gap: var(--space-8); }
 }
 .onyx-note-label {
+  display: block;
   font-size: var(--text-xs);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--mid);
-  white-space: nowrap;
+  margin-bottom: var(--space-3);
+}
+.onyx-note-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--white-pure);
+  margin: 0 0 var(--space-4) 0;
+  line-height: 1.25;
 }
 .onyx-note-text {
-  font-size: var(--text-sm);
+  font-size: var(--text-md);
   color: var(--mist);
-  line-height: 1.6;
-  margin: 0;
+  line-height: 1.75;
+  margin: 0 0 var(--space-5) 0;
 }
-.onyx-note-link { color: var(--mist); text-decoration: underline; text-underline-offset: 3px; }
-.onyx-note-link:hover { color: var(--white-dim); }
+.onyx-note-link {
+  color: var(--white-dim);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-lt);
+  padding-bottom: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+.onyx-note-link:hover { color: var(--white-pure); border-color: var(--white-dim); }
+.onyx-note-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.onyx-note-stat {
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--charcoal);
+}
+.onyx-note-stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--white-pure);
+  line-height: 1;
+  margin-bottom: var(--space-1);
+}
+.onyx-note-stat-label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+}
 
 /* About — positioning section */
 .about-section--positioning {

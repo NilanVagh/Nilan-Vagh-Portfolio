@@ -518,7 +518,7 @@ body {
     <div class="topbar-logo">O</div>
     <div>
       <div class="topbar-name">Onyx — EOR Entity Readiness Matrix</div>
-      <div class="topbar-sub">Global workforce · Entity setup decision support · Governance audit trail</div>
+      <div class="topbar-sub">Onyx · 5 EOR markets · Entity setup decision support · Governance audit trail</div>
     </div>
   </div>
   <div class="topbar-right">
@@ -560,7 +560,7 @@ body {
     <div class="philosophy-bar">
       <div class="philosophy-card">
         <div class="philosophy-card-label">The problem</div>
-        <div class="philosophy-card-text">Onyx operates in <strong>14 countries</strong>. 12 are on EOR. No repeatable system existed to assess when entity setup was legally required, financially justified, or strategically necessary.</div>
+        <div class="philosophy-card-text">Onyx operates across <strong>7 markets</strong>. Two are legal entities (Australia, US). Five run on EOR via Deel. No repeatable system existed to assess when entity setup was legally required, financially justified, or strategically necessary.</div>
       </div>
       <div class="philosophy-card">
         <div class="philosophy-card-label">The design principle</div>
@@ -795,33 +795,19 @@ body {
 <script>
 // ── DATA ──
 const COUNTRIES_DATA = [
-  { name:'United Kingdom', region:'EMEA', status:'EOR', hc:18, payrollPct:12, contractors:20 },
-  { name:'Singapore', region:'APAC', status:'EOR', hc:9, payrollPct:7, contractors:55 },
-  { name:'Germany', region:'EMEA', status:'EOR', hc:7, payrollPct:8, contractors:40 },
-  { name:'France', region:'EMEA', status:'EOR', hc:5, payrollPct:5, contractors:45 },
-  { name:'Spain', region:'EMEA', status:'EOR', hc:4, payrollPct:4, contractors:50 },
-  { name:'India', region:'APAC', status:'EOR', hc:6, payrollPct:3, contractors:80 },
-  { name:'Netherlands', region:'EMEA', status:'EOR', hc:3, payrollPct:3, contractors:60 },
-  { name:'Brazil', region:'LATAM', status:'EOR', hc:4, payrollPct:4, contractors:55 },
-  { name:'Canada', region:'Americas', status:'EOR', hc:3, payrollPct:3, contractors:65 },
-  { name:'New Zealand', region:'ANZ', status:'EOR', hc:2, payrollPct:2, contractors:70 },
-  { name:'Ireland', region:'EMEA', status:'EOR', hc:3, payrollPct:3, contractors:60 },
-  { name:'Philippines', region:'APAC', status:'EOR', hc:4, payrollPct:2, contractors:85 },
+  { name:'United Kingdom', region:'EMEA', status:'EOR', hc:10, payrollPct:9, contractors:15 },
+  { name:'Singapore',      region:'APAC', status:'EOR', hc:6,  payrollPct:5, contractors:50 },
+  { name:'Germany',        region:'EMEA', status:'EOR', hc:4,  payrollPct:4, contractors:40 },
+  { name:'Canada',         region:'Americas', status:'EOR', hc:3, payrollPct:3, contractors:60 },
+  { name:'Netherlands',    region:'EMEA', status:'EOR', hc:2,  payrollPct:2, contractors:55 },
 ];
 
 const QUAL_DEFAULTS = {
-  'United Kingdom': { tax:2, strat:3, ops:3, fees:150000, run:60000, setup:80000 },
-  'Singapore':      { tax:2, strat:2, ops:2, fees:140000, run:80000, setup:200000 },
-  'Germany':        { tax:2, strat:2, ops:2, fees:160000, run:120000, setup:150000 },
-  'France':         { tax:2, strat:2, ops:2, fees:120000, run:70000, setup:180000 },
-  'Spain':          { tax:2, strat:2, ops:2, fees:85000, run:65000, setup:140000 },
-  'India':          { tax:1, strat:1, ops:1, fees:70000, run:50000, setup:120000 },
-  'Netherlands':    { tax:1, strat:2, ops:1, fees:60000, run:55000, setup:95000 },
-  'Brazil':         { tax:1, strat:2, ops:1, fees:100000, run:70000, setup:150000 },
-  'Canada':         { tax:1, strat:1, ops:1, fees:65000, run:60000, setup:80000 },
-  'New Zealand':    { tax:1, strat:1, ops:1, fees:45000, run:45000, setup:60000 },
-  'Ireland':        { tax:1, strat:2, ops:1, fees:55000, run:50000, setup:85000 },
-  'Philippines':    { tax:1, strat:1, ops:1, fees:60000, run:40000, setup:90000 },
+  'United Kingdom': { tax:2, strat:3, ops:3, fees:95000,  run:58000, setup:75000 },
+  'Singapore':      { tax:2, strat:2, ops:2, fees:82000,  run:70000, setup:180000 },
+  'Germany':        { tax:2, strat:2, ops:2, fees:68000,  run:110000, setup:140000 },
+  'Canada':         { tax:1, strat:1, ops:1, fees:48000,  run:55000, setup:70000 },
+  'Netherlands':    { tax:1, strat:2, ops:1, fees:32000,  run:50000, setup:85000 },
 };
 
 let qualData = JSON.parse(JSON.stringify(QUAL_DEFAULTS));
@@ -977,7 +963,7 @@ function renderGovernanceSummary(results) {
   const amber = results.filter(r => r.rag === 'Amber').length;
   const overrides = Object.values(qualData).filter(q => q.tax === 3).length;
 
-  document.getElementById('govTotal').textContent = COUNTRIES_DATA.length;
+  document.getElementById('govTotal').textContent = COUNTRIES_DATA.length + ' EOR markets';
   document.getElementById('govRed').textContent = red;
   document.getElementById('govAmber').textContent = amber;
   document.getElementById('govOverrides').textContent = overrides;

@@ -1381,3 +1381,90 @@ p, li { text-wrap: pretty; }
 
 /* Tool card future state */
 .tool-card--future { opacity: 0.85; }
+
+/* ============================================================
+   SHELL STAGE ADDITIONS: proof type labels, flagship banner,
+   thinking cross-ref, external placeholder upgrade
+   ============================================================ */
+
+/* Proof type label on build cards */
+.tool-proof-type {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-bottom: var(--space-2);
+}
+
+/* Flagship section banner */
+.tool-section--flagship {
+  border-top: 2px solid rgba(232, 184, 75, 0.3);
+  position: relative;
+}
+.tool-flagship-banner {
+  background: linear-gradient(90deg, rgba(232,184,75,0.08) 0%, transparent 100%);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid rgba(232, 184, 75, 0.15);
+  margin-bottom: var(--space-2);
+}
+.tool-flagship-eyebrow {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #E8B84B;
+}
+
+/* Thinking page cross-reference block */
+.thinking-cross-ref {
+  margin-top: var(--space-8);
+  padding: var(--space-5) var(--space-6);
+  border-left: 3px solid var(--border-lt);
+  background: var(--charcoal);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.thinking-cross-ref-label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--mid);
+  margin-bottom: var(--space-2);
+}
+.thinking-cross-ref p {
+  font-size: var(--text-sm);
+  color: var(--mist);
+  line-height: 1.7;
+  margin: 0;
+}
+.thinking-inline-link {
+  color: var(--white-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* External placeholder upgrade */
+.external-placeholder-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.external-placeholder-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--white-dim);
+  margin: 0;
+}
+.external-placeholder-text {
+  font-size: var(--text-sm);
+  color: var(--mist);
+  line-height: 1.6;
+  margin: 0;
+}

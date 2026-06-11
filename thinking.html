@@ -76,15 +76,13 @@
       <span class="thinking-section-label">Part 1</span>
       <h2 class="thinking-h2">The problem with systems of record</h2>
 
-      <p>The dominant paradigm in People technology for the last twenty years has been the system of record. Build a single source of truth. Centralise the data. Make the reports accurate. The assumption baked into every HRIS, every performance platform, every compensation tool: the job of People technology is to store what happened.</p>
+      <p>Every tool in this portfolio starts from the same diagnosis: the systems People functions rely on were designed to store what happened, not to govern how it gets decided.</p>
 
-      <p>That assumption isn't wrong. But it's incomplete. And the gap between what it captures and what actually matters — workforce decisions — is where most People functions quietly struggle.</p>
+      <p>Systems of record — HRISes, performance platforms, compensation tools — are excellent at the last step: capturing the outcome. They have no visibility into, and no influence over, everything that came before it. Who was in the room. What information the decision-maker had in front of them. Whether the right approvals were sought, in the right order. Whether exceptions were handled consistently or ignored.</p>
 
-      <p>Here's the actual sequence of events in any significant workforce decision: someone identifies a need, someone decides who should be in the room, information gets gathered (often manually, often inconsistently), a judgment is made, approvals are sought (often ad hoc), an outcome is recorded. The system of record sees the last step. It has no visibility into, and no influence over, everything that came before it.</p>
+      <p>The result is a function that generates high-quality data about past decisions and low-quality infrastructure for current ones. Rating distributions are visible; whether the rating process was consistent across managers is not. Compensation ranges exist; whether decisions were made with those ranges in front of the decision-maker is unknowable. Headcount data is current; whether the headcount request was routed correctly is anyone's guess.</p>
 
-      <p>The result is a function that generates high-quality data about past decisions and low-quality infrastructure for current ones. Performance rating distributions are visible; whether the rating process was consistent across managers is not. Compensation ranges exist; whether compensation decisions were made with those ranges in front of the decision-makers is unknowable. Headcount data is current; whether the headcount request was routed to the right approvers in the right order is anyone's guess.</p>
-
-      <p>This is not a data quality problem. It's a decision infrastructure problem. And it doesn't get solved by upgrading the system of record. It gets solved by building the layer that sits between the process and the record — the layer that governs how decisions actually get made.</p>
+      <p>This is not a data quality problem. It is a decision infrastructure problem. And it doesn't get solved by upgrading the system of record. It gets solved by building the layer that sits between the process and the record — the layer that governs how decisions actually get made. That is what each tool in this portfolio is designed to be.</p>
     </div>
 
     <div class="thinking-divider" aria-hidden="true"></div>
@@ -116,7 +114,7 @@
     <div class="thinking-section" id="orchestration-test">
       <span class="thinking-section-label">Part 3</span>
       <h2 class="thinking-h2">The Orchestration Test</h2>
-      <p class="thinking-intro-p">A practical heuristic for identifying where decision infrastructure should exist.</p>
+      <p class="thinking-intro-p">A practical heuristic for identifying where decision infrastructure should exist — and where it shouldn't.</p>
 
       <div class="orchestration-test-box">
         <div class="orchestration-test-header">The Orchestration Test</div>
@@ -125,22 +123,27 @@
           <div class="test-branches">
             <div class="test-branch test-branch--admin">
               <div class="test-branch-label">Administrative</div>
-              <p>If the work is mainly about <strong>updating a record</strong> — capturing what was decided, storing an outcome, maintaining data currency — keep it administrative. Automate it if possible. But don't redesign it as a workflow.</p>
+              <p>Is the work primarily about <strong>recording an outcome</strong>? Keep it administrative. Automate where possible. The goal is accuracy and efficiency — not workflow redesign.</p>
             </div>
             <div class="test-branch test-branch--governed">
               <div class="test-branch-label">Governed Workflow</div>
-              <p>If the work is mainly about <strong>helping the right people make the right decision in the right order</strong> — routing information, enforcing guardrails, managing exceptions, creating accountability — redesign it as a governed workflow.</p>
+              <p>Is the work primarily about <strong>getting the right decision made</strong> — routing information, enforcing guardrails, managing exceptions, creating accountability? Redesign it as a governed workflow. The goal is auditability and consistency, not just throughput.</p>
             </div>
           </div>
-          <div class="test-insight">Most People processes contain both elements. The Orchestration Test is about identifying which element is primary — and designing accordingly.</div>
+          <div class="test-insight">Most People processes contain both elements. The Orchestration Test is about identifying which element is primary — and designing accordingly. The mistake is treating everything like a system-of-record transaction.</div>
         </div>
       </div>
 
-      <p>Performance calibration is primarily a governed workflow: it's about routing judgment across a population of employees, enforcing distribution guardrails, managing escalations, and making the decision process auditable. That's why a system of record is insufficient — and why the Calibration Engine exists.</p>
+      <p>Performance calibration is a governed workflow. The system of record can hold the final rating — it cannot support the weighted curves, manager-level visibility controls, promotion guardrails, and exception routing that make calibration defensible. That gap is why the Calibration Engine exists.</p>
 
-      <p>Compensation planning is primarily a governed workflow: it's about routing budget to managers, constraining individual decisions within cohort logic, tracking spend against allocation, and producing governance-ready outputs. That's why a spreadsheet is insufficient — and why the TR Planning Workbench exists.</p>
+      <p>Remuneration review is a governed workflow. A spreadsheet can hold a number — it cannot enforce budget envelopes, surface compa-ratio at point of decision, or flag cohort outliers before submission. That gap is why the Rem Review Planning Studio exists.</p>
 
-      <p>A promotion record is primarily administrative. A promotion decision — who reviews it, what criteria apply, what approval chain governs it — is a governed workflow. Same domain. Different design requirements.</p>
+      <p>A promotion record is administrative. A promotion decision — who reviews it, what criteria apply, what approval chain governs it, what happens when criteria aren't met — is a governed workflow. Same domain. Entirely different design requirements.</p>
+
+      <div class="thinking-cross-ref">
+        <span class="thinking-cross-ref-label">External writing</span>
+        <p>The Orchestration Test and the broader argument for designing HR around decision paths rather than systems of record is explored in depth in an upcoming feature. Link will appear in the <a href="#external" class="thinking-inline-link">External Writing</a> section when published.</p>
+      </div>
     </div>
 
     <div class="thinking-divider" aria-hidden="true"></div>
@@ -192,7 +195,10 @@
               <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
           </div>
-          <p class="external-placeholder-text">Range podcast episode and newsletter feature incoming. Links will appear here when live.</p>
+          <div class="external-placeholder-content">
+            <p class="external-placeholder-title">FNDN Weekly — Newsletter feature</p>
+            <p class="external-placeholder-text">A feature on designing HR around decision paths rather than systems of record, including the Orchestration Test and the argument for People Infrastructure as a category. Published by Matt McFarlane. Link coming when live.</p>
+          </div>
         </div>
       </div>
     </div>

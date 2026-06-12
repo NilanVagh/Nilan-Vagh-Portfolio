@@ -49,8 +49,8 @@
   --radius-md: 10px;
   --radius-lg: 14px;
 
-  --content-narrow: 720px;
-  --content-default: 1080px;
+  --content-narrow: 900px;
+  --content-default: 1200px;
 
   --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -1045,11 +1045,11 @@ p, li { text-wrap: pretty; }
 
 .tool-body {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
   gap: 0;
 }
 .tool-col--main {
-  padding: var(--space-8);
+  padding: var(--space-8) var(--space-10);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -1581,7 +1581,7 @@ p, li { text-wrap: pretty; }
 .data-source-list { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4); }
 .data-source-row {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 180px 1fr;
   gap: var(--space-4);
   align-items: baseline;
 }
@@ -1598,7 +1598,7 @@ p, li { text-wrap: pretty; }
 .stakeholder-list { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4); }
 .stakeholder-row {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 180px 1fr;
   gap: var(--space-4);
   align-items: baseline;
 }
@@ -1675,7 +1675,7 @@ p, li { text-wrap: pretty; }
 }
 
 /* ============================================================
-   ONYX PAGE LAYOUT: widen container, full-width sections
+   ONYX PAGE LAYOUT: consistent with rest of site
    ============================================================ */
 #onyx-foundation-embed .container {
   max-width: 1200px !important;
@@ -1684,8 +1684,7 @@ p, li { text-wrap: pretty; }
 #onyx-foundation-embed .section {
   max-width: 100% !important;
 }
-/* Cover section - align with main content */
-.onyx-cover-section .container--narrow {
+.onyx-cover-section .container {
   max-width: 1200px;
 }
 

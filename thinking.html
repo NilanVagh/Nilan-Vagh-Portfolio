@@ -26,22 +26,22 @@
       </svg>
       <span class="nav-name">Nilan Vagh</span>
     </a>
-            <nav class="nav-links" role="navigation" aria-label="Main navigation">
-      <a href="builds.html" class="nav-link">The Builds</a>
-      <a href="onyx.html" class="nav-link">Onyx</a>
+                <nav class="nav-links" role="navigation" aria-label="Main navigation">
       <a href="about.html" class="nav-link">About</a>
       <a href="thinking.html" class="nav-link nav-link--active">The Thinking</a>
+      <a href="onyx.html" class="nav-link">Onyx</a>
+      <a href="builds.html" class="nav-link">The Builds</a>
       <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
     </nav>
     <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
-      <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="builds.html" class="nav-mobile-link">The Builds</a>
-    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
+        <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
     <a href="about.html" class="nav-mobile-link">About</a>
     <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
+    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
+    <a href="builds.html" class="nav-mobile-link">The Builds</a>
     <a href="connect.html" class="nav-mobile-link">Connect</a>
   </div>
 </header>
@@ -63,7 +63,7 @@
       <a href="#the-shift" class="toc-link">The Shift</a>
       <a href="#orchestration-test" class="toc-link">The Orchestration Test</a>
       <a href="#key-concepts" class="toc-link">Key Concepts</a>
-      <a href="#local-context" class="toc-link">Local Context</a>
+      <a href="#local-context" class="toc-link">Process Context</a>
       <a href="#where-work-happens" class="toc-link">Where Work Happens</a>
       <a href="#external" class="toc-link">External Writing</a>
     </nav>
@@ -109,6 +109,33 @@
       <p>These questions don't get answered by buying better software. They get answered by design — by making the decision logic explicit, building it into the workflow, and governing it over time.</p>
 
       <p>The tools in this portfolio are each an answer to these questions for a specific workforce decision domain. Not features. Not automations. Governed decision infrastructure — where the logic is the product.</p>
+
+      <div class="thinking-design-process">
+        <div class="thinking-design-process-label">The design process behind every build</div>
+        <div class="thinking-design-steps">
+          <div class="thinking-design-step">
+            <div class="thinking-design-step-num">01</div>
+            <div class="thinking-design-step-content">
+              <div class="thinking-design-step-title">Design Thinking</div>
+              <div class="thinking-design-step-desc">Start with the real problem — not the process as documented, but how the decision actually gets made in practice. Who's involved, where it breaks, what gets lost between submission and outcome. Understand the failure modes before designing the solution.</div>
+            </div>
+          </div>
+          <div class="thinking-design-step">
+            <div class="thinking-design-step-num">02</div>
+            <div class="thinking-design-step-content">
+              <div class="thinking-design-step-title">Governance by Design</div>
+              <div class="thinking-design-step-desc">Map the decision rights, guardrails, exception paths, and audit requirements before building anything. Governance isn't a layer added on top — it's built into the workflow from the start. The structure of the tool reflects the structure of the decision.</div>
+            </div>
+          </div>
+          <div class="thinking-design-step">
+            <div class="thinking-design-step-num">03</div>
+            <div class="thinking-design-step-content">
+              <div class="thinking-design-step-title">Self-Service with the Right Information</div>
+              <div class="thinking-design-step-desc">Self-service only works when the person using it has exactly what they need — no more, no less. A manager levelling a role needs to see comparable roles and salary bands at the point of decision, not navigate to a separate framework document. A hiring manager planning comp needs to see their budget envelope and cohort distribution in real time, not discover an overspend at consolidation. Self-service without the right information is just friction with fewer emails.</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="thinking-divider" aria-hidden="true"></div>
@@ -187,7 +214,7 @@
 
     <div class="thinking-section" id="local-context">
       <span class="thinking-section-label">Part 6</span>
-      <h2 class="thinking-h2">Vendor tools are built for the median process</h2>
+      <h2 class="thinking-h2">Vendor tools are built for the median. Your process probably isn't.</h2>
       <p class="thinking-intro-p">Your process probably isn't median. That gap is structural — and it doesn't close by picking a better vendor.</p>
 
       <p>Enterprise HRIS platforms and performance tools are genuinely good at what they're designed for. They capture records reliably, run standard review cycles, and handle the processes that most organisations run the same way. But they're built around a median process — the way most companies of a certain size run calibration, or compensation review, or job levelling. The more your process diverges from that median, the less the tool fits.</p>

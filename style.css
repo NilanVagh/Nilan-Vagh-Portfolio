@@ -792,6 +792,8 @@ p, li { text-wrap: pretty; }
 .onyx-foundation-section { margin-top: var(--space-12); }
 
 #onyx-foundation-embed {
+  width: 100%;
+  display: block;
   --red:       #C0392B;
   --red-light: #E8503F;
   --red-dim:   #2A1210;
@@ -836,7 +838,7 @@ p, li { text-wrap: pretty; }
   margin-top: 10px; line-height: 1.6;
 }
 #onyx-foundation-embed .container {
-  max-width: 1100px; margin: 0 auto; padding: 48px 64px;
+  max-width: 100%; margin: 0 auto; padding: 48px 64px;
 }
 #onyx-foundation-embed .section {
   background: var(--ink); border: 1px solid var(--border);

@@ -881,7 +881,7 @@ p, li { text-wrap: pretty; }
   font-weight: 700; color: var(--white-pure); letter-spacing: -0.02em;
 }
 #onyx-foundation-embed .stat-card .sub { font-size: 11px; color: var(--mist); margin-top: 4px; }
-#onyx-foundation-embed .company-desc { font-size: 15px; color: #AAAAAA; line-height: 1.75; max-width: 780px; margin-bottom: 20px; }
+#onyx-foundation-embed .company-desc { font-size: 15px; color: #AAAAAA; line-height: 1.75; max-width: none; margin-bottom: 20px; }
 #onyx-foundation-embed .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; overflow: visible; }
 #onyx-foundation-embed .tag {
   background: var(--red-dim); color: var(--red-light);

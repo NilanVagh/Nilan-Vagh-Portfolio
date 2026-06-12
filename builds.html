@@ -60,7 +60,7 @@
   <div class="container">
     <div class="builds-note">
       <span class="builds-note-label">Sandbox environment</span>
-      All tools are built for <a href="onyx.html" class="builds-note-link">Onyx</a> — a fictional 247-person AI-native SaaS company. Same data environment across every demo. <a href="onyx.html" class="builds-note-link">Meet Onyx →</a>
+      All tools are built for <a href="onyx.html" class="builds-note-link">Onyx</a> — a fictional 260-person AI-native SaaS company (235 permanent FTE + 25 EOR across 5 markets). Same data environment across every demo. <a href="onyx.html" class="builds-note-link">Meet Onyx →</a>
     </div>
   </div>
 </div>
@@ -107,7 +107,34 @@
               <li>Full audit trail: who changed what, when, and from what state</li>
             </ul>
           </div>
-          <div class="tool-block tool-block--data">
+          <div class="tool-block tool-block--why-build">
+            <h3 class="tool-block-label">Why a custom build — and when it's worth it</h3>
+            <p class="why-build-intro">Onyx runs two regions. The US team uses Lattice's native calibration — it fits their process well. The ANZ team doesn't. Same company. Same tool available. Different answer.</p>
+            <p class="why-build-body">ANZ calibration is more complex: a larger population relative to the region, different employment law context, stronger cultural norms around due process, and a harder challenge around managing performance consistently across a more tenured workforce. Lattice's calibration is built for the median process. ANZ's process isn't median. No vendor configuration closes that gap — because the gap isn't in the features, it's in the context.</p>
+            <p class="why-build-body">That said — custom building isn't always the right answer. The honest test:</p>
+            <div class="cost-benefit-grid">
+              <div class="cost-benefit-card cost-benefit-card--build">
+                <div class="cost-benefit-label">Worth building when</div>
+                <ul class="cost-benefit-list">
+                  <li>The process runs on a fixed cycle and affects a large population</li>
+                  <li>The cost of running it badly is high — comp, promotion, retention, legal exposure</li>
+                  <li>No vendor tool can capture the local context without significant workarounds</li>
+                  <li>The governance logic needs to be embedded, not bolted on</li>
+                  <li>The organisation will use it repeatedly — not a one-time event</li>
+                </ul>
+              </div>
+              <div class="cost-benefit-card cost-benefit-card--skip">
+                <div class="cost-benefit-label">Probably not worth building when</div>
+                <ul class="cost-benefit-list">
+                  <li>A simple dashboard or report will do — vibe-code it in an afternoon</li>
+                  <li>The process is genuinely standard and a vendor tool fits well enough</li>
+                  <li>The maintenance overhead exceeds the governance value</li>
+                  <li>The complexity is in the data, not the decision logic</li>
+                </ul>
+              </div>
+            </div>
+            <p class="why-build-body" style="margin-top:var(--space-5);">The Calibration Engine sits firmly in the first column. It took weeks of design thinking before a line of code was written — not because the build was technically hard, but because the governance decisions are genuinely complex. What are the exception paths? Who sees what at each stage? What happens when a manager disputes a rating in the live session? Those questions can't be answered by a vendor. They can only be answered by someone who has run this process, in this organisation, and knows what breaks.</p>
+          </div>
             <h3 class="tool-block-label">Data sources</h3>
             <div class="data-source-list">
               <div class="data-source-row">
@@ -141,19 +168,20 @@
           <div class="tool-block tool-block--integrations">
             <h3 class="tool-block-label">Integrations &amp; where work happens</h3>
             <div class="integration-current">
-              <div class="integration-state-label">Current state</div>
+              <div class="integration-state-label">Design principle — governance lives in the tool</div>
+              <p style="font-size:var(--text-sm);color:var(--mist);line-height:1.7;margin-bottom:var(--space-4);">Calibration is a cyclical, live-session event. 95% of the work happens inside the tool — that's the point. CPO and executives don't approve promotions outside the tool via email or Slack. The approval chain, promotion sign-off, and executive review are all governed workflow states within the Calibration Engine itself. The audit trail is a natural output, not a separate process.</p>
               <ul class="tool-governance-list">
-                <li>Calibration outputs written back to the performance record in Lattice on completion</li>
-                <li>Slack notifications sent to managers when async triage window opens and when deadlines approach</li>
-                <li>Promotion decisions routed to CPO via structured email with full decision context attached</li>
+                <li>Managers complete async triage in the tool before live sessions — they arrive prepared, not deliberating in real time</li>
+                <li>Promotion approvals routed and captured within the tool — full decision chain visible to CPO without leaving the workflow</li>
+                <li>Slack notification when async triage window opens — one-touch link back into the tool</li>
+                <li>Calibration outputs written back to Lattice performance records on cycle close</li>
               </ul>
             </div>
             <div class="integration-future">
-              <div class="integration-state-label integration-state-label--future">Future state — needs Engineering / Data partnership</div>
+              <div class="integration-state-label integration-state-label--future">Future state — with Engineering support</div>
               <ul class="tool-governance-list">
-                <li>Manager completes async triage directly in Slack via modal form — no tool login required</li>
-                <li>Calibration nudges sent as Slack actions (approve / flag / escalate) not just notifications</li>
-                <li>Live calibration session data feeds directly into Lattice via API, removing manual reconciliation</li>
+                <li>Real-time Lattice API sync replaces manual data extract at cycle open</li>
+                <li>Post-calibration rating changes pushed back to Lattice automatically — removing the manual EIB load step</li>
               </ul>
             </div>
           </div>
@@ -351,47 +379,47 @@
             <div class="data-source-list">
               <div class="data-source-row">
                 <span class="data-source-system">BambooHR</span>
-                <span class="data-source-desc">Headcount snapshots, attrition events, tenure distribution, lifecycle stage, and hire/exit dates</span>
+                <span class="data-source-desc">Headcount snapshots, attrition events, tenure distribution, lifecycle stage, and hire/exit dates — the core workforce data layer</span>
               </div>
               <div class="data-source-row">
                 <span class="data-source-system">Lattice</span>
-                <span class="data-source-desc">Performance tier distribution by division — layered as a signal on top of headcount data</span>
+                <span class="data-source-desc">Performance tier distribution by division and manager — layered as a signal on top of headcount data to show where high performers are concentrated or at risk</span>
+              </div>
+              <div class="data-source-row">
+                <span class="data-source-system">Lattice (Engagement)</span>
+                <span class="data-source-desc">Quarterly engagement survey results — manually pushed into the layer after each survey cycle closes. Next signal layer being integrated.</span>
               </div>
               <div class="data-source-row">
                 <span class="data-source-system">Monday.com</span>
-                <span class="data-source-desc">Parental leave tracker — integrated as a workforce lifecycle signal, not just an absence record</span>
-              </div>
-              <div class="data-source-row">
-                <span class="data-source-system">Finance / ChartHop</span>
-                <span class="data-source-desc">FTE budget vs actual — surfaced alongside headcount for decision-ready context</span>
+                <span class="data-source-desc">Parental leave tracker — integrated as a workforce lifecycle signal, not just an absence record. Surfaced alongside attrition and tenure data.</span>
               </div>
             </div>
           </div>
           <div class="tool-block tool-block--stakeholders">
             <h3 class="tool-block-label">Stakeholders involved</h3>
             <div class="stakeholder-list">
-              <div class="stakeholder-row"><span class="stakeholder-role">CPO / Executive</span><span class="stakeholder-desc">Cross-divisional view — headcount, attrition, performance distribution, and FTE vs budget</span></div>
-              <div class="stakeholder-row"><span class="stakeholder-role">People Partners</span><span class="stakeholder-desc">Division-level signals — flight risk indicators, lifecycle events, and exception flags</span></div>
-              <div class="stakeholder-row"><span class="stakeholder-role">Finance</span><span class="stakeholder-desc">FTE budget vs actual alignment, headcount movement explanations</span></div>
-              <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Owns data integration layer, monthly refresh cycle, and signal design</span></div>
+              <div class="stakeholder-row"><span class="stakeholder-role">CPO / Executive</span><span class="stakeholder-desc">Cross-divisional executive snapshot — headcount movement, attrition signals, performance distribution, and FTE vs budget</span></div>
+              <div class="stakeholder-row"><span class="stakeholder-role">People Partners</span><span class="stakeholder-desc">Division-level signals — flight risk indicators, lifecycle events, and exception flags for their specific population</span></div>
+              <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Owns the data integration layer, monthly refresh cycle, signal design, and distribution to stakeholders</span></div>
             </div>
           </div>
           <div class="tool-block tool-block--integrations">
-            <h3 class="tool-block-label">Integrations &amp; where work happens</h3>
+            <h3 class="tool-block-label">Integrations &amp; how it works today</h3>
             <div class="integration-current">
               <div class="integration-state-label">Current state</div>
               <ul class="tool-governance-list">
-                <li>Monthly automated refresh pulls from BambooHR, Lattice, and Monday.com into a consolidated data model</li>
-                <li>Executive snapshot distributed via email with role-based view links — no login required for recipients</li>
+                <li>Monthly data refresh — People Ops manually pulls from BambooHR, Lattice, and Monday.com and pushes into the consolidated data model</li>
+                <li>Automated email sent to stakeholders when the refresh is complete — role-based view links, no login required for recipients</li>
+                <li>Quarterly engagement data manually pushed after each survey cycle — currently Lattice, adaptable to other survey tools</li>
                 <li>People Partners access their division view directly via a shared link</li>
               </ul>
             </div>
             <div class="integration-future">
-              <div class="integration-state-label integration-state-label--future">Future state — needs Engineering / Data partnership</div>
+              <div class="integration-state-label integration-state-label--future">Future state — with Engineering / Data support</div>
               <ul class="tool-governance-list">
-                <li>Real-time data pipeline replaces monthly manual refresh</li>
-                <li>Engagement data integrated as fourth signal layer alongside performance, lifecycle, and FTE</li>
+                <li>Real-time or weekly data pipeline replaces monthly manual refresh</li>
                 <li>Weekly Slack digest to People Partners surfacing division-level anomalies and decision prompts</li>
+                <li>Flight risk scoring layer added using performance + tenure + engagement signal combination</li>
               </ul>
             </div>
           </div>
@@ -458,47 +486,48 @@
             <div class="data-source-list">
               <div class="data-source-row">
                 <span class="data-source-system">Job architecture framework</span>
-                <span class="data-source-desc">Level definitions, band structure, rubric criteria — the structured logic the tool applies to each evaluation</span>
+                <span class="data-source-desc">The structured decision logic — level criteria, scope definitions, and band boundaries that the tool applies to each evaluation</span>
+              </div>
+              <div class="data-source-row">
+                <span class="data-source-system">Salary band data</span>
+                <span class="data-source-desc">Compensation ranges by level — surfaced at point of decision so the output includes a proposed salary range and anchor point, not just a level label</span>
               </div>
               <div class="data-source-row">
                 <span class="data-source-system">BambooHR</span>
-                <span class="data-source-desc">Existing role titles and levels — used for consistency benchmarking and to surface comparable roles at point of decision</span>
+                <span class="data-source-desc">Existing role titles and levels — used to surface comparable roles for consistency benchmarking</span>
               </div>
               <div class="data-source-row">
-                <span class="data-source-system">Manager input</span>
-                <span class="data-source-desc">Role summary, proposed title, department, scope, and budget accountability — the 7-question decision tree inputs</span>
-              </div>
-              <div class="data-source-row">
-                <span class="data-source-system">People Team</span>
-                <span class="data-source-desc">Override log, exception decisions, and job architecture governance — audit trail maintained by People Ops</span>
+                <span class="data-source-system">Manager input (JD)</span>
+                <span class="data-source-desc">Manager submits a JD or high-level role description — the tool analyses it, applies the rubric, and outputs a level recommendation with confidence score</span>
               </div>
             </div>
           </div>
           <div class="tool-block tool-block--stakeholders">
             <h3 class="tool-block-label">Stakeholders involved</h3>
             <div class="stakeholder-list">
-              <div class="stakeholder-row"><span class="stakeholder-role">Hiring Managers</span><span class="stakeholder-desc">Submit new or changed roles via the self-serve tool — no People Partner involvement for standard cases</span></div>
-              <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Architects the framework, reviews People-flagged edge cases, maintains job architecture integrity</span></div>
-              <div class="stakeholder-row"><span class="stakeholder-role">Total Rewards</span><span class="stakeholder-desc">Receives level output to confirm compensation band alignment before offer or role change is approved</span></div>
+              <div class="stakeholder-row"><span class="stakeholder-role">Hiring Managers</span><span class="stakeholder-desc">Submit JD or role summary — receive level, salary range, and proposed anchor via self-serve tool. No People Partner needed for standard cases.</span></div>
+              <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Architects the framework, reviews fuzzy-flagged edge cases routed for human review, maintains job architecture governance log</span></div>
+              <div class="stakeholder-row"><span class="stakeholder-role">Total Rewards</span><span class="stakeholder-desc">Receives level + salary range output — confirms compensation band alignment before offer or role change is approved</span></div>
               <div class="stakeholder-row"><span class="stakeholder-role">Finance</span><span class="stakeholder-desc">Notified when a levelling decision has compensation implications that affect the headcount budget</span></div>
             </div>
           </div>
           <div class="tool-block tool-block--integrations">
-            <h3 class="tool-block-label">Integrations &amp; where work happens</h3>
+            <h3 class="tool-block-label">Integrations &amp; real roadmap</h3>
             <div class="integration-current">
-              <div class="integration-state-label">Current state</div>
+              <div class="integration-state-label">Current state — prototype logic built</div>
               <ul class="tool-governance-list">
-                <li>Tool outputs a Levelling Certificate — standardised document attached to the headcount or role change request</li>
-                <li>Slack notification sent to People Partner when a decision is flagged as fuzzy or requires human review</li>
-                <li>Every decision logged to governance dashboard with requestor, role, level output, confidence score, and flags</li>
+                <li>Manager submits JD or role description → tool analyses against rubric → outputs level, salary range, proposed anchor, and confidence score</li>
+                <li>Slack notification to People Partner when confidence is low or title flags a potential inflation risk — routes to human review</li>
+                <li>Every decision logged: requestor, role, level output, salary range, confidence score, routing outcome</li>
+                <li>Levelling Certificate generated — standardised output attached to the headcount or role change request</li>
               </ul>
             </div>
             <div class="integration-future">
-              <div class="integration-state-label integration-state-label--future">Real roadmap — Zip implementation pathway</div>
+              <div class="integration-state-label integration-state-label--future">Build pathway — three phases</div>
               <ul class="tool-governance-list">
-                <li><strong>Phase 1 (now):</strong> Build functional tool in Google Apps Script — validate logic with real Zip roles, test with hiring managers</li>
-                <li><strong>Phase 2:</strong> Move to Zed AI — Onyx's internal LLM platform powered by Claude, already used across the business</li>
-                <li><strong>Phase 3 (with Engineering):</strong> Manager types <code>/level-role</code> in Slack → structured form opens → submission flows into governance log → Levelling Certificate generated automatically. The tool comes to where the work happens.</li>
+                <li><strong>Phase 1 (now):</strong> Build functional tool in Google Apps Script — validate logic with real roles, test with hiring managers</li>
+                <li><strong>Phase 2:</strong> Move to an internal LLM layer — manager pastes a JD, AI analyses it against the job architecture framework, produces a structured level recommendation with rationale. Confidence score determines whether it auto-approves or routes to People review.</li>
+                <li><strong>Phase 3 (with Engineering):</strong> Manager submits JD or role points in Slack → AI analysis runs automatically → Levelling Certificate generated → logged to governance dashboard. The tool comes to where the work happens.</li>
               </ul>
             </div>
           </div>
@@ -594,21 +623,22 @@
             </div>
           </div>
           <div class="tool-block tool-block--integrations">
-            <h3 class="tool-block-label">Integrations &amp; where work happens</h3>
+            <h3 class="tool-block-label">How it works — review cadence &amp; triggers</h3>
             <div class="integration-current">
-              <div class="integration-state-label">Current state</div>
+              <div class="integration-state-label">Quarterly review cycle</div>
+              <p style="font-size:var(--text-sm);color:var(--mist);line-height:1.7;margin-bottom:var(--space-4);">Every quarter, Finance, Legal, Business, and People review the matrix together. Each stakeholder updates their owned inputs — Tax PE risk, strategic commitment, capability gap. Finance updates financial drivers. The composite score recalculates and the governance log captures every change with actor, role, and reason.</p>
               <ul class="tool-governance-list">
                 <li>RED status automatically triggers an escalation email to Finance, Legal, and CPO with country context and next steps</li>
                 <li>Every driver update logged with timestamp, actor role, and business reason — full audit trail for multi-million dollar decisions</li>
-                <li>Governance dashboard shows real-time RAG status, confidence distribution, and exception history by country</li>
+                <li>Governance dashboard shows real-time RAG status across all 5 EOR markets</li>
               </ul>
             </div>
             <div class="integration-future">
-              <div class="integration-state-label integration-state-label--future">Future state — needs Engineering / Data partnership</div>
+              <div class="integration-state-label integration-state-label--future">Real-time triggers — outside the quarterly cycle</div>
               <ul class="tool-governance-list">
-                <li>Deel API integration pulls EOR headcount and fee data automatically — replacing manual quarterly input</li>
-                <li>Slack alert sent to Finance and Legal channel when a country crosses Amber threshold — earlier signal, faster response</li>
-                <li>Entity setup workstream auto-created in project management tool when RED is triggered, with pre-populated checklist for Finance, Legal, and People</li>
+                <li>When EOR headcount in a market crosses a defined threshold (e.g. UK hits 12), an automatic flag is raised for out-of-cycle review — the quarterly cadence doesn't wait for something that's already crossed the line</li>
+                <li>Deel API integration would pull EOR headcount and fee data automatically — replacing manual quarterly input and enabling threshold alerts in real time</li>
+                <li>Slack alert to Finance and Legal channel when a country crosses Amber — earlier signal, faster response, before it becomes a RED emergency</li>
               </ul>
             </div>
           </div>

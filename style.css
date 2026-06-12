@@ -2242,3 +2242,34 @@ p, li { text-wrap: pretty; }
 @media (max-width: 900px) { .about-hero-grid { grid-template-columns: 1fr; gap: var(--space-8); } }
 .about-hero-left { display: flex; flex-direction: column; gap: var(--space-4); }
 .about-hero-right {}
+
+/* ============================================================
+   ONYX JOB ARCHITECTURE TABLE — MOBILE FIX
+   ============================================================ */
+@media (max-width: 768px) {
+  #onyx-foundation-embed .levels-table thead { display: none; }
+  #onyx-foundation-embed .levels-table,
+  #onyx-foundation-embed .levels-table tbody,
+  #onyx-foundation-embed .levels-table tr,
+  #onyx-foundation-embed .levels-table td { display: block; width: 100%; }
+  #onyx-foundation-embed .levels-table tr {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 12px 14px;
+    background: var(--charcoal);
+  }
+  #onyx-foundation-embed .levels-table tr:last-child { margin-bottom: 0; }
+  #onyx-foundation-embed .levels-table td {
+    padding: 4px 0;
+    border-bottom: none;
+    font-size: 12px;
+  }
+  #onyx-foundation-embed .levels-table td:first-child { margin-bottom: 6px; }
+  #onyx-foundation-embed .levels-table td:last-child {
+    font-size: 11px;
+    color: var(--mid);
+  }
+  #onyx-foundation-embed .levels-table td:last-child::before { content: "HC: "; }
+  #onyx-foundation-embed .levels-table td:nth-child(4)::before { content: "Band: "; color: var(--mist); font-size: 10px; }
+}

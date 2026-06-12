@@ -12,7 +12,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <header class="site-nav" id="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
@@ -26,7 +25,7 @@
       </svg>
       <span class="nav-name">Nilan Vagh</span>
     </a>
-                <nav class="nav-links" role="navigation" aria-label="Main navigation">
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
       <a href="about.html" class="nav-link">About</a>
       <a href="thinking.html" class="nav-link nav-link--active">The Thinking</a>
       <a href="onyx.html" class="nav-link">Onyx</a>
@@ -37,7 +36,7 @@
       <span></span><span></span><span></span>
     </button>
   </div>
-        <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
     <a href="about.html" class="nav-mobile-link">About</a>
     <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
     <a href="onyx.html" class="nav-mobile-link">Onyx</a>
@@ -46,7 +45,6 @@
   </div>
 </header>
 
-<!-- PAGE HEADER -->
 <section class="page-hero">
   <div class="container">
     <span class="page-eyebrow">The Thinking</span>
@@ -55,7 +53,6 @@
   </div>
 </section>
 
-<!-- TOC -->
 <div class="thinking-toc-bar">
   <div class="container">
     <nav class="thinking-toc" aria-label="Page contents">
@@ -71,254 +68,107 @@
   </div>
 </div>
 
-<!-- CONTENT -->
 <section class="thinking-body">
   <div class="container">
 
+    <!-- PART 1 -->
     <div class="thinking-section" id="the-problem">
       <span class="thinking-section-label">Part 1</span>
       <h2 class="thinking-h2">The problem with systems of record</h2>
-
       <p>Every tool in this portfolio starts from the same diagnosis: the systems People functions rely on were designed to store what happened, not to govern how it gets decided.</p>
-
       <p>Systems of record — HRISes, performance platforms, compensation tools — are excellent at the last step: capturing the outcome. They have no visibility into, and no influence over, everything that came before it. Who was in the room. What information the decision-maker had in front of them. Whether the right approvals were sought, in the right order. Whether exceptions were handled consistently or ignored.</p>
-
       <p>The result is a function that generates high-quality data about past decisions and low-quality infrastructure for current ones. Rating distributions are visible; whether the rating process was consistent across managers is not. Compensation ranges exist; whether decisions were made with those ranges in front of the decision-maker is unknowable. Headcount data is current; whether the headcount request was routed correctly is anyone's guess.</p>
-
       <p>This is not a data quality problem. It is a decision infrastructure problem. And it doesn't get solved by upgrading the system of record. It gets solved by building the layer that sits between the process and the record — the layer that governs how decisions actually get made. That is what each tool in this portfolio is designed to be.</p>
     </div>
 
     <div class="thinking-divider" aria-hidden="true"></div>
 
-<div class="thinking-visual" id="arch-diagram">
-  <div class="thinking-visual-label">People Infrastructure — Architecture Stack</div>
-  <div class="arch-stack">
-    <div class="arch-layer arch-layer--human">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 7</span>
-        <span class="arch-layer-name">Human Operating Layer</span>
+    <!-- ARCHITECTURE DIAGRAM -->
+    <div class="thinking-visual" id="arch-diagram">
+      <div class="thinking-visual-label">People Infrastructure — Architecture Stack</div>
+      <div class="arch-stack">
+        <div class="arch-layer arch-layer--human">
+          <div class="arch-layer-left">
+            <span class="arch-layer-num">Layer 7</span>
+            <span class="arch-layer-name">Human Operating Layer</span>
+          </div>
+          <div class="arch-layer-right">
+            <span class="arch-layer-examples">Manager portals · Approval interfaces · Exception queues</span>
+            <span class="arch-layer-principle">Decide · Approve · Review · Own outcomes</span>
+          </div>
+        </div>
+        <div class="arch-layer arch-layer--agentic">
+          <div class="arch-layer-left">
+            <span class="arch-layer-num">Layer 6</span>
+            <span class="arch-layer-name">Agentic Execution Layer</span>
+          </div>
+          <div class="arch-layer-right">
+            <span class="arch-layer-examples">Triage agents · Routing agents · Summarisation · Queue management</span>
+            <span class="arch-layer-principle">Bounded execution actors — not autonomous decision owners</span>
+          </div>
+        </div>
+        <div class="arch-layer arch-layer--intelligence">
+          <div class="arch-layer-left">
+            <span class="arch-layer-num">Layer 5</span>
+            <span class="arch-layer-name">Intelligence / Interpretation Layer</span>
+          </div>
+          <div class="arch-layer-right">
+            <span class="arch-layer-examples">Signal aggregation · Risk flags · Recommendations · Context generation</span>
+            <span class="arch-layer-principle">Workforce Intelligence Layer lives here</span>
+          </div>
+        </div>
+        <div class="arch-layer arch-layer--orchestration">
+          <div class="arch-layer-left">
+            <span class="arch-layer-num">Layer 4</span>
+            <span class="arch-layer-name">Orchestration Layer</span>
+          </div>
+          <div class="arch-layer-right">
+            <span class="arch-layer-examples">Connect fragmented systems · Manage workflow state · Route exceptions</span>
+            <span class="arch-layer-principle">Make fragmented systems behave like one operating environment</span>
+          </div>
+        </div>
+        <div class="arch-layer arch-layer--governance arch-layer--active">
+          <div class="arch-layer-left">
+            <span class="arch-layer-num">Layer 3 — Where these tools live</span>
+            <span class="arch-layer-name">Governance &amp; Decision Layer</span>
+          </div>
+          <div class="arch-layer-right">
+            <span class="arch-layer-examples">Calibration Engine · Rem Review Studio · Job Levelling · EOR Matrix</span>
+            <span class="arch-layer-principle">Policy logic · Escalation rules · Decision rights · Auditability</span>
+          </div>
+        </div>
+        <div class="arch-layer arch-layer--workflow">
+          <div class="arch-layer-left">
+            <span class="arch-layer-num">Layer 2</span>
+            <span class="arch-layer-name">Workflow Execution Layer</span>
+          </div>
+          <div class="arch-layer-right">
+            <span class="arch-layer-examples">Onboarding · Crossboarding · Approval flows · Intake processes</span>
+            <span class="arch-layer-principle">Routing · Sequencing · Task progression · State transitions</span>
+          </div>
+        </div>
+        <div class="arch-layer arch-layer--record">
+          <div class="arch-layer-left">
+            <span class="arch-layer-num">Layer 1 — Foundation</span>
+            <span class="arch-layer-name">Systems of Record</span>
+          </div>
+          <div class="arch-layer-right">
+            <span class="arch-layer-examples">BambooHR · Lattice · ATS · Payroll · ChartHop</span>
+            <span class="arch-layer-principle">Store facts. Not operating logic.</span>
+          </div>
+        </div>
+        <div class="arch-layer-footer">The real operating logic lives between systems, not inside them. The plumbing matters more than the prompt.</div>
       </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Manager portals · Approval interfaces · Exception queues</span>
-        <span class="arch-layer-principle">Decide · Approve · Review · Own outcomes</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--agentic">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 6</span>
-        <span class="arch-layer-name">Agentic Execution Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Triage agents · Routing agents · Summarisation · Queue management</span>
-        <span class="arch-layer-principle">Bounded execution actors — not autonomous decision owners</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--intelligence">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 5</span>
-        <span class="arch-layer-name">Intelligence / Interpretation Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Signal aggregation · Risk flags · Recommendations · Context generation</span>
-        <span class="arch-layer-principle">Workforce Intelligence Layer lives here</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--orchestration">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 4</span>
-        <span class="arch-layer-name">Orchestration Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Connect fragmented systems · Manage workflow state · Route exceptions</span>
-        <span class="arch-layer-principle">Make fragmented systems behave like one operating environment</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--governance arch-layer--active">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 3 — Where these tools live</span>
-        <span class="arch-layer-name">Governance &amp; Decision Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Calibration Engine · Rem Review Studio · Job Levelling · EOR Matrix</span>
-        <span class="arch-layer-principle">Policy logic · Escalation rules · Decision rights · Auditability</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--workflow">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 2</span>
-        <span class="arch-layer-name">Workflow Execution Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Onboarding · Crossboarding · Approval flows · Intake processes</span>
-        <span class="arch-layer-principle">Routing · Sequencing · Task progression · State transitions</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--record">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 1 — Foundation</span>
-        <span class="arch-layer-name">Systems of Record</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">BambooHR · Lattice · ATS · Payroll · ChartHop</span>
-        <span class="arch-layer-principle">Store facts. Not operating logic.</span>
-      </div>
-    </div>
-    <div class="arch-layer-footer">The real operating logic lives between systems, not inside them. The plumbing matters more than the prompt.</div>
-  </div>
-</div>
-<!-- NAV -->
-<header class="site-nav" id="site-nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="NV monogram">
-        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
-        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
-        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
-        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
-        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
-        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
-      </svg>
-      <span class="nav-name">Nilan Vagh</span>
-    </a>
-                <nav class="nav-links" role="navigation" aria-label="Main navigation">
-      <a href="about.html" class="nav-link">About</a>
-      <a href="thinking.html" class="nav-link nav-link--active">The Thinking</a>
-      <a href="onyx.html" class="nav-link">Onyx</a>
-      <a href="builds.html" class="nav-link">The Builds</a>
-      <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
-    </nav>
-    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-        <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="about.html" class="nav-mobile-link">About</a>
-    <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
-    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
-    <a href="builds.html" class="nav-mobile-link">The Builds</a>
-    <a href="connect.html" class="nav-mobile-link">Connect</a>
-  </div>
-</header>
-
-<!-- PAGE HEADER -->
-<section class="page-hero">
-  <div class="container">
-    <span class="page-eyebrow">The Thinking</span>
-    <h1 class="page-title">The People<br>Infrastructure<br><span class="page-title--accent">Thesis</span></h1>
-    <p class="page-hero-sub">The intellectual core of this portfolio. The problem, the design shift, and the frameworks behind every tool.</p>
-  </div>
-</section>
-
-<!-- TOC -->
-<div class="thinking-toc-bar">
-  <div class="container">
-    <nav class="thinking-toc" aria-label="Page contents">
-      <a href="#the-problem" class="toc-link">The Problem</a>
-      <a href="#the-shift" class="toc-link">The Shift</a>
-      <a href="#orchestration-test" class="toc-link">The Orchestration Test</a>
-      <a href="#key-concepts" class="toc-link">Key Concepts</a>
-      <a href="#ai-readiness" class="toc-link">AI &amp; Infrastructure</a>
-      <a href="#local-context" class="toc-link">Process Context</a>
-      <a href="#where-work-happens" class="toc-link">Where Work Happens</a>
-      <a href="#external" class="toc-link">External Writing</a>
-    </nav>
-  </div>
-</div>
-
-<!-- CONTENT -->
-<section class="thinking-body">
-  <div class="container">
-
-    <div class="thinking-section" id="the-problem">
-      <span class="thinking-section-label">Part 1</span>
-      <h2 class="thinking-h2">The problem with systems of record</h2>
-
-      <p>Every tool in this portfolio starts from the same diagnosis: the systems People functions rely on were designed to store what happened, not to govern how it gets decided.</p>
-
-      <p>Systems of record — HRISes, performance platforms, compensation tools — are excellent at the last step: capturing the outcome. They have no visibility into, and no influence over, everything that came before it. Who was in the room. What information the decision-maker had in front of them. Whether the right approvals were sought, in the right order. Whether exceptions were handled consistently or ignored.</p>
-
-      <p>The result is a function that generates high-quality data about past decisions and low-quality infrastructure for current ones. Rating distributions are visible; whether the rating process was consistent across managers is not. Compensation ranges exist; whether decisions were made with those ranges in front of the decision-maker is unknowable. Headcount data is current; whether the headcount request was routed correctly is anyone's guess.</p>
-
-      <p>This is not a data quality problem. It is a decision infrastructure problem. And it doesn't get solved by upgrading the system of record. It gets solved by building the layer that sits between the process and the record — the layer that governs how decisions actually get made. That is what each tool in this portfolio is designed to be.</p>
     </div>
 
     <div class="thinking-divider" aria-hidden="true"></div>
 
-<div class="thinking-visual" id="arch-diagram">
-  <div class="thinking-visual-label">People Infrastructure — Architecture Stack</div>
-  <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-    <defs>
-      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1A1A1A"/><stop offset="100%" stop-color="#222"/></linearGradient>
-    </defs>
-    <!-- Background -->
-    <rect width="900" height="520" fill="#111" rx="12"/>
-    
-    <!-- Layer bars -->
-    <!-- L7: Human Operating Layer -->
-    <rect x="20" y="20" width="860" height="58" rx="6" fill="#1E1E1E" stroke="#C0392B" stroke-width="1.5"/>
-    <text x="40" y="44" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#C0392B" text-anchor="start" letter-spacing="0.08em">LAYER 7</text>
-    <text x="40" y="62" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#F0F0F0">Human Operating Layer</text>
-    <text x="900" y="44" font-family="Inter,system-ui" font-size="11" fill="#666" text-anchor="end">Manager portals · Approval interfaces · Exception queues</text>
-    <text x="900" y="62" font-family="Inter,system-ui" font-size="11" fill="#888" text-anchor="end">Decide · Approve · Review · Own outcomes</text>
-
-    <!-- L6: Agentic Execution -->
-    <rect x="20" y="88" width="860" height="58" rx="6" fill="#1A1A1A" stroke="#333"/>
-    <text x="40" y="112" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#555" text-anchor="start" letter-spacing="0.08em">LAYER 6</text>
-    <text x="40" y="130" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#888">Agentic Execution Layer</text>
-    <text x="900" y="112" font-family="Inter,system-ui" font-size="11" fill="#555" text-anchor="end">Triage agents · Routing agents · Summarisation · Queue management</text>
-    <text x="900" y="130" font-family="Inter,system-ui" font-size="11" fill="#555" text-anchor="end">Bounded execution actors — not autonomous decision owners</text>
-
-    <!-- L5: Intelligence -->
-    <rect x="20" y="156" width="860" height="58" rx="6" fill="#1A1A1A" stroke="#333"/>
-    <text x="40" y="180" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#555" text-anchor="start" letter-spacing="0.08em">LAYER 5</text>
-    <text x="40" y="198" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#888">Intelligence / Interpretation Layer</text>
-    <text x="900" y="180" font-family="Inter,system-ui" font-size="11" fill="#555" text-anchor="end">Signal aggregation · Risk flags · Recommendations · Context generation</text>
-    <text x="900" y="198" font-family="Inter,system-ui" font-size="11" fill="#555" text-anchor="end">Workforce Intelligence Layer lives here</text>
-
-    <!-- L4: Orchestration -->
-    <rect x="20" y="224" width="860" height="58" rx="6" fill="#1E1A14" stroke="#5A4020"/>
-    <text x="40" y="248" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#8A6030" text-anchor="start" letter-spacing="0.08em">LAYER 4</text>
-    <text x="40" y="266" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#C8A060">Orchestration Layer</text>
-    <text x="900" y="248" font-family="Inter,system-ui" font-size="11" fill="#8A6030" text-anchor="end">Connect fragmented systems · Manage workflow state · Route exceptions</text>
-    <text x="900" y="266" font-family="Inter,system-ui" font-size="11" fill="#8A6030" text-anchor="end">Make fragmented systems behave like one operating environment</text>
-
-    <!-- L3: Governance & Decision -->
-    <rect x="20" y="292" width="860" height="58" rx="6" fill="#1A1E14" stroke="#2A5020"/>
-    <text x="40" y="316" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#4A8030" text-anchor="start" letter-spacing="0.08em">LAYER 3 — WHERE THESE TOOLS LIVE</text>
-    <text x="40" y="334" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#7ABA50">Governance &amp; Decision Layer</text>
-    <text x="900" y="316" font-family="Inter,system-ui" font-size="11" fill="#4A8030" text-anchor="end">Calibration Engine · Rem Review Studio · Job Levelling · EOR Matrix</text>
-    <text x="900" y="334" font-family="Inter,system-ui" font-size="11" fill="#4A8030" text-anchor="end">Policy logic · Escalation rules · Decision rights · Auditability</text>
-
-    <!-- L2: Workflow Execution -->
-    <rect x="20" y="360" width="860" height="58" rx="6" fill="#141A1E" stroke="#203050"/>
-    <text x="40" y="384" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#305080" text-anchor="start" letter-spacing="0.08em">LAYER 2</text>
-    <text x="40" y="402" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#5090C0">Workflow Execution Layer</text>
-    <text x="900" y="384" font-family="Inter,system-ui" font-size="11" fill="#305080" text-anchor="end">Onboarding · Crossboarding · Approval flows · Intake processes</text>
-    <text x="900" y="402" font-family="Inter,system-ui" font-size="11" fill="#305080" text-anchor="end">Routing · Sequencing · Task progression · State transitions</text>
-
-    <!-- L1: Systems of Record -->
-    <rect x="20" y="428" width="860" height="58" rx="6" fill="#1A1A1A" stroke="#2A2A2A"/>
-    <text x="40" y="452" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#444" text-anchor="start" letter-spacing="0.08em">LAYER 1 — FOUNDATION</text>
-    <text x="40" y="470" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#666">Systems of Record</text>
-    <text x="900" y="452" font-family="Inter,system-ui" font-size="11" fill="#444" text-anchor="end">BambooHR · Lattice · ATS · Payroll · ChartHop</text>
-    <text x="900" y="470" font-family="Inter,system-ui" font-size="11" fill="#444" text-anchor="end">Store facts. Not operating logic.</text>
-
-    <!-- Key callout -->
-    <rect x="20" y="494" width="860" height="18" rx="4" fill="rgba(122,186,80,0.08)"/>
-    <text x="450" y="507" font-family="Inter,system-ui" font-size="11" fill="#4A8030" text-anchor="middle">The real operating logic lives between systems, not inside them. The plumbing matters more than the prompt.</text>
-  </svg>
-</div>
-
-    <div class="thinking-divider" aria-hidden="true"></div>
-
+    <!-- PART 2 -->
     <div class="thinking-section" id="the-shift">
       <span class="thinking-section-label">Part 2</span>
       <h2 class="thinking-h2">The shift to decision infrastructure</h2>
-
       <p>Decision infrastructure is the governed layer between workforce intent and workforce outcome. It's not the policy. It's not the system. It's the logic that routes decisions to the right people, surfaces the right information at the right moment, enforces the right guardrails, and creates a legible audit trail of what happened and why.</p>
-
       <p>When you design a People process as a decision infrastructure problem, the questions change. Instead of asking "what steps does this process have?" you ask:</p>
-
       <div class="thinking-question-block">
         <div class="thinking-question">What decision is actually being made here?</div>
         <div class="thinking-question">Who has the right to make it — and at what threshold does that change?</div>
@@ -327,9 +177,7 @@
         <div class="thinking-question">What exceptions exist, who handles them, and how are they tracked?</div>
         <div class="thinking-question">What is the audit trail — not just what was decided, but who decided, when, with what information?</div>
       </div>
-
       <p>These questions don't get answered by buying better software. They get answered by design — by making the decision logic explicit, building it into the workflow, and governing it over time.</p>
-
       <p>The tools in this portfolio are each an answer to these questions for a specific workforce decision domain. Not features. Not automations. Governed decision infrastructure — where the logic is the product.</p>
 
       <div class="thinking-design-process">
@@ -353,7 +201,7 @@
             <div class="thinking-design-step-num">03</div>
             <div class="thinking-design-step-content">
               <div class="thinking-design-step-title">Self-Service with the Right Information</div>
-              <div class="thinking-design-step-desc">Self-service only works when the person using it has exactly what they need — no more, no less. A manager levelling a role needs to see comparable roles and salary bands at the point of decision, not navigate to a separate framework document. A hiring manager planning comp needs to see their budget envelope and cohort distribution in real time, not discover an overspend at consolidation. Self-service without the right information is just friction with fewer emails.</div>
+              <div class="thinking-design-step-desc">Self-service only works when the person using it has exactly what they need at the point of decision — not a link to a framework document, not a separate system to open. A manager levelling a role needs comparable roles and salary bands in front of them. A person planning comp needs to see budget and cohort distribution in real time. Self-service without the right information is just friction with fewer emails.</div>
             </div>
           </div>
         </div>
@@ -362,6 +210,7 @@
 
     <div class="thinking-divider" aria-hidden="true"></div>
 
+    <!-- PART 3 -->
     <div class="thinking-section" id="orchestration-test">
       <span class="thinking-section-label">Part 3</span>
       <h2 class="thinking-h2">The Orchestration Test</h2>
@@ -386,9 +235,7 @@
       </div>
 
       <p>Performance calibration is a governed workflow. The system of record can hold the final rating — it cannot support the weighted curves, manager-level visibility controls, promotion guardrails, and exception routing that make calibration defensible. That gap is why the Calibration Engine exists.</p>
-
       <p>Remuneration review is a governed workflow. A spreadsheet can hold a number — it cannot enforce budget envelopes, surface compa-ratio at point of decision, or flag cohort outliers before submission. That gap is why the Rem Review Planning Studio exists.</p>
-
       <p>A promotion record is administrative. A promotion decision — who reviews it, what criteria apply, what approval chain governs it, what happens when criteria aren't met — is a governed workflow. Same domain. Entirely different design requirements.</p>
 
       <div class="thinking-cross-ref">
@@ -399,616 +246,100 @@
 
     <div class="thinking-divider" aria-hidden="true"></div>
 
+    <!-- PART 4 -->
     <div class="thinking-section" id="key-concepts">
       <span class="thinking-section-label">Part 4</span>
       <h2 class="thinking-h2">Key concepts</h2>
       <p class="thinking-intro-p">The vocabulary behind the tools. Split into two groups: system properties (what a governed workflow has) and design approach (how it gets built).</p>
-      <p>The vocabulary of People Infrastructure. These concepts appear throughout the builds.</p>
 
       <div class="concepts-grid">
         <div class="concept-card">
           <h3 class="concept-title">Workflow State</h3>
-          <p class="concept-body">The explicit representation of where a decision sits in a governed process — initiated, under review, pending approval, approved, exception, closed. State makes workflow visible. Without it, every process is a black box between submission and outcome.</p>
+          <p class="concept-def">The explicit representation of where a decision sits in a workflow — who owns it, what has happened, what is pending, and what is blocked. Workflow state makes process progress visible and auditable rather than implicit and informal.</p>
         </div>
         <div class="concept-card">
           <h3 class="concept-title">Decision Rights Architecture</h3>
-          <p class="concept-body">The explicit mapping of who can make which decisions under which conditions. Not an org chart — a governance layer. Who approves a promotion at L4 vs L6? What happens when budget authority is exceeded? Who can override a guardrail, and what does that create in the audit log?</p>
+          <p class="concept-def">An explicit mapping of who can make which decisions, at what level, under what conditions. Removes ambiguity from approval chains and makes escalation logic systematic rather than ad hoc.</p>
         </div>
         <div class="concept-card">
           <h3 class="concept-title">Governance by Design</h3>
-          <p class="concept-body">Building compliance into the workflow itself, rather than auditing for it after the fact. Guardrails that prevent decisions from proceeding when criteria aren't met. Approval gates that can't be skipped. Audit trails that are a natural byproduct of the process, not a separate activity.</p>
-        </div>
-        <div class="concept-card">
-          <h3 class="concept-title">Human-in-the-Loop Systems</h3>
-          <p class="concept-body">Decision infrastructure that keeps humans in authority over judgment calls while automating the surrounding work — routing, data surfacing, guardrail enforcement, exception flagging. AI-assist where it's useful. Human decision where it matters. Explicit about which is which.</p>
-        </div>
-        <div class="concept-card">
-          <h3 class="concept-title">Role-Based Visibility</h3>
-          <p class="concept-body">Information surfaces that show people exactly what they need and nothing they shouldn't have. Not a dashboard for everyone — a visibility layer designed around decision roles. The executive sees cross-divisional distribution. The manager sees their cohort. The People team sees exceptions and outliers.</p>
+          <p class="concept-def">The practice of building governance logic into the workflow itself — guardrails, thresholds, visibility controls, audit trails — rather than relying on policy documents or manual review. The system prevents bad outcomes rather than correcting them after the fact.</p>
         </div>
         <div class="concept-card">
           <h3 class="concept-title">Exception Management</h3>
-          <p class="concept-body">The deliberate design of what happens when a decision falls outside normal parameters. Not an error state — a workflow state. Who is notified? Who reviews? What documentation is required? What is the audit entry? Well-designed exception management is often what separates a governed process from an administrative one.</p>
+          <p class="concept-def">The explicit design of what happens when a process falls outside the standard path. Who handles exceptions, how they are routed, what information they receive, and how the exception is logged. Most workflow failures are actually exception management failures.</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Role-Based Visibility</h3>
+          <p class="concept-def">The principle that different participants in a workflow see different information based on their role — not because of technical access control, but because of deliberate design. A manager should see their cohort. An executive should see cross-divisional distribution. A People Partner should see exceptions.</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Auditability</h3>
+          <p class="concept-def">The capacity of a workflow to answer, after the fact: what was decided, who decided it, when, with what information, and against what criteria. Auditability is not a log. It is a design principle that shapes how every step in a workflow is structured.</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Human-in-the-Loop</h3>
+          <p class="concept-def">The deliberate preservation of human judgment, approval, and accountability at defined points in an automated or AI-assisted workflow. The system supports the decision; the human owns it.</p>
+        </div>
+        <div class="concept-card">
+          <h3 class="concept-title">Orchestration</h3>
+          <p class="concept-def">The coordination of fragmented systems, workflows, humans, and agents into a coherent operational sequence. Orchestration makes a fragmented stack behave like one operating environment by managing state, routing, and handoffs across systems.</p>
         </div>
       </div>
     </div>
 
     <div class="thinking-divider" aria-hidden="true"></div>
 
+    <!-- PART 5 -->
     <div class="thinking-section" id="ai-readiness">
       <span class="thinking-section-label">Part 5</span>
       <h2 class="thinking-h2">AI readiness requires infrastructure first</h2>
       <p class="thinking-intro-p">Most organisations try to jump straight to AI-enabled operations. The problem is everything they need underneath it doesn't exist yet.</p>
-
       <p>AI doesn't solve fragmented operations by itself. Without workflow architecture, governance, and orchestration already in place, AI simply inherits and scales the same coordination problems. The plumbing matters more than the prompt.</p>
-
       <p>The maturity model below shows where most organisations actually are versus where AI-enabled operations require them to be. Levels 1 through 3 are infrastructure. They have to exist before Level 4 or Level 5 is worth attempting.</p>
 
-<div class="thinking-visual" id="maturity-model">
-  <div class="thinking-visual-label">AI Readiness Maturity Model — People Infrastructure</div>
-  <div class="maturity-model">
-    <div class="maturity-level maturity-level--0">
-      <div class="maturity-level-badge">L0</div>
-      <div class="maturity-level-name">Fragmented</div>
-      <div class="maturity-level-items">
-        <span>Human glue</span>
-        <span>Hidden logic</span>
-        <span>No ownership</span>
-      </div>
-      <div class="maturity-level-note">Most orgs start here</div>
-    </div>
-    <div class="maturity-arrow">→</div>
-    <div class="maturity-level maturity-level--1">
-      <div class="maturity-level-badge">L1</div>
-      <div class="maturity-level-name">Visibility</div>
-      <div class="maturity-level-items">
-        <span>Mapped workflows</span>
-        <span>Decision points visible</span>
-        <span>Ownership clear</span>
-      </div>
-    </div>
-    <div class="maturity-arrow">→</div>
-    <div class="maturity-level maturity-level--2">
-      <div class="maturity-level-badge">L2</div>
-      <div class="maturity-level-name">Governance</div>
-      <div class="maturity-level-items">
-        <span>Policy logic built in</span>
-        <span>Escalation models</span>
-        <span>Approval architecture</span>
-      </div>
-    </div>
-    <div class="maturity-arrow">→</div>
-    <div class="maturity-level maturity-level--3">
-      <div class="maturity-level-badge">L3</div>
-      <div class="maturity-level-name">Orchestration</div>
-      <div class="maturity-level-items">
-        <span>Cross-system coord.</span>
-        <span>Workflow state mgmt</span>
-        <span>Exception routing</span>
-      </div>
-    </div>
-    <div class="maturity-arrow">→</div>
-    <div class="maturity-level maturity-level--4">
-      <div class="maturity-level-badge">L4</div>
-      <div class="maturity-level-name">AI-Augmented</div>
-      <div class="maturity-level-items">
-        <span>Recommendations</span>
-        <span>Signal detection</span>
-        <span>Workflow assistance</span>
-      </div>
-    </div>
-    <div class="maturity-arrow">→</div>
-    <div class="maturity-level maturity-level--5">
-      <div class="maturity-level-badge">L5</div>
-      <div class="maturity-level-name">Governed Agentic</div>
-      <div class="maturity-level-items">
-        <span>Bounded agent execution</span>
-        <span>Human-in-the-loop control</span>
-        <span>Auditable automation</span>
-      </div>
-      <div class="maturity-level-note maturity-level-note--warning">Most try to jump here from L0</div>
-    </div>
-  </div>
-</div>
-<!-- NAV -->
-<header class="site-nav" id="site-nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="NV monogram">
-        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
-        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
-        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
-        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
-        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
-        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
-      </svg>
-      <span class="nav-name">Nilan Vagh</span>
-    </a>
-                <nav class="nav-links" role="navigation" aria-label="Main navigation">
-      <a href="about.html" class="nav-link">About</a>
-      <a href="thinking.html" class="nav-link nav-link--active">The Thinking</a>
-      <a href="onyx.html" class="nav-link">Onyx</a>
-      <a href="builds.html" class="nav-link">The Builds</a>
-      <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
-    </nav>
-    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-        <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="about.html" class="nav-mobile-link">About</a>
-    <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
-    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
-    <a href="builds.html" class="nav-mobile-link">The Builds</a>
-    <a href="connect.html" class="nav-mobile-link">Connect</a>
-  </div>
-</header>
-
-<!-- PAGE HEADER -->
-<section class="page-hero">
-  <div class="container">
-    <span class="page-eyebrow">The Thinking</span>
-    <h1 class="page-title">The People<br>Infrastructure<br><span class="page-title--accent">Thesis</span></h1>
-    <p class="page-hero-sub">The intellectual core of this portfolio. The problem, the design shift, and the frameworks behind every tool.</p>
-  </div>
-</section>
-
-<!-- TOC -->
-<div class="thinking-toc-bar">
-  <div class="container">
-    <nav class="thinking-toc" aria-label="Page contents">
-      <a href="#the-problem" class="toc-link">The Problem</a>
-      <a href="#the-shift" class="toc-link">The Shift</a>
-      <a href="#orchestration-test" class="toc-link">The Orchestration Test</a>
-      <a href="#key-concepts" class="toc-link">Key Concepts</a>
-      <a href="#ai-readiness" class="toc-link">AI &amp; Infrastructure</a>
-      <a href="#local-context" class="toc-link">Process Context</a>
-      <a href="#where-work-happens" class="toc-link">Where Work Happens</a>
-      <a href="#external" class="toc-link">External Writing</a>
-    </nav>
-  </div>
-</div>
-
-<!-- CONTENT -->
-<section class="thinking-body">
-  <div class="container">
-
-    <div class="thinking-section" id="the-problem">
-      <span class="thinking-section-label">Part 1</span>
-      <h2 class="thinking-h2">The problem with systems of record</h2>
-
-      <p>Every tool in this portfolio starts from the same diagnosis: the systems People functions rely on were designed to store what happened, not to govern how it gets decided.</p>
-
-      <p>Systems of record — HRISes, performance platforms, compensation tools — are excellent at the last step: capturing the outcome. They have no visibility into, and no influence over, everything that came before it. Who was in the room. What information the decision-maker had in front of them. Whether the right approvals were sought, in the right order. Whether exceptions were handled consistently or ignored.</p>
-
-      <p>The result is a function that generates high-quality data about past decisions and low-quality infrastructure for current ones. Rating distributions are visible; whether the rating process was consistent across managers is not. Compensation ranges exist; whether decisions were made with those ranges in front of the decision-maker is unknowable. Headcount data is current; whether the headcount request was routed correctly is anyone's guess.</p>
-
-      <p>This is not a data quality problem. It is a decision infrastructure problem. And it doesn't get solved by upgrading the system of record. It gets solved by building the layer that sits between the process and the record — the layer that governs how decisions actually get made. That is what each tool in this portfolio is designed to be.</p>
-    </div>
-
-    <div class="thinking-divider" aria-hidden="true"></div>
-
-<div class="thinking-visual" id="arch-diagram">
-  <div class="thinking-visual-label">People Infrastructure — Architecture Stack</div>
-  <div class="arch-stack">
-    <div class="arch-layer arch-layer--human">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 7</span>
-        <span class="arch-layer-name">Human Operating Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Manager portals · Approval interfaces · Exception queues</span>
-        <span class="arch-layer-principle">Decide · Approve · Review · Own outcomes</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--agentic">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 6</span>
-        <span class="arch-layer-name">Agentic Execution Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Triage agents · Routing agents · Summarisation · Queue management</span>
-        <span class="arch-layer-principle">Bounded execution actors — not autonomous decision owners</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--intelligence">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 5</span>
-        <span class="arch-layer-name">Intelligence / Interpretation Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Signal aggregation · Risk flags · Recommendations · Context generation</span>
-        <span class="arch-layer-principle">Workforce Intelligence Layer lives here</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--orchestration">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 4</span>
-        <span class="arch-layer-name">Orchestration Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Connect fragmented systems · Manage workflow state · Route exceptions</span>
-        <span class="arch-layer-principle">Make fragmented systems behave like one operating environment</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--governance arch-layer--active">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 3 — Where these tools live</span>
-        <span class="arch-layer-name">Governance &amp; Decision Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Calibration Engine · Rem Review Studio · Job Levelling · EOR Matrix</span>
-        <span class="arch-layer-principle">Policy logic · Escalation rules · Decision rights · Auditability</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--workflow">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 2</span>
-        <span class="arch-layer-name">Workflow Execution Layer</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">Onboarding · Crossboarding · Approval flows · Intake processes</span>
-        <span class="arch-layer-principle">Routing · Sequencing · Task progression · State transitions</span>
-      </div>
-    </div>
-    <div class="arch-layer arch-layer--record">
-      <div class="arch-layer-left">
-        <span class="arch-layer-num">Layer 1 — Foundation</span>
-        <span class="arch-layer-name">Systems of Record</span>
-      </div>
-      <div class="arch-layer-right">
-        <span class="arch-layer-examples">BambooHR · Lattice · ATS · Payroll · ChartHop</span>
-        <span class="arch-layer-principle">Store facts. Not operating logic.</span>
-      </div>
-    </div>
-    <div class="arch-layer-footer">The real operating logic lives between systems, not inside them. The plumbing matters more than the prompt.</div>
-  </div>
-</div>
-<!-- NAV -->
-<header class="site-nav" id="site-nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="NV monogram">
-        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
-        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
-        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
-        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
-        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
-        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
-      </svg>
-      <span class="nav-name">Nilan Vagh</span>
-    </a>
-                <nav class="nav-links" role="navigation" aria-label="Main navigation">
-      <a href="about.html" class="nav-link">About</a>
-      <a href="thinking.html" class="nav-link nav-link--active">The Thinking</a>
-      <a href="onyx.html" class="nav-link">Onyx</a>
-      <a href="builds.html" class="nav-link">The Builds</a>
-      <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
-    </nav>
-    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-        <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
-    <a href="about.html" class="nav-mobile-link">About</a>
-    <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
-    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
-    <a href="builds.html" class="nav-mobile-link">The Builds</a>
-    <a href="connect.html" class="nav-mobile-link">Connect</a>
-  </div>
-</header>
-
-<!-- PAGE HEADER -->
-<section class="page-hero">
-  <div class="container">
-    <span class="page-eyebrow">The Thinking</span>
-    <h1 class="page-title">The People<br>Infrastructure<br><span class="page-title--accent">Thesis</span></h1>
-    <p class="page-hero-sub">The intellectual core of this portfolio. The problem, the design shift, and the frameworks behind every tool.</p>
-  </div>
-</section>
-
-<!-- TOC -->
-<div class="thinking-toc-bar">
-  <div class="container">
-    <nav class="thinking-toc" aria-label="Page contents">
-      <a href="#the-problem" class="toc-link">The Problem</a>
-      <a href="#the-shift" class="toc-link">The Shift</a>
-      <a href="#orchestration-test" class="toc-link">The Orchestration Test</a>
-      <a href="#key-concepts" class="toc-link">Key Concepts</a>
-      <a href="#ai-readiness" class="toc-link">AI &amp; Infrastructure</a>
-      <a href="#local-context" class="toc-link">Process Context</a>
-      <a href="#where-work-happens" class="toc-link">Where Work Happens</a>
-      <a href="#external" class="toc-link">External Writing</a>
-    </nav>
-  </div>
-</div>
-
-<!-- CONTENT -->
-<section class="thinking-body">
-  <div class="container">
-
-    <div class="thinking-section" id="the-problem">
-      <span class="thinking-section-label">Part 1</span>
-      <h2 class="thinking-h2">The problem with systems of record</h2>
-
-      <p>Every tool in this portfolio starts from the same diagnosis: the systems People functions rely on were designed to store what happened, not to govern how it gets decided.</p>
-
-      <p>Systems of record — HRISes, performance platforms, compensation tools — are excellent at the last step: capturing the outcome. They have no visibility into, and no influence over, everything that came before it. Who was in the room. What information the decision-maker had in front of them. Whether the right approvals were sought, in the right order. Whether exceptions were handled consistently or ignored.</p>
-
-      <p>The result is a function that generates high-quality data about past decisions and low-quality infrastructure for current ones. Rating distributions are visible; whether the rating process was consistent across managers is not. Compensation ranges exist; whether decisions were made with those ranges in front of the decision-maker is unknowable. Headcount data is current; whether the headcount request was routed correctly is anyone's guess.</p>
-
-      <p>This is not a data quality problem. It is a decision infrastructure problem. And it doesn't get solved by upgrading the system of record. It gets solved by building the layer that sits between the process and the record — the layer that governs how decisions actually get made. That is what each tool in this portfolio is designed to be.</p>
-    </div>
-
-    <div class="thinking-divider" aria-hidden="true"></div>
-
-<div class="thinking-visual" id="arch-diagram">
-  <div class="thinking-visual-label">People Infrastructure — Architecture Stack</div>
-  <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-    <defs>
-      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1A1A1A"/><stop offset="100%" stop-color="#222"/></linearGradient>
-    </defs>
-    <!-- Background -->
-    <rect width="900" height="520" fill="#111" rx="12"/>
-    
-    <!-- Layer bars -->
-    <!-- L7: Human Operating Layer -->
-    <rect x="20" y="20" width="860" height="58" rx="6" fill="#1E1E1E" stroke="#C0392B" stroke-width="1.5"/>
-    <text x="40" y="44" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#C0392B" text-anchor="start" letter-spacing="0.08em">LAYER 7</text>
-    <text x="40" y="62" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#F0F0F0">Human Operating Layer</text>
-    <text x="900" y="44" font-family="Inter,system-ui" font-size="11" fill="#666" text-anchor="end">Manager portals · Approval interfaces · Exception queues</text>
-    <text x="900" y="62" font-family="Inter,system-ui" font-size="11" fill="#888" text-anchor="end">Decide · Approve · Review · Own outcomes</text>
-
-    <!-- L6: Agentic Execution -->
-    <rect x="20" y="88" width="860" height="58" rx="6" fill="#1A1A1A" stroke="#333"/>
-    <text x="40" y="112" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#555" text-anchor="start" letter-spacing="0.08em">LAYER 6</text>
-    <text x="40" y="130" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#888">Agentic Execution Layer</text>
-    <text x="900" y="112" font-family="Inter,system-ui" font-size="11" fill="#555" text-anchor="end">Triage agents · Routing agents · Summarisation · Queue management</text>
-    <text x="900" y="130" font-family="Inter,system-ui" font-size="11" fill="#555" text-anchor="end">Bounded execution actors — not autonomous decision owners</text>
-
-    <!-- L5: Intelligence -->
-    <rect x="20" y="156" width="860" height="58" rx="6" fill="#1A1A1A" stroke="#333"/>
-    <text x="40" y="180" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#555" text-anchor="start" letter-spacing="0.08em">LAYER 5</text>
-    <text x="40" y="198" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#888">Intelligence / Interpretation Layer</text>
-    <text x="900" y="180" font-family="Inter,system-ui" font-size="11" fill="#555" text-anchor="end">Signal aggregation · Risk flags · Recommendations · Context generation</text>
-    <text x="900" y="198" font-family="Inter,system-ui" font-size="11" fill="#555" text-anchor="end">Workforce Intelligence Layer lives here</text>
-
-    <!-- L4: Orchestration -->
-    <rect x="20" y="224" width="860" height="58" rx="6" fill="#1E1A14" stroke="#5A4020"/>
-    <text x="40" y="248" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#8A6030" text-anchor="start" letter-spacing="0.08em">LAYER 4</text>
-    <text x="40" y="266" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#C8A060">Orchestration Layer</text>
-    <text x="900" y="248" font-family="Inter,system-ui" font-size="11" fill="#8A6030" text-anchor="end">Connect fragmented systems · Manage workflow state · Route exceptions</text>
-    <text x="900" y="266" font-family="Inter,system-ui" font-size="11" fill="#8A6030" text-anchor="end">Make fragmented systems behave like one operating environment</text>
-
-    <!-- L3: Governance & Decision -->
-    <rect x="20" y="292" width="860" height="58" rx="6" fill="#1A1E14" stroke="#2A5020"/>
-    <text x="40" y="316" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#4A8030" text-anchor="start" letter-spacing="0.08em">LAYER 3 — WHERE THESE TOOLS LIVE</text>
-    <text x="40" y="334" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#7ABA50">Governance &amp; Decision Layer</text>
-    <text x="900" y="316" font-family="Inter,system-ui" font-size="11" fill="#4A8030" text-anchor="end">Calibration Engine · Rem Review Studio · Job Levelling · EOR Matrix</text>
-    <text x="900" y="334" font-family="Inter,system-ui" font-size="11" fill="#4A8030" text-anchor="end">Policy logic · Escalation rules · Decision rights · Auditability</text>
-
-    <!-- L2: Workflow Execution -->
-    <rect x="20" y="360" width="860" height="58" rx="6" fill="#141A1E" stroke="#203050"/>
-    <text x="40" y="384" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#305080" text-anchor="start" letter-spacing="0.08em">LAYER 2</text>
-    <text x="40" y="402" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#5090C0">Workflow Execution Layer</text>
-    <text x="900" y="384" font-family="Inter,system-ui" font-size="11" fill="#305080" text-anchor="end">Onboarding · Crossboarding · Approval flows · Intake processes</text>
-    <text x="900" y="402" font-family="Inter,system-ui" font-size="11" fill="#305080" text-anchor="end">Routing · Sequencing · Task progression · State transitions</text>
-
-    <!-- L1: Systems of Record -->
-    <rect x="20" y="428" width="860" height="58" rx="6" fill="#1A1A1A" stroke="#2A2A2A"/>
-    <text x="40" y="452" font-family="Space Grotesk,system-ui" font-size="11" font-weight="600" fill="#444" text-anchor="start" letter-spacing="0.08em">LAYER 1 — FOUNDATION</text>
-    <text x="40" y="470" font-family="Space Grotesk,system-ui" font-size="15" font-weight="700" fill="#666">Systems of Record</text>
-    <text x="900" y="452" font-family="Inter,system-ui" font-size="11" fill="#444" text-anchor="end">BambooHR · Lattice · ATS · Payroll · ChartHop</text>
-    <text x="900" y="470" font-family="Inter,system-ui" font-size="11" fill="#444" text-anchor="end">Store facts. Not operating logic.</text>
-
-    <!-- Key callout -->
-    <rect x="20" y="494" width="860" height="18" rx="4" fill="rgba(122,186,80,0.08)"/>
-    <text x="450" y="507" font-family="Inter,system-ui" font-size="11" fill="#4A8030" text-anchor="middle">The real operating logic lives between systems, not inside them. The plumbing matters more than the prompt.</text>
-  </svg>
-</div>
-
-    <div class="thinking-divider" aria-hidden="true"></div>
-
-    <div class="thinking-section" id="the-shift">
-      <span class="thinking-section-label">Part 2</span>
-      <h2 class="thinking-h2">The shift to decision infrastructure</h2>
-
-      <p>Decision infrastructure is the governed layer between workforce intent and workforce outcome. It's not the policy. It's not the system. It's the logic that routes decisions to the right people, surfaces the right information at the right moment, enforces the right guardrails, and creates a legible audit trail of what happened and why.</p>
-
-      <p>When you design a People process as a decision infrastructure problem, the questions change. Instead of asking "what steps does this process have?" you ask:</p>
-
-      <div class="thinking-question-block">
-        <div class="thinking-question">What decision is actually being made here?</div>
-        <div class="thinking-question">Who has the right to make it — and at what threshold does that change?</div>
-        <div class="thinking-question">What information does the decision-maker need in front of them at the moment of decision?</div>
-        <div class="thinking-question">What are the guardrails — the conditions under which the decision cannot proceed?</div>
-        <div class="thinking-question">What exceptions exist, who handles them, and how are they tracked?</div>
-        <div class="thinking-question">What is the audit trail — not just what was decided, but who decided, when, with what information?</div>
-      </div>
-
-      <p>These questions don't get answered by buying better software. They get answered by design — by making the decision logic explicit, building it into the workflow, and governing it over time.</p>
-
-      <p>The tools in this portfolio are each an answer to these questions for a specific workforce decision domain. Not features. Not automations. Governed decision infrastructure — where the logic is the product.</p>
-
-      <div class="thinking-design-process">
-        <div class="thinking-design-process-label">The design process behind every build</div>
-        <div class="thinking-design-steps">
-          <div class="thinking-design-step">
-            <div class="thinking-design-step-num">01</div>
-            <div class="thinking-design-step-content">
-              <div class="thinking-design-step-title">Design Thinking</div>
-              <div class="thinking-design-step-desc">Start with the real problem — not the process as documented, but how the decision actually gets made in practice. Who's involved, where it breaks, what gets lost between submission and outcome. Understand the failure modes before designing the solution.</div>
-            </div>
+      <div class="thinking-visual" id="maturity-model">
+        <div class="thinking-visual-label">AI Readiness Maturity Model — People Infrastructure</div>
+        <div class="maturity-model">
+          <div class="maturity-level maturity-level--0">
+            <div class="maturity-level-badge">L0</div>
+            <div class="maturity-level-name">Fragmented</div>
+            <div class="maturity-level-items"><span>Human glue</span><span>Hidden logic</span><span>No ownership</span></div>
+            <div class="maturity-level-note">Most orgs start here</div>
           </div>
-          <div class="thinking-design-step">
-            <div class="thinking-design-step-num">02</div>
-            <div class="thinking-design-step-content">
-              <div class="thinking-design-step-title">Governance by Design</div>
-              <div class="thinking-design-step-desc">Map the decision rights, guardrails, exception paths, and audit requirements before building anything. Governance isn't a layer added on top — it's built into the workflow from the start. The structure of the tool reflects the structure of the decision.</div>
-            </div>
+          <div class="maturity-arrow">→</div>
+          <div class="maturity-level maturity-level--1">
+            <div class="maturity-level-badge">L1</div>
+            <div class="maturity-level-name">Visibility</div>
+            <div class="maturity-level-items"><span>Mapped workflows</span><span>Decision points visible</span><span>Ownership clear</span></div>
           </div>
-          <div class="thinking-design-step">
-            <div class="thinking-design-step-num">03</div>
-            <div class="thinking-design-step-content">
-              <div class="thinking-design-step-title">Self-Service with the Right Information</div>
-              <div class="thinking-design-step-desc">Self-service only works when the person using it has exactly what they need — no more, no less. A manager levelling a role needs to see comparable roles and salary bands at the point of decision, not navigate to a separate framework document. A hiring manager planning comp needs to see their budget envelope and cohort distribution in real time, not discover an overspend at consolidation. Self-service without the right information is just friction with fewer emails.</div>
-            </div>
+          <div class="maturity-arrow">→</div>
+          <div class="maturity-level maturity-level--2">
+            <div class="maturity-level-badge">L2</div>
+            <div class="maturity-level-name">Governance</div>
+            <div class="maturity-level-items"><span>Policy logic built in</span><span>Escalation models</span><span>Approval architecture</span></div>
+          </div>
+          <div class="maturity-arrow">→</div>
+          <div class="maturity-level maturity-level--3">
+            <div class="maturity-level-badge">L3</div>
+            <div class="maturity-level-name">Orchestration</div>
+            <div class="maturity-level-items"><span>Cross-system coord.</span><span>Workflow state mgmt</span><span>Exception routing</span></div>
+          </div>
+          <div class="maturity-arrow">→</div>
+          <div class="maturity-level maturity-level--4">
+            <div class="maturity-level-badge">L4</div>
+            <div class="maturity-level-name">AI-Augmented</div>
+            <div class="maturity-level-items"><span>Recommendations</span><span>Signal detection</span><span>Workflow assistance</span></div>
+          </div>
+          <div class="maturity-arrow">→</div>
+          <div class="maturity-level maturity-level--5">
+            <div class="maturity-level-badge">L5</div>
+            <div class="maturity-level-name">Governed Agentic</div>
+            <div class="maturity-level-items"><span>Bounded agent execution</span><span>Human-in-the-loop control</span><span>Auditable automation</span></div>
+            <div class="maturity-level-note maturity-level-note--warning">Most try to jump here from L0</div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="thinking-divider" aria-hidden="true"></div>
-
-    <div class="thinking-section" id="orchestration-test">
-      <span class="thinking-section-label">Part 3</span>
-      <h2 class="thinking-h2">The Orchestration Test</h2>
-      <p class="thinking-intro-p">A practical test for identifying where decision infrastructure should exist — and where it shouldn't.</p>
-
-      <div class="orchestration-test-box">
-        <div class="orchestration-test-header">The Orchestration Test</div>
-        <div class="orchestration-test-body">
-          <div class="test-question">Ask of any People process:</div>
-          <div class="test-branches">
-            <div class="test-branch test-branch--admin">
-              <div class="test-branch-label">Administrative</div>
-              <p>Is the work primarily about <strong>recording an outcome</strong>? Keep it administrative. Automate where possible. The goal is accuracy and efficiency — not workflow redesign.</p>
-            </div>
-            <div class="test-branch test-branch--governed">
-              <div class="test-branch-label">Governed Workflow</div>
-              <p>Is the work primarily about <strong>getting the right decision made</strong> — routing information, enforcing guardrails, managing exceptions, creating accountability? Redesign it as a governed workflow. The goal is auditability and consistency, not just throughput.</p>
-            </div>
-          </div>
-          <div class="test-insight">Most People processes contain both elements. The Orchestration Test is about identifying which element is primary — and designing accordingly. The mistake is treating everything like a system-of-record transaction.</div>
-        </div>
-      </div>
-
-      <p>Performance calibration is a governed workflow. The system of record can hold the final rating — it cannot support the weighted curves, manager-level visibility controls, promotion guardrails, and exception routing that make calibration defensible. That gap is why the Calibration Engine exists.</p>
-
-      <p>Remuneration review is a governed workflow. A spreadsheet can hold a number — it cannot enforce budget envelopes, surface compa-ratio at point of decision, or flag cohort outliers before submission. That gap is why the Rem Review Planning Studio exists.</p>
-
-      <p>A promotion record is administrative. A promotion decision — who reviews it, what criteria apply, what approval chain governs it, what happens when criteria aren't met — is a governed workflow. Same domain. Entirely different design requirements.</p>
-
-      <div class="thinking-cross-ref">
-        <span class="thinking-cross-ref-label">External writing</span>
-        <p>The Orchestration Test and the broader argument for designing HR around decision paths rather than systems of record is explored in depth in an upcoming feature. Link will appear in the <a href="#external" class="thinking-inline-link">External Writing</a> section when published.</p>
-      </div>
-    </div>
-
-    <div class="thinking-divider" aria-hidden="true"></div>
-
-    <div class="thinking-section" id="key-concepts">
-      <span class="thinking-section-label">Part 4</span>
-      <h2 class="thinking-h2">Key concepts</h2>
-      <p class="thinking-intro-p">The vocabulary behind the tools. Split into two groups: system properties (what a governed workflow has) and design approach (how it gets built).</p>
-      <p>The vocabulary of People Infrastructure. These concepts appear throughout the builds.</p>
-
-      <div class="concepts-grid">
-        <div class="concept-card">
-          <h3 class="concept-title">Workflow State</h3>
-          <p class="concept-body">The explicit representation of where a decision sits in a governed process — initiated, under review, pending approval, approved, exception, closed. State makes workflow visible. Without it, every process is a black box between submission and outcome.</p>
-        </div>
-        <div class="concept-card">
-          <h3 class="concept-title">Decision Rights Architecture</h3>
-          <p class="concept-body">The explicit mapping of who can make which decisions under which conditions. Not an org chart — a governance layer. Who approves a promotion at L4 vs L6? What happens when budget authority is exceeded? Who can override a guardrail, and what does that create in the audit log?</p>
-        </div>
-        <div class="concept-card">
-          <h3 class="concept-title">Governance by Design</h3>
-          <p class="concept-body">Building compliance into the workflow itself, rather than auditing for it after the fact. Guardrails that prevent decisions from proceeding when criteria aren't met. Approval gates that can't be skipped. Audit trails that are a natural byproduct of the process, not a separate activity.</p>
-        </div>
-        <div class="concept-card">
-          <h3 class="concept-title">Human-in-the-Loop Systems</h3>
-          <p class="concept-body">Decision infrastructure that keeps humans in authority over judgment calls while automating the surrounding work — routing, data surfacing, guardrail enforcement, exception flagging. AI-assist where it's useful. Human decision where it matters. Explicit about which is which.</p>
-        </div>
-        <div class="concept-card">
-          <h3 class="concept-title">Role-Based Visibility</h3>
-          <p class="concept-body">Information surfaces that show people exactly what they need and nothing they shouldn't have. Not a dashboard for everyone — a visibility layer designed around decision roles. The executive sees cross-divisional distribution. The manager sees their cohort. The People team sees exceptions and outliers.</p>
-        </div>
-        <div class="concept-card">
-          <h3 class="concept-title">Exception Management</h3>
-          <p class="concept-body">The deliberate design of what happens when a decision falls outside normal parameters. Not an error state — a workflow state. Who is notified? Who reviews? What documentation is required? What is the audit entry? Well-designed exception management is often what separates a governed process from an administrative one.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="thinking-divider" aria-hidden="true"></div>
-
-    <div class="thinking-section" id="ai-readiness">
-      <span class="thinking-section-label">Part 5</span>
-      <h2 class="thinking-h2">AI readiness requires infrastructure first</h2>
-      <p class="thinking-intro-p">Most organisations try to jump straight to AI-enabled operations. The problem is everything they need underneath it doesn't exist yet.</p>
-
-      <p>AI doesn't solve fragmented operations by itself. Without workflow architecture, governance, and orchestration already in place, AI simply inherits and scales the same coordination problems. The plumbing matters more than the prompt.</p>
-
-      <p>The maturity model below shows where most organisations actually are versus where AI-enabled operations require them to be. Levels 1 through 3 are infrastructure. They have to exist before Level 4 or Level 5 is worth attempting.</p>
-
-<div class="thinking-visual" id="maturity-model">
-  <div class="thinking-visual-label">AI Readiness Maturity Model — People Infrastructure</div>
-  <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
-    <rect width="900" height="200" fill="#111" rx="12"/>
-    
-    <!-- Level bars -->
-    <!-- L0 -->
-    <rect x="20" y="20" width="128" height="160" rx="6" fill="#1A1A1A" stroke="#2A2A2A"/>
-    <rect x="20" y="148" width="128" height="32" rx="0" rx="0" fill="#222"/>
-    <text x="84" y="50" font-family="Space Grotesk,system-ui" font-size="22" font-weight="800" fill="#333" text-anchor="middle">L0</text>
-    <text x="84" y="75" font-family="Inter,system-ui" font-size="11" font-weight="600" fill="#444" text-anchor="middle">Fragmented</text>
-    <text x="84" y="95" font-family="Inter,system-ui" font-size="10" fill="#3A3A3A" text-anchor="middle">Human glue</text>
-    <text x="84" y="112" font-family="Inter,system-ui" font-size="10" fill="#3A3A3A" text-anchor="middle">Hidden logic</text>
-    <text x="84" y="129" font-family="Inter,system-ui" font-size="10" fill="#3A3A3A" text-anchor="middle">No ownership</text>
-    <text x="84" y="165" font-family="Inter,system-ui" font-size="10" font-weight="600" fill="#555" text-anchor="middle">Most orgs start here</text>
-
-    <!-- L1 -->
-    <rect x="158" y="20" width="128" height="160" rx="6" fill="#1A1A1E" stroke="#253050"/>
-    <text x="222" y="50" font-family="Space Grotesk,system-ui" font-size="22" font-weight="800" fill="#304070" text-anchor="middle">L1</text>
-    <text x="222" y="75" font-family="Inter,system-ui" font-size="11" font-weight="600" fill="#405080" text-anchor="middle">Visibility</text>
-    <text x="222" y="95" font-family="Inter,system-ui" font-size="10" fill="#304070" text-anchor="middle">Mapped workflows</text>
-    <text x="222" y="112" font-family="Inter,system-ui" font-size="10" fill="#304070" text-anchor="middle">Decision points visible</text>
-    <text x="222" y="129" font-family="Inter,system-ui" font-size="10" fill="#304070" text-anchor="middle">Ownership clear</text>
-
-    <!-- L2 -->
-    <rect x="296" y="20" width="128" height="160" rx="6" fill="#1A1E1A" stroke="#255025"/>
-    <text x="360" y="50" font-family="Space Grotesk,system-ui" font-size="22" font-weight="800" fill="#407040" text-anchor="middle">L2</text>
-    <text x="360" y="75" font-family="Inter,system-ui" font-size="11" font-weight="600" fill="#508050" text-anchor="middle">Governance</text>
-    <text x="360" y="95" font-family="Inter,system-ui" font-size="10" fill="#407040" text-anchor="middle">Policy logic built in</text>
-    <text x="360" y="112" font-family="Inter,system-ui" font-size="10" fill="#407040" text-anchor="middle">Escalation models</text>
-    <text x="360" y="129" font-family="Inter,system-ui" font-size="10" fill="#407040" text-anchor="middle">Approval architecture</text>
-
-    <!-- L3 -->
-    <rect x="434" y="20" width="128" height="160" rx="6" fill="#1E1A14" stroke="#5A4020"/>
-    <text x="498" y="50" font-family="Space Grotesk,system-ui" font-size="22" font-weight="800" fill="#8A6030" text-anchor="middle">L3</text>
-    <text x="498" y="75" font-family="Inter,system-ui" font-size="11" font-weight="600" fill="#A07840" text-anchor="middle">Orchestration</text>
-    <text x="498" y="95" font-family="Inter,system-ui" font-size="10" fill="#8A6030" text-anchor="middle">Cross-system coord.</text>
-    <text x="498" y="112" font-family="Inter,system-ui" font-size="10" fill="#8A6030" text-anchor="middle">Workflow state mgmt</text>
-    <text x="498" y="129" font-family="Inter,system-ui" font-size="10" fill="#8A6030" text-anchor="middle">Exception routing</text>
-
-    <!-- L4 -->
-    <rect x="572" y="20" width="128" height="160" rx="6" fill="#1E1A1E" stroke="#502850"/>
-    <text x="636" y="50" font-family="Space Grotesk,system-ui" font-size="22" font-weight="800" fill="#805080" text-anchor="middle">L4</text>
-    <text x="636" y="75" font-family="Inter,system-ui" font-size="11" font-weight="600" fill="#9060A0" text-anchor="middle">AI-Augmented</text>
-    <text x="636" y="95" font-family="Inter,system-ui" font-size="10" fill="#805080" text-anchor="middle">Recommendations</text>
-    <text x="636" y="112" font-family="Inter,system-ui" font-size="10" fill="#805080" text-anchor="middle">Signal detection</text>
-    <text x="636" y="129" font-family="Inter,system-ui" font-size="10" fill="#805080" text-anchor="middle">Workflow assistance</text>
-
-    <!-- L5 -->
-    <rect x="710" y="20" width="170" height="160" rx="6" fill="#1E1A14" stroke="#C0392B" stroke-width="1.5"/>
-    <text x="795" y="50" font-family="Space Grotesk,system-ui" font-size="22" font-weight="800" fill="#C0392B" text-anchor="middle">L5</text>
-    <text x="795" y="75" font-family="Inter,system-ui" font-size="11" font-weight="600" fill="#E8503F" text-anchor="middle">Governed Agentic</text>
-    <text x="795" y="95" font-family="Inter,system-ui" font-size="10" fill="#C0392B" text-anchor="middle">Bounded agent execution</text>
-    <text x="795" y="112" font-family="Inter,system-ui" font-size="10" fill="#C0392B" text-anchor="middle">Human-in-the-loop control</text>
-    <text x="795" y="129" font-family="Inter,system-ui" font-size="10" fill="#C0392B" text-anchor="middle">Auditable automation</text>
-    <rect x="710" y="148" width="170" height="32" rx="0" fill="rgba(192,57,43,0.1)"/>
-    <text x="795" y="168" font-family="Inter,system-ui" font-size="10" font-weight="600" fill="#C0392B" text-anchor="middle">Most try to jump here from L0</text>
-
-    <!-- Arrow -->
-    <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#333"/></marker></defs>
-    <line x1="148" y1="100" x2="158" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <line x1="286" y1="100" x2="296" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <line x1="424" y1="100" x2="434" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <line x1="562" y1="100" x2="572" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-    <line x1="700" y1="100" x2="710" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
-  </svg>
-</div>
 
       <div class="thinking-ai-principles">
         <div class="thinking-ai-principle">
@@ -1033,48 +364,46 @@
 
       <div class="thinking-callout" style="margin-top:var(--space-8);">
         <div class="thinking-callout-label">On agentic execution</div>
-        <p>Agents are execution actors operating within defined boundaries — not autonomous decision owners. Treat them like operational workers: create and approve them, configure their scope, monitor their output, improve them, retire them when they're no longer needed. The governance layer has to exist first. A bounded agent running inside a governed workflow is powerful. An agent running outside one is just a faster way to make the same mistakes.</p>
+        <p>Agents are execution actors operating within defined boundaries — not autonomous decision owners. Treat them like operational workers: create and approve them, configure their scope, monitor their output, improve them, retire them when no longer needed. The governance layer has to exist first. A bounded agent running inside a governed workflow is powerful. An agent running outside one is just a faster way to make the same mistakes.</p>
         <p style="margin-top:var(--space-4);font-size:var(--text-sm);color:var(--mid);">A longer piece on agentic readiness for People functions is in progress — link will appear in External Writing when published.</p>
       </div>
 
       <div class="thinking-callout" style="margin-top:var(--space-6);">
         <div class="thinking-callout-label">The cross-functional reality</div>
-        <p>Most People workflows are not purely People workflows. They are cross-functional enterprise workflows. A new hire requires IT provisioning, payroll setup, finance budget alignment, and manager onboarding — not just an HRIS record. An internal move requires Finance for compensation changes, Legal for contract variations, and IT for access updates. An EOR-to-entity conversion requires Finance, Legal, and Business sign-off — not just a People recommendation.</p>
+        <p>Most People workflows are not purely People workflows. They are cross-functional enterprise workflows. A new hire requires IT provisioning, payroll setup, finance budget alignment, and manager onboarding — not just an HRIS record. An internal move requires Finance for compensation changes, Legal for contract variations, and IT for access updates. An EOR-to-entity conversion requires Finance, Legal, and Business sign-off.</p>
         <p style="margin-top:var(--space-4);">This is why orchestration matters. And why agent execution in People is constrained unless there is end-to-end system access, permissions design, and cross-functional ownership clarity. The tools in this portfolio are designed with those dependencies explicit — not assumed away.</p>
       </div>
     </div>
 
     <div class="thinking-divider" aria-hidden="true"></div>
 
+    <!-- PART 6 -->
     <div class="thinking-section" id="local-context">
-      <span class="thinking-section-label">Part 7</span>
+      <span class="thinking-section-label">Part 6</span>
       <h2 class="thinking-h2">Vendor tools are built around the default process. Yours probably isn't.</h2>
-      <p class="thinking-intro-p">Your process probably isn't median. That gap is structural — and it doesn't close by picking a better vendor.</p>
+      <p class="thinking-intro-p">The gap isn't in the features. It's in the context. And it doesn't close by picking a better vendor.</p>
 
-      <p>Enterprise HRIS platforms and performance tools are genuinely good at what they're designed for. They capture records reliably, run standard review cycles, and handle the processes that most organisations run the same way. But they're built around the default process — the way most companies of a certain size run calibration, or compensation review, or job levelling. The more your process diverges from that median, the less the tool fits.</p>
-
+      <p>Enterprise HRIS platforms and performance tools are genuinely good at what they're designed for. They capture records reliably, run standard review cycles, and handle the processes that most organisations run the same way. But they're built around the default process — the way most companies of a certain size run calibration, or compensation review, or job levelling. The more your process diverges from that default, the less the tool fits.</p>
       <p>This isn't a criticism of those platforms. It's a structural reality. A vendor tool cannot know that your ANZ calibration is more complex than your US calibration. It cannot know that your performance management process needs weighted distribution curves rather than a simple bell curve. It cannot know that your promotion guardrails need to account for specific eligibility criteria that reflect your employment law context. Those aren't configuration options. They're context — and context is the one thing vendors can't ship.</p>
 
       <div class="thinking-question-block">
         <div class="thinking-question">Onyx runs two regions. The US team uses Lattice's native calibration — it fits their process. The ANZ team uses a custom-built Calibration Engine — Lattice's calibration doesn't fit theirs. Same company. Same tool available. Different answer.</div>
       </div>
 
-      <p>The implication isn't "build everything." Most processes should use vendor tools — they're faster to deploy, cheaper to maintain, and good enough for standard workflows. The question is whether your process is standard. For People teams, the honest answer is: the processes that matter most — calibration, compensation planning, levelling, internal mobility — are almost never standard. They reflect the organisation's specific culture, employment law context, workforce composition, and decision-making norms. That's where the gap opens up.</p>
-
-      <p>And this is also why custom building requires a different kind of investment than most People teams expect. The technical build is the easier part. The harder part is the design thinking that has to happen first: What does the governance layer actually need to do? What are the exception paths? Who sees what, at what stage? What happens when the process breaks? Those questions can only be answered by someone who has run the process, in organisations like yours, and knows from experience what breaks and why. The tools in this portfolio exist because that experience informed the design — not just the build.</p>
+      <p>The implication isn't "build everything." Most processes should use vendor tools — they're faster to deploy, cheaper to maintain, and good enough for standard workflows. The question is whether your process is standard. For People teams, the honest answer is: the processes that matter most — calibration, compensation planning, levelling, internal mobility — are almost never standard. They reflect the organisation's specific culture, employment law context, workforce composition, and decision-making norms.</p>
+      <p>And this is also why custom building requires a different kind of investment than most People teams expect. The technical build is the easier part. The harder part is the design thinking that has to happen first: What does the governance layer actually need to do? What are the exception paths? Who sees what, at what stage? What happens when the process breaks? Those questions can only be answered by someone who has run the process, in organisations like yours, and knows from experience what breaks and why.</p>
     </div>
 
     <div class="thinking-divider" aria-hidden="true"></div>
 
+    <!-- PART 7 -->
     <div class="thinking-section" id="where-work-happens">
-      <span class="thinking-section-label">Part 8</span>
+      <span class="thinking-section-label">Part 7</span>
       <h2 class="thinking-h2">Bring the tools where work happens</h2>
       <p class="thinking-intro-p">The most governed workflow is useless if nobody uses it.</p>
 
       <p>Most People tools make the same mistake: they expect employees and leaders to come to the system. Log into the HRIS. Open the performance platform. Navigate to the planning tool. The system is the destination.</p>
-
       <p>That model made sense when systems were scarce. It doesn't make sense when people are already working in Slack, in email, in the tools their teams actually use every day. Asking a manager to open a separate tool to action a levelling decision or complete a calibration triage is adding friction to the exact moment you need the least friction.</p>
-
       <p>The better design principle: bring the governed workflow to where the work already happens. Not as a notification. As a surface where the decision can actually be made.</p>
 
       <div class="thinking-question-block">
@@ -1110,16 +439,19 @@
 
       <p>The better platforms are moving in this direction. Lattice has Slack notifications and is building toward in-workflow actions. Workday has the integration infrastructure but the surface is still largely system-first. The gap between "sends a notification" and "lets you action the decision inside Slack" is still wide — and it's where internally built tools can move faster than vendors.</p>
     </div>
-      <span class="thinking-section-label">Part 9</span>
+
+    <div class="thinking-divider" aria-hidden="true"></div>
+
+    <!-- PART 8 (External Writing) -->
+    <div class="thinking-section" id="external">
+      <span class="thinking-section-label">Part 8</span>
       <h2 class="thinking-h2">External writing</h2>
       <p>Published thinking and external appearances — added as they go live.</p>
 
       <div class="external-placeholder">
         <div class="external-placeholder-inner">
           <div class="external-placeholder-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div class="external-placeholder-content">
             <p class="external-placeholder-title">FNDN Weekly — Newsletter feature</p>
@@ -1131,9 +463,7 @@
       <div class="external-placeholder">
         <div class="external-placeholder-inner">
           <div class="external-placeholder-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div class="external-placeholder-content">
             <p class="external-placeholder-title">Range — Podcast episode</p>
@@ -1141,7 +471,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <div class="thinking-nav-row">
@@ -1152,7 +481,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">

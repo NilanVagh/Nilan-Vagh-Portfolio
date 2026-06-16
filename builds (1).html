@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" data-page="builds">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Builds — Nilan Vagh</title>
+<meta name="description" content="Five tools built for Onyx. Real governance logic, real workflow architecture, synthetic data. People Infrastructure in practice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<header class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="NV monogram">
+        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
+        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
+        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
+      </svg>
+      <span class="nav-name">Nilan Vagh</span>
+    </a>
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="about.html" class="nav-link">About</a>
+      <a href="thinking.html" class="nav-link">The Thinking</a>
+      <a href="onyx.html" class="nav-link">Onyx</a>
+      <a href="builds.html" class="nav-link nav-link--active">The Builds</a>
+      <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
+    </nav>
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="about.html" class="nav-mobile-link">About</a>
+    <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
+    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
+    <a href="builds.html" class="nav-mobile-link">The Builds</a>
+    <a href="connect.html" class="nav-mobile-link">Connect</a>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">The Builds</span>
+    <h1 class="page-title">Five proof objects.<br><span class="page-title--accent">One decision architecture.</span></h1>
+    <p class="page-hero-sub">Each tool exists because of a deliberate design decision about how a People decision should be governed — not because a system needed configuring. The case study for each leads with the problem and the thinking, not the features.</p>
+  </div>
+</section>
+
+<!-- BUILDS NOTE -->
+<div class="builds-note-bar">
+  <div class="container">
+    <div class="builds-note">
+      <span class="builds-note-label">Sandbox environment</span>
+      All tools are built for <a href="onyx.html" class="builds-note-link">Onyx</a> — a fictional 260-person AI-native SaaS company (235 permanent FTE + 25 EOR across 5 markets). Same data environment across every demo. <a href="onyx.html" class="builds-note-link">Meet Onyx →</a>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL 01 — FLAGSHIP -->
+<section class="tool-section tool-section--flagship" id="calibration">
+  <div class="tool-flagship-banner">
+    <div class="container">
+      <span class="tool-flagship-eyebrow">Flagship build · Most complete proof object</span>
+    </div>
+  </div>
+  <div class="container">
+    <div class="tool-card tool-card--priority">
+      <div class="tool-card-header">
+        <div class="tool-number">01</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--flagship">
+            <span class="tool-status-dot"></span>
+            Flagship build
+          </div>
+          <div class="tool-proof-type">Workflow system</div>
+          <h2 class="tool-title">Calibration Engine</h2>
+          <p class="tool-subtitle">Performance calibration as a governed decision workflow</p>
+        </div>
+      </div>
+      <div class="tool-meta-strip">
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Built for</span><span class="tool-meta-pill-value">Onyx — ANZ team</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Stack</span><span class="tool-meta-pill-value">Google Apps Script</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Decision domain</span><span class="tool-meta-pill-value">Performance calibration</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Status</span><span class="tool-meta-pill-value tool-meta-pill-value--building">In build — synthetic demo to follow</span></div>
+      </div>
+      <div class="tool-single-col">
+        <div class="tool-block">
+          <h3 class="tool-block-label">The problem</h3>
+          <p>Performance calibration at scale is a decision coordination problem. Multiple managers, multiple divisions, inconsistent rating distributions, promotion recommendations without guardrails, and no visibility into whether the process is running consistently or fairly across the organisation. Most companies run calibration via spreadsheets and calendar invites. The outcome is recorded in the HRIS. Everything in between is ungoverned.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">The design decision</h3>
+          <p>Build the calibration process as a governed workflow — not a meeting facilitation tool, not a reporting dashboard. Async triage before live calibration, so managers arrive prepared rather than deliberating in real time. Role-based visibility so executives see cross-divisional distribution while managers see only their cohort. Promotion guardrails that surface eligibility criteria at the point of recommendation, not after. Decision state that persists and is auditable.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">The governance logic</h3>
+          <ul class="tool-governance-list">
+            <li>Rating distribution guardrails enforce cohort-level parameters before finalisation</li>
+            <li>Promotion recommendations require eligibility confirmation before routing for approval</li>
+            <li>Role-based access controls what each participant can see and act on</li>
+            <li>Divisional and executive views aggregate without exposing individual manager data cross-functionally</li>
+            <li>Full audit trail: who changed what, when, and from what state</li>
+          </ul>
+        </div>
+        <div class="tool-block tool-block--why-build">
+          <h3 class="tool-block-label">Why a custom build — and when it's worth it</h3>
+          <p class="why-build-intro">Onyx runs two regions. The US team uses Lattice's native calibration — it fits their process. The ANZ team doesn't. Same company. Same tool available. Different answer.</p>
+          <p class="why-build-body">ANZ calibration is more complex: a larger population relative to the region, different employment law context, stronger cultural norms around due process, and a harder challenge around managing performance consistently across a more tenured workforce. Lattice's calibration is built around the default process. ANZ's process isn't the default. No vendor configuration closes that gap — because the gap isn't in the features, it's in the context.</p>
+          <p class="why-build-body">That said — custom building isn't always the right answer. The honest test:</p>
+          <div class="cost-benefit-grid">
+            <div class="cost-benefit-card cost-benefit-card--build">
+              <div class="cost-benefit-label">Worth building when</div>
+              <ul class="cost-benefit-list">
+                <li>The process runs on a fixed cycle and affects a large population</li>
+                <li>The cost of running it badly is high — comp, promotion, retention, legal exposure</li>
+                <li>No vendor tool captures enough organisational context without significant workarounds</li>
+                <li>The governance logic needs to be embedded, not bolted on</li>
+                <li>The organisation will use it repeatedly — not a one-time event</li>
+              </ul>
+            </div>
+            <div class="cost-benefit-card cost-benefit-card--skip">
+              <div class="cost-benefit-label">Probably not worth building when</div>
+              <ul class="cost-benefit-list">
+                <li>A simple report will do — vibe-code it in an afternoon</li>
+                <li>The process is genuinely standard and a vendor tool fits well enough</li>
+                <li>The maintenance overhead exceeds the governance value</li>
+                <li>The complexity is in the data, not the decision logic</li>
+              </ul>
+            </div>
+          </div>
+          <p class="why-build-body" style="margin-top:var(--space-5);">The Calibration Engine sits firmly in the first column. It took weeks of design thinking before a line of code was written — not because the build was technically hard, but because the governance decisions are genuinely complex. What are the exception paths? Who sees what at each stage? What happens when a manager disputes a rating in the live session? Those questions can't be answered by a vendor. They can only be answered by someone who has run this process, in this kind of organisation, and knows what breaks.</p>
+        </div>
+        <div class="tool-block tool-block--data">
+          <h3 class="tool-block-label">Data sources</h3>
+          <div class="data-source-list">
+            <div class="data-source-row"><span class="data-source-system">Lattice</span><span class="data-source-desc">Performance ratings, review completion status, goal scores, manager assessments</span></div>
+            <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Employee records, tenure, current level, manager hierarchy, division, and employment type</span></div>
+            <div class="data-source-row"><span class="data-source-system">Monday.com</span><span class="data-source-desc">PIP and formal warning flags — automatic exclusion logic for promotion eligibility</span></div>
+            <div class="data-source-row"><span class="data-source-system">People Team input</span><span class="data-source-desc">Distribution targets, calibration parameters, promotion guardrail thresholds by level</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--stakeholders">
+          <h3 class="tool-block-label">Stakeholders involved</h3>
+          <div class="stakeholder-list">
+            <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Architects and operates the workflow, sets guardrails, manages exceptions</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">People Partners</span><span class="stakeholder-desc">Run async triage with managers, flag outliers before live calibration</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Managers</span><span class="stakeholder-desc">Complete async triage, attend live calibration, submit promotion recommendations</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Division Leads</span><span class="stakeholder-desc">Review divisional distribution, approve final ratings before executive roll-up</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Executive / CPO</span><span class="stakeholder-desc">Cross-divisional view, final sign-off on promotion slate and distribution outcomes</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--integrations">
+          <h3 class="tool-block-label">Integrations &amp; where work happens</h3>
+          <div class="integration-current">
+            <div class="integration-state-label">Design principle — governance lives in the tool</div>
+            <p style="font-size:var(--text-sm);color:var(--mist);line-height:1.7;margin-bottom:var(--space-4);">Calibration is a cyclical, live-session event. 95% of the work happens inside the tool — that's the point. The approval chain, promotion sign-off, and executive review are all governed workflow states within the Calibration Engine. The audit trail is a natural output, not a separate process.</p>
+            <ul class="tool-governance-list">
+              <li>Managers complete async triage in the tool before live sessions — they arrive prepared, not deliberating in real time</li>
+              <li>Promotion approvals routed and captured within the tool — full decision chain visible to CPO without leaving the workflow</li>
+              <li>Slack notification when async triage window opens — one-touch link back into the tool</li>
+              <li>Calibration outputs written back to Lattice performance records on cycle close</li>
+            </ul>
+          </div>
+          <div class="integration-future">
+            <div class="integration-state-label integration-state-label--future">Future state — with Engineering support</div>
+            <ul class="tool-governance-list">
+              <li>Real-time Lattice API sync replaces manual data extract at cycle open</li>
+              <li>Post-calibration rating changes pushed back to Lattice automatically — removing the manual load step</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 02 -->
+<section class="tool-section" id="rem-review">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">02</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--building" style="color:var(--green)">
+            <span class="tool-status-dot" style="background:var(--green);box-shadow:0 0 6px var(--green);"></span>
+            Live demo available
+          </div>
+          <div class="tool-proof-type">Planning infrastructure</div>
+          <h2 class="tool-title">Rem Review Planning Studio</h2>
+          <p class="tool-subtitle">Budget modelling and decision-support for the annual remuneration review cycle</p>
+        </div>
+      </div>
+      <div class="tool-meta-strip">
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Built for</span><span class="tool-meta-pill-value">Onyx — FY26 cycle</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Stack</span><span class="tool-meta-pill-value">Google Apps Script</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Decision domain</span><span class="tool-meta-pill-value">Remuneration planning</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Upstream of</span><span class="tool-meta-pill-value">ChartHop (execution)</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Status</span><span class="tool-meta-pill-value" style="color:var(--green)">Live demo available</span></div>
+        <div class="tool-meta-pill tool-meta-pill--demo"><a href="rem-review-demo.html" target="_blank" class="tool-meta-demo-link">Open live demo →</a></div>
+      </div>
+      <div class="tool-single-col">
+        <div class="tool-block">
+          <h3 class="tool-block-label">The problem</h3>
+          <p>Remuneration review planning is typically done in spreadsheets — budget set at the top, distributed to managers, consolidated manually, with governance existing only as a process document nobody follows consistently. The People and TR teams spend most of the cycle chasing errors, correcting outliers, and reconciling spreadsheet versions. By the time decisions reach the system of record, the real work — the budget modelling, the cohort analysis, the eligibility logic — has already happened in a format nobody can audit.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">The design decision</h3>
+          <p>This is not a comp admin tool. It's an upstream decision-support workbench — the place where the hard questions get answered before anything moves into the system of record. Where is pay pressure? How much budget is available after reserves? How do different budget choices land across cohorts? The tool exists to give TR and People leadership the analytical surface they need to make those decisions well, with the right guardrails built in from the start.</p>
+          <p style="margin-top:var(--space-4);">Explicitly not: manager-facing, an approval workflow, a payroll write-back tool, or a long-term generic platform. Cycle-specific by design. Downstream execution moves to ChartHop.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">What it does</h3>
+          <ul class="tool-governance-list">
+            <li><strong>Budget setting</strong> — Set Rem Review budget at Group, P&amp;L Entity, and Employing Entity level. Reserve buckets for Promotion, Retention, and Market Correction. Budget available = total minus reserves.</li>
+            <li><strong>Modelling methods</strong> — % increase, dollar increase, fixed AUD pool allocation to cohort, % of available budget to cohort. Apply increases to filtered cohorts with attrition-adjusted sensitivity view.</li>
+            <li><strong>Scenario management</strong> — Create, save, duplicate, reset, and compare scenarios side-by-side. Labels, one-line summaries, and a full modelling audit trail.</li>
+            <li><strong>Eligibility logic</strong> — Automatic exclusion of contractors, casuals, interns, fixed-term employees. Eligibility rules based on employment type, hire date, recent salary-impact changes, and parental leave (excluded where FY26 worked days under 90).</li>
+            <li><strong>Analytics cuts</strong> — P&amp;L Entity, Employing Entity, Division, Job Category, Job Grade, Diversity — showing eligible employees, average increase, headcount share, payroll share, and spend in AUD.</li>
+          </ul>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">The Total Rewards build sequence</h3>
+          <p style="font-size:var(--text-sm);color:var(--mist);line-height:1.7;margin-bottom:var(--space-5);">The Rem Review Planning Studio is the first tool in a deliberate Total Rewards infrastructure stack. It proves the build pattern. Everything else sequences from here.</p>
+          <div class="tr-stack">
+            <div class="tr-stack-item tr-stack-item--done">
+              <div class="tr-stack-num">01</div>
+              <div class="tr-stack-content">
+                <div class="tr-stack-title">Rem Review Planning Studio <span class="tr-stack-badge tr-stack-badge--done">Built</span></div>
+                <div class="tr-stack-desc">Cycle-specific budget modelling and decision-support. Feeds downstream into ChartHop for execution.</div>
+              </div>
+            </div>
+            <div class="tr-stack-item tr-stack-item--next">
+              <div class="tr-stack-num">02</div>
+              <div class="tr-stack-content">
+                <div class="tr-stack-title">Job Levelling Tool <span class="tr-stack-badge tr-stack-badge--next">Next build</span></div>
+                <div class="tr-stack-desc">Governance and decision-support for role levelling. Assesses roles against job architecture, recommends level and grade, links levelling outcomes to compensation implications.</div>
+              </div>
+            </div>
+            <div class="tr-stack-item">
+              <div class="tr-stack-num">03</div>
+              <div class="tr-stack-content">
+                <div class="tr-stack-title">Comp Positioning Layer <span class="tr-stack-badge">Planned</span></div>
+                <div class="tr-stack-desc">Currently a tab inside the Rem Review Studio. Being lifted into a standing, cycle-agnostic diagnostic layer — benchmark comparisons, compa ratios, midpoint positioning, correction pressure.</div>
+              </div>
+            </div>
+            <div class="tr-stack-item">
+              <div class="tr-stack-num">04</div>
+              <div class="tr-stack-content">
+                <div class="tr-stack-title">Rewards Intelligence Layer <span class="tr-stack-badge">Future state</span></div>
+                <div class="tr-stack-desc">The governed read layer. Employee-level and cohort-level rewards context: full reward picture, market positioning, performance context, retention risk signal. Built last — depends on everything above.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--data">
+          <h3 class="tool-block-label">Data sources</h3>
+          <div class="data-source-list">
+            <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Employee records, current base salary, level, band, tenure, employment type, and parental leave status</span></div>
+            <div class="data-source-row"><span class="data-source-system">Monday.com</span><span class="data-source-desc">PIP tracker and parental leave dates — automatic eligibility exclusion logic</span></div>
+            <div class="data-source-row"><span class="data-source-system">TR Team modelling rules</span><span class="data-source-desc">Budget envelopes by division, merit increase guidelines, STI parameters, compa-ratio targets</span></div>
+            <div class="data-source-row"><span class="data-source-system">Finance</span><span class="data-source-desc">Approved total compensation budget by division and level band</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--stakeholders">
+          <h3 class="tool-block-label">Stakeholders involved</h3>
+          <div class="stakeholder-list">
+            <div class="stakeholder-row"><span class="stakeholder-role">Total Rewards</span><span class="stakeholder-desc">Primary user — sets modelling rules, runs scenarios, owns budget parameters and eligibility criteria</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">CPO</span><span class="stakeholder-desc">Reviews scenario outputs and budget strategy — approves final allocation before execution</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Finance</span><span class="stakeholder-desc">Approves budget envelopes, reviews final allocation against headcount plan and P&amp;L</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Builds and maintains the tool, manages data inputs, supports TR through the modelling cycle</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--integrations">
+          <h3 class="tool-block-label">How it fits the stack</h3>
+          <div class="integration-current">
+            <div class="integration-state-label">Current state</div>
+            <ul class="tool-governance-list">
+              <li>Data pulled from BambooHR and Monday.com at cycle open — manual extract, loaded into the tool</li>
+              <li>TR team runs modelling scenarios independently — no spreadsheet distribution to managers</li>
+              <li>Governance summary exported in Finance-ready format for CPO and Board review</li>
+              <li>Approved outcomes handed to ChartHop for execution and employee communication</li>
+            </ul>
+          </div>
+          <div class="integration-future">
+            <div class="integration-state-label integration-state-label--future">Future state</div>
+            <ul class="tool-governance-list">
+              <li>Real-time BambooHR sync replaces manual extract at cycle open</li>
+              <li>Comp Positioning Layer becomes a standing diagnostic — not rebuilt each cycle</li>
+              <li>Outputs feed directly into Rewards Intelligence Layer as historical cycle data</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 03 -->
+<section class="tool-section" id="workforce-intelligence">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">03</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--building">
+            <span class="tool-status-dot"></span>
+            In build — public abstraction in progress
+          </div>
+          <div class="tool-proof-type">Decision-support layer</div>
+          <h2 class="tool-title">Workforce Intelligence Layer</h2>
+          <p class="tool-subtitle">From descriptive headcount reporting to decision-ready visibility</p>
+        </div>
+      </div>
+      <div class="tool-meta-strip">
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Built for</span><span class="tool-meta-pill-value">Onyx — all divisions</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Stack</span><span class="tool-meta-pill-value">Google Apps Script + Sheets</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Decision domain</span><span class="tool-meta-pill-value">Workforce visibility</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Status</span><span class="tool-meta-pill-value tool-meta-pill-value--building">In build — public abstraction in progress</span></div>
+      </div>
+      <div class="tool-single-col">
+        <div class="tool-block">
+          <h3 class="tool-block-label">The problem</h3>
+          <p>Most headcount reporting tells you what happened — FTE by division, attrition rate, tenure distribution. It doesn't tell you what to do about it. Performance, engagement, FTE, and lifecycle data sit in separate systems, pulled manually, reported separately. By the time the report reaches a decision-maker it's already stale and the interpretation is left to the reader.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">The design decision</h3>
+          <p>Integrate the data sources that actually drive workforce decisions — not just headcount, but performance tier, engagement signal, flight risk, lifecycle stage — and surface them in a single decision-ready layer. The output isn't a dashboard. It's a set of prioritised signals with clear decision prompts attached.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">What it demonstrates</h3>
+          <ul class="tool-governance-list">
+            <li>Cross-source data integration without a data warehouse</li>
+            <li>Signal-based visibility design vs. metric-based reporting design</li>
+            <li>How role-based visibility works across executive, People team, and manager layers</li>
+            <li>The difference between a dashboard and a decision support surface</li>
+          </ul>
+        </div>
+        <div class="tool-block tool-block--data">
+          <h3 class="tool-block-label">Data sources</h3>
+          <div class="data-source-list">
+            <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Headcount snapshots, attrition events, tenure distribution, lifecycle stage, hire/exit dates</span></div>
+            <div class="data-source-row"><span class="data-source-system">Lattice</span><span class="data-source-desc">Performance tier distribution by division and manager — layered as a signal on top of headcount data</span></div>
+            <div class="data-source-row"><span class="data-source-system">Lattice (Engagement)</span><span class="data-source-desc">Quarterly engagement survey results — manually pushed after each survey cycle closes</span></div>
+            <div class="data-source-row"><span class="data-source-system">Monday.com</span><span class="data-source-desc">Parental leave tracker — integrated as a workforce lifecycle signal, not just an absence record</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--stakeholders">
+          <h3 class="tool-block-label">Stakeholders involved</h3>
+          <div class="stakeholder-list">
+            <div class="stakeholder-row"><span class="stakeholder-role">CPO / Executive</span><span class="stakeholder-desc">Cross-divisional snapshot — headcount movement, attrition signals, performance distribution</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">People Partners</span><span class="stakeholder-desc">Division-level signals — flight risk indicators, lifecycle events, exception flags</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Owns the data integration layer, monthly refresh cycle, signal design, and distribution</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--integrations">
+          <h3 class="tool-block-label">How it works today</h3>
+          <div class="integration-current">
+            <div class="integration-state-label">Current state</div>
+            <ul class="tool-governance-list">
+              <li>Monthly manual refresh — People Ops pulls from BambooHR, Lattice, and Monday.com into a consolidated data model</li>
+              <li>Automated email sent to stakeholders on refresh — role-based view links, no login required</li>
+              <li>Quarterly engagement data manually pushed after each survey cycle closes</li>
+            </ul>
+          </div>
+          <div class="integration-future">
+            <div class="integration-state-label integration-state-label--future">Future state — with Engineering / Data support</div>
+            <ul class="tool-governance-list">
+              <li>Real-time or weekly data pipeline replaces monthly manual refresh</li>
+              <li>Weekly Slack digest to People Partners surfacing division-level anomalies and decision prompts</li>
+              <li>Flight risk scoring layer using performance + tenure + engagement signal combination</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 04 -->
+<section class="tool-section" id="job-levelling">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">04</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--building">
+            <span class="tool-status-dot"></span>
+            Prototype basis exists — public framing in progress
+          </div>
+          <div class="tool-proof-type">Structured judgment tool</div>
+          <h2 class="tool-title">Job Levelling Tool</h2>
+          <p class="tool-subtitle">Structured role evaluation with governance and audit integration</p>
+        </div>
+      </div>
+      <div class="tool-meta-strip">
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Decision domain</span><span class="tool-meta-pill-value">Job architecture</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Stack</span><span class="tool-meta-pill-value">Google Apps Script</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Status</span><span class="tool-meta-pill-value tool-meta-pill-value--building">Prototype basis exists — Zip build next</span></div>
+      </div>
+      <div class="tool-single-col">
+        <div class="tool-block">
+          <h3 class="tool-block-label">The problem</h3>
+          <p>Job levelling decisions are some of the most consequential and inconsistent in any People function. Without a structured evaluation rubric, level and band recommendations vary by manager, by division, by who's in the room. The decision exists but the logic behind it is invisible — and unauditable.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">The design decision</h3>
+          <p>Evaluate roles against a structured rubric and output a level recommendation with the reasoning made explicit. Not a classification tool — a decision support tool that surfaces the inputs, applies the logic, and produces a recommendation the governance layer can act on. Output includes proposed salary range and anchor point — not just a level label.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">What it demonstrates</h3>
+          <ul class="tool-governance-list">
+            <li>Rubric-based evaluation as a governed decision rather than a judgment call</li>
+            <li>How levelling integrates into compensation band governance</li>
+            <li>Audit trail design for classification decisions</li>
+            <li>Confidence scoring and fuzzy-flag routing to People review</li>
+          </ul>
+        </div>
+        <div class="tool-block tool-block--data">
+          <h3 class="tool-block-label">Data sources</h3>
+          <div class="data-source-list">
+            <div class="data-source-row"><span class="data-source-system">Job architecture framework</span><span class="data-source-desc">Level criteria, scope definitions, and band boundaries — the structured logic the tool applies</span></div>
+            <div class="data-source-row"><span class="data-source-system">Salary band data</span><span class="data-source-desc">Compensation ranges by level — surfaced at point of decision with proposed range and anchor</span></div>
+            <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Existing role titles and levels — consistency benchmarking against comparable roles</span></div>
+            <div class="data-source-row"><span class="data-source-system">Manager input (JD)</span><span class="data-source-desc">Manager submits JD or role description — tool analyses, applies rubric, outputs recommendation with confidence score</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--stakeholders">
+          <h3 class="tool-block-label">Stakeholders involved</h3>
+          <div class="stakeholder-list">
+            <div class="stakeholder-row"><span class="stakeholder-role">Hiring Managers</span><span class="stakeholder-desc">Submit JD or role summary — receive level, salary range, and proposed anchor via self-serve. No People Partner needed for standard cases.</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Architects the framework, reviews fuzzy-flagged edge cases, maintains job architecture governance log</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Total Rewards</span><span class="stakeholder-desc">Receives level + salary range output — confirms band alignment before offer or role change is approved</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Finance</span><span class="stakeholder-desc">Notified when levelling decision has compensation implications affecting headcount budget</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--integrations">
+          <h3 class="tool-block-label">Build pathway</h3>
+          <div class="integration-current">
+            <div class="integration-state-label">Current state — prototype logic built</div>
+            <ul class="tool-governance-list">
+              <li>Manager submits JD → tool analyses against rubric → outputs level, salary range, anchor, confidence score</li>
+              <li>Slack notification to People Partner when confidence is low or title flags inflation risk</li>
+              <li>Every decision logged: requestor, role, level, salary range, confidence, routing outcome</li>
+              <li>Levelling Certificate generated — attached to headcount or role change request</li>
+            </ul>
+          </div>
+          <div class="integration-future">
+            <div class="integration-state-label integration-state-label--future">Three-phase roadmap</div>
+            <ul class="tool-governance-list">
+              <li><strong>Phase 1:</strong> Build functional tool in Google Apps Script — validate logic with real roles</li>
+              <li><strong>Phase 2:</strong> Move to an internal LLM layer — manager pastes JD, AI analyses against job architecture, produces structured recommendation with rationale. Confidence score determines auto-approve or People review.</li>
+              <li><strong>Phase 3 (with Engineering):</strong> Manager submits in Slack → analysis runs → Certificate generated → logged to governance dashboard. The tool comes to where the work happens.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL 05 — EOR MATRIX -->
+<section class="tool-section" id="eor-matrix">
+  <div class="container">
+    <div class="tool-card">
+      <div class="tool-card-header">
+        <div class="tool-number">05</div>
+        <div class="tool-header-content">
+          <div class="tool-status tool-status--building" style="color:var(--green);">
+            <span class="tool-status-dot" style="background:var(--green);box-shadow:0 0 6px var(--green);"></span>
+            Live demo available
+          </div>
+          <div class="tool-proof-type">Governance decision tool</div>
+          <h2 class="tool-title">EOR Entity Readiness Matrix</h2>
+          <p class="tool-subtitle">When to exit EOR and establish a legal entity — governed, weighted, auditable</p>
+        </div>
+      </div>
+      <div class="tool-meta-strip">
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Built for</span><span class="tool-meta-pill-value">Onyx — 5 EOR markets</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Stack</span><span class="tool-meta-pill-value">Google Apps Script</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Decision domain</span><span class="tool-meta-pill-value">Global workforce governance</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Stakeholders</span><span class="tool-meta-pill-value">Finance · Legal · Business · People</span></div>
+        <div class="tool-meta-pill tool-meta-pill--demo"><a href="eor-matrix.html" target="_blank" class="tool-meta-demo-link">Open live demo →</a></div>
+      </div>
+      <div class="tool-single-col">
+        <div class="tool-block">
+          <h3 class="tool-block-label">The problem</h3>
+          <p>Onyx operates in 7 markets. Two are legal entities. Five run on EOR via Deel. As headcount grows in key markets, the question of when to convert to a legal entity becomes urgent — but it's a decision that spans Finance (Tax PE risk, break-even), Legal (compliance obligations), and Business (strategic commitment). Without a shared framework, each stakeholder makes the call from their own lens. The People team gets stuck in the middle with no defensible, auditable basis for a multi-million dollar recommendation.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">The design decision</h3>
+          <p>People Team cannot own this in a silo. If People dictates Tax PE risk, Finance won't trust it. If People dictates compliance triggers, Legal will override it. The right model: People Team architects the system, domain experts own their inputs. Two lanes — quantitative (automated from headcount, payroll, break-even data) and qualitative (human-assessed ratings owned by Finance, Legal, and Business). People operates the framework and holds the governance layer together.</p>
+        </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">The governance logic</h3>
+          <ul class="tool-governance-list">
+            <li>7 weighted exit triggers — Finance owns Tax PE (25%) and Break-Even (20%), Business owns Strategic Commitment (15%), People owns Headcount and Permanence</li>
+            <li>Hard Override Rule: Tax PE Risk = 3 triggers RED automatically — you cannot average away existential legal risk</li>
+            <li>RAG scoring: Green (stay on EOR) → Amber (monitor feasibility) → Red (initiate entity setup workstream)</li>
+            <li>RED status automatically triggers an escalation alert to Finance, Legal, and the CPO</li>
+            <li>Every input change logged with timestamp, actor role, and business reason — full audit trail</li>
+          </ul>
+          <p style="margin-top:var(--space-4);font-size:var(--text-sm);color:var(--mist);">Try the demo: update UK Tax PE Risk to 3 in Tab 2 to trigger the Hard Override and see the escalation alert fire.</p>
+        </div>
+        <div class="tool-block tool-block--data">
+          <h3 class="tool-block-label">Data sources</h3>
+          <div class="data-source-list">
+            <div class="data-source-row"><span class="data-source-system">Deel</span><span class="data-source-desc">EOR headcount by country, contractor vs permanent split, EOR vendor fees by market</span></div>
+            <div class="data-source-row"><span class="data-source-system">Finance</span><span class="data-source-desc">Payroll spend by market, estimated entity run cost, one-time setup cost modelling</span></div>
+            <div class="data-source-row"><span class="data-source-system">Finance / Tax (qualitative)</span><span class="data-source-desc">Tax PE and business activity risk rating — owned by Finance / Tax, not People</span></div>
+            <div class="data-source-row"><span class="data-source-system">Legal (qualitative)</span><span class="data-source-desc">EOR capability gap — compliance obligations, employment law exposure, local invoicing requirements</span></div>
+            <div class="data-source-row"><span class="data-source-system">Business leads (qualitative)</span><span class="data-source-desc">Strategic market commitment rating — long-term intent, customer presence, growth trajectory</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--stakeholders">
+          <h3 class="tool-block-label">Stakeholders involved</h3>
+          <div class="stakeholder-list">
+            <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Architects the framework, operates the matrix, facilitates cross-functional input — does not own individual driver ratings</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Finance / Tax</span><span class="stakeholder-desc">Owns Tax PE risk rating (25% weight) and break-even financial inputs — highest-weighted driver</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Legal</span><span class="stakeholder-desc">Owns EOR capability gap rating — compliance exposure, employment law obligations</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Business Leads</span><span class="stakeholder-desc">Owns strategic market commitment rating — long-term intent and growth signals</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">CPO / CFO</span><span class="stakeholder-desc">Receive automatic escalation alert when a market hits RED — trigger for entity setup workstream</span></div>
+          </div>
+        </div>
+        <div class="tool-block tool-block--integrations">
+          <h3 class="tool-block-label">Review cadence &amp; triggers</h3>
+          <div class="integration-current">
+            <div class="integration-state-label">Quarterly review cycle</div>
+            <ul class="tool-governance-list">
+              <li>Finance, Legal, Business, and People review the matrix together each quarter — each stakeholder updates their owned inputs</li>
+              <li>RED status triggers automatic escalation email to Finance, Legal, and CPO</li>
+              <li>Every change logged with timestamp, actor role, and reason — full audit trail</li>
+            </ul>
+          </div>
+          <div class="integration-future">
+            <div class="integration-state-label integration-state-label--future">Real-time triggers — outside the quarterly cycle</div>
+            <ul class="tool-governance-list">
+              <li>When EOR headcount crosses a defined threshold, an automatic flag is raised for out-of-cycle review</li>
+              <li>Deel API integration would pull headcount and fee data automatically — enabling real-time threshold alerts</li>
+              <li>Slack alert to Finance and Legal when a country crosses Amber — earlier signal, faster response</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IN DEVELOPMENT -->
+<section class="tool-section" id="in-development">
+  <div class="container">
+    <div class="builds-in-development">
+      <span class="section-eyebrow section-eyebrow--muted">In development</span>
+      <div class="builds-future-row">
+        <a href="#internal-moves" class="build-future-item">
+          <span class="build-future-title">Internal Moves Infrastructure</span>
+          <span class="build-future-desc">Internal mobility as a governed workflow. Multi-stakeholder approval routing, Finance / HR coordination, exception handling, governance by design.</span>
+        </a>
+        <a href="#manager-portal" class="build-future-item">
+          <span class="build-future-title">Manager Operating Portal</span>
+          <span class="build-future-desc">Orchestration surface pulling pending decisions from BambooHR, Lattice, and internal tools. Not a dashboard — a decision interface for frontline people decisions.</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDS FOOTER CTA -->
+<section class="builds-cta-section">
+  <div class="container">
+    <div class="builds-cta-inner">
+      <p class="builds-cta-text">The tools are not the point. The thinking behind the tools is the point.</p>
+      <div class="builds-cta-actions">
+        <a href="thinking.html" class="btn btn--primary">Read the thesis</a>
+        <a href="connect.html" class="btn btn--ghost">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-name">Nilan Vagh</span>
+        <span class="footer-role">People Infrastructure · Melbourne, AU</span>
+      </div>
+      <div class="footer-right">
+        <a href="connect.html" class="footer-link">Connect</a>
+        <a href="https://linkedin.com/in/nilanvagh" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-note">The data is dummy. The thinking is not.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

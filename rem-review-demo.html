@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rem Review Planning Studio — Onyx People</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0A0A0A;--ink:#111111;--charcoal:#1C1C1C;--slate:#2E2E2E;
+  --border:#242424;--border-lt:#333333;--mid:#5A5A5A;--mist:#8A8A8A;
+  --white:#F5F5F5;--white-pure:#FFFFFF;
+  --red:#C0392B;--red-light:#E8503F;--red-dim:#2A1210;--red-mid:#6B2018;
+  --green:#2ECC71;--amber:#E8B84B;--blue:#4A90D9;--purple:#9F7AEA;
+  --shadow:0 4px 24px rgba(0,0,0,0.5);--radius:8px;
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--black);color:var(--white);font-size:14px;line-height:1.6}
+.shell{max-width:1600px;margin:0 auto;padding:20px}
+
+/* HERO */
+.hero{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;margin-bottom:16px;border-radius:var(--radius);background:var(--ink);border:1px solid var(--border);flex-wrap:wrap}
+.hero-brand{display:flex;align-items:center;gap:14px}
+.hero-meta{display:flex;flex-direction:column;gap:2px}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red)}
+.hero-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--white-pure);letter-spacing:-0.02em}
+.hero-sub{font-size:12px;color:var(--mist)}
+.hero-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero-stat{text-align:right}
+.hero-stat-val{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--white-pure)}
+.hero-stat-label{font-size:10px;color:var(--mist);text-transform:uppercase;letter-spacing:0.08em}
+.hero-back{font-size:11px;color:var(--mist);text-decoration:none;border:1px solid var(--border);padding:5px 12px;border-radius:99px;transition:all 0.2s}
+.hero-back:hover{border-color:var(--red);color:var(--red)}
+
+/* DEMO BANNER */
+.demo-banner{background:var(--red-dim);border:1px solid var(--red-mid);border-radius:var(--radius);padding:10px 16px;margin-bottom:16px;font-size:12px;color:#DDAAAA;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.demo-banner strong{color:var(--red-light);font-weight:600}
+.demo-banner a{color:#DDAAAA;text-decoration:underline}
+
+/* TABS */
+.tabs-bar{display:flex;gap:4px;margin-bottom:16px;background:var(--ink);border:1px solid var(--border);border-radius:var(--radius);padding:4px}
+.tab-btn{flex:1;padding:9px 12px;border:none;border-radius:6px;background:transparent;color:var(--mist);font-family:var(--font-display);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.15s;text-align:center}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,0.05)}
+.tab-btn.active{background:var(--charcoal);color:var(--white-pure);border:1px solid var(--border-lt)}
+
+/* VIEW SWITCHER */
+.view-switcher{display:flex;gap:4px;flex-wrap:wrap}
+.view-btn{padding:6px 14px;border:1px solid var(--border);border-radius:99px;background:transparent;color:var(--mist);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s}
+.view-btn:hover{border-color:var(--border-lt);color:var(--white)}
+.view-btn.active{background:var(--red);border-color:var(--red);color:var(--white-pure)}
+
+/* PANELS */
+.panel{background:var(--ink);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+.panel.soft{background:var(--charcoal)}
+.panel-title{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--white-pure);margin-bottom:4px}
+.panel-sub{font-size:12px;color:var(--mist);line-height:1.5;margin-bottom:14px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.section-head-left{flex:1}
+.section-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* MODULE SPACING */
+.module{margin-bottom:14px}
+.top-gap{margin-top:14px}
+.top-gap-sm{margin-top:8px}
+
+/* GRID LAYOUTS */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.grid-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:14px}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.cards-grid-sm{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+
+/* STAT CARDS */
+.stat-card{background:var(--charcoal);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.stat-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--mid);margin-bottom:4px}
+.stat-value{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--white-pure);line-height:1.1}
+.stat-detail{font-size:11px;color:var(--mist);margin-top:6px;line-height:1.4}
+.stat-value.danger{color:var(--red-light)}
+.stat-value.success{color:var(--green)}
+.stat-value.warn{color:var(--amber)}
+
+/* FORM ELEMENTS */
+.field-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px}
+.field-grid-wide{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+label.field{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--mid)}
+input,select,textarea{background:var(--charcoal);border:1px solid var(--border);border-radius:6px;padding:8px 10px;color:var(--white);font-family:var(--font-body);font-size:13px;width:100%;transition:border-color 0.15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--border-lt)}
+textarea{min-height:72px;resize:vertical}
+select option{background:var(--charcoal)}
+.reserve-row{display:grid;grid-template-columns:1fr 120px;gap:8px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:6px;font-family:var(--font-display);font-size:13px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all 0.15s;white-space:nowrap}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.btn-primary{background:var(--red);color:#fff;border-color:var(--red)}
+.btn-primary:hover{background:var(--red-light);border-color:var(--red-light)}
+.btn-secondary{background:var(--charcoal);color:var(--white);border-color:var(--border-lt)}
+.btn-secondary:hover{border-color:var(--mist)}
+.btn-ghost{background:transparent;color:var(--mist);border-color:var(--border)}
+.btn-ghost:hover{color:var(--white);border-color:var(--border-lt)}
+.btn-sm{padding:5px 11px;font-size:12px}
+.btn[disabled]{opacity:0.5;cursor:not-allowed}
+
+/* TOGGLE */
+.toggle-label{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--mist);cursor:pointer}
+.toggle-label input{width:auto}
+
+/* NOTES */
+.note{background:var(--red-dim);border:1px solid var(--red-mid);border-radius:6px;padding:10px 12px;font-size:12px;color:#DDAAAA;line-height:1.5}
+.note.info{background:rgba(74,144,217,0.08);border-color:rgba(74,144,217,0.2);color:#88B8E8}
+.note.success{background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.2);color:#7EC8A0}
+.note.warn{background:rgba(232,184,75,0.08);border-color:rgba(232,184,75,0.2);color:#E8B84B}
+
+/* PILLS */
+.pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:600}
+.pill-default{background:rgba(255,255,255,0.08);color:var(--mist)}
+.pill-eligible{background:rgba(46,204,113,0.12);color:#4CAF7A;border:1px solid rgba(46,204,113,0.2)}
+.pill-ineligible{background:rgba(232,184,75,0.12);color:var(--amber);border:1px solid rgba(232,184,75,0.2)}
+.pill-danger{background:rgba(192,57,43,0.15);color:var(--red-light);border:1px solid rgba(192,57,43,0.3)}
+.pill-red{background:rgba(192,57,43,0.15);color:var(--red-light);border:1px solid rgba(192,57,43,0.3)}
+.pill-amber{background:rgba(232,184,75,0.12);color:var(--amber);border:1px solid rgba(232,184,75,0.2)}
+.pill-green{background:rgba(46,204,113,0.12);color:#4CAF7A;border:1px solid rgba(46,204,113,0.2)}
+
+/* TABLES */
+.table-wrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.table-wrap.scrollable{max-height:360px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:var(--charcoal);padding:9px 10px;text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--mid);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1}
+td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--white);vertical-align:top;line-height:1.4}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,0.02)}
+.td-muted{color:var(--mist);font-size:11px}
+.total-row td{background:rgba(255,255,255,0.04);font-weight:600;border-top:1px solid var(--border-lt)}
+
+/* BAR CHARTS */
+.bar-list{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:grid;grid-template-columns:140px 1fr 90px;gap:10px;align-items:center}
+.bar-label{font-size:12px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-label small{display:block;font-size:10px;color:var(--mist)}
+.bar-track{background:rgba(255,255,255,0.06);border-radius:99px;height:8px;overflow:hidden}
+.bar-fill{height:100%;border-radius:99px;background:var(--red);transition:width 0.3s}
+.bar-fill.blue{background:var(--blue)}
+.bar-fill.green{background:var(--green)}
+.bar-fill.amber{background:var(--amber)}
+.bar-value{font-size:12px;font-weight:600;color:var(--white-pure);text-align:right}
+
+/* WATERFALL */
+.waterfall-track{display:flex;height:16px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,0.06);margin:10px 0}
+.wf-seg{height:100%}
+.wf-reserve{background:#6B4FBB}
+.wf-spend{background:var(--red)}
+.wf-overspend{background:#FF4444}
+.wf-remaining{background:#2ECC71}
+.waterfall-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:11px}
+.wf-leg{display:flex;align-items:center;gap:5px;color:var(--mist)}
+.wf-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.waterfall-values{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px}
+.wf-val{background:var(--charcoal);border-radius:6px;padding:8px 10px}
+.wf-val-label{font-size:10px;color:var(--mid);text-transform:uppercase;letter-spacing:0.08em}
+.wf-val-num{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--white-pure);margin-top:2px}
+
+/* COMPARISON CARDS */
+.comparison-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.comparison-card{background:var(--charcoal);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+.comparison-card.active{border-color:var(--red)}
+.comp-track{background:rgba(255,255,255,0.06);border-radius:99px;height:6px;overflow:hidden;margin:8px 0}
+.comp-fill{height:100%;border-radius:99px;background:var(--red)}
+
+/* EOR MAP */
+.eor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.eor-card{background:var(--charcoal);border:1px solid var(--border);border-radius:var(--radius);padding:12px}
+.eor-flag{font-size:18px;margin-bottom:4px}
+.eor-country{font-size:12px;font-weight:600;color:var(--white)}
+.eor-hc{font-size:20px;font-weight:700;font-family:var(--font-display);color:var(--white-pure)}
+.eor-status{font-size:10px;margin-top:4px}
+
+/* RULE CARDS */
+.rule-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.rule-card{background:var(--charcoal);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.rule-row{display:grid;grid-template-columns:80px 1fr 100px;gap:8px;align-items:center;margin-bottom:8px}
+.rule-row:last-child{margin-bottom:0}
+.rule-rating{font-size:12px;font-weight:600;color:var(--mist)}
+.rule-percent-wrap{display:flex;align-items:center;gap:4px}
+.rule-percent-wrap span{color:var(--mist);font-size:12px}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-card{background:var(--ink);border:1px solid var(--border-lt);border-radius:var(--radius);width:min(900px,100%);max-height:85vh;overflow-y:auto;padding:20px}
+.modal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--charcoal);border:1px solid var(--green);color:#4CAF7A;padding:10px 16px;border-radius:var(--radius);font-size:13px;font-weight:600;z-index:200;animation:slideIn 0.2s ease}
+@keyframes slideIn{from{transform:translateY(10px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* DETAILS */
+details{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+details summary{padding:14px 16px;cursor:pointer;font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--white);background:var(--ink);list-style:none;display:flex;align-items:center;justify-content:space-between}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'›';font-size:18px;color:var(--mist);transition:transform 0.2s}
+details[open] summary::after{transform:rotate(90deg)}
+details .details-body{padding:16px;background:var(--ink);border-top:1px solid var(--border)}
+
+/* SEARCH INPUT */
+.search-wrap{position:relative}
+.search-wrap input{padding-left:28px}
+.search-icon{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--mist);font-size:12px}
+
+/* LOADING */
+.loading{display:flex;align-items:center;justify-content:center;padding:60px;color:var(--mist);font-size:14px;gap:10px}
+
+/* EMPTY */
+.empty{padding:30px;text-align:center;color:var(--mist);border:1px dashed var(--border);border-radius:var(--radius);font-size:13px}
+
+/* PUSH TO MODELLING HIGHLIGHT */
+#bulk-value.pushed{border-color:var(--red);box-shadow:0 0 0 2px rgba(192,57,43,0.2)}
+#push-note{animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+/* RESPONSIVE */
+@media(max-width:900px){.grid-2,.grid-layout{grid-template-columns:1fr}.bar-row{grid-template-columns:100px 1fr 70px}}
+@media(max-width:600px){.grid-3,.cards-grid{grid-template-columns:1fr 1fr}.tab-btn{font-size:11px;padding:7px 8px}}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-brand">
+      <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
+        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
+        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
+        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
+      </svg>
+      <div class="hero-meta">
+        <div class="hero-eyebrow">Onyx People · Built by Nilan Vagh</div>
+        <div class="hero-title">Rem Review Planning Studio</div>
+        <div class="hero-sub">Budget modelling &amp; decision-support · FY26 · AUD</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat">
+        <div class="hero-stat-val">235</div>
+        <div class="hero-stat-label">Permanent FTE</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">25</div>
+        <div class="hero-stat-label">EOR (5 markets)</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">$2.4M</div>
+        <div class="hero-stat-label">Rem Budget</div>
+      </div>
+      <a href="builds.html" class="hero-back">← Portfolio</a>
+    </div>
+  </header>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    <strong>Portfolio Demo · Synthetic Data</strong>
+    All names, salaries and scenarios are fictional. Onyx is a fictional 260-person AI-native SaaS company.
+    Governance logic, eligibility engine, scenario modelling and comp positioning are real.
+    Try: apply a bulk rule · create a scenario · compare scenarios · open the review queue · switch to EOR Markets view.
+    <a href="builds.html">← Read the build story</a>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="setTab('COMP')">1 · Comp Positioning</button>
+    <button class="tab-btn" onclick="setTab('MODELLING')">2 · Rem Review Modelling</button>
+    <button class="tab-btn" onclick="setTab('STI')">3 · STI Summary</button>
+  </div>
+
+  <div id="app"><div class="loading">⟳ Loading Onyx FY26 data...</div></div>
+  <div id="toast-container"></div>
+  <div id="modal-container"></div>
+
+</div>
+
+<script>
+// ================================================================
+// ONYX SYNTHETIC DATA — FY26 (260 total: 235 FTE + 25 EOR)
+// ================================================================
+const FX={AUD:1,NZD:0.827,USD:1.401,GBP:1.915,SGD:1.048,EUR:1.535,CAD:1.032};
+const CFG={base_currency:'AUD',fx_rates_json:JSON.stringify(FX),attrition_rates_json:JSON.stringify({Australia:0.2424,'New Zealand':0.2424,'United States':0.2165,'United Kingdom':0.18,'Singapore':0.15,'Germany':0.16,'Canada':0.19,'Netherlands':0.17}),attrition_realization_factor:'0.5'};
+
+const DIVS=[
+  {name:'Product & Design',hc:42,anzP:0.75},
+  {name:'Engineering & Platform',hc:70,anzP:0.60},
+  {name:'Sales & Marketing',hc:56,anzP:0.65},
+  {name:'Customer & Operations',hc:36,anzP:0.80},
+  {name:'Data & AI',hc:22,anzP:0.55},
+  {name:'People & Finance',hc:9,anzP:0.89},
+];
+
+// EOR markets (outside ANZ/US legal entities)
+const EOR_MARKETS=[
+  {country:'United Kingdom',entity:'Onyx UK (EOR)',currency:'GBP',hc:10,flag:'🇬🇧',status:'Red'},
+  {country:'Singapore',entity:'Onyx SG (EOR)',currency:'SGD',hc:6,flag:'🇸🇬',status:'Amber'},
+  {country:'Germany',entity:'Onyx DE (EOR)',currency:'EUR',hc:4,flag:'🇩🇪',status:'Amber'},
+  {country:'Canada',entity:'Onyx CA (EOR)',currency:'CAD',hc:3,flag:'🇨🇦',status:'Green'},
+  {country:'Netherlands',entity:'Onyx NL (EOR)',currency:'EUR',hc:2,flag:'🇳🇱',status:'Green'},
+];
+
+const GRADE_SAL={L1:72000,L2:92000,L3:115000,L4:145000,L5:185000,L6:240000};
+const GRADE_STI={L1:0.05,L2:0.08,L3:0.10,L4:0.15,L5:0.20,L6:0.25};
+const GRADE_DIST={L1:0.12,L2:0.22,L3:0.28,L4:0.22,L5:0.11,L6:0.05};
+const JOB_CAT={'Product & Design':'Product','Engineering & Platform':'Technology','Sales & Marketing':'Commercial','Customer & Operations':'Operations','Data & AI':'Technology','People & Finance':'Corporate'};
+const FNS=['Alex','Sam','Jordan','Casey','Morgan','Riley','Taylor','Drew','Avery','Blake','Cameron','Dana','Emery','Finley','Grey','Harper','Indigo','Jules','Kendall','Lane','Marlowe','Nico','Ocean','Parker','Quinn','Reese','Sage','Tatum','Uma','Val','Wren','Xen','Yael','Zara','Ash','Bay','Cleo','Dax','Ezra','Flynn'];
+const LNS=['Chen','Williams','Patel','Smith','Johnson','Brown','Taylor','Anderson','Martinez','Garcia','Lee','Wilson','Moore','Jackson','Harris','Thompson','White','Lopez','Robinson','Clark','Lewis','Walker','Hall','Young','King','Wright','Scott','Torres','Nguyen','Hill'];
+
+function lcg(s){let v=s>>>0;return()=>{v=(Math.imul(1664525,v)+1013904223)>>>0;return v/0xffffffff}}
+function pickW(map,r){const k=Object.keys(map);let c=0,v=r();for(const i of k){c+=map[i];if(v<=c)return i}return k[k.length-1]}
+
+function buildEmployees(){
+  const emps=[];let id=1001;const rand=lcg(42);
+  // FTE employees (235)
+  for(const div of DIVS){
+    const anzN=Math.round(div.hc*div.anzP);
+    for(let i=0;i<div.hc;i++){
+      const isUS=i>=anzN;
+      const country=isUS?'United States':(rand()<0.18?'New Zealand':'Australia');
+      const entity=country==='United States'?'Onyx US':(country==='New Zealand'?'Onyx NZ':'Onyx AU');
+      const cur=country==='United States'?'USD':(country==='New Zealand'?'NZD':'AUD');
+      const fx=FX[cur];const grade=pickW(GRADE_DIST,rand);
+      const salAUD=GRADE_SAL[grade]*(0.88+rand()*0.24);const salLocal=salAUD/fx;
+      const isRecent=rand()<0.08;
+      const hireY=isRecent?2026:(2020+Math.floor(rand()*5));
+      const hireM=isRecent?(4+Math.floor(rand()*3)):(Math.floor(rand()*12)+1);
+      const hireD=Math.floor(rand()*28)+1;
+      const hireDate=`${hireY}-${String(hireM).padStart(2,'0')}-${String(hireD).padStart(2,'0')}`;
+      const onLeave=rand()<0.05;const leaveDays=onLeave?Math.floor(rand()*120):0;
+      const hasChange=!isRecent&&rand()<0.06;
+      const empType=rand()<0.92?'Full Time':'Part Time';
+      const stdH=country==='Australia'?38:40;const hoursW=empType==='Part Time'?24:stdH;
+      const fte=hoursW/stdH;const salRemit=salLocal*fte;const salRemitAUD=salRemit*fx;
+      emps.push({employee_id:String(id++),employee_name:`${FNS[Math.floor(rand()*FNS.length)]} ${LNS[Math.floor(rand()*LNS.length)]}`,hire_date:hireDate,employment_type:empType,division:div.name,department:div.name,job_title:`${grade} ${JOB_CAT[div.name]} Specialist`,pay_grade:grade,job_category:JOB_CAT[div.name],gender:rand()<0.50?'Male':(rand()<0.07?'Non-binary':'Female'),country,planning_region:isUS?'US':'ANZ',pl_entity:entity,employment_entity:entity,currency_code:cur,salary_annualised_reference:Math.round(salLocal),salary_annualised_reference_aud:Math.round(salAUD),hours_worked:hoursW,standard_hours:stdH,fte:Math.round(fte*10000)/10000,fx_rate_to_aud:fx,salary_remit:Math.round(salRemit),salary_remit_aud:Math.round(salRemitAUD),sti_target_pct_final:GRADE_STI[grade],sti_target_source:'EMPLOYEE_MASTER',termination_date:'',is_eor:false,_isRecent:isRecent,_onLeave:onLeave,_leaveDays:leaveDays,_hasChange:hasChange});
+    }
+  }
+  // EOR employees (25) — distributed across EOR markets
+  let eorDivIdx=0;
+  for(const mkt of EOR_MARKETS){
+    const mktRand=lcg(id);
+    for(let i=0;i<mkt.hc;i++){
+      const div=DIVS[eorDivIdx%DIVS.length];eorDivIdx++;
+      const grade=pickW(GRADE_DIST,mktRand);
+      const salAUD=GRADE_SAL[grade]*(0.9+mktRand()*0.2);
+      const fx=FX[mkt.currency];const salLocal=salAUD/fx;
+      const hireY=2021+Math.floor(mktRand()*4);const hireM=Math.floor(mktRand()*12)+1;
+      const hireDate=`${hireY}-${String(hireM).padStart(2,'0')}-15`;
+      const empType='Full Time';const fte=1;
+      emps.push({employee_id:String(id++),employee_name:`${FNS[Math.floor(mktRand()*FNS.length)]} ${LNS[Math.floor(mktRand()*LNS.length)]}`,hire_date:hireDate,employment_type:empType,division:div.name,department:div.name,job_title:`${grade} ${JOB_CAT[div.name]} Specialist`,pay_grade:grade,job_category:JOB_CAT[div.name],gender:mktRand()<0.5?'Male':'Female',country:mkt.country,planning_region:'EOR',pl_entity:mkt.entity,employment_entity:mkt.entity,currency_code:mkt.currency,salary_annualised_reference:Math.round(salLocal),salary_annualised_reference_aud:Math.round(salAUD),hours_worked:40,standard_hours:40,fte:1,fx_rate_to_aud:fx,salary_remit:Math.round(salLocal),salary_remit_aud:Math.round(salAUD),sti_target_pct_final:GRADE_STI[grade],sti_target_source:'EMPLOYEE_MASTER',termination_date:'',is_eor:true,_isRecent:false,_onLeave:false,_leaveDays:0,_hasChange:false});
+    }
+  }
+  return emps;
+}
+
+function buildEligibility(emps){
+  const cutoff=new Date('2026-03-31');
+  return emps.map(e=>{
+    // EOR employees are included in eligibility but noted
+    let status='Eligible',reason='ELIGIBLE';
+    const hd=new Date(e.hire_date);
+    if(e._isRecent||hd>cutoff){status='Ineligible - Hire Date';reason='HIRE_DATE_AFTER_CUTOFF';}
+    else if(e._hasChange){status='Ineligible - Recent Change';reason='RECENT_CHANGE';}
+    else if(e._onLeave&&e._leaveDays<90){status='Ineligible - Parental Leave Service <90d';reason='PARENTAL_LEAVE_SERVICE_LT_90';}
+    else if(e._onLeave){status='Eligible - Parental Leave';reason='PARENTAL_LEAVE_ELIGIBLE';}
+    return{employee_id:e.employee_id,employee_name:e.employee_name,employment_type:e.employment_type,hire_date:e.hire_date,eligibility_status:status,eligibility_reason_code:reason,base_eligibility_status:status,base_eligibility_reason_code:reason,recent_change_trace:e._hasChange?'PAY_RATE_CHANGE @ 2026-04-15':'',parental_leave_worked_days:e._onLeave?e._leaveDays:null,blocking_issue_count:0,manual_override_applied:'FALSE',manual_override_note:''};
+  });
+}
+
+function buildRemRows(emps,eligResults,scenario,rules,overrides){
+  const em={};eligResults.forEach(e=>{em[e.employee_id]=e});
+  const om={};(overrides||[]).filter(o=>o.scenario_id===scenario.scenario_id).forEach(o=>{om[o.employee_id]=o});
+  return emps.map(emp=>{
+    const elig=em[emp.employee_id];const isElig=elig&&/^Eligible/.test(elig.eligibility_status);
+    let mode='',val=0,trace='';
+    if(isElig){
+      for(const rule of(rules||[])){
+        if(rule.scenario_id!==scenario.scenario_id||rule.active==='FALSE')continue;
+        let f={};try{f=JSON.parse(rule.filter_json||'{}')}catch(e){}
+        if(Object.keys(f).every(k=>!f[k]||f[k]==='All'||emp[k]===f[k])){mode=rule.mode.toUpperCase();val=Number(rule.value)||0;trace=rule.description||'';}
+      }
+      const ov=om[emp.employee_id];if(ov){mode=ov.mode.toUpperCase();val=Number(ov.value)||0;trace='Row override';}
+    }
+    let inc=0,incPct=0;
+    if(isElig&&mode==='PERCENT'){incPct=val;inc=Math.round((emp.salary_remit||0)*val*100)/100;}
+    else if(isElig&&mode==='AMOUNT'){inc=val;incPct=emp.salary_remit?val/emp.salary_remit:0;}
+    const incAUD=Math.round(inc*(emp.fx_rate_to_aud||1)*100)/100;
+    return{scenario_id:scenario.scenario_id,scenario_name:scenario.scenario_name,employee_id:emp.employee_id,employee_name:emp.employee_name,division:emp.division,job_category:emp.job_category,pay_grade:emp.pay_grade,gender:emp.gender,country:emp.country,planning_region:emp.planning_region,pl_entity:emp.pl_entity,employment_entity:emp.employment_entity,currency_code:emp.currency_code,salary_remit:emp.salary_remit,salary_remit_aud:emp.salary_remit_aud,eligibility_status:elig?elig.eligibility_status:'Data Issue',applied_mode:mode,applied_value:val,increase_percent:Math.round(incPct*1e6)/1e6,increase_amount:inc,increase_amount_aud:incAUD,new_salary_remit:Math.round(((emp.salary_remit||0)+inc)*100)/100,new_salary_remit_aud:Math.round(((emp.salary_remit_aud||0)+incAUD)*100)/100,row_override_applied:om[emp.employee_id]?'TRUE':'FALSE',cohort_rule_trace:trace};
+  });
+}
+
+function buildSTI(emps){
+  const rand=lcg(77);const fyD=366;const fyStart=new Date('2025-07-01');const fyEnd=new Date('2026-06-30');
+  const out=[];
+  for(const e of emps){
+    if(e.employment_type==='Casual')continue;
+    const hd=new Date(e.hire_date);const segStart=hd>fyStart?hd:fyStart;
+    const segD=Math.floor((fyEnd-segStart)/86400000)+1;
+    if(e._onLeave&&e._leaveDays<90){out.push({...e,sti_status:'Ineligible - Parental Leave Service <90d',sti_assumption_status:'',segment_count:0,final_sti_amount:0,final_sti_amount_aud:0});continue;}
+    const stiAmt=Math.round((e.salary_annualised_reference||0)*(e.fte||1)*(e.sti_target_pct_final||0)*(segD/fyD)*100)/100;
+    const stiAUD=Math.round(stiAmt*(e.fx_rate_to_aud||1)*100)/100;
+    const hasAssump=rand()<0.12;
+    out.push({employee_id:e.employee_id,employee_name:e.employee_name,division:e.division,job_category:e.job_category,pay_grade:e.pay_grade,country:e.country,planning_region:e.planning_region,pl_entity:e.pl_entity,employment_entity:e.employment_entity,currency_code:e.currency_code,salary_annualised_reference:e.salary_annualised_reference,salary_annualised_reference_aud:e.salary_annualised_reference_aud,fte:e.fte,sti_target_pct:e.sti_target_pct_final,sti_status:'Eligible',sti_assumption_status:hasAssump?'STI Assumption Applied':'',segment_count:1,final_sti_amount:stiAmt,final_sti_amount_aud:stiAUD});
+  }
+  return out;
+}
+
+function buildCompRows(emps,remRows){
+  // Realistic benchmark seeding:
+  // - Midpoint: centred on salary, ±10% variance → compa ratio ~0.90–1.10
+  // - P50: seeded independently around salary with tight variance
+  //   so ~40-45% of employees fall below P50 (realistic market spread)
+  // - P75: 10-18% above P50
+  // - correction_required uses ACTIVE comp rules from S.compRules
+  const rand=lcg(55);const rm={};remRows.forEach(r=>{rm[r.employee_id]=r});
+  return emps.filter(e=>{const r=rm[e.employee_id];return r&&/^Eligible/.test(r.eligibility_status)}).map(e=>{
+    // Midpoint: ±10% around actual salary → realistic compa spread
+    const midVariance=0.90+rand()*0.20; // 0.90–1.10 → compa 0.91–1.11
+    const mid=Math.round(e.salary_annualised_reference/midVariance);
+
+    // P50: independently seeded close to salary, slight upward market bias
+    // Range: salary × 0.94–1.08 → ~45% below P50, ~55% above
+    const p50Multiplier=0.94+rand()*0.14;
+    const p50=Math.round(e.salary_annualised_reference*p50Multiplier);
+
+    // P75: 10–18% above P50
+    const p75=Math.round(p50*(1.10+rand()*0.08));
+
+    const cr=e.salary_annualised_reference/mid;
+    const ctp50=e.salary_annualised_reference/p50;
+    const ctp75=e.salary_annualised_reference/p75;
+
+    // Ratings: realistic bell curve skewed to 3-4
+    const ratingRoll=rand();
+    const rating=ratingRoll<0.05?2:ratingRoll<0.30?3:ratingRoll<0.72?4:ratingRoll<0.93?5:2;
+
+    // correction_required: uses active comp rules from S.compRules
+    // Determine rule group for this employee
+    const isTechProd=['Technology','Product'].includes(e.job_category);
+    const ruleGroup=isTechProd?'TECH_PRODUCT':'OTHER';
+    const ratingKey=String(rating);
+    const activeRules=S.compRules;
+    const ruleForRating=activeRules[ruleGroup]?.ratings?.[ratingKey];
+    let corrReq='NO';let diff=0;
+    if(ruleForRating&&rating>=3){
+      const bm=ruleForRating.benchmark;
+      const tp=ruleForRating.target_percent||0;
+      const bmVal=bm==='MARKET_P75'?p75:bm==='MARKET_P50'?p50:mid;
+      const target=bmVal*tp;
+      if(e.salary_annualised_reference<target){
+        corrReq='YES';
+        diff=Math.round((target-e.salary_annualised_reference)*(e.fx_rate_to_aud||1)*100)/100;
+      }
+    }
+
+    const gg=e.pay_grade<='L3'?'IC Early':(e.pay_grade<='L5'?'IC Senior':'Leadership');
+    return{employee_id:e.employee_id,division:e.division,grade_grouping:gg,pay_grade:e.pay_grade,job_category:e.job_category,planning_region:e.planning_region,pl_entity:e.pl_entity,employment_entity:e.employment_entity,pay_rate:e.salary_annualised_reference,pay_rate_aud:e.salary_annualised_reference_aud,mid_point:Math.round(mid),mid_point_aud:Math.round(mid*(e.fx_rate_to_aud||1)),market_p50:Math.round(p50),market_p50_aud:Math.round(p50*(e.fx_rate_to_aud||1)),market_p75:Math.round(p75),market_p75_aud:Math.round(p75*(e.fx_rate_to_aud||1)),compa_ratio:Math.round(cr*1000)/1000,compa_to_p50:Math.round(ctp50*1000)/1000,compa_to_p75:Math.round(ctp75*1000)/1000,mid_year_rating:rating,correction_required:corrReq,difference_aud:diff,division_and_grade:e.division+' - '+gg,rule_group:ruleGroup};
+  });
+}
+
+// ================================================================
+// STATE CACHE
+// ================================================================
+const CACHE={
+  scenarios:[
+    {scenario_id:'SCN_BASELINE',scenario_name:'Baseline — Conservative 3.5%',archived:'FALSE',budget_scope:'GROUP',regional_budget_mode:'AMOUNT',total_budget:2400000,reserve_budget:380000,reserve_promotion:180000,reserve_promotion_mode:'AMOUNT',reserve_retention:120000,reserve_retention_mode:'AMOUNT',reserve_market_correction:80000,reserve_market_correction_mode:'AMOUNT',comp_rules_json:'',notes:'Conservative across-the-board baseline — 3.5% for all eligible cohorts. Starting point for FY26 planning.',created_at:'2026-04-01T00:00:00Z',updated_at:'2026-04-01T00:00:00Z'},
+    {scenario_id:'SCN_MARKETADJ',scenario_name:'Market-Adjusted — Differentiated',archived:'FALSE',budget_scope:'GROUP',regional_budget_mode:'AMOUNT',total_budget:2400000,reserve_budget:380000,reserve_promotion:180000,reserve_promotion_mode:'AMOUNT',reserve_retention:120000,reserve_retention_mode:'AMOUNT',reserve_market_correction:80000,reserve_market_correction_mode:'AMOUNT',comp_rules_json:'',notes:'Differentiated by division — higher rates for Engineering & Data to address market pressure identified in Comp Positioning.',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'}
+  ],
+  rules:[
+    {scenario_id:'SCN_BASELINE',rule_id:'RULE_B1',active:'TRUE',mode:'PERCENT',value:0.035,filter_json:'{}',description:'All eligible — 3.5%',created_at:'2026-04-01T00:00:00Z',updated_at:'2026-04-01T00:00:00Z'},
+    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M1',active:'TRUE',mode:'PERCENT',value:0.05,filter_json:'{"division":"Engineering & Platform"}',description:'Engineering & Platform — 5.0%',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'},
+    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M2',active:'TRUE',mode:'PERCENT',value:0.048,filter_json:'{"division":"Data & AI"}',description:'Data & AI — 4.8%',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'},
+    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M3',active:'TRUE',mode:'PERCENT',value:0.038,filter_json:'{"division":"Product & Design"}',description:'Product & Design — 3.8%',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'},
+    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M4',active:'TRUE',mode:'PERCENT',value:0.03,filter_json:'{}',description:'All other cohorts — 3.0%',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'}
+  ],
+  overrides:[],
+  eligibilityOverrides:[]
+};
+
+const EMPS=buildEmployees();
+const ELIG=buildEligibility(EMPS);
+const STI_ROWS=buildSTI(EMPS);
+
+function getState(scenarioId){
+  const scns=CACHE.scenarios.filter(s=>s.archived!=='TRUE');
+  const active=scns.find(s=>s.scenario_id===scenarioId)||scns[0];
+  const remRows=buildRemRows(EMPS,ELIG,active,CACHE.rules,CACHE.overrides);
+  const compRows=buildCompRows(EMPS,remRows);
+  const reserve=active.reserve_promotion+active.reserve_retention+active.reserve_market_correction;
+  const avail=active.total_budget-reserve;
+  const eligRows=remRows.filter(r=>/^Eligible/.test(r.eligibility_status));
+  const spendAUD=eligRows.reduce((t,r)=>t+(r.increase_amount_aud||0),0);
+  const payrollAUD=eligRows.reduce((t,r)=>t+(r.salary_remit_aud||0),0);
+  return{scenarios:CACHE.scenarios,active_scenario:active,rem_rows:remRows,elig_rows:ELIG,comp_rows:compRows,sti_rows:STI_ROWS,reserve,avail,spendAUD:Math.round(spendAUD),payrollAUD:Math.round(payrollAUD),remaining:Math.round(avail-spendAUD),overspend:spendAUD>avail,total_budget:active.total_budget,avgInc:payrollAUD>0?spendAUD/payrollAUD:0,eligHC:eligRows.length,reviewQueue:remRows.filter(r=>!/^Eligible/.test(r.eligibility_status)).length,rules:CACHE.rules,overrides:CACHE.overrides};
+}
+
+// ================================================================
+// APP STATE
+// ================================================================
+let S={
+  tab:'COMP',activeScenarioId:'SCN_BASELINE',viewSlice:'GROUP',
+  analyticsMetric:'SPEND',summaryDim:'DIVISION',compDim:'DIVISION',
+  summarySearch:'',detailSearch:'',compSearch:'',
+  eligibleOnly:true,attritionAdj:false,bulkMode:'PERCENT',
+  budgetMode:'AMOUNT',filters:{planning_region:'',division:'',pay_grade:'',job_category:'',pl_entity:'',gender:''},
+  actionLoading:false,detailsOpen:false,
+  compRules:{
+    TECH_PRODUCT:{label:'Rule Set A',ratings:{'5':{benchmark:'MARKET_P75',target_percent:1},'4':{benchmark:'MARKET_P75',target_percent:0.9},'3':{benchmark:'MARKET_P75',target_percent:0.8}}},
+    OTHER:{label:'Rule Set B',ratings:{'5':{benchmark:'MID_POINT',target_percent:1},'4':{benchmark:'MID_POINT',target_percent:0.9},'3':{benchmark:'MID_POINT',target_percent:0.8}}}
+  }
+};
+
+// ================================================================
+// UTILITIES
+// ================================================================
+function fm(v,c='AUD'){if(v===null||v===undefined)return'N/A';const n=Number(v);if(isNaN(n))return'N/A';try{return n.toLocaleString('en-AU',{style:'currency',currency:c,maximumFractionDigits:0})}catch(e){return c+' '+Math.round(n).toLocaleString()}}
+function fp(v){if(v===null||v===undefined)return'N/A';const n=Number(v);if(isNaN(n))return'N/A';return(n*100).toFixed(1)+'%'}
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function clean(v){return v===null||v===undefined?'':String(v).trim()}
+function isElig(s){return/^Eligible/.test(clean(s))}
+function sliceRows(rows,slice){if(slice==='GROUP')return rows;return rows.filter(r=>r.planning_region===slice)}
+function pillFor(s){const l=clean(s).toLowerCase();if(l.includes('ineligible')||l==='red'||l.includes('data issue'))return'pill pill-danger';if(l.includes('eligible - parental')||l==='amber')return'pill pill-amber';if(l==='green')return'pill pill-green';if(l.startsWith('eligible'))return'pill pill-eligible';return'pill pill-default'}
+function ratioColor(v){const n=Number(v);if(isNaN(n))return'--mist';if(n<0.9)return'var(--red-light)';if(n<1)return'var(--amber)';return'var(--green)'}
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;document.getElementById('toast-container').appendChild(t);setTimeout(()=>t.remove(),2800)}
+function getViewLabel(){return{GROUP:'Group',ANZ:'ANZ',US:'US',EOR:'EOR Markets'}[S.viewSlice]||'Group'}
+
+function buildDimSummary(rows,field){
+  const g={};
+  for(const r of rows){
+    if(!isElig(r.eligibility_status))continue;
+    const k=r[field]||'Not provided';
+    if(!g[k])g[k]={label:k,hc:0,payroll:0,spend:0};
+    g[k].hc++;g[k].payroll+=r.salary_remit_aud||0;g[k].spend+=r.increase_amount_aud||0;
+  }
+  return Object.values(g).map(v=>({...v,payroll:Math.round(v.payroll),spend:Math.round(v.spend),avgInc:v.payroll>0?v.spend/v.payroll:0})).sort((a,b)=>{
+    if(S.analyticsMetric==='HEADCOUNT')return b.hc-a.hc;
+    if(S.analyticsMetric==='AVERAGE')return b.avgInc-a.avgInc;
+    return b.spend-a.spend;
+  });
+}
+
+function buildCompDimSummary(compRows,field){
+  const g={};
+  for(const r of compRows){
+    const k=r[field]||'Not provided';
+    if(!g[k])g[k]={label:k,hc:0,payroll:0,cr_sum:0,cr_count:0,p50_sum:0,p50_count:0,below_mid:0,below_p50:0,corr_req:0,corr_cost:0,flagged_payroll:0};
+    const t=g[k];t.hc++;t.payroll+=r.pay_rate_aud||0;
+    if(r.compa_ratio!=null){t.cr_sum+=r.compa_ratio;t.cr_count++;}
+    if(r.compa_to_p50!=null){t.p50_sum+=r.compa_to_p50;t.p50_count++;}
+    if((r.pay_rate_aud||0)<(r.mid_point_aud||0))t.below_mid++;
+    if((r.pay_rate_aud||0)<(r.market_p50_aud||0))t.below_p50++;
+    if(r.correction_required==='YES'){t.corr_req++;t.corr_cost+=r.difference_aud||0;t.flagged_payroll+=r.pay_rate_aud||0;}
+  }
+  return Object.values(g).map(v=>{
+    const ac=v.cr_count?v.cr_sum/v.cr_count:null;
+    // pct_flagged = proportion of payroll belonging to employees who need correction
+    // Realistic range: 10-30% for most cohorts, 30-45% for hot markets
+    const pf=v.payroll>0?v.flagged_payroll/v.payroll:0;
+    // Heat thresholds calibrated to realistic market data:
+    // Red = >30% flagged OR avg compa <0.88 (genuinely underpaid cohort)
+    // Amber = >15% flagged OR avg compa <0.96 (moderate pressure)
+    // Green = below both thresholds (well-positioned)
+    const heat=pf>=0.30||(ac&&ac<0.88)?'Red':pf>=0.15||(ac&&ac<0.96)?'Amber':'Green';
+    return{...v,payroll:Math.round(v.payroll),corr_cost:Math.round(v.corr_cost),avg_cr:ac,avg_p50:v.p50_count?v.p50_sum/v.p50_count:null,pct_flagged:pf,heat};
+  }).sort((a,b)=>b.corr_cost-a.corr_cost);
+}
+
+// ================================================================
+// RENDER HELPERS
+// ================================================================
+function statCard(label,val,detail='',extra=''){
+  return`<div class="stat-card ${extra}"><div class="stat-label">${esc(label)}</div><div class="stat-value">${val}</div>${detail?`<div class="stat-detail">${detail}</div>`:''}</div>`;
+}
+
+function barList(rows,valueKey,colorClass='',limit=8){
+  if(!rows.length)return'<div class="empty">No data in this view yet.</div>';
+  const items=rows.slice(0,limit);
+  const max=Math.max(...items.map(r=>Number(r[valueKey]||0)),1);
+  return`<div class="bar-list">${items.map(r=>{
+    const v=Number(r[valueKey]||0);const w=Math.max(4,Math.round((v/max)*100));
+    const disp=S.analyticsMetric==='HEADCOUNT'?String(r.hc||0):S.analyticsMetric==='AVERAGE'?fp(r.avgInc):fm(v);
+    return`<div class="bar-row"><div class="bar-label">${esc(r.label)}<small>${r.hc||0} HC · ${fp(r.avgInc||0)} avg</small></div><div class="bar-track"><div class="bar-fill ${colorClass}" style="width:${w}%"></div></div><div class="bar-value">${esc(disp)}</div></div>`;
+  }).join('')}</div>${rows.length>limit?`<div class="stat-detail top-gap-sm" style="text-align:center">Showing top ${limit} of ${rows.length}</div>`:''}`;
+}
+
+function viewSwitcher(){
+  return`<div class="view-switcher">${['GROUP','ANZ','US','EOR'].map(v=>`<button class="view-btn ${S.viewSlice===v?'active':''}" onclick="setView('${v}')">${{GROUP:'Group',ANZ:'ANZ',US:'US',EOR:'EOR Markets'}[v]}</button>`).join('')}</div>`;
+}
+
+function filterControls(state){
+  const rows=sliceRows(state.rem_rows,S.viewSlice);
+  const opts=field=>[...new Set(rows.filter(r=>isElig(r.eligibility_status)).map(r=>r[field]||'').filter(Boolean))].sort();
+  return`<div class="field-grid">
+    <label class="field">Region<select onchange="setFilter('planning_region',this.value)"><option value="">All</option>${['ANZ','US','EOR'].map(v=>`<option value="${v}" ${S.filters.planning_region===v?'selected':''}>${v}</option>`).join('')}</select></label>
+    <label class="field">Division<select onchange="setFilter('division',this.value)"><option value="">All</option>${opts('division').map(v=>`<option value="${esc(v)}" ${S.filters.division===v?'selected':''}>${esc(v)}</option>`).join('')}</select></label>
+    <label class="field">Job Grade<select onchange="setFilter('pay_grade',this.value)"><option value="">All</option>${['L1','L2','L3','L4','L5','L6'].map(v=>`<option value="${v}" ${S.filters.pay_grade===v?'selected':''}>${v}</option>`).join('')}</select></label>
+    <label class="field">Job Category<select onchange="setFilter('job_category',this.value)"><option value="">All</option>${opts('job_category').map(v=>`<option value="${esc(v)}" ${S.filters.job_category===v?'selected':''}>${esc(v)}</option>`).join('')}</select></label>
+    <label class="field">P&L Entity<select onchange="setFilter('pl_entity',this.value)"><option value="">All</option>${opts('pl_entity').map(v=>`<option value="${esc(v)}" ${S.filters.pl_entity===v?'selected':''}>${esc(v)}</option>`).join('')}</select></label>
+    <label class="field">Diversity<select onchange="setFilter('gender',this.value)"><option value="">All</option>${opts('gender').map(v=>`<option value="${esc(v)}" ${S.filters.gender===v?'selected':''}>${esc(v)}</option>`).join('')}</select></label>
+  </div>`;
+}
+
+// ================================================================
+// TAB 1 — COMP POSITIONING
+// ================================================================
+function renderComp(state){
+  const compRows=sliceRows(state.comp_rows,S.viewSlice);
+  const sv=S.compSearch.toLowerCase();
+  const fieldMap={DIVISION:'division',JOB_GRADE:'pay_grade',JOB_CATEGORY:'job_category',GRADE_GROUPING:'grade_grouping',PL_ENTITY:'pl_entity',DIVISION_AND_GRADE:'division_and_grade'};
+  const field=fieldMap[S.compDim]||'division';
+  let filteredComp=sv?compRows.filter(r=>[r.division,r.pay_grade,r.job_category,r.grade_grouping].some(v=>clean(v).toLowerCase().includes(sv))):compRows;
+  const dimRows=buildCompDimSummary(filteredComp,field);
+  const totals=dimRows.reduce((a,r)=>({hc:a.hc+r.hc,corr_req:a.corr_req+r.corr_req,corr_cost:a.corr_cost+r.corr_cost,payroll:a.payroll+r.payroll,wc:a.wc+(r.avg_cr||0)*r.hc,ff:a.ff+r.payroll*r.pct_flagged}),{hc:0,corr_req:0,corr_cost:0,payroll:0,wc:0,ff:0});
+  const avgCR=totals.hc>0?totals.wc/totals.hc:0;const flaggedPct=totals.payroll>0?totals.ff/totals.payroll:0;
+
+  // compRules live in S.compRules — updated by saveCompRules()
+  function ruleCard(gk,label,desc){
+    const rules=S.compRules[gk]||{ratings:{}};
+    return`<div class="rule-card"><div class="panel-title" style="font-size:13px;margin-bottom:4px">${esc(label)}</div><p class="stat-detail" style="margin-bottom:10px">${esc(desc)}</p>${['5','4','3'].map(r=>{const rule=rules.ratings?.[r]||{benchmark:'MID_POINT',target_percent:0};return`<div class="rule-row"><div class="rule-rating">Rating ${r}</div><select id="comp-rule-benchmark-${gk}-${r}"><option value="MID_POINT" ${rule.benchmark==='MID_POINT'?'selected':''}>Mid Point</option><option value="MARKET_P50" ${rule.benchmark==='MARKET_P50'?'selected':''}>Market P50</option><option value="MARKET_P75" ${rule.benchmark==='MARKET_P75'?'selected':''}>Market P75</option></select><div class="rule-percent-wrap"><input id="comp-rule-pct-${gk}-${r}" type="number" step="1" min="0" max="200" value="${Math.round((rule.target_percent||0)*100)}" style="width:60px"><span>%</span></div></div>`}).join('')}</div>`;
+  }
+
+  // Budget context from active scenario
+  const budgetCtx=getState(S.activeScenarioId);
+  const budgetPctUsed=budgetCtx.avail>0?Math.round((budgetCtx.spendAUD/budgetCtx.avail)*100):0;
+  const budgetBarColor=budgetPctUsed>100?'var(--red-light)':budgetPctUsed>85?'var(--amber)':'var(--green)';
+
+  return`
+  <div class="module" style="background:var(--charcoal);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div>
+        <div class="stat-label">Active Scenario</div>
+        <div style="font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--white-pure)">${esc(budgetCtx.active_scenario.scenario_name)}</div>
+      </div>
+      <div>
+        <div class="stat-label">Budget</div>
+        <div style="font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--white-pure)">${fm(budgetCtx.total_budget,'AUD')}</div>
+      </div>
+      <div>
+        <div class="stat-label">Available</div>
+        <div style="font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--white-pure)">${fm(budgetCtx.avail,'AUD')}</div>
+      </div>
+      <div>
+        <div class="stat-label">Currently Modelled</div>
+        <div style="font-family:var(--font-display);font-size:13px;font-weight:600;color:${budgetBarColor}">${fm(budgetCtx.spendAUD,'AUD')} (${budgetPctUsed}% of available)</div>
+      </div>
+      <div>
+        <div class="stat-label">Eligible HC</div>
+        <div style="font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--white-pure)">${budgetCtx.eligHC}</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:11px;color:var(--mist)">Use Comp Positioning to identify correction pressure, then push cohorts directly to Rem Review modelling.</span>
+      <button class="btn btn-secondary btn-sm" onclick="setTab('MODELLING')">Open Modelling →</button>
+    </div>
+  </div>
+  <div class="module">
+    <div class="panel">
+      <div class="section-head">
+        <div class="section-head-left"><div class="panel-title">Comp Positioning</div><div class="panel-sub">Identify under-positioned cohorts before modelling budget. Red and Amber rows can be pushed directly to Rem Review Modelling with a suggested increase pre-calculated from correction cost.</div></div>
+        <div class="section-tools">${viewSwitcher()}</div>
+      </div>
+      <div class="panel soft top-gap-sm" style="padding:14px">
+        <div class="panel-title" style="font-size:13px;margin-bottom:8px">Correction Target Rules</div>
+        <div class="rule-grid top-gap-sm">
+          ${ruleCard('TECH_PRODUCT','Rule Set A — Technology & Product','Applied to Engineering, Data & AI, and Product & Design divisions.')}
+          ${ruleCard('OTHER','Rule Set B — All Other Divisions','Applied to Sales & Marketing, Customer & Operations, and People & Finance.')}
+        </div>
+        <div class="note warn top-gap-sm" style="font-size:11px">Ratings 1 and 2 do not create a correction target. Ratings 1–2 employees are tracked but excluded from correction cost calculations.</div>
+        <div class="btn-row"><button class="btn btn-secondary btn-sm" onclick="saveCompRules()">Save Rule Set</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-grid module">
+    ${statCard('Benchmark Matched',`${compRows.length}`,`Eligible employees with coverage in this view.`)}
+    ${statCard('Avg Compa Ratio',`<span style="color:${ratioColor(avgCR)}">${fp(avgCR)}</span>`,'Employee-average compa ratio vs midpoint.')}
+    ${statCard('Correction Required',`${totals.corr_req}`,'Below correction target for their rating and rule set.')}
+    ${statCard('Correction Cost',fm(totals.corr_cost,'AUD'),'Estimated cost to reach correction targets.')}
+    ${statCard('Flagged Payroll',fp(flaggedPct),'Share of payroll below mid, P50 or correction required.')}
+  </div>
+
+  <div class="panel module">
+    <div class="section-head">
+      <div class="section-head-left"><div class="panel-title">Cohort Positioning</div></div>
+      <div class="section-tools">
+        <input placeholder="Search cohorts..." value="${esc(S.compSearch)}" oninput="S.compSearch=this.value;render()" style="width:200px">
+        <select onchange="S.compDim=this.value;render()">
+          <option value="DIVISION" ${S.compDim==='DIVISION'?'selected':''}>By Division</option>
+          <option value="JOB_GRADE" ${S.compDim==='JOB_GRADE'?'selected':''}>By Job Grade</option>
+          <option value="GRADE_GROUPING" ${S.compDim==='GRADE_GROUPING'?'selected':''}>By Grade Grouping</option>
+          <option value="JOB_CATEGORY" ${S.compDim==='JOB_CATEGORY'?'selected':''}>By Job Category</option>
+          <option value="PL_ENTITY" ${S.compDim==='PL_ENTITY'?'selected':''}>By P&L Entity</option>
+          <option value="DIVISION_AND_GRADE" ${S.compDim==='DIVISION_AND_GRADE'?'selected':''}>Division + Grade</option>
+        </select>
+      </div>
+    </div>
+    <div class="table-wrap scrollable top-gap-sm">
+      <table>
+        <thead><tr><th>Segment</th><th>HC</th><th>Avg Compa</th><th>Avg P50 Ratio</th><th>Below Mid</th><th>Below P50</th><th>Correction Req</th><th>Correction Cost</th><th>Flagged Payroll %</th><th>Heat</th><th>Action</th></tr></thead>
+        <tbody>
+          ${dimRows.map(r=>`<tr>
+            <td><strong>${esc(r.label)}</strong></td>
+            <td>${r.hc}</td>
+            <td style="color:${ratioColor(r.avg_cr)}">${r.avg_cr?fp(r.avg_cr):'—'}</td>
+            <td style="color:${ratioColor(r.avg_p50)}">${r.avg_p50?fp(r.avg_p50):'—'}</td>
+            <td>${r.below_mid||0}</td>
+            <td>${r.below_p50||0}</td>
+            <td>${r.corr_req||0}</td>
+            <td>${fm(r.corr_cost,'AUD')}</td>
+            <td>${fp(r.pct_flagged||0)}</td>
+            <td><span class="${pillFor(r.heat)}">${esc(r.heat)}</span></td>
+            <td>${(r.heat==='Red'||r.heat==='Amber')?`<button class="btn btn-sm" style="background:var(--red-dim);color:var(--red-light);border:1px solid var(--red-mid);font-size:11px;padding:4px 10px;border-radius:4px;cursor:pointer;white-space:nowrap" onclick="pushToModelling('${esc(r.label)}','',${r.corr_cost||0},${r.hc||0})">→ Model</button>`:'<span class="td-muted" style="font-size:11px">—</span>'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="note info top-gap-sm" style="font-size:11px">
+      <strong>Heat map guide:</strong>
+      Red = flagged payroll ≥35% or avg compa &lt;85% ·
+      Amber = flagged payroll ≥15% or avg compa &lt;95% ·
+      Green = neither threshold triggered
+    </div>
+  </div>`;
+}
+
+// ================================================================
+// TAB 2 — REM REVIEW MODELLING
+// ================================================================
+function renderModelling(state){
+  const sliceR=sliceRows(state.rem_rows,S.viewSlice);
+  const eligR=sliceR.filter(r=>isElig(r.eligibility_status));
+  // FIX: Calculate from actual row data, not hardcoded splits
+  const rawSliceSpend=eligR.reduce((t,r)=>t+(r.increase_amount_aud||0),0);
+  const rawSlicePayroll=eligR.reduce((t,r)=>t+(r.salary_remit_aud||0),0);
+  const attritionRate=S.viewSlice==='ANZ'?0.2424:S.viewSlice==='US'?0.2165:S.viewSlice==='EOR'?0.17:0.23;
+  const sliceSpend=S.attritionAdj?Math.round(rawSliceSpend*(1-attritionRate*0.5)):Math.round(rawSliceSpend);
+  const slicePayroll=Math.round(rawSlicePayroll);
+  const sliceEligHC=eligR.length;
+  const sliceAvgInc=slicePayroll>0?sliceSpend/slicePayroll:0;
+  // Remaining uses group budget (shared position) minus this slice's spend
+  const remaining=state.avail-sliceSpend;
+  const scns=state.scenarios.filter(s=>s.archived!=='TRUE');
+  const active=state.active_scenario;
+  const budgetModeIsPercent=S.budgetMode==='PERCENT';
+  const dimField={DIVISION:'division',JOB_GRADE:'pay_grade',JOB_CATEGORY:'job_category',PL_ENTITY:'pl_entity',DIVERSITY:'gender'}[S.summaryDim]||'division';
+  const dimRows=buildDimSummary(sliceR,dimField);
+  const totalSpend=dimRows.reduce((t,r)=>t+r.spend,0);
+  const totalPayroll=dimRows.reduce((t,r)=>t+r.payroll,0);
+  const totalHC=dimRows.reduce((t,r)=>t+r.hc,0);
+  const sv=S.summarySearch.toLowerCase();
+  const filteredDimRows=sv?dimRows.filter(r=>r.label.toLowerCase().includes(sv)):dimRows;
+  const metricKey=S.analyticsMetric==='HEADCOUNT'?'hc':S.analyticsMetric==='AVERAGE'?'avgInc':'spend';
+  const compRs=scns.map(scn=>{
+    const sr=buildRemRows(EMPS,ELIG,scn,CACHE.rules,CACHE.overrides);
+    const se=sr.filter(r=>isElig(r.eligibility_status));
+    const ss=se.reduce((t,r)=>t+(r.increase_amount_aud||0),0);
+    const rs=scn.reserve_promotion+scn.reserve_retention+scn.reserve_market_correction;
+    const av=scn.total_budget-rs;
+    return{...scn,spend:Math.round(ss),avail:Math.round(av),remaining:Math.round(av-ss),eligHC:se.length,avgInc:state.payrollAUD>0?ss/state.payrollAUD:0,pct:av>0?Math.min(100,Math.round((ss/av)*100)):0};
+  });
+
+  const auditEntries=CACHE.rules.filter(r=>r.scenario_id===active.scenario_id);
+
+  return`
+  <div class="grid-layout module">
+    <div class="panel">
+      <div class="panel-title">Rem Review Scenario</div>
+      <div class="panel-sub">Set the total budget, reserve buckets, then save before comparing options.</div>
+      <div class="field-grid-wide top-gap-sm">
+        <label class="field">Active Scenario
+          <select id="scenario-select" onchange="switchScenario(this.value)">
+            ${scns.map(s=>`<option value="${esc(s.scenario_id)}" ${s.scenario_id===active.scenario_id?'selected':''}>${esc(s.scenario_name)}</option>`).join('')}
+          </select>
+        </label>
+        <label class="field">Scenario Name<input id="scn-name" value="${esc(active.scenario_name)}"></label>
+        <label class="field">Budget Mode
+          <select onchange="S.budgetMode=this.value;render()">
+            <option value="AMOUNT" ${S.budgetMode==='AMOUNT'?'selected':''}>Dollar amount (AUD)</option>
+            <option value="PERCENT" ${S.budgetMode==='PERCENT'?'selected':''}>Percent of payroll</option>
+          </select>
+        </label>
+        <label class="field">Total Budget ${budgetModeIsPercent?'(%)':'(AUD)'}
+          <input id="scn-budget" type="number" step="0.01" value="${budgetModeIsPercent?((state.payrollAUD>0?active.total_budget/state.payrollAUD*100:0).toFixed(2)):active.total_budget}" placeholder="${budgetModeIsPercent?'Enter 20 for 20%':'Enter total AUD'}">
+        </label>
+      </div>
+      <div class="field-grid top-gap-sm">
+        <label class="field">Promotion Reserve (AUD)<input id="scn-promo" type="number" value="${active.reserve_promotion||0}"></label>
+        <label class="field">Retention Reserve (AUD)<input id="scn-retain" type="number" value="${active.reserve_retention||0}"></label>
+        <label class="field">Market Correction (AUD)<input id="scn-market" type="number" value="${active.reserve_market_correction||0}"></label>
+      </div>
+      <label class="field top-gap-sm">Notes<textarea id="scn-notes">${esc(active.notes||'')}</textarea></label>
+      <div class="note top-gap-sm">
+        <strong>Current position:</strong> Budget ${fm(active.total_budget,'AUD')} · Reserves ${fm(state.reserve,'AUD')} · Available ${fm(state.avail,'AUD')}
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary ${S.actionLoading?'':''.replace('btn-primary','')}" onclick="saveScenario()" ${S.actionLoading?'disabled':''}>
+          ${S.actionLoading?'Saving...':'Save Scenario'}
+        </button>
+        <button class="btn btn-secondary" onclick="createScenario()">Create New</button>
+        <button class="btn btn-secondary" onclick="dupScenario()">Duplicate</button>
+        <button class="btn btn-ghost" onclick="deleteScenario()">Delete</button>
+        <button class="btn btn-ghost" onclick="resetScenario()">Reset</button>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Modelling Inputs</div>
+      <div class="panel-sub">Apply a percent or dollar increase to a filtered cohort. Rules stack — last matching rule wins.</div>
+      ${filterControls(state)}
+      ${S._pushContext?`<div class="note top-gap-sm" id="push-note" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <span><strong style="color:var(--red-light)">← From Comp Positioning:</strong> ${esc(S._pushContext.division)} · ${S._pushContext.hc} employees · Correction cost ${fm(S._pushContext.corrCostAud,'AUD')} · Suggested increase pre-filled at <strong>${S._pushContext.suggestedPct}%</strong> of cohort payroll.</span>
+        <button class="btn btn-ghost btn-sm" onclick="S._pushContext=null;render()">Dismiss</button>
+      </div>`:''}
+      <div class="field-grid top-gap-sm">
+        <label class="field">Mode
+          <select onchange="S.bulkMode=this.value;render()">
+            <option value="PERCENT" ${S.bulkMode==='PERCENT'?'selected':''}>Per employee %</option>
+            <option value="AMOUNT" ${S.bulkMode==='AMOUNT'?'selected':''}>Per employee AUD</option>
+            <option value="POOL_AMOUNT" ${S.bulkMode==='POOL_AMOUNT'?'selected':''}>AUD pool (pro-rata)</option>
+          </select>
+        </label>
+        <label class="field">Value <input id="bulk-value" type="number" step="0.01" placeholder="${S.bulkMode==='PERCENT'?'Enter 20 for 20%':'Enter amount'}"></label>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="applyRule()" ${S.actionLoading?'disabled':''}>Apply To Filtered Cohort</button>
+        <label class="toggle-label"><input type="checkbox" ${S.attritionAdj?'checked':''} onchange="S.attritionAdj=this.checked;render()"> Attrition-adjusted</label>
+      </div>
+      <div class="note info top-gap-sm" style="font-size:11px">
+        Enter whole numbers for % mode (20 = 20%). Attrition-adjusted uses ANZ 24.24%, US 21.65%, EOR markets 15–19% at 50% realisation. Last matching rule wins — order matters.
+      </div>
+    </div>
+  </div>
+
+  <!-- SNAPSHOT CARDS -->
+  <div class="module">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--white)">Planning Snapshot — <span style="color:var(--red)">${getViewLabel()}</span></div>
+      ${viewSwitcher()}
+    </div>
+    <div class="cards-grid">
+      ${statCard('Total Budget',fm(active.total_budget,'AUD'),`${S.viewSlice==='GROUP'?'Whole-company saved scenario.':'Shared group budget — all regions roll up to same position.'}`)}
+      ${statCard('Reserves',fm(state.reserve,'AUD'),`Promotion ${fm(active.reserve_promotion,'AUD')} · Retention ${fm(active.reserve_retention,'AUD')} · Market ${fm(active.reserve_market_correction,'AUD')}`)}
+      ${statCard('Available For Rem Review',fm(state.avail,'AUD'),'Budget less all reserve holdbacks.')}
+      ${statCard(S.attritionAdj?'Spend (Attrition-adj)':'Modelled Spend',`<span class="${state.overspend?'danger':''}">${fm(sliceSpend,'AUD')}</span>`,`${getViewLabel()} view ${S.attritionAdj?'after attrition sensitivity':'before attrition sensitivity'}.`)}
+      ${statCard('Remaining',`<span class="${remaining<0?'danger':'success'}">${fm(remaining,'AUD')}</span>`,remaining<0?'⚠ Overspend — review modelling inputs.':'Available budget after modelled spend.')}
+      ${statCard(`${getViewLabel()} Eligible HC`,String(sliceEligHC),'Employees included in this view.')}
+      ${statCard(`${getViewLabel()} Review Queue`,String(sliceR.filter(r=>!isElig(r.eligibility_status)).length),'<button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="openModal(\'ineligible\')">Review List</button>')}
+      ${statCard(`${getViewLabel()} Eligible Payroll`,fm(slicePayroll,'AUD'),'FTE-adjusted salary remit for eligible employees in this view.')}
+      ${statCard(`${getViewLabel()} Avg Increase`,fp(sliceAvgInc),'Spend ÷ eligible payroll (FTE-adjusted, AUD). Excludes ineligible employees.')}
+    </div>
+  </div>
+
+  <!-- WATERFALL -->
+  <div class="panel module">
+    <div class="panel-title">Budget Waterfall — ${getViewLabel()}</div>
+    <div class="panel-sub">Reserves · Spend · Remaining</div>
+    ${(()=>{
+      const total=active.total_budget||1;
+      const rW=Math.round((state.reserve/total)*100);
+      const sW=Math.max(0,Math.round((sliceSpend/total)*100));
+      const oW=sliceSpend>state.avail?Math.min(10,Math.round(((sliceSpend-state.avail)/total)*100)):0;
+      const remW=remaining>0?Math.round((remaining/total)*100):0;
+      return`<div class="waterfall-track"><div class="wf-seg wf-reserve" style="width:${rW}%"></div><div class="wf-seg wf-spend" style="width:${sW}%"></div><div class="wf-seg wf-overspend" style="width:${oW}%"></div><div class="wf-seg wf-remaining" style="width:${remW}%"></div></div>
+      <div class="waterfall-legend"><div class="wf-leg"><div class="wf-dot" style="background:#6B4FBB"></div>Reserves</div><div class="wf-leg"><div class="wf-dot" style="background:var(--red)"></div>Spend</div>${oW>0?'<div class="wf-leg"><div class="wf-dot" style="background:#FF4444"></div>Overspend</div>':''}<div class="wf-leg"><div class="wf-dot" style="background:var(--green)"></div>Remaining</div></div>
+      <div class="waterfall-values"><div class="wf-val"><div class="wf-val-label">Total Budget</div><div class="wf-val-num">${fm(active.total_budget,'AUD')}</div></div><div class="wf-val"><div class="wf-val-label">Reserves</div><div class="wf-val-num">${fm(state.reserve,'AUD')}</div></div><div class="wf-val"><div class="wf-val-label">Available</div><div class="wf-val-num">${fm(state.avail,'AUD')}</div></div><div class="wf-val"><div class="wf-val-label">Spend</div><div class="wf-val-num">${fm(sliceSpend,'AUD')}</div></div><div class="wf-val"><div class="wf-val-label">Remaining</div><div class="wf-val-num" style="color:${remaining<0?'var(--red-light)':'var(--green)'}">${fm(remaining,'AUD')}</div></div></div>`;
+    })()}
+  </div>
+
+  <!-- CHARTS -->
+  <div class="panel module">
+    <div class="section-head">
+      <div class="section-head-left"><div class="panel-title">Impact Analysis</div></div>
+      <div class="section-tools">
+        ${viewSwitcher()}
+        <select onchange="S.analyticsMetric=this.value;render()">
+          <option value="SPEND" ${S.analyticsMetric==='SPEND'?'selected':''}>Chart: Spend</option>
+          <option value="HEADCOUNT" ${S.analyticsMetric==='HEADCOUNT'?'selected':''}>Chart: Headcount</option>
+          <option value="AVERAGE" ${S.analyticsMetric==='AVERAGE'?'selected':''}>Chart: Avg Increase</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid-2 top-gap-sm">
+      <div>
+        <div class="stat-label" style="margin-bottom:8px">By Division</div>
+        ${barList(buildDimSummary(sliceR,'division'),'spend')}
+      </div>
+      <div>
+        <div class="stat-label" style="margin-bottom:8px">By Job Grade</div>
+        ${barList(buildDimSummary(sliceR,'pay_grade'),'spend')}
+      </div>
+    </div>
+    <div class="grid-2 top-gap">
+      <div>
+        <div class="stat-label" style="margin-bottom:8px">By P&L Entity</div>
+        ${barList(buildDimSummary(sliceR,'pl_entity'),'spend')}
+      </div>
+      <div>
+        <div class="stat-label" style="margin-bottom:8px">By Diversity</div>
+        ${barList(buildDimSummary(sliceR,'gender'),'spend')}
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY EXPLORER -->
+  <div class="panel module">
+    <div class="section-head">
+      <div class="section-head-left"><div class="panel-title">Summary Explorer</div></div>
+      <div class="section-tools">
+        <input placeholder="Search..." value="${esc(S.summarySearch)}" oninput="S.summarySearch=this.value;render()" style="width:180px">
+        <select onchange="S.summaryDim=this.value;S.summarySearch='';render()">
+          <option value="DIVISION" ${S.summaryDim==='DIVISION'?'selected':''}>Division</option>
+          <option value="JOB_GRADE" ${S.summaryDim==='JOB_GRADE'?'selected':''}>Job Grade</option>
+          <option value="JOB_CATEGORY" ${S.summaryDim==='JOB_CATEGORY'?'selected':''}>Job Category</option>
+          <option value="PL_ENTITY" ${S.summaryDim==='PL_ENTITY'?'selected':''}>P&L Entity</option>
+          <option value="DIVERSITY" ${S.summaryDim==='DIVERSITY'?'selected':''}>Diversity</option>
+        </select>
+      </div>
+    </div>
+    <div class="table-wrap scrollable top-gap-sm">
+      <table>
+        <thead><tr><th>Segment</th><th>Eligible HC</th><th>HC %</th><th>Payroll (AUD)</th><th>Spend (AUD)</th><th>Budget %</th><th>Avg Increase</th></tr></thead>
+        <tbody>
+          ${filteredDimRows.map(r=>`<tr>
+            <td><strong>${esc(r.label)}</strong></td>
+            <td>${r.hc}</td>
+            <td>${fp(totalHC>0?r.hc/totalHC:0)}</td>
+            <td>${fm(r.payroll,'AUD')}</td>
+            <td>${fm(r.spend,'AUD')}</td>
+            <td>${fp(state.avail>0?r.spend/state.avail:0)}</td>
+            <td>${fp(r.avgInc)}</td>
+          </tr>`).join('')}
+          <tr class="total-row">
+            <td>Total</td><td>${totalHC}</td><td>100%</td>
+            <td>${fm(totalPayroll,'AUD')}</td><td>${fm(totalSpend,'AUD')}</td>
+            <td>${fp(state.avail>0?totalSpend/state.avail:0)}</td>
+            <td>${fp(totalPayroll>0?totalSpend/totalPayroll:0)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SCENARIO AUDIT -->
+  <div class="panel module">
+    <div class="panel-title">Saved Modelling Audit</div>
+    <div class="panel-sub">Saved cohort rules and overrides behind the current scenario. Unsaved form edits not included.</div>
+    ${auditEntries.length?`<div class="table-wrap top-gap-sm"><table><thead><tr><th>Rule</th><th>Scope</th><th>Updated</th></tr></thead><tbody>${auditEntries.map(e=>`<tr><td><strong>${esc(e.description||'')}</strong></td><td>${esc(e.filter_json||'{}')}</td><td class="td-muted">${clean(e.updated_at).replace('T',' ').slice(0,16)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty" style="margin-top:10px">No saved rules yet. Apply a bulk rule to start the audit trail.</div>'}
+  </div>
+
+  <!-- SCENARIO COMPARISON -->
+  <div class="panel module">
+    <div class="panel-title">Scenario Comparison</div>
+    <div class="panel-sub">${compRs.length>1?`Compare ${compRs.length} saved scenarios side by side.`:'Only one scenario. Create New or Duplicate to compare options.'}</div>
+    <div class="comparison-grid top-gap-sm">
+      ${compRs.map(row=>`<div class="comparison-card ${row.scenario_id===active.scenario_id?'active':''}">
+        <div class="stat-label">${esc(row.scenario_name)}</div>
+        <div class="stat-value" style="font-size:18px">${fm(row.spend,'AUD')}</div>
+        <div class="comp-track"><div class="comp-fill" style="width:${row.pct}%"></div></div>
+        <div class="stat-detail">
+          Budget ${fm(row.total_budget,'AUD')}<br>
+          Available ${fm(row.avail,'AUD')}<br>
+          Remaining <span style="color:${row.remaining<0?'var(--red-light)':'var(--green)'}">${fm(row.remaining,'AUD')}</span><br>
+          ${row.eligHC} eligible · ${fp(row.avgInc)} avg increase
+        </div>
+      </div>`).join('')}
+    </div>
+    <div class="table-wrap top-gap-sm">
+      <table><thead><tr><th>Scenario</th><th>Budget</th><th>Reserves</th><th>Available</th><th>Spend</th><th>Remaining</th><th>Eligible HC</th><th>Avg Increase</th></tr></thead>
+      <tbody>${compRs.map(row=>`<tr>
+        <td><strong>${esc(row.scenario_name)}</strong></td>
+        <td>${fm(row.total_budget,'AUD')}</td>
+        <td>${fm(row.reserve_promotion+row.reserve_retention+row.reserve_market_correction,'AUD')}</td>
+        <td>${fm(row.avail,'AUD')}</td>
+        <td>${fm(row.spend,'AUD')}</td>
+        <td style="color:${row.remaining<0?'var(--red-light)':'var(--green)'}">${fm(row.remaining,'AUD')}</td>
+        <td>${row.eligHC}</td>
+        <td>${fp(row.avgInc)}</td>
+      </tr>`).join('')}</tbody></table>
+    </div>
+  </div>
+
+  <!-- EMPLOYEE DRILL-DOWN -->
+  <details class="module" ${S.detailsOpen?'open':''}>
+    <summary onclick="S.detailsOpen=!S.detailsOpen">Employee Drill-Down (${sliceR.length} rows in ${getViewLabel()} view)</summary>
+    <div class="details-body">
+      <input placeholder="Search by name, ID, division, grade..." value="${esc(S.detailSearch)}" oninput="S.detailSearch=this.value;render()" style="width:100%;margin-bottom:12px">
+      <label class="toggle-label" style="margin-bottom:12px;display:inline-flex"><input type="checkbox" ${S.eligibleOnly?'checked':''} onchange="S.eligibleOnly=this.checked;render()"> Eligible only</label>
+      <div class="table-wrap scrollable">
+        <table><thead><tr><th>Employee</th><th>Division / Grade</th><th>Country</th><th>Status</th><th>Salary Remit</th><th>Modelling Input</th><th>Increase</th><th>Override</th></tr></thead>
+        <tbody>${sliceR.filter(r=>!S.eligibleOnly||isElig(r.eligibility_status)).filter(r=>{const sv=S.detailSearch.toLowerCase();return!sv||[r.employee_name,r.employee_id,r.division,r.pay_grade,r.eligibility_status].some(v=>clean(v).toLowerCase().includes(sv))}).slice(0,80).map(r=>`<tr>
+          <td><strong>${esc(r.employee_name||'')}</strong><br><span class="td-muted">${esc(r.employee_id)}</span></td>
+          <td>${esc(r.division||'')}<br><span class="td-muted">${esc(r.pay_grade||'')} · ${esc(r.job_category||'')}</span></td>
+          <td>${esc(r.country||'')}<br><span class="td-muted">${esc(r.pl_entity||'')}</span></td>
+          <td><span class="${pillFor(r.eligibility_status)}">${esc(r.eligibility_status)}</span></td>
+          <td>${fm(r.salary_remit,r.currency_code)}<br><span class="td-muted">${fm(r.salary_remit_aud,'AUD')}</span></td>
+          <td>${r.applied_mode?`${r.applied_mode==='PERCENT'?fp(r.applied_value):fm(r.applied_value,r.currency_code)} (${esc(r.applied_mode)})`:'<span class="td-muted">No rule</span>'}</td>
+          <td>${fm(r.increase_amount,r.currency_code)}<br><span class="td-muted">${fp(r.increase_percent)}</span></td>
+          <td><select id="ov-mode-${esc(r.employee_id)}" style="width:70px;font-size:11px"><option value="PERCENT">%</option><option value="AMOUNT">$</option></select><input id="ov-val-${esc(r.employee_id)}" type="number" step="0.01" value="${r.applied_value||0}" style="width:80px;font-size:11px"><div class="btn-row" style="margin-top:6px;gap:4px"><button class="btn btn-ghost btn-sm" onclick="saveOverride('${esc(r.employee_id)}')">Save</button><button class="btn btn-ghost btn-sm" onclick="clearOverride('${esc(r.employee_id)}')">Clear</button></div></td>
+        </tr>`).join('')}</tbody></table>
+      </div>
+    </div>
+  </details>`;
+}
+
+// ================================================================
+// TAB 3 — STI SUMMARY
+// ================================================================
+function renderSTI(state){
+  const stiRows=sliceRows(state.sti_rows,S.viewSlice);
+  const eligSTI=stiRows.filter(r=>/^Eligible/.test(r.sti_status||''));
+  const totalSTI=Math.round(eligSTI.reduce((t,r)=>t+(r.final_sti_amount_aud||0),0));
+  const assumpCount=stiRows.filter(r=>/Assumption/i.test(r.sti_assumption_status||'')).length;
+  const reviewCount=stiRows.filter(r=>/Review/i.test(r.sti_assumption_status||'')).length;
+  const parentalExcl=stiRows.filter(r=>/Parental/.test(r.sti_status||'')).length;
+  const byDiv=buildDimSummary(stiRows.map(r=>({...r,eligibility_status:'Eligible',salary_remit_aud:r.salary_annualised_reference_aud||0,increase_amount_aud:r.final_sti_amount_aud||0})),'division');
+  const byEntity=buildDimSummary(stiRows.map(r=>({...r,eligibility_status:'Eligible',salary_remit_aud:r.salary_annualised_reference_aud||0,increase_amount_aud:r.final_sti_amount_aud||0})),'pl_entity');
+  return`
+  <div class="module">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+      <div style="font-family:var(--font-display);font-size:14px;font-weight:600;color:var(--white)">STI Summary — <span style="color:var(--red)">${getViewLabel()}</span></div>
+      ${viewSwitcher()}
+    </div>
+    <div class="note top-gap-sm" style="margin-bottom:14px">Projected STI at 100% payout — no performance multipliers applied. FY26 cycle. Salary-segment method where pay changes occurred during the year.</div>
+    <div class="cards-grid">
+      ${statCard('Projected STI Total',fm(totalSTI,'AUD'),'Total for this view at 100% payout.')}
+      ${statCard('Eligible For STI',String(eligSTI.length),'Employees included in STI calculation.')}
+      ${statCard('Deterministic',String(eligSTI.length-assumpCount-reviewCount),'Clean result from source history.')}
+      ${statCard('Assumption Applied',String(assumpCount),'Salary history usable, grade/FTE held constant.')}
+      ${statCard('Review Required',String(reviewCount),'Pay-type changes block a clean result.')}
+      ${statCard('Parental Leave Excl.',String(parentalExcl),'Below 90-day worked threshold in FY26.')}
+    </div>
+  </div>
+  <div class="grid-2 module">
+    <div class="panel">
+      <div class="panel-title">STI By Division</div>
+      <div class="top-gap-sm">${barList(byDiv,'spend','blue')}</div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">STI By P&L Entity</div>
+      <div class="top-gap-sm">${barList(byEntity,'spend','amber')}</div>
+    </div>
+  </div>
+
+  <!-- EOR MARKETS OVERVIEW -->
+  <div class="panel module">
+    <div class="panel-title">EOR Markets — STI Context</div>
+    <div class="panel-sub">EOR employees (25 HC across 5 markets) are included in STI calculations. Paid via Deel — no legal entity overhead.</div>
+    <div class="eor-grid top-gap-sm">
+      ${EOR_MARKETS.map(m=>{
+        const mRows=state.sti_rows.filter(r=>r.country===m.country);
+        const mSTI=Math.round(mRows.reduce((t,r)=>t+(r.final_sti_amount_aud||0),0));
+        return`<div class="eor-card"><div class="eor-flag">${m.flag}</div><div class="eor-country">${esc(m.country)}</div><div class="eor-hc">${m.hc} HC</div><div class="stat-detail" style="margin-top:4px">STI: ${fm(mSTI,'AUD')}</div><div class="eor-status"><span class="${pillFor(m.status)}">${esc(m.status)}</span></div></div>`;
+      }).join('')}
+    </div>
+  </div>
+
+  <details class="module">
+    <summary>STI Employee Detail</summary>
+    <div class="details-body">
+      <div class="table-wrap scrollable">
+        <table><thead><tr><th>Employee</th><th>Division / Grade</th><th>Region</th><th>STI Status</th><th>Target %</th><th>Assumption</th><th>Final STI</th></tr></thead>
+        <tbody>${stiRows.slice(0,80).map(r=>`<tr>
+          <td><strong>${esc(r.employee_name||'')}</strong></td>
+          <td>${esc(r.division||'')}<br><span class="td-muted">${esc(r.pay_grade||'')}</span></td>
+          <td><span class="${pillFor(r.planning_region==='EOR'?'default':r.planning_region==='ANZ'?'eligible':'default')}">${esc(r.planning_region||'')}</span></td>
+          <td><span class="${pillFor(r.sti_status||'')}">${esc(r.sti_status||'')}</span></td>
+          <td>${fp(r.sti_target_pct||0)}</td>
+          <td>${r.sti_assumption_status?`<span class="${pillFor('amber')}">${esc(r.sti_assumption_status)}</span>`:'<span class="td-muted">Clean</span>'}</td>
+          <td>${fm(r.final_sti_amount,r.currency_code)}<br><span class="td-muted">${fm(r.final_sti_amount_aud,'AUD')}</span></td>
+        </tr>`).join('')}</tbody></table>
+      </div>
+    </div>
+  </details>`;
+}
+
+// ================================================================
+// MODAL
+// ================================================================
+function openModal(kind){
+  const state=getState(S.activeScenarioId);
+  const sliceR=sliceRows(state.rem_rows,S.viewSlice);
+  const inelig=sliceR.filter(r=>!isElig(r.eligibility_status)).map(r=>{
+    const er=ELIG.find(e=>e.employee_id===r.employee_id)||{};
+    return{...r,...er};
+  });
+  const html=`<div class="modal-bg" onclick="closeModal()"><div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-header"><div><div class="panel-title">${getViewLabel()} Ineligible Review</div><div class="panel-sub">Who is out of the model and why. Manually include exceptions where needed.</div></div><button class="btn btn-ghost btn-sm" onclick="closeModal()">Close</button></div>
+    ${inelig.length?`<div class="table-wrap"><table><thead><tr><th>Employee</th><th>Status</th><th>Reason</th><th>Trace</th><th>Action</th></tr></thead><tbody>
+      ${inelig.map(r=>`<tr>
+        <td><strong>${esc(r.employee_name||r.employee_id)}</strong><br><span class="td-muted">${esc(r.employee_id)}</span></td>
+        <td><span class="${pillFor(r.eligibility_status)}">${esc(r.eligibility_status)}</span></td>
+        <td class="td-muted">${esc(r.eligibility_reason_code||'')}</td>
+        <td class="td-muted">${r.recent_change_trace||''}${r.parental_leave_worked_days!=null?` Worked ${r.parental_leave_worked_days}d`:''}</td>
+        <td>${r.manual_override_applied==='TRUE'?`<button class="btn btn-ghost btn-sm" onclick="clearOverrideElig('${esc(r.employee_id)}')">Remove</button>`:`<div style="display:flex;gap:6px"><input id="elig-note-${esc(r.employee_id)}" placeholder="Optional note" style="width:120px;font-size:11px"><button class="btn btn-secondary btn-sm" onclick="saveOverrideElig('${esc(r.employee_id)}')">Include</button></div>`}</td>
+      </tr>`).join('')}
+    </tbody></table></div>`:`<div class="empty">No ineligible rows in this view.</div>`}
+  </div></div>`;
+  document.getElementById('modal-container').innerHTML=html;
+}
+function closeModal(){document.getElementById('modal-container').innerHTML=''}
+
+// ================================================================
+// ACTIONS
+// ================================================================
+function setTab(t){S.tab=t;render()}
+
+function pushToModelling(division,gradeGrouping,corrCostAud,hc){
+  // Switch to modelling tab and pre-populate a bulk rule for this cohort
+  S.tab='MODELLING';
+  // Only set division filter if it's actually a division-level push
+  // (not a grade grouping or category cut)
+  const isDivision=DIVS.some(d=>d.name===division);
+  S.filters.division=isDivision?division:'';
+  S.filters.pay_grade='';
+  S.filters.job_category='';
+  S.bulkMode='PERCENT';
+  // Calculate suggested % from correction cost vs cohort payroll
+  const state=getState(S.activeScenarioId);
+  const cohortRows=state.rem_rows.filter(r=>isElig(r.eligibility_status)&&(!isDivision||r.division===division));
+  const cohortPayroll=cohortRows.reduce((t,r)=>t+(r.salary_remit_aud||0),0);
+  // Suggested % = correction cost as % of cohort payroll, capped at 15%
+  const suggestedPct=cohortPayroll>0?Math.min(15,Math.round((corrCostAud/cohortPayroll)*100*10)/10):3.5;
+  // Store push context in S so it survives the render
+  S._pushContext={division:isDivision?division:'All cohorts',hc,corrCostAud,suggestedPct};
+  render();
+  setTimeout(()=>{
+    const valEl=document.getElementById('bulk-value');
+    if(valEl){
+      valEl.value=suggestedPct;
+      valEl.classList.add('pushed');
+      valEl.focus();
+      setTimeout(()=>valEl.classList.remove('pushed'),2000);
+    }
+    // Scroll to modelling inputs
+    const bulkSection=document.getElementById('bulk-value');
+    if(bulkSection)bulkSection.scrollIntoView({behavior:'smooth',block:'center'});
+  },80);
+}
+function setView(v){S.viewSlice=v;render()}
+function setFilter(f,v){S.filters[f]=v;render()}
+function switchScenario(id){S.activeScenarioId=id;render()}
+
+function saveScenario(){
+  S.actionLoading=true;render();
+  setTimeout(()=>{
+    const id=document.getElementById('scenario-select')?.value||S.activeScenarioId;
+    const i=CACHE.scenarios.findIndex(s=>s.scenario_id===id);
+    if(i>=0){
+      const s=CACHE.scenarios[i];
+      const name=document.getElementById('scn-name')?.value;if(name)s.scenario_name=name;
+      const bv=Number(document.getElementById('scn-budget')?.value||0);
+      if(bv){s.total_budget=S.budgetMode==='PERCENT'?Math.round(getState(id).payrollAUD*(bv/100)):bv;}
+      s.reserve_promotion=Number(document.getElementById('scn-promo')?.value||0);
+      s.reserve_retention=Number(document.getElementById('scn-retain')?.value||0);
+      s.reserve_market_correction=Number(document.getElementById('scn-market')?.value||0);
+      const notes=document.getElementById('scn-notes')?.value;if(notes!==undefined)s.notes=notes;
+      s.updated_at=new Date().toISOString();
+    }
+    S.actionLoading=false;S.activeScenarioId=id;render();toast('Scenario saved.');
+  },250);
+}
+
+function createScenario(){
+  const name=prompt('New scenario name:','New Scenario');if(!name)return;
+  const nid='SCN_'+Date.now();
+  CACHE.scenarios.push({scenario_id:nid,scenario_name:name,archived:'FALSE',budget_scope:'GROUP',regional_budget_mode:'AMOUNT',total_budget:0,reserve_budget:0,reserve_promotion:0,reserve_promotion_mode:'AMOUNT',reserve_retention:0,reserve_retention_mode:'AMOUNT',reserve_market_correction:0,reserve_market_correction_mode:'AMOUNT',comp_rules_json:'',notes:'',created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
+  S.activeScenarioId=nid;render();toast('New scenario created.');
+}
+
+function dupScenario(){
+  const name=prompt('Duplicate scenario name:');if(!name)return;
+  const src=CACHE.scenarios.find(s=>s.scenario_id===S.activeScenarioId);if(!src)return;
+  const nid='SCN_'+Date.now();
+  CACHE.scenarios.push({...src,scenario_id:nid,scenario_name:name,created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
+  const srcRules=CACHE.rules.filter(r=>r.scenario_id===S.activeScenarioId);
+  CACHE.rules.push(...srcRules.map(r=>({...r,scenario_id:nid,rule_id:nid+'_'+r.rule_id})));
+  S.activeScenarioId=nid;render();toast('Scenario duplicated.');
+}
+
+function deleteScenario(){
+  if(!confirm('Delete this scenario and all its rules?'))return;
+  CACHE.scenarios=CACHE.scenarios.filter(s=>s.scenario_id!==S.activeScenarioId);
+  CACHE.rules=CACHE.rules.filter(r=>r.scenario_id!==S.activeScenarioId);
+  const remaining=CACHE.scenarios.filter(s=>s.archived!=='TRUE');
+  S.activeScenarioId=remaining[0]?.scenario_id||'';render();toast('Scenario deleted.');
+}
+
+function resetScenario(){
+  if(!confirm('Reset scenario — clears all cohort rules and overrides?'))return;
+  const i=CACHE.scenarios.findIndex(s=>s.scenario_id===S.activeScenarioId);
+  if(i>=0)Object.assign(CACHE.scenarios[i],{total_budget:0,reserve_promotion:0,reserve_retention:0,reserve_market_correction:0,updated_at:new Date().toISOString()});
+  CACHE.rules=CACHE.rules.filter(r=>r.scenario_id!==S.activeScenarioId);
+  render();toast('Scenario reset.');
+}
+
+function applyRule(){
+  const bm=S.bulkMode;const v=Number(document.getElementById('bulk-value')?.value||0);
+  if(!v){toast('Enter a value before applying.');return;}
+  const descs={PERCENT:'Per-employee % increase',AMOUNT:'Per-employee AUD amount',POOL_AMOUNT:'AUD pool pro-rata'};
+  const filterJson=JSON.stringify(Object.fromEntries(Object.entries(S.filters).filter(([k,v])=>v)));
+  CACHE.rules.push({scenario_id:S.activeScenarioId,rule_id:'RULE_'+Date.now(),active:'TRUE',mode:bm,value:bm==='PERCENT'?v/100:v,filter_json:filterJson,description:`${descs[bm]}: ${bm==='PERCENT'?v+'%':fm(v,'AUD')} ${Object.values(S.filters).filter(Boolean).length?'('+Object.entries(S.filters).filter(([k,v])=>v).map(([k,v])=>v).join(' / ')+')':'(all eligible)'}`,created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
+  render();toast('Modelling input applied.');
+}
+
+function saveOverride(eid){
+  const mode=document.getElementById(`ov-mode-${eid}`)?.value||'PERCENT';
+  const val=Number(document.getElementById(`ov-val-${eid}`)?.value||0);
+  CACHE.overrides=CACHE.overrides.filter(o=>!(o.scenario_id===S.activeScenarioId&&o.employee_id===eid));
+  CACHE.overrides.push({scenario_id:S.activeScenarioId,employee_id:eid,mode,value:mode==='PERCENT'?val/100:val,updated_at:new Date().toISOString()});
+  render();toast('Row override saved.');
+}
+
+function clearOverride(eid){
+  CACHE.overrides=CACHE.overrides.filter(o=>!(o.scenario_id===S.activeScenarioId&&o.employee_id===eid));
+  render();toast('Row override cleared.');
+}
+
+function saveOverrideElig(eid){
+  CACHE.eligibilityOverrides.push({employee_id:eid,include_in_rem_review:'TRUE',note:document.getElementById(`elig-note-${eid}`)?.value||'',updated_at:new Date().toISOString()});
+  const er=ELIG.find(e=>e.employee_id===eid);if(er)er.manual_override_applied='TRUE';
+  closeModal();render();toast('Employee manually included.');
+}
+
+function clearOverrideElig(eid){
+  CACHE.eligibilityOverrides=CACHE.eligibilityOverrides.filter(o=>o.employee_id!==eid);
+  const er=ELIG.find(e=>e.employee_id===eid);if(er)er.manual_override_applied='FALSE';
+  closeModal();render();toast('Override removed.');
+}
+
+function saveCompRules(){
+  // Read rule form values and write to S.compRules
+  for(const gk of['TECH_PRODUCT','OTHER']){
+    for(const r of['5','4','3']){
+      const bmEl=document.getElementById(`comp-rule-benchmark-${gk}-${r}`);
+      const pctEl=document.getElementById(`comp-rule-pct-${gk}-${r}`);
+      if(bmEl&&pctEl){
+        if(!S.compRules[gk])S.compRules[gk]={ratings:{}};
+        if(!S.compRules[gk].ratings)S.compRules[gk].ratings={};
+        S.compRules[gk].ratings[r]={
+          benchmark:bmEl.value,
+          target_percent:Number(pctEl.value||0)/100
+        };
+      }
+    }
+  }
+  render();
+  toast('Rule set saved — cohort positioning updated. Push Red or Amber rows to modelling.');
+}
+
+// ================================================================
+// MAIN RENDER
+// ================================================================
+function render(){
+  const state=getState(S.activeScenarioId);
+  // Update tab buttons
+  document.querySelectorAll('.tab-btn').forEach((btn,i)=>{
+    const tabs=['COMP','MODELLING','STI'];
+    btn.classList.toggle('active',S.tab===tabs[i]);
+  });
+  let html='';
+  if(S.tab==='COMP')html=renderComp(state);
+  else if(S.tab==='STI')html=renderSTI(state);
+  else html=renderModelling(state);
+  document.getElementById('app').innerHTML=html;
+}
+
+// Init
+document.addEventListener('DOMContentLoaded',()=>render());
+</script>
+</body>
+</html>

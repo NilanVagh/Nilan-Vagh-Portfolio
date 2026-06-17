@@ -414,7 +414,7 @@ function buildSTI(emps){
   return out;
 }
 
-function buildCompRows(emps,remRows){
+function buildCompRows(emps,remRows,compRulesOverride){
   // Realistic benchmark seeding:
   // - Midpoint: centred on salary, ±10% variance → compa ratio ~0.90–1.10
   // - P50: seeded independently around salary with tight variance
@@ -448,7 +448,7 @@ function buildCompRows(emps,remRows){
     const isTechProd=['Technology','Product'].includes(e.job_category);
     const ruleGroup=isTechProd?'TECH_PRODUCT':'OTHER';
     const ratingKey=String(rating);
-    const activeRules=S.compRules;
+    const activeRules=compRulesOverride||S.compRules||{TECH_PRODUCT:{ratings:{'5':{benchmark:'MARKET_P75',target_percent:1},'4':{benchmark:'MARKET_P75',target_percent:0.9},'3':{benchmark:'MARKET_P75',target_percent:0.8}}},OTHER:{ratings:{'5':{benchmark:'MID_POINT',target_percent:1},'4':{benchmark:'MID_POINT',target_percent:0.9},'3':{benchmark:'MID_POINT',target_percent:0.8}}}};
     const ruleForRating=activeRules[ruleGroup]?.ratings?.[ratingKey];
     let corrReq='NO';let diff=0;
     if(ruleForRating&&rating>=3){
@@ -510,7 +510,7 @@ function getState(scenarioId){
   const scns=CACHE.scenarios.filter(s=>s.archived!=='TRUE');
   const active=scns.find(s=>s.scenario_id===scenarioId)||scns[0];
   const remRows=buildRemRows(EMPS,ELIG,active,CACHE.rules,CACHE.overrides);
-  const compRows=buildCompRows(EMPS,remRows);
+  const compRows=buildCompRows(EMPS,remRows,typeof S!=='undefined'?S.compRules:null);
   const reserve=active.reserve_promotion+active.reserve_retention+active.reserve_market_correction;
   const avail=active.total_budget-reserve;
   const eligRows=remRows.filter(r=>/^Eligible/.test(r.eligibility_status));

@@ -968,23 +968,21 @@ function renderModelling(state){
   <div class="panel module">
     <div class="panel-title">Saved Modelling Audit</div>
     <div class="panel-sub">Saved cohort rules and overrides behind the current scenario. Unsaved form edits not included.</div>
-    ${auditEntries.length?`<div class="table-wrap scrollable top-gap-sm"><table><thead><tr><th>Timestamp</th><th>Type</th><th>Entry</th><th>Detail</th><th>Actor</th></tr></thead><tbody>${auditEntries.map(e=>{
-      const ts=clean(e.timestamp||e.updated_at||'');
-      const dt=ts?new Date(ts):null;
+    ${(()=>{
+      if(!auditEntries.length)return'<div class="empty" style="margin-top:10px">No audit entries yet. Apply a bulk rule, save the scenario, or update reserves to start the trail.</div>';
       const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      const dateLabel=dt&&!isNaN(dt)?`${String(dt.getDate()).padStart(2,'0')} ${months[dt.getMonth()]} ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`:'—';
-      const typeColors={SCENARIO_CREATED:'var(--blue)',BUDGET_SET:'var(--green)',RULE_APPLIED:'var(--red-light)',RESERVE_UPDATED:'var(--amber)',NOTES_UPDATED:'var(--mist)',COMP_RULES_SAVED:'var(--purple)',ROW_OVERRIDE:'var(--amber)',ELIGIBILITY_OVERRIDE:'var(--amber)'};
-      const typeLabels={SCENARIO_CREATED:'Created',BUDGET_SET:'Budget',RULE_APPLIED:'Rule',RESERVE_UPDATED:'Reserve',NOTES_UPDATED:'Notes',COMP_RULES_SAVED:'Comp Rules',ROW_OVERRIDE:'Override',ELIGIBILITY_OVERRIDE:'Elig Override'};
-      const typeColor=typeColors[e.entry_type]||'var(--mist)';
-      const typeLabel=typeLabels[e.entry_type]||e.entry_type||'—';
-      return\`<tr>
-        <td class="td-muted" style="white-space:nowrap">\${dateLabel}</td>
-        <td><span class="pill" style="background:rgba(255,255,255,0.06);color:\${typeColor};border:1px solid \${typeColor};opacity:0.9;font-size:10px">\${esc(typeLabel)}</span></td>
-        <td><strong>\${esc(e.description||'')}</strong></td>
-        <td class="td-muted" style="font-size:11px;max-width:320px">\${esc(e.detail||'')}</td>
-        <td class="td-muted" style="white-space:nowrap">\${esc(e.actor||'')}</td>
-      </tr>\`;
-    }).join('')}</tbody></table></div>`:'<div class="empty" style="margin-top:10px">No audit entries yet. Apply a bulk rule, save the scenario, or update reserves to start the trail.</div>'}
+      const typeColors={SCENARIO_CREATED:'var(--blue)',BUDGET_SET:'var(--green)',RULE_APPLIED:'var(--red-light)',RESERVE_UPDATED:'var(--amber)',NOTES_UPDATED:'var(--mist)',COMP_RULES_SAVED:'var(--purple)',SCENARIO_SAVED:'var(--green)',ROW_OVERRIDE:'var(--amber)',ELIGIBILITY_OVERRIDE:'var(--amber)'};
+      const typeLabels={SCENARIO_CREATED:'Created',BUDGET_SET:'Budget',RULE_APPLIED:'Rule',RESERVE_UPDATED:'Reserve',NOTES_UPDATED:'Notes',COMP_RULES_SAVED:'Comp Rules',SCENARIO_SAVED:'Saved',ROW_OVERRIDE:'Override',ELIGIBILITY_OVERRIDE:'Elig Override'};
+      const rows=auditEntries.map(e=>{
+        const ts=clean(e.timestamp||e.updated_at||'');
+        const dt=ts?new Date(ts):null;
+        const dateLabel=dt&&!isNaN(dt.getTime())?(String(dt.getDate()).padStart(2,'0')+' '+months[dt.getMonth()]+' '+String(dt.getHours()).padStart(2,'0')+':'+String(dt.getMinutes()).padStart(2,'0')):'—';
+        const tc=typeColors[e.entry_type]||'var(--mist)';
+        const tl=typeLabels[e.entry_type]||e.entry_type||'—';
+        return '<tr><td class="td-muted" style="white-space:nowrap">'+dateLabel+'</td><td><span class="pill" style="background:rgba(255,255,255,0.06);color:'+tc+';border:1px solid '+tc+';font-size:10px">'+esc(tl)+'</span></td><td><strong>'+esc(e.description||'')+'</strong></td><td class="td-muted" style="font-size:11px;max-width:300px">'+esc(e.detail||'')+'</td><td class="td-muted" style="white-space:nowrap">'+esc(e.actor||'')+'</td></tr>';
+      });
+      return '<div class="table-wrap scrollable top-gap-sm"><table><thead><tr><th>Timestamp</th><th>Type</th><th>Entry</th><th>Detail</th><th>Actor</th></tr></thead><tbody>'+rows.join('')+'</tbody></table></div>';
+    })()}
   </div>
 
   <!-- SCENARIO COMPARISON -->

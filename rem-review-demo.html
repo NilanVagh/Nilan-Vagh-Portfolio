@@ -472,15 +472,31 @@ function buildCompRows(emps,remRows){
 // ================================================================
 const CACHE={
   scenarios:[
-    {scenario_id:'SCN_BASELINE',scenario_name:'Baseline — Conservative 3.5%',archived:'FALSE',budget_scope:'GROUP',regional_budget_mode:'AMOUNT',total_budget:2400000,reserve_budget:380000,reserve_promotion:180000,reserve_promotion_mode:'AMOUNT',reserve_retention:120000,reserve_retention_mode:'AMOUNT',reserve_market_correction:80000,reserve_market_correction_mode:'AMOUNT',comp_rules_json:'',notes:'Conservative across-the-board baseline — 3.5% for all eligible cohorts. Starting point for FY26 planning.',created_at:'2026-04-01T00:00:00Z',updated_at:'2026-04-01T00:00:00Z'},
-    {scenario_id:'SCN_MARKETADJ',scenario_name:'Market-Adjusted — Differentiated',archived:'FALSE',budget_scope:'GROUP',regional_budget_mode:'AMOUNT',total_budget:2400000,reserve_budget:380000,reserve_promotion:180000,reserve_promotion_mode:'AMOUNT',reserve_retention:120000,reserve_retention_mode:'AMOUNT',reserve_market_correction:80000,reserve_market_correction_mode:'AMOUNT',comp_rules_json:'',notes:'Differentiated by division — higher rates for Engineering & Data to address market pressure identified in Comp Positioning.',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'}
+    {scenario_id:'SCN_BASELINE',scenario_name:'Baseline — Conservative 3.5%',archived:'FALSE',budget_scope:'GROUP',regional_budget_mode:'AMOUNT',total_budget:2400000,reserve_budget:380000,reserve_promotion:180000,reserve_promotion_mode:'AMOUNT',reserve_retention:120000,reserve_retention_mode:'AMOUNT',reserve_market_correction:80000,reserve_market_correction_mode:'AMOUNT',comp_rules_json:'',notes:'Conservative across-the-board baseline — 3.5% for all eligible cohorts. Starting point for FY26 planning. Reviewed with CPO 3 Apr.',created_at:'2026-04-01T09:14:00Z',updated_at:'2026-04-07T16:44:00Z'},
+    {scenario_id:'SCN_MARKETADJ',scenario_name:'Market-Adjusted — Differentiated',archived:'FALSE',budget_scope:'GROUP',regional_budget_mode:'AMOUNT',total_budget:2400000,reserve_budget:380000,reserve_promotion:180000,reserve_promotion_mode:'AMOUNT',reserve_retention:120000,reserve_retention_mode:'AMOUNT',reserve_market_correction:80000,reserve_market_correction_mode:'AMOUNT',comp_rules_json:'',notes:'Differentiated by division — higher rates for Engineering & Data to address market pressure identified in Comp Positioning. Updated after CFO pre-read 8 Apr.',created_at:'2026-04-02T10:32:00Z',updated_at:'2026-04-08T15:33:00Z'}
+  ],
+  audit_log:[
+    // Baseline scenario history
+    {scenario_id:'SCN_BASELINE',entry_type:'SCENARIO_CREATED',description:'Scenario created — Baseline Conservative 3.5%',detail:'New scenario opened for FY26 rem review cycle.',actor:'Nilan Vagh',timestamp:'2026-04-01T09:14:00Z'},
+    {scenario_id:'SCN_BASELINE',entry_type:'BUDGET_SET',description:'Budget configured — $2,400,000 total',detail:'Total budget set at $2,400,000 AUD. Reserve buckets: Promotion $180,000 · Retention $120,000 · Market Correction $80,000.',actor:'Nilan Vagh',timestamp:'2026-04-01T09:31:00Z'},
+    {scenario_id:'SCN_BASELINE',entry_type:'RULE_APPLIED',description:'All eligible — 3.5% across the board',detail:'Bulk rule applied: per-employee 3.5% increase. Scope: all eligible employees (229 HC). No cohort filters active.',actor:'Nilan Vagh',timestamp:'2026-04-01T14:22:00Z'},
+    {scenario_id:'SCN_BASELINE',entry_type:'RESERVE_UPDATED',description:'Promotion reserve increased — $150,000 → $180,000',detail:'Promotion pool revised upward to accommodate anticipated L4→L5 promotions in Engineering and Data & AI. Approved by CPO.',actor:'Nilan Vagh',timestamp:'2026-04-03T11:05:00Z'},
+    {scenario_id:'SCN_BASELINE',entry_type:'NOTES_UPDATED',description:'Scenario notes updated after CPO review',detail:'Notes updated to reflect CPO sign-off on baseline position. Baseline approved as floor scenario for CFO pre-read.',actor:'Nilan Vagh',timestamp:'2026-04-07T16:44:00Z'},
+    // Market-Adjusted scenario history
+    {scenario_id:'SCN_MARKETADJ',entry_type:'SCENARIO_CREATED',description:'Scenario duplicated from Baseline — Market-Adjusted',detail:'Duplicated from Baseline Conservative 3.5% as starting point for differentiated scenario.',actor:'Nilan Vagh',timestamp:'2026-04-02T10:32:00Z'},
+    {scenario_id:'SCN_MARKETADJ',entry_type:'RULE_APPLIED',description:'Engineering & Platform — 5.0%',detail:'Bulk rule applied: per-employee 5.0% increase. Scope: Engineering & Platform (70 HC). Driven by comp positioning — Red heat flag, avg compa 0.91, correction cost $142K.',actor:'Nilan Vagh',timestamp:'2026-04-02T10:48:00Z'},
+    {scenario_id:'SCN_MARKETADJ',entry_type:'RULE_APPLIED',description:'Data & AI — 4.8%',detail:'Bulk rule applied: per-employee 4.8% increase. Scope: Data & AI (22 HC). Amber heat flag in comp positioning — avg compa 0.93, P50 ratio 0.94.',actor:'Nilan Vagh',timestamp:'2026-04-02T10:51:00Z'},
+    {scenario_id:'SCN_MARKETADJ',entry_type:'RULE_APPLIED',description:'Product & Design — 3.8%',detail:'Bulk rule applied: per-employee 3.8% increase. Scope: Product & Design (42 HC). Slightly above baseline to retain senior ICs flagged in retention reserve.',actor:'Nilan Vagh',timestamp:'2026-04-02T11:03:00Z'},
+    {scenario_id:'SCN_MARKETADJ',entry_type:'RULE_APPLIED',description:'All other cohorts — 3.0%',detail:'Bulk rule applied: per-employee 3.0% increase. Scope: all remaining eligible employees not covered by division-specific rules (95 HC). Catch-all applied last — rule stack order confirmed.',actor:'Nilan Vagh',timestamp:'2026-04-02T11:09:00Z'},
+    {scenario_id:'SCN_MARKETADJ',entry_type:'COMP_RULES_SAVED',description:'Comp positioning rule set saved — P75 targets for Tech/Product',detail:'Rule Set A updated: R5 = 100% Market P75, R4 = 90% Market P75, R3 = 80% Market P75. Rule Set B unchanged. Correction costs recalculated across all cohorts.',actor:'Nilan Vagh',timestamp:'2026-04-04T09:17:00Z'},
+    {scenario_id:'SCN_MARKETADJ',entry_type:'NOTES_UPDATED',description:'Scenario notes updated after CFO pre-read',detail:'CFO pre-read completed 8 Apr. Market-Adjusted scenario accepted as preferred position. Budget confirmed within envelope. Formal sign-off pending board cycle.',actor:'Nilan Vagh',timestamp:'2026-04-08T15:33:00Z'},
   ],
   rules:[
-    {scenario_id:'SCN_BASELINE',rule_id:'RULE_B1',active:'TRUE',mode:'PERCENT',value:0.035,filter_json:'{}',description:'All eligible — 3.5%',created_at:'2026-04-01T00:00:00Z',updated_at:'2026-04-01T00:00:00Z'},
-    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M1',active:'TRUE',mode:'PERCENT',value:0.05,filter_json:'{"division":"Engineering & Platform"}',description:'Engineering & Platform — 5.0%',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'},
-    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M2',active:'TRUE',mode:'PERCENT',value:0.048,filter_json:'{"division":"Data & AI"}',description:'Data & AI — 4.8%',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'},
-    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M3',active:'TRUE',mode:'PERCENT',value:0.038,filter_json:'{"division":"Product & Design"}',description:'Product & Design — 3.8%',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'},
-    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M4',active:'TRUE',mode:'PERCENT',value:0.03,filter_json:'{}',description:'All other cohorts — 3.0%',created_at:'2026-04-02T00:00:00Z',updated_at:'2026-04-02T00:00:00Z'}
+    {scenario_id:'SCN_BASELINE',rule_id:'RULE_B1',active:'TRUE',mode:'PERCENT',value:0.035,filter_json:'{}',description:'All eligible — 3.5%',created_at:'2026-04-01T09:14:00Z',updated_at:'2026-04-01T09:14:00Z'},
+    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M1',active:'TRUE',mode:'PERCENT',value:0.05,filter_json:'{"division":"Engineering & Platform"}',description:'Engineering & Platform — 5.0%',created_at:'2026-04-02T10:32:00Z',updated_at:'2026-04-02T10:32:00Z'},
+    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M2',active:'TRUE',mode:'PERCENT',value:0.048,filter_json:'{"division":"Data & AI"}',description:'Data & AI — 4.8%',created_at:'2026-04-02T10:32:00Z',updated_at:'2026-04-02T10:32:00Z'},
+    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M3',active:'TRUE',mode:'PERCENT',value:0.038,filter_json:'{"division":"Product & Design"}',description:'Product & Design — 3.8%',created_at:'2026-04-02T10:32:00Z',updated_at:'2026-04-02T10:32:00Z'},
+    {scenario_id:'SCN_MARKETADJ',rule_id:'RULE_M4',active:'TRUE',mode:'PERCENT',value:0.03,filter_json:'{}',description:'All other cohorts — 3.0%',created_at:'2026-04-02T10:32:00Z',updated_at:'2026-04-02T10:32:00Z'}
   ],
   overrides:[],
   eligibilityOverrides:[]
@@ -500,7 +516,7 @@ function getState(scenarioId){
   const eligRows=remRows.filter(r=>/^Eligible/.test(r.eligibility_status));
   const spendAUD=eligRows.reduce((t,r)=>t+(r.increase_amount_aud||0),0);
   const payrollAUD=eligRows.reduce((t,r)=>t+(r.salary_remit_aud||0),0);
-  return{scenarios:CACHE.scenarios,active_scenario:active,rem_rows:remRows,elig_rows:ELIG,comp_rows:compRows,sti_rows:STI_ROWS,reserve,avail,spendAUD:Math.round(spendAUD),payrollAUD:Math.round(payrollAUD),remaining:Math.round(avail-spendAUD),overspend:spendAUD>avail,total_budget:active.total_budget,avgInc:payrollAUD>0?spendAUD/payrollAUD:0,eligHC:eligRows.length,reviewQueue:remRows.filter(r=>!/^Eligible/.test(r.eligibility_status)).length,rules:CACHE.rules,overrides:CACHE.overrides};
+  return{scenarios:CACHE.scenarios,active_scenario:active,rem_rows:remRows,elig_rows:ELIG,comp_rows:compRows,sti_rows:STI_ROWS,reserve,avail,spendAUD:Math.round(spendAUD),payrollAUD:Math.round(payrollAUD),remaining:Math.round(avail-spendAUD),overspend:spendAUD>avail,total_budget:active.total_budget,avgInc:payrollAUD>0?spendAUD/payrollAUD:0,eligHC:eligRows.length,reviewQueue:remRows.filter(r=>!/^Eligible/.test(r.eligibility_status)).length,rules:CACHE.rules,overrides:CACHE.overrides,audit_log:CACHE.audit_log||[]};
 }
 
 // ================================================================
@@ -768,7 +784,7 @@ function renderModelling(state){
     return{...scn,spend:Math.round(ss),avail:Math.round(av),remaining:Math.round(av-ss),eligHC:se.length,avgInc:state.payrollAUD>0?ss/state.payrollAUD:0,pct:av>0?Math.min(100,Math.round((ss/av)*100)):0};
   });
 
-  const auditEntries=CACHE.rules.filter(r=>r.scenario_id===active.scenario_id);
+  const auditEntries=(CACHE.audit_log||[]).filter(e=>e.scenario_id===active.scenario_id).sort((a,b)=>new Date(a.timestamp)-new Date(b.timestamp));
 
   return`
   <div class="grid-layout module">
@@ -952,7 +968,23 @@ function renderModelling(state){
   <div class="panel module">
     <div class="panel-title">Saved Modelling Audit</div>
     <div class="panel-sub">Saved cohort rules and overrides behind the current scenario. Unsaved form edits not included.</div>
-    ${auditEntries.length?`<div class="table-wrap top-gap-sm"><table><thead><tr><th>Rule</th><th>Scope</th><th>Updated</th></tr></thead><tbody>${auditEntries.map(e=>`<tr><td><strong>${esc(e.description||'')}</strong></td><td>${esc(e.filter_json||'{}')}</td><td class="td-muted">${clean(e.updated_at).replace('T',' ').slice(0,16)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty" style="margin-top:10px">No saved rules yet. Apply a bulk rule to start the audit trail.</div>'}
+    ${auditEntries.length?`<div class="table-wrap scrollable top-gap-sm"><table><thead><tr><th>Timestamp</th><th>Type</th><th>Entry</th><th>Detail</th><th>Actor</th></tr></thead><tbody>${auditEntries.map(e=>{
+      const ts=clean(e.timestamp||e.updated_at||'');
+      const dt=ts?new Date(ts):null;
+      const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const dateLabel=dt&&!isNaN(dt)?`${String(dt.getDate()).padStart(2,'0')} ${months[dt.getMonth()]} ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`:'—';
+      const typeColors={SCENARIO_CREATED:'var(--blue)',BUDGET_SET:'var(--green)',RULE_APPLIED:'var(--red-light)',RESERVE_UPDATED:'var(--amber)',NOTES_UPDATED:'var(--mist)',COMP_RULES_SAVED:'var(--purple)',ROW_OVERRIDE:'var(--amber)',ELIGIBILITY_OVERRIDE:'var(--amber)'};
+      const typeLabels={SCENARIO_CREATED:'Created',BUDGET_SET:'Budget',RULE_APPLIED:'Rule',RESERVE_UPDATED:'Reserve',NOTES_UPDATED:'Notes',COMP_RULES_SAVED:'Comp Rules',ROW_OVERRIDE:'Override',ELIGIBILITY_OVERRIDE:'Elig Override'};
+      const typeColor=typeColors[e.entry_type]||'var(--mist)';
+      const typeLabel=typeLabels[e.entry_type]||e.entry_type||'—';
+      return\`<tr>
+        <td class="td-muted" style="white-space:nowrap">\${dateLabel}</td>
+        <td><span class="pill" style="background:rgba(255,255,255,0.06);color:\${typeColor};border:1px solid \${typeColor};opacity:0.9;font-size:10px">\${esc(typeLabel)}</span></td>
+        <td><strong>\${esc(e.description||'')}</strong></td>
+        <td class="td-muted" style="font-size:11px;max-width:320px">\${esc(e.detail||'')}</td>
+        <td class="td-muted" style="white-space:nowrap">\${esc(e.actor||'')}</td>
+      </tr>\`;
+    }).join('')}</tbody></table></div>`:'<div class="empty" style="margin-top:10px">No audit entries yet. Apply a bulk rule, save the scenario, or update reserves to start the trail.</div>'}
   </div>
 
   <!-- SCENARIO COMPARISON -->
@@ -1164,6 +1196,15 @@ function saveScenario(){
       const notes=document.getElementById('scn-notes')?.value;if(notes!==undefined)s.notes=notes;
       s.updated_at=new Date().toISOString();
     }
+    // Append save event to audit log
+    CACHE.audit_log.push({
+      scenario_id:id,
+      entry_type:'SCENARIO_SAVED',
+      description:'Scenario saved — budget and reserves updated',
+      detail:`Budget: ${fm(Number(document.getElementById('scn-budget')?.value||0),'AUD')}. Reserves: Promotion ${fm(Number(document.getElementById('scn-promo')?.value||0),'AUD')} · Retention ${fm(Number(document.getElementById('scn-retain')?.value||0),'AUD')} · Market ${fm(Number(document.getElementById('scn-market')?.value||0),'AUD')}.`,
+      actor:'Nilan Vagh',
+      timestamp:new Date().toISOString()
+    });
     S.actionLoading=false;S.activeScenarioId=id;render();toast('Scenario saved.');
   },250);
 }
@@ -1207,6 +1248,18 @@ function applyRule(){
   const descs={PERCENT:'Per-employee % increase',AMOUNT:'Per-employee AUD amount',POOL_AMOUNT:'AUD pool pro-rata'};
   const filterJson=JSON.stringify(Object.fromEntries(Object.entries(S.filters).filter(([k,v])=>v)));
   CACHE.rules.push({scenario_id:S.activeScenarioId,rule_id:'RULE_'+Date.now(),active:'TRUE',mode:bm,value:bm==='PERCENT'?v/100:v,filter_json:filterJson,description:`${descs[bm]}: ${bm==='PERCENT'?v+'%':fm(v,'AUD')} ${Object.values(S.filters).filter(Boolean).length?'('+Object.entries(S.filters).filter(([k,v])=>v).map(([k,v])=>v).join(' / ')+')':'(all eligible)'}`,created_at:new Date().toISOString(),updated_at:new Date().toISOString()});
+  // Also append to audit_log for full trail
+  const bv2=Number(document.getElementById('bulk-value')?.value||0);
+  const scopeParts=Object.entries(S.filters).filter(([k,v])=>v).map(([k,v])=>v);
+  const scopeLabel=scopeParts.length?scopeParts.join(' · '):'All eligible employees';
+  CACHE.audit_log.push({
+    scenario_id:S.activeScenarioId,
+    entry_type:'RULE_APPLIED',
+    description:`${bm==='PERCENT'?bv2+'% increase':fm(bm==='AMOUNT'?bv2:0,'AUD')+' increase'} — ${scopeLabel}`,
+    detail:`Bulk rule applied via modelling inputs. Mode: ${bm}. Value: ${bm==='PERCENT'?bv2+'%':fm(bv2,'AUD')}. Scope: ${scopeLabel}.`,
+    actor:'Nilan Vagh',
+    timestamp:new Date().toISOString()
+  });
   render();toast('Modelling input applied.');
 }
 
@@ -1215,6 +1268,15 @@ function saveOverride(eid){
   const val=Number(document.getElementById(`ov-val-${eid}`)?.value||0);
   CACHE.overrides=CACHE.overrides.filter(o=>!(o.scenario_id===S.activeScenarioId&&o.employee_id===eid));
   CACHE.overrides.push({scenario_id:S.activeScenarioId,employee_id:eid,mode,value:mode==='PERCENT'?val/100:val,updated_at:new Date().toISOString()});
+  const empName=(EMPS.find(e=>e.employee_id===eid)||{}).employee_name||eid;
+  CACHE.audit_log.push({
+    scenario_id:S.activeScenarioId,
+    entry_type:'ROW_OVERRIDE',
+    description:`Row override — ${empName}`,
+    detail:`Manual override applied. Mode: ${mode}. Value: ${mode==='PERCENT'?val+'%':fm(val,'AUD')}. Overrides cohort rule for this employee only.`,
+    actor:'Nilan Vagh',
+    timestamp:new Date().toISOString()
+  });
   render();toast('Row override saved.');
 }
 
@@ -1251,6 +1313,15 @@ function saveCompRules(){
       }
     }
   }
+  // Append comp rules save to audit log
+  CACHE.audit_log.push({
+    scenario_id:S.activeScenarioId,
+    entry_type:'COMP_RULES_SAVED',
+    description:'Comp positioning rule set saved',
+    detail:'Correction target rules updated and applied to cohort positioning. Correction costs and heat flags recalculated.',
+    actor:'Nilan Vagh',
+    timestamp:new Date().toISOString()
+  });
   render();
   toast('Rule set saved — cohort positioning updated. Push Red or Amber rows to modelling.');
 }

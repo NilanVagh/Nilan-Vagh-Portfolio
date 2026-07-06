@@ -158,21 +158,20 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     </div>
     <div class="flex items-center space-x-3">
       <a href="builds.html" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-bold text-xs hover:bg-gray-50 shadow no-underline"><i class="fas fa-arrow-left mr-1"></i> Portfolio</a>
-      <button id="nav-demo-btn" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-bold text-xs cursor-pointer hover:bg-gray-50 shadow" onclick="openDemoGuide()"><i class="fas fa-play-circle mr-1"></i> How to Use This Demo</button>
       <button id="nav-help-btn" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-bold text-xs cursor-pointer hover:bg-gray-50 shadow" onclick="openHelpGuide()"><i class="fas fa-circle-question mr-1"></i> Help</button>
       <div id="impersonator-container" class="hidden mr-4">
         <select id="demo-impersonator" onchange="simulateLogin(this.value)" class="impersonate-select"></select>
       </div>
       <div id="admin-action-buttons" class="hidden flex items-center">
-        <button id="nav-slt-btn" class="hidden bg-yellow-400 text-yellow-900 border border-yellow-500 px-4 py-2 rounded-lg font-black text-xs cursor-pointer hover:bg-yellow-300 mr-3 shadow" onclick="enterSltMode()"><i class="fas fa-crown mr-1"></i> Executive Direct Reports</button>
-        <button id="exit-slt-btn" class="hidden bg-red-100 text-red-700 border border-red-300 px-4 py-2 rounded-lg font-bold text-xs cursor-pointer hover:bg-red-200 mr-3 shadow" onclick="exitSltMode()"><i class="fas fa-times mr-1"></i> Exit Executive View</button>
+        <button id="nav-slt-btn" class="hidden bg-yellow-400 text-yellow-900 border border-yellow-500 px-4 py-2 rounded-lg font-black text-xs cursor-pointer hover:bg-yellow-300 mr-3 shadow" onclick="enterSltMode()"><i class="fas fa-crown mr-1"></i> Executive Review</button>
+        <button id="exit-slt-btn" class="hidden bg-red-100 text-red-700 border border-red-300 px-4 py-2 rounded-lg font-bold text-xs cursor-pointer hover:bg-red-200 mr-3 shadow" onclick="exitSltMode()"><i class="fas fa-times mr-1"></i> Exit Executive Review Mode</button>
         <button id="god-mode-btn" class="god-mode-btn" onclick="toggleGodMode()"><i class="fas fa-chart-pie mr-1"></i> Onyx Command Centre</button>
       </div>
     </div>
   </nav>
   <div class="onyx-demo-shell-note mx-0 my-4 p-3 rounded-lg" style="font-size:12px;line-height:1.5;display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap;">
     <strong style="color:#E8503F;">Portfolio Demo · Synthetic Data</strong>
-    This is the Onyx public demo version of a governed calibration workflow. Use the view dropdown to move between Manager, People Partner, Executive Direct Reports, and Admin Command Centre. Use the demo buttons to seed async notes, a realistic calibrated curve, promotions, and business review completion.
+    This is the Onyx public demo version of a governed calibration workflow. Names, org data and scenarios are fictional. Use the view dropdown to switch roles, open Help for the full guide, and use Admin Command Centre to see the control layer.
     <span style="color:#F5F5F5;font-weight:700;white-space:nowrap;">260 total · 235 FTE · 25 EOR · FY26 calibration population</span>
   </div>
 
@@ -210,7 +209,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     <div id="slt-demo-panel" class="hidden flex flex-wrap items-center justify-between gap-3 bg-indigo-50 border border-indigo-200 rounded-lg px-4 py-3">
       <div>
         <div class="text-xs font-black uppercase tracking-wide text-indigo-700">Executive Reviewer Demo Controls</div>
-        <div id="slt-demo-status" class="text-sm text-indigo-900 font-medium">Preview the executive direct-report reviewer before and after the Executive Review unlock.</div>
+        <div id="slt-demo-status" class="text-sm text-indigo-900 font-medium">Preview the executive reviewer before and after the Executive Review unlock.</div>
       </div>
       <div class="flex flex-wrap gap-2">
         <button id="preview-memo-tech-btn" class="demo-btn bg-indigo-600 hover:bg-indigo-700 mr-0" onclick="previewMemoStage('tech_only', this)"><i class="fas fa-user-lock mr-1"></i> Preview Executive Reviewer: Tech Only</button>
@@ -222,8 +221,8 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     <div id="slt-locked-banner" class="hidden flex items-center bg-amber-50 p-3 rounded-lg border border-amber-200">
       <i class="fas fa-lock text-amber-600 text-xl mr-3"></i>
       <div>
-        <h3 class="text-amber-900 font-black text-sm">Executive Direct Reports Workspace Still Locked</h3>
-        <p id="slt-locked-message" class="text-xs text-amber-800">The executive direct-report reviewer should not see the Executive Review button until every Business Review division and tech session required for completion is locked.</p>
+        <h3 class="text-amber-900 font-black text-sm">Executive Review Workspace Still Locked</h3>
+        <p id="slt-locked-message" class="text-xs text-amber-800">The executive reviewer should not see the Executive Review button until every Business Review division and tech session required for completion is locked.</p>
       </div>
     </div>
 
@@ -231,8 +230,8 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       <div class="flex items-center">
         <i class="fas fa-crown text-green-700 text-xl mr-3"></i>
         <div>
-          <h3 class="text-green-900 font-black text-sm">Executive Direct Reports Workspace Unlocked</h3>
-          <p id="slt-ready-message" class="text-xs text-green-800">All required Business Review cohorts are complete. The executive direct-report reviewer can now enter Executive Review.</p>
+          <h3 class="text-green-900 font-black text-sm">Executive Review Workspace Unlocked</h3>
+          <p id="slt-ready-message" class="text-xs text-green-800">All required Business Review cohorts are complete. The executive reviewer can now enter Executive Review.</p>
         </div>
       </div>
       <button id="slt-ready-btn" class="bg-green-600 text-white px-4 py-2 rounded-lg font-black text-xs hover:bg-green-700 shadow" onclick="enterSltMode()"><i class="fas fa-crown mr-1"></i> Enter Executive Review Mode</button>
@@ -241,7 +240,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     <div id="slt-filters-banner" class="hidden flex items-center bg-yellow-50 p-3 rounded-lg border border-yellow-200">
         <i class="fas fa-crown text-yellow-600 text-xl mr-3"></i>
         <div>
-            <h3 class="text-yellow-800 font-black text-sm">Executive Direct Reports Workspace Active</h3>
+            <h3 class="text-yellow-800 font-black text-sm">Executive Review Workspace Active</h3>
             <p class="text-xs text-yellow-700">Displaying strictly executive cohort for final calibration review. Business Review baselines are locked.</p>
         </div>
         <div class="ml-auto flex items-center">
@@ -506,7 +505,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
 
         <div class="chart-panel bg-white p-6 border rounded-xl shadow-sm mb-6">
           <h2 class="text-xl font-black mb-1 mt-2" style="color: var(--zip-primary);"><i class="fas fa-diagram-project mr-2"></i>Promotion Funnel</h2>
-          <p class="text-sm text-gray-500 mb-6 tracking-tight">Track proposed promotions from submission through executive direct-report review, approval, decline, and pending queues.</p>
+          <p class="text-sm text-gray-500 mb-6 tracking-tight">Track proposed promotions from submission through executive review, approval, decline, and pending queues.</p>
           <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-5" id="promo-funnel-cards"></div>
           <div id="promo-funnel-copy" class="text-sm text-gray-600"></div>
         </div>
@@ -543,7 +542,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       
       <div id="slt-unlocked-banner" class="hidden mt-6 p-6 bg-green-900 bg-opacity-40 border border-green-500 rounded-xl text-center shadow-2xl">
           <h2 class="text-2xl font-black text-green-400 mb-2"><i class="fas fa-unlock-alt mr-2"></i> BUSINESS REVIEW COMPLETE: EXECUTIVE REVIEW UNLOCKED</h2>
-          <p class="text-sm text-green-200 mb-4">All divisional cohorts are locked. The final Executive Review view is now available for executive direct-report review.</p>
+          <p class="text-sm text-green-200 mb-4">All divisional cohorts are locked. The final Executive Review view is now available for executive review.</p>
           <button onclick="enterSltMode()" class="bg-green-500 text-white px-8 py-3 rounded-lg font-black tracking-wide hover:bg-green-400 transition shadow-lg"><i class="fas fa-crown mr-2"></i>Enter Executive Review Mode</button>
       </div>
     </div>
@@ -649,8 +648,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     const genders = ['Female','Male','Female','Male','Non-binary'];
     function ratingFromScore(score){ if(score >= 4.7) return 'Exceptional Impact'; if(score >= 3.8) return 'Exceeds Expectations'; if(score >= 2.8) return 'Meets Expectations'; if(score >= 1.8) return 'Approaching Expectations'; return 'Below Expectations'; }
     function scoreFromBucket(bucket){ return Math.min(5, Math.max(1, bucket + ((bucket % 2) ? 0.1 : -0.1))); }
-    
-function buildEmployees(){
+    function buildEmployees(){
       const out = [];
       const onyxDivs = [
         {name:'Product & Design', hc:42, depts:['Product Management','Design','Research']},
@@ -667,51 +665,27 @@ function buildEmployees(){
         {country:'Canada', entity:'Onyx CA (EOR)', hc:3},
         {country:'Netherlands', entity:'Onyx NL (EOR)', hc:2}
       ];
-
-      const prePattern = [1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,2,3];
-      const outcomeDelta = [0,0,0,1,0,0,-1,0,0,0,1,0,0,0,-1,0,0,0,1,0];
-      const directReportRoles = [
-        'VP Product','VP Engineering','VP Revenue','VP Operations','VP Data & AI',
-        'Director, Product Management','Director, Engineering','Director, Revenue Operations',
-        'Director, Customer Success','Director, People','Director, Finance','Director, Security'
-      ];
       let idx = 0;
-
       function addEmployee(div, dept, isEor, market){
-        const gradeBand = ['L1','L2','L3','L4','L5','L6'];
-        let grade = gradeBand[idx % gradeBand.length];
-        const baseBucket = prePattern[idx % prePattern.length];
-        const delta = outcomeDelta[idx % outcomeDelta.length];
-        let preBucket = baseBucket;
-        let calBucket = Math.min(5, Math.max(1, baseBucket + delta));
-
+        const grade = ['L1','L2','L3','L4','L5','L6'][idx % 6];
+        const preBucket = [3,3,4,2,3,4,5,3,2,4,3,1,3,4,3][idx % 15];
+        const calBucket = Math.min(5, Math.max(1, preBucket + ([0,0,1,0,-1,0,0,1,0,0,-1,0,0,1,0][idx % 15])));
+        const preWeighted = scoreFromBucket(preBucket);
+        const calWeighted = scoreFromBucket(calBucket);
         const isDirectReport = idx < 12;
-        if (isDirectReport) {
-          grade = idx < 5 ? 'L6' : 'L5';
-          preBucket = [4,4,4,3,4,4,3,4,4,3,4,5][idx];
-          calBucket = [4,4,4,4,4,4,4,4,5,3,4,5][idx];
-        }
-
-        const isPromo = (!isDirectReport && ['L2','L3','L4','L5'].includes(grade) && (idx % 9 === 0 || idx % 14 === 0 || idx % 31 === 0)) || (isDirectReport && idx % 4 === 0);
-        const promoStatus = isPromo ? (idx % 7 === 0 ? 'Approved' : idx % 5 === 0 ? 'Endorsed for Executive Review' : idx % 11 === 0 ? 'Declined' : 'Pending') : 'Pending';
-
+        const isPromo = idx % 11 === 0 || idx % 17 === 0;
+        const execStatus = isPromo ? (idx % 4 === 0 ? 'Endorsed for Executive Review' : idx % 5 === 0 ? 'Declined' : 'Pending') : 'Pending';
         const session = div === 'Engineering & Platform' ? (idx % 3 === 0 ? 'S1_S4' : idx % 3 === 1 ? 'S2_S4' : 'S3_S4') : (div === 'Data & AI' ? 'S2_S4' : 'None');
         const country = isEor ? market.country : (idx % 7 === 0 ? 'New Zealand' : idx % 9 === 0 ? 'United States' : 'Australia');
         const entity = isEor ? market.entity : (country === 'United States' ? 'Onyx US' : country === 'New Zealand' ? 'Onyx NZ' : 'Onyx AU');
         const planningRegion = isEor ? 'EOR' : (country === 'United States' ? 'US' : 'ANZ');
-
-        const preWeighted = scoreFromBucket(preBucket);
-        const calWeighted = scoreFromBucket(calBucket);
-        const title = isDirectReport ? directReportRoles[idx] : `${grade} ${dept} Specialist`;
-        const managerName = isDirectReport ? 'Executive Committee' : managers[idx % managers.length];
-
         out.push({
           rowIndex: idx+2,
           email: `employee${String(idx+1).padStart(3,'0')}@onyx.example`,
           empId: `ONX-${String(idx+1).padStart(3,'0')}`,
           name: `${firstNames[idx % firstNames.length]} ${lastNames[Math.floor(idx / firstNames.length) % lastNames.length]}`,
-          manager: managerName,
-          jobTitle: title,
+          manager: managers[idx % managers.length],
+          jobTitle: `${grade} ${dept} Specialist`,
           jobGrade: grade,
           division: div,
           department: dept,
@@ -722,38 +696,36 @@ function buildEmployees(){
           tenureMos: (idx % 42) + 3,
           gender: genders[idx % genders.length],
           riskStatus: idx % 31 === 0 ? 'PIP' : idx % 37 === 0 ? 'Warning' : 'None',
-          fy24Rating: ratings[Math.max(0,preBucket-1)],
-          fy25Rating: ratings[Math.max(0,Math.min(4, preBucket + (idx % 8 === 0 ? 1 : 0) -1))],
-          mid26Rating: String(Math.min(5, Math.max(1, preBucket + (idx % 10 === 0 ? 1 : idx % 16 === 0 ? -1 : 0)))),
+          fy24Rating: ratings[Math.max(0,preBucket-2)],
+          fy25Rating: ratings[Math.max(0,preBucket-2)],
+          mid26Rating: String(Math.min(5, Math.max(1, preBucket + (idx % 10 === 0 ? 1 : 0)))),
           promotedLast12Mos: idx % 23 === 0 ? 'Yes' : 'No',
           roleChangedLast12Mos: idx % 19 === 0 ? 'Yes' : 'No',
           selfWhat: preBucket,
           selfHow: Math.max(1, preBucket-1),
-          selfGrowth: Math.min(5, preBucket + (idx % 6 === 0 ? 1 : 0)),
+          selfGrowth: Math.min(5, preBucket+1),
           selfWeighted: preWeighted,
           selfRating: ratingFromScore(preWeighted),
           preWhat: preBucket,
           preHow: Math.max(1, preBucket-1),
-          preGrowth: Math.min(5, preBucket + (idx % 6 === 0 ? 1 : 0)),
+          preGrowth: Math.min(5, preBucket+1),
           preWeighted: preWeighted.toFixed(1),
           preRating: ratingFromScore(preWeighted),
           calWhat: calBucket,
-          calHow: Math.max(1, calBucket - (idx % 5 === 0 ? 0 : 1)),
-          calGrowth: Math.min(5, calBucket + (idx % 9 === 0 ? 1 : 0)),
+          calHow: Math.max(1, calBucket-1),
+          calGrowth: Math.min(5, calBucket+1),
           calWeightedRaw: calWeighted.toFixed(1),
           calRatingRaw: ratingFromScore(calWeighted),
           calWeighted: calWeighted.toFixed(1),
           calRating: ratingFromScore(calWeighted),
           promoProp: isPromo ? 'Yes' : 'No',
-          businessCase: isPromo ? 'Synthetic Onyx case: expanded scope, sustained impact, and evidence of operating at the next level. Recommendation moves through calibration, guardrail checks, and executive sign-off where required.' : '',
-          propTitle: isPromo ? (grade === 'L6' ? `Vice President, ${dept}` : `${gradeBand[Math.min(gradeBand.length-1, gradeBand.indexOf(grade)+1)]} Senior ${dept} Specialist`) : '',
-          changeType: isPromo ? (idx % 3 === 0 ? 'Job Grade Change' : idx % 4 === 0 ? 'Lateral Move' : 'Title Change Only') : '',
-          sltStatus: promoStatus,
+          businessCase: isPromo ? 'Synthetic Onyx case: expanded scope, sustained impact, and clear evidence of operating at the next level. Recommendation requires calibration alignment and executive review before final approval.' : '',
+          propTitle: isPromo ? `${grade} Senior ${dept} Specialist` : '',
+          changeType: isPromo ? (idx % 2 === 0 ? 'Job Grade Change' : 'Title Change Only') : '',
+          sltStatus: execStatus,
           retentionRisk: idx % 29 === 0 ? 'Yes' : 'No',
-          asyncNotes: idx % 8 === 0 ? '[People Partner | Demo]: Evidence reviewed before session. Manager context added for calibration discussion.
-
-[Manager | Demo]: Scope increased during H2; final rating should consider expanded ownership.' : '',
-          newGrade: isPromo && (idx % 3 === 0) ? 'L' + Math.min(6, Number(String(grade).replace('L','')) + 1) : '',
+          asyncNotes: idx % 8 === 0 ? '[People Partner | Demo]: Evidence reviewed before session. Manager context added for calibration discussion.\n\n[Manager | Demo]: Scope increased during H2; final rating should consider expanded ownership.' : '',
+          newGrade: isPromo && idx % 2 === 0 ? 'L' + Math.min(6, (idx%6)+2) : '',
           empSession: session,
           isLocked: false,
           isDirectReport: isDirectReport
@@ -815,7 +787,7 @@ function buildEmployees(){
         curveAdjustments: {'Engineering & Platform':{adjustmentCount:2,buckets:{'1':2,'2':0,'3':0,'4':0,'5':0}}, 'Customer & Operations':{adjustmentCount:1,buckets:{'1':1,'2':0,'3':0,'4':0,'5':0}}},
         rbac: user,
         employees: scopedEmployees(user),
-        auditLogs: [{emp:'Avery Parker',log:'[OVERRIDE Demo by Platform Admin]: Rating adjusted after evidence review.'},{emp:'Maya Santos',log:'[OVERRIDE Demo by People Partner]: Promotion case escalated for executive direct-report review.'}]
+        auditLogs: [{emp:'Avery Parker',log:'[OVERRIDE Demo by Platform Admin]: Rating adjusted after evidence review.'},{emp:'Maya Santos',log:'[OVERRIDE Demo by People Partner]: Promotion case escalated for executive review.'}]
       };
     }
     function chain(){
@@ -829,39 +801,11 @@ function buildEmployees(){
         toggleSessionLock(key){ demoLocks[key] = !demoLocks[key]; setTimeout(()=>success({...demoLocks}),80); return api; },
         appendAsyncNote(rowIndex,note){ const emp=demoEmployees.find(e=>e.rowIndex===rowIndex); if(emp){ emp.asyncNotes += (emp.asyncNotes?'\n\n':'') + '[Demo User | Now]: ' + note; } setTimeout(()=>success({success:true}),80); return api; },
         saveMultipleUpdates(rowIndex,updates){ const emp=demoEmployees.find(e=>e.rowIndex===rowIndex); if(emp){ Object.assign(emp,updates); } setTimeout(()=>success({success:true}),80); return api; },
-        runDemoScenario1(){ demoEmployees.forEach((e,i)=>{ if(i%3===0 && !e.asyncNotes) e.asyncNotes='[People Partner | Demo]: Triage note seeded for review before calibration. Review evidence, check flagged cases, and bring unresolved items into the live room.'; }); setTimeout(()=>success({success:true,msg:'Demo async notes populated.'}),100); return api; },
-        undoTriageDemo(){ demoEmployees.forEach(e=>{ if(e.asyncNotes.includes('seeded for review before calibration')) e.asyncNotes=''; }); setTimeout(()=>success({success:true,msg:'Demo notes restored.'}),100); return api; },
-        runCalibrationDemo(){
-          demoEmployees.forEach((e,i)=>{
-            if(e.isDirectReport) return;
-            const pre = getRatingVal(e.preRating);
-            let target = pre;
-            if (i % 17 === 0) target = Math.max(1, pre - 1);
-            else if (i % 9 === 0 || i % 13 === 0) target = Math.min(5, pre + 1);
-            else if (i % 5 === 0) target = pre;
-            const weightedMap = {1:1.4,2:2.2,3:3.2,4:4.1,5:4.8};
-            const w = weightedMap[target] || 3.2;
-            e.calWhat = target;
-            e.calHow = Math.max(1, target - (target >= 4 ? 0 : 1));
-            e.calGrowth = Math.min(5, target + (target >= 4 ? 1 : 0));
-            e.calWeighted = w.toFixed(1);
-            e.calRating = ratingFromScore(w);
-            e.calRatingRaw = e.calRating;
-            e.calWeightedRaw = e.calWeighted;
-          });
-          setTimeout(()=>success({success:true,msg:'Realistic calibration state seeded - includes upward, downward, and unchanged outcomes.'}),100); return api;
-        },
-        undoCalibrationDemo(){ demoEmployees = buildEmployees(); setTimeout(()=>success({success:true,msg:'Calibration demo restored to baseline.'}),100); return api; },
-        runPromotionsDemo(){
-          demoEmployees.forEach((e,i)=>{
-            if(e.promoProp!=='Yes') return;
-            const gradeNum = Number(String(e.jobGrade).replace('L','')) || 3;
-            if (gradeNum <= 2) e.sltStatus = i % 3 === 0 ? 'Approved' : 'Endorsed for Executive Review';
-            else if (gradeNum <= 4) e.sltStatus = i % 4 === 0 ? 'Approved' : i % 6 === 0 ? 'Declined' : 'Endorsed for Executive Review';
-            else e.sltStatus = i % 5 === 0 ? 'Approved' : 'Pending';
-          });
-          setTimeout(()=>success({success:true,msg:'Promotion demo loaded with a realistic mix across junior, mid-level, and senior cohorts.'}),100); return api;
-        },
+        runDemoScenario1(){ demoEmployees.forEach((e,i)=>{ if(i%3===0 && !e.asyncNotes) e.asyncNotes='[People Partner | Demo]: Triage note seeded for review.'; }); setTimeout(()=>success({success:true,msg:'Demo async notes populated.'}),100); return api; },
+        undoTriageDemo(){ demoEmployees.forEach(e=>{ if(e.asyncNotes.includes('seeded')) e.asyncNotes=''; }); setTimeout(()=>success({success:true,msg:'Demo notes restored.'}),100); return api; },
+        runCalibrationDemo(){ demoEmployees.forEach((e,i)=>{ if(!e.isDirectReport){ const c = Math.min(5, Math.max(1, Number(e.calWhat || 3) + (i%5===0?1:0))); e.calWhat=c; e.calHow=Math.max(1,c-1); e.calGrowth=Math.min(5,c+1); e.calWeighted=(c-0.1).toFixed(1); e.calRating=ratingFromScore(Number(e.calWeighted)); e.calRatingRaw=e.calRating; e.calWeightedRaw=e.calWeighted; }}); setTimeout(()=>success({success:true,msg:'Demo calibrated curve reseeded.'}),100); return api; },
+        undoCalibrationDemo(){ setTimeout(()=>success({success:true,msg:'Calibration demo restored.'}),100); return api; },
+        runPromotionsDemo(){ demoEmployees.forEach((e,i)=>{ if(e.promoProp==='Yes' && i%2===0) e.sltStatus='Endorsed for Executive Review'; }); setTimeout(()=>success({success:true,msg:'Approved promotion demo loaded.'}),100); return api; },
         undoPromotionsDemo(){ setTimeout(()=>success({success:true,msg:'Promotion demo restored.'}),100); return api; },
         runLevel1CompleteDemo(){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=true); setTimeout(()=>success({success:true,msg:'Business review complete demo loaded.'}),100); return api; },
         undoLevel1CompleteDemo(){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=false); setTimeout(()=>success({success:true,msg:'Business review state restored.'}),100); return api; }
@@ -869,6 +813,7 @@ function buildEmployees(){
       return api;
     }
     window.google.script = { run: chain() };
+    window.getOnyxDemoPayload = payload;
   })();
 
   google.charts.load('current', {'packages':['corechart', 'bar']});
@@ -1075,8 +1020,8 @@ function buildEmployees(){
     `, hasPermission('canLockSessions'));
 
     addCard('6. Executive Review Mode', `
-      <p>Executive Review Mode is used for final executive direct-report review. It only unlocks once all required divisional calibration sessions have concluded.</p>
-      <p>Once unlocked, Executive Review Mode is used to review executive cohort calibration outcomes and promotion cases endorsed from divisional calibration. The workflow is similar to other sessions, but it is focused on executive direct-report review and final promotion approval decisions.</p>
+      <p>Executive Review Mode is used for final executive review. It only unlocks once all required divisional calibration sessions have concluded.</p>
+      <p>Once unlocked, Executive Review Mode is used to review executive cohort calibration outcomes and promotion cases endorsed from divisional calibration. The workflow is similar to other sessions, but it is focused on executive review and final promotion approval decisions.</p>
       <p>In Executive Review Mode, reviewers can review executive cohort, review endorsed promotion cases, approve or decline promotion cases, and finalise remuneration approval decisions where required.</p>
       <p>In production, the Executive Review button should appear automatically once all required divisional calibration is complete.</p>
     `, role === 'SLT' || hasPermission('canUseSltWorkspace'));
@@ -1103,13 +1048,13 @@ function buildEmployees(){
   const PREVIEW_STAGE_META = {
     tech_only: {
       title: 'Executive Preview: Tech Sessions Complete Only',
-      body: 'The executive direct-report reviewer should not see the Executive Review button yet because only the tech sessions are complete.',
-      lockedMessage: 'Tech sessions are complete, but other Business Review divisions are still unlocked, so the Executive Review workspace remains locked for the executive direct-report reviewer.'
+      body: 'The executive reviewer should not see the Executive Review button yet because only the tech sessions are complete.',
+      lockedMessage: 'Tech sessions are complete, but other Business Review divisions are still unlocked, so the Executive Review workspace remains locked for the executive reviewer.'
     },
     all_locked: {
       title: 'Executive Preview: All Business Review Cohorts Locked',
-      body: 'The executive direct-report reviewer should now see the Executive Review button because the full Business Review waterfall is complete.',
-      lockedMessage: 'All required Business Review cohorts are complete. The executive direct-report reviewer should now see the Executive Review button.'
+      body: 'The executive reviewer should now see the Executive Review button because the full Business Review waterfall is complete.',
+      lockedMessage: 'All required Business Review cohorts are complete. The executive reviewer should now see the Executive Review button.'
     }
   };
 
@@ -1366,34 +1311,6 @@ function buildEmployees(){
     openInfoModal('How to Use the Calibration Engine', getExactHelpGuideHtml('help'));
   }
 
-
-  function openDemoGuide() {
-    openInfoModal('How to Use This Demo', `
-      <div class="space-y-4 text-sm text-gray-700">
-        <section class="bg-white border border-gray-200 rounded-xl p-4">
-          <h4 class="text-base font-black text-gray-900 mb-2">Start here</h4>
-          <ol class="ml-5 list-decimal space-y-2 leading-6">
-            <li>Use the <strong>view dropdown</strong> in the top bar to switch between Manager View, People Partner View, Executive Direct Reports, and Admin Command Centre.</li>
-            <li>Open <strong>Pre-Calibration Triage</strong> to review async notes, flagged employees, and discussion prep.</li>
-            <li>Open <strong>Calibration Sheet</strong> to review the live decision surface for Outcomes, Behaviours, Growth, and final calibrated rating.</li>
-            <li>Use the <strong>Demo buttons</strong> to seed a realistic session: populate notes, reseed the calibrated curve, load promotion outcomes, or complete the business review sequence.</li>
-            <li>Open <strong>Promotion Guardrails</strong> to review endorsement logic, exceptions, and executive sign-off.</li>
-            <li>Open <strong>Calibration & Promotion Analytics</strong> to inspect distribution, movement, equity, and promotion patterns.</li>
-            <li>Open <strong>Admin Command Centre</strong> to see completion status, exception queues, audit trail, and cross-session control.</li>
-          </ol>
-        </section>
-        <section class="bg-white border border-gray-200 rounded-xl p-4">
-          <h4 class="text-base font-black text-gray-900 mb-2">What this demo is proving</h4>
-          <ul class="ml-5 list-disc space-y-2 leading-6">
-            <li>This is not just a ratings table. It is a governed workflow for how calibration decisions are prepared, moderated, reviewed, and controlled.</li>
-            <li>The demo shows <strong>role-based views</strong>, <strong>workflow stages</strong>, <strong>promotion guardrails</strong>, <strong>analytics</strong>, and a separate <strong>control layer</strong>.</li>
-            <li>All names, org data, and scenarios are synthetic and mapped to the Onyx portfolio environment.</li>
-          </ul>
-        </section>
-      </div>
-    `);
-  }
-
   function showWatchlistModal(key) {
     const config = watchlistModalRegistry[key];
     if (!config) return;
@@ -1503,7 +1420,7 @@ function buildEmployees(){
       panel.classList.remove('hidden');
       const meta = PREVIEW_STAGE_META[activePreviewStage];
       if (meta) status.innerHTML = `<span class="font-black">${escapeHtml(meta.title)}</span><br><span class="text-xs font-normal">${escapeHtml(meta.body)}</span>`;
-      else status.textContent = 'Preview the executive direct-report reviewer before and after the Executive Review unlock, then restore your original lock state when you finish the demo.';
+      else status.textContent = 'Preview the executive reviewer before and after the Executive Review unlock, then restore your original lock state when you finish the demo.';
     } else {
       panel.classList.add('hidden');
     }
@@ -1520,7 +1437,7 @@ function buildEmployees(){
     const shouldShowReadyBanner = sysUser.level1Finished && sysUser.isSLT && !isSltMode;
     if (shouldShowReadyBanner) {
       const meta = PREVIEW_STAGE_META[activePreviewStage];
-      readyMessage.textContent = meta && meta.title ? `${meta.title}. The executive direct-report reviewer can now enter Executive Review.` : 'All required Business Review cohorts are complete. The executive direct-report reviewer can now enter Executive Review.';
+      readyMessage.textContent = meta && meta.title ? `${meta.title}. The executive reviewer can now enter Executive Review.` : 'All required Business Review cohorts are complete. The executive reviewer can now enter Executive Review.';
       readyBanner.classList.remove('hidden');
     } else {
       readyBanner.classList.add('hidden');
@@ -1585,25 +1502,18 @@ function buildEmployees(){
   }
 
   function bootApp() {
-    setTimeout(() => {
+    try {
       const ls = gid('loading-screen');
-      if(ls && !ls.classList.contains('hidden')) {
-         ls.innerHTML = `<div class="bg-amber-50 p-4 border border-amber-200 rounded text-amber-800 text-center max-w-lg"><b>Connection Timeout</b><br>Google Apps Script or Google Sheets are taking longer than normal to respond. Please refresh the page.</div>`;
-      }
-    }, 15000); 
-    google.script.run.withSuccessHandler(initDashboard).withFailureHandler(showError).getDashboardData(null);
-  }
-  
-  function showError(err) {
-    const ls = gid('loading-screen');
-    ls.innerHTML = `<div class="bg-red-50 p-4 border border-red-200 rounded text-red-700"><b>System Error:</b> Could not load data.<br>${escapeHtml(err && err.message ? err.message : err)}</div>`;
-    ls.classList.remove('hidden');
-    document.querySelectorAll('.demo-btn').forEach(b => {
-       b.disabled = false;
-       if (b.innerText.includes('Processing') || b.innerText.includes('Syncing') || b.innerText.includes('Populating') || b.innerText.includes('Clearing') || b.innerText.includes('Reverting')) {
-           b.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Error`;
-       }
-    });
+      const textEl = gid('loading-text');
+      if (ls && textEl) textEl.textContent = 'Loading Onyx demo data...';
+      const bootData = (window.getOnyxDemoPayload ? window.getOnyxDemoPayload('admin@onyx.example') : null);
+      setTimeout(() => {
+        if (bootData) initDashboard(bootData);
+        else showError({message: 'Static demo payload was not found.'});
+      }, 80);
+    } catch (err) {
+      showError(err);
+    }
   }
 
   window.onload = bootApp;
@@ -2009,7 +1919,7 @@ function buildEmployees(){
       if (emp.isLocked && !sysUser.isAdmin && !isSltMode) inputHtml = `<div class="text-xs text-red-400 font-bold"><i class="fas fa-lock"></i> Session Locked</div>`;
       else if (canWriteAsyncNotes()) inputHtml = `<textarea onblur="submitAsyncNote(${emp.rowIndex}, this)" class="note-input" placeholder="Type a new comment and click outside to save..."></textarea>`;
       
-      html += `<tr><td class="freeze-col"><div class="font-bold text-base">${escapeHtml(emp.name)} ${calibFlag}</div><div class="text-xs text-gray-500">${safeCell(emp.jobTitle)}</div></td><td><div class="text-sm font-bold text-gray-700">${safeCell(emp.department)}</div></td><td><div class="text-sm font-bold text-gray-700">${safeCell(emp.manager)}</div></td><td><div class="text-sm font-bold text-gray-700">${safeCell(emp.jobGrade)}</div></td><td><div class="text-xs">Mid-Year FY26 Rating:</div><strong>${safeCell(emp.mid26Rating)}</strong><div class="text-xs mt-1">Pre-Calibrated Weighted Score:</div><strong>${safeCell(emp.preWeighted)}</strong></td><td class="triage-system-flags-col ${canViewSystemFlags() && !shouldHideSensitiveColumns() ? '' : 'hidden'}">${riskBadge}${flags}<button onclick="explainEmployeeFlags(${emp.rowIndex})" class="mt-2 text-xs font-black text-blue-700 border border-blue-300 bg-white px-2 py-1 rounded hover:bg-blue-50">Why this was flagged</button></td><td>${existingNotesHtml}${inputHtml}</td></tr>`;
+      html += `<tr><td class="freeze-col"><div class="font-bold text-base">${escapeHtml(emp.name)} ${calibFlag}</div><div class="text-xs text-gray-500">${safeCell(emp.jobTitle)}</div></td><td><div class="text-sm font-bold text-gray-700">${safeCell(emp.department)}</div></td><td><div class="text-sm font-bold text-gray-700">${safeCell(emp.manager)}</div></td><td><div class="text-sm font-bold text-gray-700">${safeCell(emp.jobGrade)}</div></td><td><div class="text-xs">Mid-Year FY26 Rating:</div><strong>${safeCell(emp.mid26Rating)}</strong><div class="text-xs mt-1">Pre-Calibrated Weighted Score:</div><strong>${safeCell(emp.preWeighted)}</strong></td><td class="triage-system-flags-col ${canViewSystemFlags() && !shouldHideSensitiveColumns() ? '' : 'hidden'}">${riskBadge}${flags}</td><td>${existingNotesHtml}${inputHtml}</td></tr>`;
     });
     gid('triage-body').innerHTML = html;
   }
@@ -2079,7 +1989,6 @@ function buildEmployees(){
       if (emp.calRating && String(emp.calRating) !== String(emp.preRating)) rateFlags += `<div class="mismatch-flag mb-1" style="background:#EFF6FF; border-color:#3B82F6; color:#1E3A8A;">🔄 Rating: ${emp.preRating} ➔ ${emp.calRating}</div>`;
       if (sChanges.length > 0) rateFlags += `<div class="mismatch-flag" style="background:#F3F4F6; border-color:#9CA3AF; color:#4B5563;">✏️ ${sChanges.join(', ')}</div>`;
       if (!rateFlags) rateFlags = `<span class="text-xs text-gray-400">No changes</span>`;
-      rateFlags += `<div class="mt-2"><button onclick="explainEmployeeFlags(${emp.rowIndex})" class="text-xs font-black text-blue-700 border border-blue-300 bg-white px-2 py-1 rounded hover:bg-blue-50">Why this was flagged</button></div>`;
 
       html += `<tr><td class="freeze-col"><div class="font-bold text-sm text-gray-900">${escapeHtml(emp.name)} ${calibFlag}</div></td><td class="font-bold">${safeCell(emp.empId)}</td><td>${safeCell(emp.manager)}</td><td class="text-xs">${safeCell(emp.jobTitle)}</td><td class="font-bold">${safeCell(emp.jobGrade)}</td><td class="text-xs">${safeCell(emp.division)}</td><td class="text-xs">${safeCell(emp.department)}</td><td>${safeCell(emp.gender)}</td><td>${safeCell(emp.tenureYrs)}</td><td>${safeCell(emp.tenureMos)}</td><td>${safeCell(emp.roleChangedLast12Mos)}</td><td>${safeCell(emp.mid26Rating)}</td><td class="calib-system-flags-col ${canViewSystemFlags() && !shouldHideSensitiveColumns() ? '' : 'hidden'}"><span class="${emp.riskStatus!=='None'?'pip-badge':'clean-badge'}">${emp.riskStatus!=='None'?escapeHtml(emp.riskStatus):'Clear'}</span></td><td>${safeCell(emp.retentionRisk)}</td><td>${safeCell(emp.selfWhat)}</td><td>${safeCell(emp.selfHow)}</td><td>${safeCell(emp.selfGrowth)}</td><td class="font-bold">${safeCell(emp.selfWeighted)}</td><td style="background:${prt.bg};" class="text-center align-middle border-r"><span class="font-black text-lg" style="color:${prt.col};">${safeCell(emp.preWeighted)}</span></td><td>${preRateHtml}</td><td>${rateFlags}</td><td style="background:#F0FDF4">${makeSel(emp.calWhat, 'calWhat')}</td><td style="background:#F0FDF4">${makeSel(emp.calHow, 'calHow')}</td><td style="background:#F0FDF4">${makeSel(emp.calGrowth, 'calGrowth')}</td><td style="background:#F0FDF4"><span class="font-black text-lg text-green-700">${safeCell(emp.calWeighted)}</span></td><td style="background:#F0FDF4">${rateHtml}</td></tr>`;
     });
@@ -2151,7 +2060,7 @@ function buildEmployees(){
           ];
       let sltHtml = canEdit ? `<select onchange="saveStringData(${emp.rowIndex}, 'sltStatus', this.value, ${emp.isLocked})" class="text-input ${String(emp.sltStatus).includes('Endorsed')?'bg-green-50 text-green-700':(String(emp.sltStatus).includes('Declined')?'bg-red-50 text-red-700':(String(emp.sltStatus).includes('Approved')?'bg-green-100 text-green-900 border-green-500 font-bold':''))}">${sltStatusOptions.map(([value, label]) => `<option value="${escapeAttr(value)}" ${emp.sltStatus===value?'selected':''}>${escapeHtml(label)}</option>`).join('')}</select>` : `<div class="text-xs font-bold">${safeCell(emp.sltStatus)}</div>`;
       
-      html += `<tr><td class="freeze-col"><div class="font-bold text-sm">${escapeHtml(emp.name)}</div><div class="mt-2"><button onclick="explainEmployeeFlags(${emp.rowIndex})" class="text-xs font-black text-blue-700 border border-blue-300 bg-white px-2 py-1 rounded hover:bg-blue-50">Why this case is in review</button></div></td><td>${safeCell(emp.manager)}</td><td class="text-xs">${safeCell(emp.division)}</td><td class="text-xs">${safeCell(emp.department)}</td><td class="text-xs">${safeCell(emp.jobTitle)}</td><td class="font-bold">${safeCell(emp.jobGrade)}</td><td>${safeCell(emp.gender)}</td><td>${safeCell(emp.tenureYrs)}</td><td>${safeCell(emp.tenureMos)}</td><td class="text-center font-bold text-gray-500">${safeCell(emp.fy24Rating)}</td><td class="text-center font-bold text-gray-500">${safeCell(emp.fy25Rating)}</td><td class="text-center font-bold text-gray-500">${safeCell(emp.mid26Rating)}</td><td class="text-center font-bold text-gray-700">${safeCell(emp.calWeighted)}</td><td class="text-center text-xs text-gray-500 promo-risk-col ${shouldHideSensitiveColumns() ? 'hidden' : ''}">${riskBadge}</td><td class="text-center text-base">${tenureCheck}</td><td class="text-center text-base">${promoCheck}</td><td class="text-center text-base">${fy25Check}</td><td class="text-center text-base">${pipCheck}</td><td><button onclick="showPromoFromEncoded('${encodeInlineArg(emp.name)}', '${encodeInlineArg(emp.businessCase || '')}')" class="text-xs px-3 py-1 bg-gray-100 hover:bg-purple-100 rounded font-bold border transition-colors">View Case</button></td><td>${changeTypeHtml}</td><td>${titleHtml}</td><td>${grdHtml}</td><td>${sltHtml}</td></tr>`;
+      html += `<tr><td class="freeze-col"><div class="font-bold text-sm">${escapeHtml(emp.name)}</div></td><td>${safeCell(emp.manager)}</td><td class="text-xs">${safeCell(emp.division)}</td><td class="text-xs">${safeCell(emp.department)}</td><td class="text-xs">${safeCell(emp.jobTitle)}</td><td class="font-bold">${safeCell(emp.jobGrade)}</td><td>${safeCell(emp.gender)}</td><td>${safeCell(emp.tenureYrs)}</td><td>${safeCell(emp.tenureMos)}</td><td class="text-center font-bold text-gray-500">${safeCell(emp.fy24Rating)}</td><td class="text-center font-bold text-gray-500">${safeCell(emp.fy25Rating)}</td><td class="text-center font-bold text-gray-500">${safeCell(emp.mid26Rating)}</td><td class="text-center font-bold text-gray-700">${safeCell(emp.calWeighted)}</td><td class="text-center text-xs text-gray-500 promo-risk-col ${shouldHideSensitiveColumns() ? 'hidden' : ''}">${riskBadge}</td><td class="text-center text-base">${tenureCheck}</td><td class="text-center text-base">${promoCheck}</td><td class="text-center text-base">${fy25Check}</td><td class="text-center text-base">${pipCheck}</td><td><button onclick="showPromoFromEncoded('${encodeInlineArg(emp.name)}', '${encodeInlineArg(emp.businessCase || '')}')" class="text-xs px-3 py-1 bg-gray-100 hover:bg-purple-100 rounded font-bold border transition-colors">View Case</button></td><td>${changeTypeHtml}</td><td>${titleHtml}</td><td>${grdHtml}</td><td>${sltHtml}</td></tr>`;
     });
     if (html === '') html = `<tr><td colspan="23" class="text-center text-gray-500 py-10 font-bold">No promotion data found for this selection.</td></tr>`;
     gid('promo-body').innerHTML = html;
@@ -2165,25 +2074,6 @@ function buildEmployees(){
     gid('modal-name').innerText = "Business Case: " + name;
     gid('modal-content').innerHTML = content ? nl2brSafe(content) : "<i>No detailed business case provided.</i>";
     gid('promo-modal').classList.remove('hidden');
-  }
-
-
-  function explainEmployeeFlags(rowIndex) {
-    const emp = allData.find(e => e.rowIndex === rowIndex);
-    if (!emp) return;
-    const reasons = [];
-    const triageFlags = getTriageSystemFlags(emp);
-    if (triageFlags.length) reasons.push(`<div><strong>System flags:</strong> ${escapeHtml(triageFlags.join(', '))}</div>`);
-    if (String(emp.promoProp).toLowerCase() === 'yes') {
-      const promoReasons = getGuardrailExceptionReasons(emp);
-      reasons.push(`<div><strong>Promotion status:</strong> Proposed case currently sits at <strong>${escapeHtml(emp.sltStatus || 'Pending')}</strong>.</div>`);
-      if (promoReasons.length) reasons.push(`<div><strong>Guardrail exceptions:</strong> ${escapeHtml(promoReasons.join(', '))}</div>`);
-    }
-    const pre = getRatingVal(emp.preRating);
-    const post = getPostRatingVal(emp);
-    if (pre > 0 && post > 0 && pre !== post) reasons.push(`<div><strong>Rating movement:</strong> ${escapeHtml(emp.preRating)} → ${escapeHtml(emp.calRating)}.</div>`);
-    reasons.push(`<div><strong>Context:</strong> Mid-year ${escapeHtml(String(emp.mid26Rating || '-'))}, tenure ${escapeHtml(String(emp.tenureMos || '-'))} months in role, retention risk ${escapeHtml(String(emp.retentionRisk || 'No'))}, role change in last 12 months ${escapeHtml(String(emp.roleChangedLast12Mos || 'No'))}.</div>`);
-    openInfoModal(`Why ${escapeHtml(emp.name)} was flagged`, `<div class="space-y-3 text-sm text-gray-700">${reasons.join('')}<div class="text-xs text-gray-500 pt-2 border-t border-gray-200">This explainer is included in the demo to show how exception logic can be surfaced for calibration participants and reviewers.</div></div>`);
   }
 
   function showMaterialDropModal() {

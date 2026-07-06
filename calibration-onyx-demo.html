@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calibration Engine — Onyx People</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0A0A0A;--ink:#111111;--charcoal:#1C1C1C;--slate:#2E2E2E;
+  --border:#242424;--border-lt:#333333;--mid:#5A5A5A;--mist:#8A8A8A;
+  --white:#F5F5F5;--white-pure:#FFFFFF;
+  --red:#C0392B;--red-light:#E8503F;--red-dim:#2A1210;--red-mid:#6B2018;
+  --green:#2ECC71;--amber:#E8B84B;--blue:#4A90D9;--purple:#9F7AEA;
+  --shadow:0 4px 24px rgba(0,0,0,0.5);--radius:8px;
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--black);color:var(--white);font-size:14px;line-height:1.6}
+.shell{max-width:1600px;margin:0 auto;padding:20px}
+.hero{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;margin-bottom:16px;border-radius:var(--radius);background:var(--ink);border:1px solid var(--border);flex-wrap:wrap}
+.hero-brand{display:flex;align-items:center;gap:14px}.hero-meta{display:flex;flex-direction:column;gap:2px}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red)}
+.hero-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--white-pure);letter-spacing:-0.02em}
+.hero-sub{font-size:12px;color:var(--mist)}.hero-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero-stat{text-align:right}.hero-stat-val{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--white-pure)}
+.hero-stat-label{font-size:10px;color:var(--mist);text-transform:uppercase;letter-spacing:0.08em}
+.hero-back{font-size:11px;color:var(--mist);text-decoration:none;border:1px solid var(--border);padding:5px 12px;border-radius:99px;transition:all .2s}
+.hero-back:hover{border-color:var(--red);color:var(--red)}
+.demo-banner{background:var(--red-dim);border:1px solid var(--red-mid);border-radius:var(--radius);padding:10px 16px;margin-bottom:16px;font-size:12px;color:#DDAAAA;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.demo-banner strong{color:var(--red-light);font-weight:600}.demo-banner a{color:#DDAAAA;text-decoration:underline}
+.tabs-bar{display:flex;gap:4px;margin-bottom:16px;background:var(--ink);border:1px solid var(--border);border-radius:var(--radius);padding:4px;flex-wrap:wrap}
+.tab-btn{flex:1;padding:9px 12px;border:none;border-radius:6px;background:transparent;color:var(--mist);font-family:var(--font-display);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;text-align:center;min-width:180px}
+.tab-btn:hover{color:var(--white);background:rgba(255,255,255,.05)}.tab-btn.active{background:var(--charcoal);color:var(--white-pure);border:1px solid var(--border-lt)}
+.panel{background:var(--ink);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px}.panel.soft{background:var(--charcoal)}
+.panel-title{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--white-pure);margin-bottom:4px}.panel-sub{font-size:12px;color:var(--mist);line-height:1.5;margin-bottom:14px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px;flex-wrap:wrap}.section-head-left{flex:1}.section-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.stat-card{background:var(--charcoal);border:1px solid var(--border);border-radius:var(--radius);padding:14px}.stat-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--mid);margin-bottom:4px}.stat-value{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--white-pure);line-height:1.1}.stat-detail{font-size:11px;color:var(--mist);margin-top:6px;line-height:1.4}.danger{color:var(--red-light)}.success{color:var(--green)}.warn{color:var(--amber)}
+.field-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+label.field{display:flex;flex-direction:column;gap:5px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mid)}
+input,select,textarea{background:var(--charcoal);border:1px solid var(--border);border-radius:6px;padding:8px 10px;color:var(--white);font-family:var(--font-body);font-size:13px;width:100%;transition:border-color .15s} input:focus,select:focus,textarea:focus{outline:none;border-color:var(--border-lt)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:6px;font-family:var(--font-display);font-size:13px;font-weight:600;cursor:pointer;border:1px solid transparent;transition:all .15s;white-space:nowrap}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.btn-primary{background:var(--red);color:#fff;border-color:var(--red)}.btn-primary:hover{background:var(--red-light)}.btn-secondary{background:var(--charcoal);color:var(--white);border-color:var(--border-lt)}.btn-ghost{background:transparent;color:var(--mist);border-color:var(--border)}.btn-sm{padding:5px 11px;font-size:12px}
+.table-wrap{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}.table-wrap.scrollable{max-height:520px;overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}th{background:var(--charcoal);padding:9px 10px;text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mid);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1}td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--white);vertical-align:top;line-height:1.4}tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.02)}
+.pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:600}.pill-default{background:rgba(255,255,255,.08);color:var(--mist)}.pill-red{background:rgba(192,57,43,.15);color:var(--red-light);border:1px solid rgba(192,57,43,.3)}.pill-amber{background:rgba(232,184,75,.12);color:var(--amber);border:1px solid rgba(232,184,75,.2)}.pill-green{background:rgba(46,204,113,.12);color:#4CAF7A;border:1px solid rgba(46,204,113,.2)}.pill-blue{background:rgba(74,144,217,.12);color:#88B8E8;border:1px solid rgba(74,144,217,.2)}
+.note{background:var(--red-dim);border:1px solid var(--red-mid);border-radius:6px;padding:10px 12px;font-size:12px;color:#DDAAAA;line-height:1.5}.note.info{background:rgba(74,144,217,.08);border-color:rgba(74,144,217,.2);color:#88B8E8}.note.success{background:rgba(46,204,113,.08);border-color:rgba(46,204,113,.2);color:#7EC8A0}.note.warn{background:rgba(232,184,75,.08);border-color:rgba(232,184,75,.2);color:#E8B84B}
+.bar-list{display:flex;flex-direction:column;gap:10px}.bar-row{display:grid;grid-template-columns:160px 1fr 80px;gap:10px;align-items:center}.bar-label{font-size:12px;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bar-label small{display:block;font-size:10px;color:var(--mist)}.bar-track{background:rgba(255,255,255,.06);border-radius:99px;height:8px;overflow:hidden}.bar-fill{height:100%;border-radius:99px;background:var(--red)}.bar-fill.blue{background:var(--blue)}.bar-fill.green{background:var(--green)}.bar-value{font-size:12px;font-weight:600;color:var(--white-pure);text-align:right}
+.hidden{display:none}.mt-8{margin-top:8px}.mt-12{margin-top:12px}.right{text-align:right}.muted{color:var(--mist)}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px}.modal-card{background:var(--ink);border:1px solid var(--border-lt);border-radius:var(--radius);width:min(900px,100%);max-height:85vh;overflow-y:auto;padding:20px}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--charcoal);border:1px solid var(--green);color:#4CAF7A;padding:10px 16px;border-radius:var(--radius);font-size:13px;font-weight:600;z-index:200}
+
+.role-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.role-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.role-btn{padding:7px 14px;border:1px solid var(--border);border-radius:99px;background:transparent;color:var(--mist);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s}
+.role-btn:hover{border-color:var(--border-lt);color:var(--white)}
+.role-btn.active{background:var(--red);border-color:var(--red);color:var(--white-pure)}
+.role-note{font-size:12px;color:var(--mist)}
+.kicker{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--mid);margin-bottom:6px}
+.mt-8{margin-top:8px}.mt-12{margin-top:12px}.success{color:var(--green)}.danger{color:var(--red-light)}.muted{color:var(--mist)}
+.small-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+@media(max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}.bar-row{grid-template-columns:110px 1fr 70px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="hero">
+    <div class="hero-brand">
+      <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
+        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
+        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
+        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
+      </svg>
+      <div class="hero-meta">
+        <div class="hero-eyebrow">Onyx People · Built by Nilan Vagh</div>
+        <div class="hero-title">Calibration Engine</div>
+        <div class="hero-sub">Governed workflow for performance calibration · FY26 synthetic cycle</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat"><div class="hero-stat-val">247</div><div class="hero-stat-label">FTE</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">6</div><div class="hero-stat-label">Divisions</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">5</div><div class="hero-stat-label">Surfaces</div></div>
+      <a href="builds.html" class="hero-back">← Portfolio</a>
+    </div>
+  </header>
+
+  <div class="demo-banner">
+    <strong>Portfolio Demo · Synthetic Data</strong>
+    Onyx is a fictional AI-native SaaS company. Names, ratings, promos, and organisational context are fictional.
+    The workflow logic, role-based views, executive review path, admin oversight, promotion guardrails, session locks, and analytics model are real.
+  </div>
+
+  <div class="tabs-bar">
+    <button class="tab-btn active" onclick="setTab('TRIAGE')">1 · Async Triage</button>
+    <button class="tab-btn" onclick="setTab('CALIBRATION')">2 · Calibration Sheet</button>
+    <button class="tab-btn" onclick="setTab('PROMOTIONS')">3 · Promotion Guardrails</button>
+    <button class="tab-btn" onclick="setTab('ANALYTICS')">4 · Calibration Analytics</button>
+  </div>
+
+
+  <div class="role-strip">
+    <div class="role-buttons">
+      <button class="role-btn active" id="role-PEOPLE_PARTNER" onclick="setRoleView('PEOPLE_PARTNER')">People Partner View</button>
+      <button class="role-btn" id="role-MANAGER" onclick="setRoleView('MANAGER')">Manager View</button>
+      <button class="role-btn" id="role-EXEC" onclick="setRoleView('EXEC')">Executive Review</button>
+      <button class="role-btn" id="role-ADMIN" onclick="setRoleView('ADMIN')">Admin Command Centre</button>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <span class="role-note" id="role-note">Moderation view with triage, calibration, promotion review, and analytics.</span>
+      <button class="btn btn-secondary btn-sm" onclick="openGuide()">Help / Demo Guide</button>
+    </div>
+  </div>
+
+  <div id="app"></div>
+  <div id="modal-container"></div>
+  <div id="toast-container"></div>
+</div>
+<script>
+const DIVISIONS=['Product & Design','Engineering & Platform','Sales & Marketing','Customer & Operations','Data & AI','People & Finance'];
+const DEPARTMENTS={
+  'Product & Design':['Product','Design','Research'],
+  'Engineering & Platform':['Engineering','Platform','Security'],
+  'Sales & Marketing':['Sales','Partnerships','Marketing'],
+  'Customer & Operations':['CX','Operations','Implementation'],
+  'Data & AI':['Analytics','ML','Data Science'],
+  'People & Finance':['People','Finance','Legal']
+};
+const MANAGERS=['Alex Mercer','Jordan Blake','Casey Quinn','Taylor Shaw','Morgan Hayes','Riley Foster','Sam Bennett','Jamie Parker'];
+const FIRST=['Avery','Rowan','Maya','Felix','Zara','Noah','Ivy','Elliot','Sienna','Leo','Aria','Milo','Nina','Jasper','Chloe','Theo','Priya','Owen','Ruby','Ethan'];
+const LAST=['Parker','Hale','Santos','Bennett','Quinn','Mercer','Shaw','Reeves','Patel','Harper','Blake','Foster','Nolan','Bishop','Singh','Hayes'];
+function rng(seed){let v=seed>>>0;return()=>{v=(Math.imul(1664525,v)+1013904223)>>>0;return v/4294967295}}
+const rand=rng(52);
+function pick(arr){return arr[Math.floor(rand()*arr.length)]}
+function weighted(w,h,g){return Math.round(((w*0.6+h*0.3+g*0.1)+Number.EPSILON)*100)/100}
+function label(score){if(score>=5)return'Exceptional Impact'; if(score>=4)return'Exceeds Expectations'; if(score>=3)return'Meets Expectations'; if(score>=2)return'Approaching Expectations'; return'Below Expectations'}
+function pillCls(val){const s=String(val||'').toLowerCase(); if(s.includes('declined')||s.includes('under')||s.includes('warning')||s.includes('pip')) return 'pill pill-red'; if(s.includes('endorsed')||s.includes('locked')||s.includes('clear')||s.includes('eligible')) return 'pill pill-green'; if(s.includes('pending')||s.includes('approaching')||s.includes('retention')) return 'pill pill-amber'; if(s.includes('review')||s.includes('mismatch')||s.includes('session')) return 'pill pill-blue'; return 'pill pill-default';}
+function esc(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function fp(v){const n=Number(v||0);return (n*100).toFixed(1)+'%'}
+function avg(arr,field){const vals=arr.map(x=>Number(x[field]||0)).filter(v=>!isNaN(v)&&v>0);return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0}
+const EMPLOYEES=[];
+for(let i=0;i<72;i++){
+  const division=pick(DIVISIONS); const department=pick(DEPARTMENTS[division]); const manager=pick(MANAGERS);
+  const preWhat=1+Math.floor(rand()*5), preHow=1+Math.floor(rand()*5), preGrowth=1+Math.floor(rand()*5);
+  const preWeighted=weighted(preWhat,preHow,preGrowth);
+  const mid=Math.max(1,Math.min(5,Math.round(preWeighted + (rand()-0.5)*1.2)));
+  const calWhat=Math.max(1,Math.min(5,preWhat + (rand()<0.18?1:(rand()>0.88?-1:0))));
+  const calHow=Math.max(1,Math.min(5,preHow + (rand()<0.15?1:(rand()>0.9?-1:0))));
+  const calGrowth=Math.max(1,Math.min(5,preGrowth + (rand()<0.12?1:(rand()>0.92?-1:0))));
+  const calWeighted=weighted(calWhat,calHow,calGrowth);
+  const riskRoll=rand();
+  const risk=riskRoll<0.06?'PIP':riskRoll<0.11?'Warning':riskRoll<0.17?'Retention Risk':'Clear';
+  const promo=rand()<0.16;
+  const roleChange=rand()<0.14?'Yes':'No';
+  const session=division==='Engineering & Platform'?'S3':division==='Data & AI'?'S2':'S1';
+  const tenureMonths=6+Math.floor(rand()*60);
+  const statuses=['Pending','Endorsed for Executive Review','Declined','Approved'];
+  const sltStatus=promo?pick(statuses):'Pending';
+  EMPLOYEES.push({
+    id:'ONYX-'+String(1001+i),
+    name:pick(FIRST)+' '+pick(LAST),
+    division,department,manager,session,
+    grade:pick(['L2','L3','L4','L5']),
+    title:pick(['Product Specialist','Platform Engineer','Data Analyst','Revenue Manager','Operations Lead','People Partner']),
+    gender:pick(['Female','Male','Female','Male','Non-binary']),
+    tenureMonths,roleChange,
+    midYear:mid,
+    preWhat,preHow,preGrowth,preWeighted,preRating:label(preWeighted),
+    calWhat,calHow,calGrowth,calWeighted,calRating:label(calWeighted),
+    risk,
+    asyncNotes:(rand()<0.55?`Manager notes stronger delivery in Q3. ${promo?'Promotion case likely needs executive-review follow-up. ':''}${risk!=='Clear'?'Formal process history should be checked before finalising. ':''}${roleChange==='Yes'?'Recent role change context should be considered. ':''}`:''),
+    promoProp:promo?'Yes':'No',
+    businessCase:promo?`Broader scope now spans cross-functional delivery, stronger evidence of next-level capability, and sustained impact across ${department}.`:'',
+    changeType:promo?pick(['Job Grade Change','Title Change Only']):'',
+    proposedTitle:promo?pick(['Senior Product Specialist','Lead Platform Engineer','Senior Data Analyst','Principal Revenue Manager']):'',
+    newGrade:promo?pick(['L3','L4','L5']):'',
+    sltStatus,
+    locked:rand()<0.45,
+    directReport:rand()<0.08
+  });
+}
+const ROLE_META={
+  PEOPLE_PARTNER:'Moderation view with triage, calibration, promotion review, and analytics.',
+  MANAGER:'Manager-facing surface focused on async input, evidence, and visible movement.',
+  EXEC:'Executive review surface for escalated cases, executive cohort review, and final approval path.',
+  ADMIN:'Admin Command Centre showing completion, role complexity, watchlists, and audit-style oversight.'
+};
+const STATE={tab:'TRIAGE',roleView:'PEOPLE_PARTNER',division:'',department:'',manager:'',session:'',search:'',showLockedOnly:false,showPromoOnly:false};
+function filtered(){
+  return EMPLOYEES.filter(e=>
+    (!STATE.division||e.division===STATE.division)&&(!STATE.department||e.department===STATE.department)&&(!STATE.manager||e.manager===STATE.manager)&&(!STATE.session||e.session===STATE.session)&&
+    (!STATE.search||[e.name,e.id,e.division,e.department,e.manager,e.title].join(' ').toLowerCase().includes(STATE.search.toLowerCase()))&&
+    (!STATE.showLockedOnly||e.locked)&&(!STATE.showPromoOnly||e.promoProp==='Yes')
+  )
+}
+function setRoleView(view){STATE.roleView=view; updateRoleUi(); render()}
+function updateRoleUi(){
+  Object.keys(ROLE_META).forEach(v=>{
+    const el=document.getElementById('role-'+v);
+    if(el) el.classList.toggle('active', STATE.roleView===v);
+  });
+  const note=document.getElementById('role-note');
+  if(note) note.textContent=ROLE_META[STATE.roleView]||'';
+}
+function openGuide(){
+  const html=`<div class="modal-bg" onclick="closeModal()"><div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-header"><div><div class="panel-title">Calibration Engine · Demo Guide</div><div class="panel-sub">How to navigate the Onyx portfolio demo and what each surface is proving.</div></div><button class="btn btn-ghost btn-sm" onclick="closeModal()">Close</button></div>
+    <div class="small-grid">
+      <div class="panel soft"><div class="kicker">What this is</div><div class="panel-title">A governed workflow, not a rating store</div><div class="panel-sub">The product is designed around how calibration decisions actually get prepared, moderated, reviewed, and signed off.</div></div>
+      <div class="panel soft"><div class="kicker">Views available</div><div class="panel-sub"><strong>Manager View</strong> for evidence input and discussion prep.<br><strong>People Partner View</strong> for moderation and workflow control.<br><strong>Executive Review</strong> for escalated or executive-level review.<br><strong>Admin Command Centre</strong> for oversight, completion tracking, and watchlists.</div></div>
+      <div class="panel soft"><div class="kicker">Rating framework</div><div class="panel-sub"><strong>Below Expectations</strong><br><strong>Approaching Expectations</strong><br><strong>Meets Expectations</strong><br><strong>Exceeds Expectations</strong><br><strong>Exceptional Impact</strong></div></div>
+      <div class="panel soft"><div class="kicker">Weighted dimensions</div><div class="panel-sub"><strong>Outcomes</strong> 60%<br><strong>Behaviours</strong> 30%<br><strong>Growth</strong> 10%</div></div>
+      <div class="panel soft"><div class="kicker">Workflow stages</div><div class="panel-sub">1. Async Triage<br>2. Calibration Sheet<br>3. Promotion Guardrails<br>4. Calibration Analytics</div></div>
+      <div class="panel soft"><div class="kicker">What to look for</div><div class="panel-sub">Role-sensitive surfaces, guardrails, completion logic, executive-review routing, and command-centre visibility. That complexity is the point of the demo.</div></div>
+    </div>
+  </div></div>`;
+  document.getElementById('modal-container').innerHTML=html;
+}
+function selectOpts(values,current){return '<option value="">All</option>'+values.map(v=>`<option value="${esc(v)}" ${current===v?'selected':''}>${esc(v)}</option>`).join('')}
+function controls(){
+  const rows=filtered();
+  const divs=[...new Set(EMPLOYEES.map(e=>e.division))].sort();
+  const depts=[...new Set((STATE.division?EMPLOYEES.filter(e=>e.division===STATE.division):EMPLOYEES).map(e=>e.department))].sort();
+  const mgrs=[...new Set(EMPLOYEES.map(e=>e.manager))].sort();
+  return `<div class="panel"><div class="section-head"><div class="section-head-left"><div class="panel-title">View controls</div><div class="panel-sub">${STATE.roleView==='MANAGER'?'Manager-facing view of the synthetic Onyx population. Focus on evidence, async input, and visible movement.':STATE.roleView==='EXEC'?'Executive review view. Focus on escalated cases, executive cohort visibility, and approval sequencing.':'Use division, department, manager, session, or search to narrow the synthetic Onyx population.'}</div></div><div class="section-tools"><button class="btn btn-ghost btn-sm" onclick="resetFilters()">Reset</button></div></div>
+  <div class="field-grid">
+    <label class="field">Division<select onchange="setFilter('division',this.value)">${selectOpts(divs,STATE.division)}</select></label>
+    <label class="field">Department<select onchange="setFilter('department',this.value)">${selectOpts(depts,STATE.department)}</select></label>
+    <label class="field">Manager<select onchange="setFilter('manager',this.value)">${selectOpts(mgrs,STATE.manager)}</select></label>
+    <label class="field">Tech Session<select onchange="setFilter('session',this.value)">${selectOpts(['S1','S2','S3'],STATE.session)}</select></label>
+    <label class="field">Search<input value="${esc(STATE.search)}" oninput="setFilter('search',this.value)" placeholder="Name, ID, title..."></label>
+  </div>
+  <div class="btn-row mt-12"><button class="btn btn-secondary btn-sm" onclick="toggle('showLockedOnly')">${STATE.showLockedOnly?'Showing locked only':'Filter locked only'}</button><button class="btn btn-secondary btn-sm" onclick="toggle('showPromoOnly')">${STATE.showPromoOnly?'Showing promo cases only':'Filter promo cases only'}</button><span class="muted">${rows.length} employees in view</span></div><div class="note info top-gap-sm">${STATE.roleView==='MANAGER'?'Manager View highlights pre-room context, notes, and visible movement.':STATE.roleView==='EXEC'?'Executive Review highlights escalated decisions and final approval path.':'People Partner View highlights moderation, completion, and guardrail logic.'}</div></div>`
+}
+function stat(label,val,detail='',extra=''){return `<div class="stat-card ${extra}"><div class="stat-label">${esc(label)}</div><div class="stat-value">${val}</div>${detail?`<div class="stat-detail">${detail}</div>`:''}</div>`}
+function triage(){
+  const rows=filtered(); const flagged=rows.filter(r=>r.risk!=='Clear').length; const notes=rows.filter(r=>r.asyncNotes).length; const promo=rows.filter(r=>r.promoProp==='Yes').length;
+  return `${controls()}<div class="cards-grid">${stat('Employees in view',rows.length,'Current filtered population.')}${stat('System flags',flagged,'PIP, warning, or retention prompts.')}${stat('Async notes',notes,'Profiles with triage context already captured.')}${stat('Promotion cases',promo,'Cases likely to move to guardrails review.')}</div>
+  <div class="panel"><div class="panel-title">Async Triage</div><div class="panel-sub">This is the pre-room working layer: review employee context, note where evidence is needed, and surface anything that should shape live calibration.</div><div class="table-wrap scrollable"><table><thead><tr><th>Employee</th><th>Org context</th><th>Performance baseline</th><th>System flags</th><th>Async note</th></tr></thead><tbody>${rows.map(r=>`<tr><td><strong>${esc(r.name)}</strong><br><span class="muted">${esc(r.id)}</span></td><td>${esc(r.division)}<br><span class="muted">${esc(r.department)} · ${esc(r.manager)}</span></td><td>Mid-year ${r.midYear}<br><span class="muted">Pre-cal ${r.preWeighted.toFixed(2)} · ${esc(r.preRating)}</span></td><td><span class="${pillCls(r.risk)}">${esc(r.risk)}</span>${r.roleChange==='Yes'?`<div class="mt-8"><span class="pill pill-blue">Recent role change</span></div>`:''}</td><td>${r.asyncNotes?esc(r.asyncNotes):'<span class="muted">No async note yet</span>'}</td></tr>`).join('')}</tbody></table></div></div>`
+}
+function calibration(){
+  const rows=filtered(); const changed=rows.filter(r=>r.preRating!==r.calRating).length; const locked=rows.filter(r=>r.locked).length; const avgCal=avg(rows,'calWeighted');
+  return `${controls()}<div class="cards-grid">${stat('Avg calibrated score',avgCal.toFixed(2),'Weighted score across current view using Outcomes, Behaviours, and Growth.')}${stat('Rating moved',changed,'Employees where final rating differs from baseline.')}${stat('Locked cohort',locked,'Profiles already marked complete / locked.')}${stat('Exceeds + exceptional',rows.filter(r=>r.calWeighted>=4).length,'Top-end calibrated outcomes in view.')}</div>
+  <div class="panel"><div class="panel-title">Calibration Sheet</div><div class="panel-sub">Live moderation surface. The real point is not where the rating gets stored. It is how the decision path gets structured before the final outcome is written back.</div><div class="table-wrap scrollable"><table><thead><tr><th>Employee</th><th>Grade / title</th><th>Pre-calibration</th><th>Live calibration</th><th>Movement</th><th>Lock state</th></tr></thead><tbody>${rows.map(r=>{const delta=(r.calWeighted-r.preWeighted).toFixed(2); const move=Number(delta)>0?`▲ ${delta}`:Number(delta)<0?`▼ ${delta}`:`—`; return `<tr><td><strong>${esc(r.name)}</strong><br><span class="muted">${esc(r.division)} · ${esc(r.department)}</span></td><td>${esc(r.grade)}<br><span class="muted">${esc(r.title)}</span></td><td>O ${r.preWhat} · B ${r.preHow} · G ${r.preGrowth}<br><span class="muted">${r.preWeighted.toFixed(2)} · ${esc(r.preRating)}</span></td><td>O ${r.calWhat} · B ${r.calHow} · G ${r.calGrowth}<br><span class="muted">${r.calWeighted.toFixed(2)} · ${esc(r.calRating)}</span></td><td><span class="${Number(delta)>0?'success':Number(delta)<0?'danger':'muted'}">${move}</span></td><td><span class="${pillCls(r.locked?'Locked':'Open')}">${r.locked?'Locked':'Open'}</span></td></tr>`}).join('')}</tbody></table></div></div>`
+}
+function promotions(){
+  const rows=filtered().filter(r=>r.promoProp==='Yes'); const endorsed=rows.filter(r=>r.sltStatus.includes('Endorsed')).length; const approved=rows.filter(r=>r.sltStatus.includes('Approved')).length; const declined=rows.filter(r=>r.sltStatus.includes('Declined')).length;
+  return `${controls()}<div class="cards-grid">${stat('Promo cases',rows.length,'Promotion proposals in current view.')}${stat('Endorsed',endorsed,'Ready for executive review / queue.')}${stat('Approved',approved,'Approved in synthetic final state.')}${stat('Declined',declined,'Guardrail exceptions or not approved.')}</div>
+  <div class="panel"><div class="panel-title">Promotion Guardrails</div><div class="panel-sub">This is governed decision support, not a rewards-specialist proof object. The logic here is about promotion readiness, exception handling, approval sequencing, and final decision status across moderator and executive-review steps.</div><div class="table-wrap scrollable"><table><thead><tr><th>Employee</th><th>Context</th><th>Case</th><th>Guardrail view</th><th>Decision status</th></tr></thead><tbody>${rows.map(r=>{const reasons=[]; if(r.tenureMonths<12)reasons.push('<12mo tenure'); if(r.roleChange==='Yes')reasons.push('recent role change'); if(r.risk!=='Clear')reasons.push(r.risk); return `<tr><td><strong>${esc(r.name)}</strong><br><span class="muted">${esc(r.id)}</span></td><td>${esc(r.division)} · ${esc(r.grade)}<br><span class="muted">${r.tenureMonths} months in role</span></td><td>${esc(r.changeType||'—')}<br><span class="muted">${esc(r.proposedTitle||'No new title')}</span></td><td>${reasons.length?reasons.map(x=>`<span class="pill pill-amber">${esc(x)}</span>`).join(' '):'<span class="pill pill-green">No visible exception</span>'}<div class="mt-8 muted">${esc(r.businessCase)}</div></td><td><span class="${pillCls(r.sltStatus)}">${esc(r.sltStatus)}</span></td></tr>`}).join('')}</tbody></table></div></div>`
+}
+function analytics(){
+  const rows=filtered();
+  const dist={'Below Expectations':0,'Approaching Expectations':0,'Meets Expectations':0,'Exceeds Expectations':0,'Exceptional Impact':0};
+  rows.forEach(r=>dist[r.calRating]=(dist[r.calRating]||0)+1);
+  const divMap={}; rows.forEach(r=>{if(!divMap[r.division])divMap[r.division]={hc:0,avg:0}; divMap[r.division].hc++; divMap[r.division].avg+=r.calWeighted});
+  const divRows=Object.entries(divMap).map(([k,v])=>({label:k,hc:v.hc,avg:v.avg/v.hc})).sort((a,b)=>b.avg-a.avg);
+  const moved=rows.filter(r=>r.preRating!==r.calRating).length;
+  const high=rows.filter(r=>r.calWeighted>=4).length;
+  const riskLow=rows.filter(r=>r.calWeighted<2 && r.risk==='Clear').length;
+  const max=Math.max(...Object.values(dist),1);
+  return `${controls()}<div class="cards-grid">${stat('Completed profiles',rows.length,'Current filtered population in analysis.')}${stat('Moved ratings',moved,'Pre-calibration vs calibrated change count.')}${stat('Exceeds + exceptional',high,'Top-end final outcomes.')}${stat('Low score / no process',riskLow,'Potential review watchlist.')}</div>
+  <div class="grid-2"><div class="panel"><div class="panel-title">Performance Distribution</div><div class="panel-sub">Calibrated mix across the current view.</div><div class="bar-list">${Object.entries(dist).map(([k,v])=>`<div class="bar-row"><div class="bar-label">${esc(k)}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(4,Math.round((v/max)*100))}%"></div></div><div class="bar-value">${v}</div></div>`).join('')}</div></div><div class="panel"><div class="panel-title">Average Score by Division</div><div class="panel-sub">Decision-ready visibility. This is a decision surface, not just a dashboard layer.</div><div class="bar-list">${divRows.map(r=>`<div class="bar-row"><div class="bar-label">${esc(r.label)}<small>${r.hc} HC</small></div><div class="bar-track"><div class="bar-fill blue" style="width:${Math.round((r.avg/5)*100)}%"></div></div><div class="bar-value">${r.avg.toFixed(2)}</div></div>`).join('')}</div></div></div>
+  <div class="panel"><div class="panel-title">Smart Readout</div><div class="panel-sub">Short interpretation layer showing what should draw attention in the workflow.</div><div class="note info">${rows.length} profiles are in view. ${moved} have moved rating versus baseline. ${high} sit in Exceeds / Exceptional Impact. ${riskLow} low-scoring profiles have no recorded formal process in this synthetic data set, which would normally trigger a governance check before sign-off.</div></div>`
+}
+
+function commandCentre(){
+  const rows=filtered();
+  const locked=rows.filter(r=>r.locked).length;
+  const promo=rows.filter(r=>r.promoProp==='Yes').length;
+  const execReady=rows.filter(r=>r.promoProp==='Yes' && r.sltStatus.includes('Executive Review')).length;
+  const riskLow=rows.filter(r=>r.calWeighted<2 && r.risk==='Clear').length;
+  const moved=rows.filter(r=>r.preRating!==r.calRating).length;
+  const byDivision={}; rows.forEach(r=>{if(!byDivision[r.division])byDivision[r.division]={hc:0,locked:0,promo:0}; byDivision[r.division].hc++; if(r.locked)byDivision[r.division].locked++; if(r.promoProp==='Yes')byDivision[r.division].promo++;});
+  const roleRows=[
+    ['Manager View','Async evidence, pre-room context, and visible employee-level movement'],
+    ['People Partner View','Moderation, session filtering, workflow shaping, and guardrails'],
+    ['Executive Review','Escalated cases, executive cohort review, and final approval path'],
+    ['Admin Command Centre','Completion, watchlists, role complexity, and audit-style oversight']
+  ];
+  return `<div class="cards-grid">${stat('Employees in view',rows.length,'Synthetic population across the current filters.')}${stat('Locked profiles',locked,'Completion state across sessions and cohorts.')}${stat('Promo cases',promo,'Promotion proposals currently surfaced.')}${stat('Executive-review queue',execReady,'Cases routed toward executive review status.')}</div>
+  <div class="grid-2">
+    <div class="panel"><div class="panel-title">Admin Command Centre</div><div class="panel-sub">This surface shows the control layer behind the workflow: completion, readiness, queue state, and watchlists.</div>
+      <div class="cards-grid-sm top-gap-sm">
+        ${stat('Rating moved',moved,'Profiles where final rating differs from baseline.')}
+        ${stat('Low score / no process',riskLow,'Would normally trigger a governance check before sign-off.')}
+      </div>
+      <div class="note info top-gap-sm">This demo shows the complexity of the tool through distinct role surfaces. The point is not just the table views — it is the operating architecture underneath them.</div>
+    </div>
+    <div class="panel"><div class="panel-title">Views available</div><div class="panel-sub">Use the role buttons above to switch surfaces and inspect how the same workflow looks to different actors.</div>
+      <div class="table-wrap"><table><thead><tr><th>Surface</th><th>Purpose</th></tr></thead><tbody>${roleRows.map(r=>`<tr><td><strong>${r[0]}</strong></td><td>${r[1]}</td></tr>`).join('')}</tbody></table></div>
+    </div>
+  </div>
+  <div class="panel top-gap"><div class="panel-title">Completion & queue by division</div><div class="panel-sub">A simple command-centre readout showing where moderation effort and review pressure sits.</div>
+    <div class="table-wrap scrollable"><table><thead><tr><th>Division</th><th>HC</th><th>Locked</th><th>Promo cases</th><th>Readout</th></tr></thead><tbody>${Object.entries(byDivision).map(([k,v])=>`<tr><td><strong>${esc(k)}</strong></td><td>${v.hc}</td><td>${v.locked}</td><td>${v.promo}</td><td><span class="${v.locked/v.hc>0.7?'pill pill-green':v.locked/v.hc>0.4?'pill pill-amber':'pill pill-red'}">${v.locked/v.hc>0.7?'Mostly complete':v.locked/v.hc>0.4?'In progress':'Needs moderation'}</span></td></tr>`).join('')}</tbody></table></div>
+  </div>`
+}
+
+function closeModal(){document.getElementById('modal-container').innerHTML=''}
+function render(){
+  updateRoleUi();
+  document.querySelectorAll('.tab-btn').forEach((btn,i)=>{const tabs=['TRIAGE','CALIBRATION','PROMOTIONS','ANALYTICS']; btn.classList.toggle('active',STATE.tab===tabs[i]);});
+  const app=document.getElementById('app');
+  if(STATE.roleView==='ADMIN') app.innerHTML=commandCentre();
+  else if(STATE.tab==='TRIAGE') app.innerHTML=triage();
+  else if(STATE.tab==='CALIBRATION') app.innerHTML=calibration();
+  else if(STATE.tab==='PROMOTIONS') app.innerHTML=promotions();
+  else app.innerHTML=analytics();
+}
+function setTab(t){STATE.tab=t; render()}
+function setFilter(k,v){STATE[k]=v; if(k==='division'){STATE.department=''} render()}
+function toggle(k){STATE[k]=!STATE[k]; render()}
+function resetFilters(){STATE.division='';STATE.department='';STATE.manager='';STATE.session='';STATE.search='';STATE.showLockedOnly=false;STATE.showPromoOnly=false;render()}
+render();
+</script>
+</body>
+</html>

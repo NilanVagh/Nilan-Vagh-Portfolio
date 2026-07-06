@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-page="roadmap">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap — Nilan Vagh</title>
+<meta name="description" content="What comes next in the People Infrastructure stack, why the build sequence matters, and what the end-state architecture looks like.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-nav" id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-label="NV monogram">
+        <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+        <rect x="4" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <rect x="21" y="6" width="3" height="16" rx="1.2" fill="#C0392B"/>
+        <polygon points="4,6 7,6 14,16 7,16" fill="#F5F5F5" opacity="0.92"/>
+        <polygon points="24,6 21,6 14,16 21,16" fill="#F5F5F5" opacity="0.5"/>
+        <circle cx="14" cy="23" r="1.5" fill="#C0392B"/>
+      </svg>
+      <span class="nav-name">Nilan Vagh</span>
+    </a>
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="about.html" class="nav-link">About</a>
+      <a href="thinking.html" class="nav-link">The Thinking</a>
+      <a href="builds.html" class="nav-link">The Builds</a>
+      <a href="roadmap.html" class="nav-link nav-link--active">Roadmap</a>
+      <a href="onyx.html" class="nav-link">Onyx</a>
+      <a href="connect.html" class="nav-link nav-link--cta">Connect</a>
+    </nav>
+    <button class="nav-mobile-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="mobile-menu" aria-hidden="true">
+    <a href="about.html" class="nav-mobile-link">About</a>
+    <a href="thinking.html" class="nav-mobile-link">The Thinking</a>
+    <a href="builds.html" class="nav-mobile-link">The Builds</a>
+    <a href="roadmap.html" class="nav-mobile-link">Roadmap</a>
+    <a href="onyx.html" class="nav-mobile-link">Onyx</a>
+    <a href="connect.html" class="nav-mobile-link">Connect</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-eyebrow">Roadmap</span>
+    <h1 class="page-title">What comes next.<br><span class="page-title--accent">And why this sequence matters.</span></h1>
+    <p class="page-hero-sub">This is not a backlog of standalone ideas. It is the next sequence of infrastructure layers required to build a more complete People operating architecture.</p>
+  </div>
+</section>
+
+<section class="roadmap-body">
+  <div class="container">
+
+    <div class="roadmap-intro-card">
+      <span class="section-eyebrow">How to read this page</span>
+      <p class="roadmap-lead">The Builds page shows what is already built and live. The Roadmap page shows what comes next, why those layers come next, and what the full stack becomes when the sequence is complete.</p>
+    </div>
+
+    <div class="roadmap-section">
+      <span class="section-eyebrow">Current foundation</span>
+      <h2 class="section-heading">The stack starts with governed decision domains.</h2>
+      <p class="section-sub">The current proof objects focus on high-stakes workforce decisions where workflow, governance, and auditability matter most.</p>
+      <div class="roadmap-foundation-grid">
+        <a href="builds.html#calibration" class="roadmap-foundation-card">
+          <span class="roadmap-foundation-num">01</span>
+          <div class="roadmap-foundation-title">Calibration Engine</div>
+          <div class="roadmap-foundation-desc">Performance calibration as a governed decision workflow.</div>
+        </a>
+        <a href="builds.html#rem-review" class="roadmap-foundation-card">
+          <span class="roadmap-foundation-num">02</span>
+          <div class="roadmap-foundation-title">Rem Review Planning Studio</div>
+          <div class="roadmap-foundation-desc">Governed planning and budget modelling for remuneration review.</div>
+        </a>
+        <a href="builds.html#workforce-intelligence" class="roadmap-foundation-card">
+          <span class="roadmap-foundation-num">03</span>
+          <div class="roadmap-foundation-title">Workforce Intelligence Layer</div>
+          <div class="roadmap-foundation-desc">Decision-ready workforce visibility rather than static reporting.</div>
+        </a>
+        <a href="builds.html#job-levelling" class="roadmap-foundation-card">
+          <span class="roadmap-foundation-num">04</span>
+          <div class="roadmap-foundation-title">Job Levelling Tool</div>
+          <div class="roadmap-foundation-desc">Structured judgment and governance for role evaluation.</div>
+        </a>
+        <a href="builds.html#eor-matrix" class="roadmap-foundation-card">
+          <span class="roadmap-foundation-num">05</span>
+          <div class="roadmap-foundation-title">EOR Entity Readiness Matrix</div>
+          <div class="roadmap-foundation-desc">Cross-functional governance for entity setup timing.</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="roadmap-section">
+      <span class="section-eyebrow">Why this order</span>
+      <h2 class="section-heading">The sequence is deliberate.</h2>
+      <div class="roadmap-sequence">
+        <div class="roadmap-sequence-step">
+          <div class="roadmap-sequence-num">01</div>
+          <div class="roadmap-sequence-content">
+            <div class="roadmap-sequence-title">Start with governed decision domains</div>
+            <div class="roadmap-sequence-desc">Calibration, remuneration planning, levelling, and global workforce governance are the places where thresholds, approvals, exception paths, and auditability matter most. That is where the infrastructure layer proves its value first.</div>
+          </div>
+        </div>
+        <div class="roadmap-sequence-step">
+          <div class="roadmap-sequence-num">02</div>
+          <div class="roadmap-sequence-content">
+            <div class="roadmap-sequence-title">Add decision-ready visibility</div>
+            <div class="roadmap-sequence-desc">Once governed workflows exist, the next problem is visibility. Not dashboards for their own sake, but a clearer operating layer that surfaces signals, patterns, and the next decision pressure.</div>
+          </div>
+        </div>
+        <div class="roadmap-sequence-step">
+          <div class="roadmap-sequence-num">03</div>
+          <div class="roadmap-sequence-content">
+            <div class="roadmap-sequence-title">Extend into orchestration-heavy workflows</div>
+            <div class="roadmap-sequence-desc">After the governance patterns are in place, the next layer is cross-system orchestration: workflows that branch based on context, pull in multiple stakeholders, and require tighter handoff design.</div>
+          </div>
+        </div>
+        <div class="roadmap-sequence-step">
+          <div class="roadmap-sequence-num">04</div>
+          <div class="roadmap-sequence-content">
+            <div class="roadmap-sequence-title">Expose the stack through a manager-facing operating layer</div>
+            <div class="roadmap-sequence-desc">A manager portal should not come first. It should sit on top of governed workflow, decision logic, and visibility layers that already exist underneath it. The portal is the surface. The infrastructure underneath is the product.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-section">
+      <span class="section-eyebrow">Next layers</span>
+      <h2 class="section-heading">What comes next in the stack.</h2>
+
+      <div class="roadmap-next-grid">
+        <div class="roadmap-next-card" id="internal-moves">
+          <div class="roadmap-next-status">Next build</div>
+          <h3 class="roadmap-next-title">Internal Moves Infrastructure</h3>
+          <p class="roadmap-next-sub">Internal mobility as a governed workflow across fragmented systems.</p>
+          <div class="roadmap-next-block">
+            <div class="roadmap-next-label">Why it comes next</div>
+            <p>Internal moves sit at the intersection of approvals, compensation checks, document generation, signatures, status management, and handoffs. It is the clearest next orchestration problem after the current decision-layer foundation.</p>
+          </div>
+          <div class="roadmap-next-block">
+            <div class="roadmap-next-label">What it adds to the stack</div>
+            <ul class="tool-governance-list">
+              <li>Context-dependent workflow branching</li>
+              <li>Cross-system orchestration and handoff visibility</li>
+              <li>Governance for internal mobility decisions</li>
+              <li>Exception handling across Finance, HR, and business stakeholders</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roadmap-next-card" id="manager-portal">
+          <div class="roadmap-next-status roadmap-next-status--later">Later layer</div>
+          <h3 class="roadmap-next-title">Manager Operating Portal</h3>
+          <p class="roadmap-next-sub">A decision surface for managers, not a dashboard.</p>
+          <div class="roadmap-next-block">
+            <div class="roadmap-next-label">Why it comes after Internal Moves</div>
+            <p>Manager-facing workflow should be built on top of governed systems that already exist underneath. Calibration, planning, intelligence, and orchestration need to be real before a portal can become more than a thin interface.</p>
+          </div>
+          <div class="roadmap-next-block">
+            <div class="roadmap-next-label">What it adds to the stack</div>
+            <ul class="tool-governance-list">
+              <li>Manager-facing decision access in one place</li>
+              <li>Pending actions, exceptions, and approvals surfaced in context</li>
+              <li>A cleaner operating layer between managers and People systems</li>
+              <li>A future home for in-workflow AI assistance and bounded agent actions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-section">
+      <span class="section-eyebrow">End-state vision</span>
+      <h2 class="section-heading">What the full People Infrastructure stack looks like.</h2>
+      <div class="roadmap-stack">
+        <div class="roadmap-stack-layer roadmap-stack-layer--manager">
+          <div class="roadmap-stack-name">Manager operating layer</div>
+          <div class="roadmap-stack-desc">Decision interfaces, approvals, actions, and manager workflow surfaces.</div>
+        </div>
+        <div class="roadmap-stack-layer roadmap-stack-layer--intelligence">
+          <div class="roadmap-stack-name">Intelligence and interpretation layer</div>
+          <div class="roadmap-stack-desc">Signals, recommendations, risk flags, and decision-ready visibility.</div>
+        </div>
+        <div class="roadmap-stack-layer roadmap-stack-layer--governance">
+          <div class="roadmap-stack-name">Governance and decision layer</div>
+          <div class="roadmap-stack-desc">Thresholds, routing logic, escalation rules, auditability, and decision rights.</div>
+        </div>
+        <div class="roadmap-stack-layer roadmap-stack-layer--workflow">
+          <div class="roadmap-stack-name">Workflow execution layer</div>
+          <div class="roadmap-stack-desc">Task progression, status management, cross-system handoffs, and sequencing.</div>
+        </div>
+        <div class="roadmap-stack-layer roadmap-stack-layer--record">
+          <div class="roadmap-stack-name">Systems of record</div>
+          <div class="roadmap-stack-desc">HRIS, performance systems, payroll, ATS, and other core data stores.</div>
+        </div>
+      </div>
+      <p class="roadmap-stack-note">The tools are not separate products. They are layers in one operating model.</p>
+    </div>
+
+    <div class="roadmap-cta-row">
+      <a href="builds.html" class="btn btn--primary">See the current builds</a>
+      <a href="thinking.html" class="btn btn--ghost">Read the thesis</a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-name">Nilan Vagh</span>
+        <span class="footer-role">People Infrastructure · Melbourne, AU</span>
+      </div>
+      <div class="footer-right">
+        <a href="connect.html" class="footer-link">Connect</a>
+        <a href="https://linkedin.com/in/nilanvagh" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-note">The data is dummy. The thinking is not.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

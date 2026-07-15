@@ -53,17 +53,18 @@
   <div class="container">
     <span class="page-eyebrow">The Builds</span>
     <h1 class="page-title">Five proof objects.<br><span class="page-title--accent">One decision architecture.</span></h1>
-    <p class="page-hero-sub">Each tool exists because of a deliberate design decision about how a People decision should be governed — not because a system needed configuring. The case study for each leads with the problem and the thinking, not the features.</p>
+      <p class="page-hero-sub">Five live demonstrations of decision infrastructure. Each case study leads with the decision, trade-off and operating design — not a feature list.</p>
   </div>
 </section>
 
 <!-- BUILDS NOTE -->
 <div class="builds-note-bar">
   <div class="container">
-    <div class="builds-note">
-      <span class="builds-note-label">Sandbox environment</span>
-      All tools are built for <a href="onyx.html" class="builds-note-link">Onyx</a> — a fictional 260-person AI-native SaaS company (235 permanent FTE + 25 EOR across 5 markets). Same data environment across every demo. <a href="onyx.html" class="builds-note-link">Meet Onyx →</a>
-    </div>
+      <div class="builds-note">
+        <span class="builds-note-label">Sandbox environment</span>
+        All tools are built for <a href="onyx.html" class="builds-note-link">Onyx</a> — a fictional 260-person AI-native SaaS company (235 permanent FTE + 25 EOR across 5 markets). Same data environment across every demo. <a href="onyx.html" class="builds-note-link">Meet Onyx →</a>
+      </div>
+      <p style="margin:var(--space-3) 0 0;font-size:var(--text-xs);color:var(--mist);">Demo data is synthetic. Source systems and integrations below describe illustrative architecture unless explicitly labelled as live.</p>
   </div>
 </div>
 
@@ -144,7 +145,7 @@
           <p class="why-build-body" style="margin-top:var(--space-5);">The Calibration Engine sits firmly in the first column. It took weeks of design thinking before a line of code was written — not because the build was technically hard, but because the governance decisions are genuinely complex. What are the exception paths? Who sees what at each stage? What happens when a manager disputes a rating in the live session? Those questions can't be answered by a vendor. They can only be answered by someone who has run this process, in this kind of organisation, and knows what breaks.</p>
         </div>
         <div class="tool-block tool-block--data">
-          <h3 class="tool-block-label">Data sources</h3>
+          <h3 class="tool-block-label">Illustrative source architecture</h3>
           <div class="data-source-list">
             <div class="data-source-row"><span class="data-source-system">Lattice</span><span class="data-source-desc">Performance ratings, review completion status, goal scores, manager assessments</span></div>
             <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Employee records, tenure, current level, manager hierarchy, division, and employment type</span></div>
@@ -171,7 +172,7 @@
               <li>Managers complete async triage in the tool before live sessions — they arrive prepared, not deliberating in real time</li>
               <li>Promotion approvals routed and captured within the tool — full decision chain visible to CPO without leaving the workflow</li>
               <li>Slack notification when async triage window opens — one-touch link back into the tool</li>
-              <li>Calibration outputs written back to Lattice performance records on cycle close</li>
+              <li>Cycle close produces a controlled output for manual update to the system of record</li>
             </ul>
           </div>
           <div class="integration-future">
@@ -242,11 +243,11 @@
                 <div class="tr-stack-desc">Cycle-specific budget modelling and decision-support. Feeds downstream into ChartHop for execution.</div>
               </div>
             </div>
-            <div class="tr-stack-item tr-stack-item--next">
+            <div class="tr-stack-item tr-stack-item--done">
               <div class="tr-stack-num">02</div>
               <div class="tr-stack-content">
-                <div class="tr-stack-title">Job Levelling Tool <span class="tr-stack-badge tr-stack-badge--next">Next build</span></div>
-                <div class="tr-stack-desc">Governance and decision-support for role levelling. Assesses roles against job architecture, recommends level and grade, links levelling outcomes to compensation implications.</div>
+                <div class="tr-stack-title">Role Architecture Studio <span class="tr-stack-badge tr-stack-badge--done">Live demo</span></div>
+                <div class="tr-stack-desc">Governed decision support for role assessment, hiring ranges and internal changes. Maps role evidence against architecture rules and routes exceptions for review.</div>
               </div>
             </div>
             <div class="tr-stack-item">
@@ -266,7 +267,7 @@
           </div>
         </div>
         <div class="tool-block tool-block--data">
-          <h3 class="tool-block-label">Data sources</h3>
+          <h3 class="tool-block-label">Illustrative source architecture</h3>
           <div class="data-source-list">
             <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Employee records, current base salary, level, band, tenure, employment type, and parental leave status</span></div>
             <div class="data-source-row"><span class="data-source-system">Monday.com</span><span class="data-source-desc">PIP tracker and parental leave dates — automatic eligibility exclusion logic</span></div>
@@ -355,7 +356,7 @@
           <p>The experience is designed around a small number of connected signals rather than a large number of disconnected charts. Executive Overview surfaces what changed, why it matters, and what decision is needed. Signal cards summarise the affected cohort, severity, and the evidence behind the signal. The drill-down view acts as the intelligence centre — combining workforce movement, performance, salary context, engagement, historical comparison, and next-action framing in one place.</p>
         </div>
         <div class="tool-block tool-block--data">
-          <h3 class="tool-block-label">Data sources</h3>
+          <h3 class="tool-block-label">Illustrative source architecture</h3>
           <div class="data-source-list">
             <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Headcount snapshots, attrition events, tenure distribution, lifecycle stage, hire/exit dates</span></div>
             <div class="data-source-row"><span class="data-source-system">Lattice</span><span class="data-source-desc">Performance tier distribution by division and manager — layered as a signal on top of workforce data</span></div>
@@ -402,19 +403,21 @@
       <div class="tool-card-header">
         <div class="tool-number">04</div>
         <div class="tool-header-content">
-          <div class="tool-status tool-status--building">
+          <div class="tool-status tool-status--building" style="color:var(--green);">
             <span class="tool-status-dot"></span>
-            Prototype basis exists — public framing in progress
+            Live demo available
           </div>
           <div class="tool-proof-type">Structured judgment tool</div>
-          <h2 class="tool-title">Job Levelling Tool</h2>
-          <p class="tool-subtitle">Structured role evaluation with governance and audit integration</p>
+          <h2 class="tool-title">Onyx Role Architecture Studio</h2>
+          <p class="tool-subtitle">Structured role assessment, hiring-range guidance and governed internal-change review</p>
+          <a href="onyx-role-architecture-studio.html" target="_blank" class="tool-meta-demo-link" style="display:inline-flex;margin-top:var(--space-3);">Open live demo -&gt;</a>
         </div>
       </div>
       <div class="tool-meta-strip">
         <div class="tool-meta-pill"><span class="tool-meta-pill-label">Decision domain</span><span class="tool-meta-pill-value">Job architecture</span></div>
         <div class="tool-meta-pill"><span class="tool-meta-pill-label">Stack</span><span class="tool-meta-pill-value">Google Apps Script</span></div>
-        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Status</span><span class="tool-meta-pill-value tool-meta-pill-value--building">Prototype basis exists — Zip build next</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Status</span><span class="tool-meta-pill-value" style="color:var(--green);">Live deterministic v1</span></div>
+        <div class="tool-meta-pill tool-meta-pill--demo"><a href="onyx-role-architecture-studio.html" target="_blank" class="tool-meta-demo-link">Open live demo -&gt;</a></div>
       </div>
       <div class="tool-single-col">
         <div class="tool-block">
@@ -423,7 +426,7 @@
         </div>
         <div class="tool-block">
           <h3 class="tool-block-label">The design decision</h3>
-          <p>Evaluate roles against a structured rubric and output a level recommendation with the reasoning made explicit. Not a classification tool — a decision support tool that surfaces the inputs, applies the logic, and produces a recommendation the governance layer can act on. Output includes proposed salary range and anchor point — not just a level label.</p>
+          <p>Map submitted role evidence to a structured rubric and make the reasoning visible. This is not a black-box classifier: it applies deterministic architecture rules, identifies missing evidence and routes consequential or uncertain cases to review. Output includes a recommended level, hiring range and decision record.</p>
         </div>
         <div class="tool-block">
           <h3 class="tool-block-label">What it demonstrates</h3>
@@ -435,40 +438,40 @@
           </ul>
         </div>
         <div class="tool-block tool-block--data">
-          <h3 class="tool-block-label">Data sources</h3>
+          <h3 class="tool-block-label">Illustrative source architecture</h3>
           <div class="data-source-list">
             <div class="data-source-row"><span class="data-source-system">Job architecture framework</span><span class="data-source-desc">Level criteria, scope definitions, and band boundaries — the structured logic the tool applies</span></div>
             <div class="data-source-row"><span class="data-source-system">Salary band data</span><span class="data-source-desc">Compensation ranges by level — surfaced at point of decision with proposed range and anchor</span></div>
-            <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Existing role titles and levels — consistency benchmarking against comparable roles</span></div>
-            <div class="data-source-row"><span class="data-source-system">Manager input (JD)</span><span class="data-source-desc">Manager submits JD or role description — tool analyses, applies rubric, outputs recommendation with confidence score</span></div>
+            <div class="data-source-row"><span class="data-source-system">HRIS role data</span><span class="data-source-desc">Existing role titles and levels — consistency benchmarking against comparable approved roles</span></div>
+            <div class="data-source-row"><span class="data-source-system">Manager input (JD)</span><span class="data-source-desc">Manager submits a JD or guided role evidence — the tool maps evidence to the rubric and returns a structured recommendation</span></div>
           </div>
         </div>
         <div class="tool-block tool-block--stakeholders">
           <h3 class="tool-block-label">Stakeholders involved</h3>
           <div class="stakeholder-list">
-            <div class="stakeholder-row"><span class="stakeholder-role">Hiring Managers</span><span class="stakeholder-desc">Submit JD or role summary — receive level, salary range, and proposed anchor via self-serve. No People Partner needed for standard cases.</span></div>
-            <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Architects the framework, reviews fuzzy-flagged edge cases, maintains job architecture governance log</span></div>
-            <div class="stakeholder-row"><span class="stakeholder-role">Total Rewards</span><span class="stakeholder-desc">Receives level + salary range output — confirms band alignment before offer or role change is approved</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Hiring Managers</span><span class="stakeholder-desc">Submit a JD or guided role evidence and receive a structured draft for standard cases.</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">People Partners</span><span class="stakeholder-desc">Benchmark against approved roles, prepare exceptions and guide managers through material changes.</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">Total Rewards</span><span class="stakeholder-desc">Owns architecture calibration, salary bands, exception thresholds and approval policy.</span></div>
             <div class="stakeholder-row"><span class="stakeholder-role">Finance</span><span class="stakeholder-desc">Notified when levelling decision has compensation implications affecting headcount budget</span></div>
           </div>
         </div>
         <div class="tool-block tool-block--integrations">
-          <h3 class="tool-block-label">Build pathway</h3>
+          <h3 class="tool-block-label">Operating pathway</h3>
           <div class="integration-current">
-            <div class="integration-state-label">Current state — prototype logic built</div>
+            <div class="integration-state-label">Current state — live deterministic demonstration</div>
             <ul class="tool-governance-list">
-              <li>Manager submits JD → tool analyses against rubric → outputs level, salary range, anchor, confidence score</li>
-              <li>Slack notification to People Partner when confidence is low or title flags inflation risk</li>
+              <li>Manager submits a JD or guided evidence → architecture rules produce a structured recommendation, hiring range and confidence signal</li>
+              <li>Boundary cases, missing evidence and title/scope conflicts route to People or Total Rewards review</li>
               <li>Every decision logged: requestor, role, level, salary range, confidence, routing outcome</li>
               <li>Levelling Certificate generated — attached to headcount or role change request</li>
             </ul>
           </div>
           <div class="integration-future">
-            <div class="integration-state-label integration-state-label--future">Three-phase roadmap</div>
+            <div class="integration-state-label integration-state-label--future">Future integration options</div>
             <ul class="tool-governance-list">
-              <li><strong>Phase 1:</strong> Build functional tool in Google Apps Script — validate logic with real roles</li>
-              <li><strong>Phase 2:</strong> Move to an internal LLM layer — manager pastes JD, AI analyses against job architecture, produces structured recommendation with rationale. Confidence score determines auto-approve or People review.</li>
-              <li><strong>Phase 3 (with Engineering):</strong> Manager submits in Slack → analysis runs → Certificate generated → logged to governance dashboard. The tool comes to where the work happens.</li>
+              <li><strong>Role library:</strong> Approved job descriptions, prior decisions, architecture tables and salary bands become a governed reference set.</li>
+              <li><strong>Optional assistance:</strong> AI can help extract evidence from approved sources, while architecture rules and human approvals remain the governing layer.</li>
+              <li><strong>Workflow reach:</strong> Intake can move into Slack or another manager surface without moving governance out of the tool.</li>
             </ul>
           </div>
         </div>
@@ -521,7 +524,7 @@
           <p style="margin-top:var(--space-4);font-size:var(--text-sm);color:var(--mist);">Try the demo: update UK Tax PE Risk to 3 in Tab 2 to trigger the Hard Override and see the escalation alert fire.</p>
         </div>
         <div class="tool-block tool-block--data">
-          <h3 class="tool-block-label">Data sources</h3>
+          <h3 class="tool-block-label">Illustrative source architecture</h3>
           <div class="data-source-list">
             <div class="data-source-row"><span class="data-source-system">Deel</span><span class="data-source-desc">EOR headcount by country, contractor vs permanent split, EOR vendor fees by market</span></div>
             <div class="data-source-row"><span class="data-source-system">Finance</span><span class="data-source-desc">Payroll spend by market, estimated entity run cost, one-time setup cost modelling</span></div>

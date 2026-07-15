@@ -118,7 +118,7 @@
         <div class="tool-block tool-block--why-build">
           <h3 class="tool-block-label">Why a custom build — and when it's worth it</h3>
           <p class="why-build-intro">Onyx runs two regions. The US team uses Lattice's native calibration — it fits their process. The ANZ team doesn't. Same company. Same tool available. Different answer.</p>
-          <p class="why-build-body">ANZ calibration is more complex: a larger population relative to the region, different employment law context, stronger cultural norms around due process, and a harder challenge around managing performance consistently across a more tenured . Lattice's calibration is built around the default process. ANZ's process isn't the default. No vendor configuration closes that gap — because the gap isn't in the features, it's in the context.</p>
+          <p class="why-build-body">ANZ calibration is more complex: a larger population relative to the region, different employment law context, stronger cultural norms around due process, and a harder challenge around managing performance consistently across a more tenured workforce. Lattice's calibration is built around the default process. ANZ's process isn't the default. No vendor configuration closes that gap — because the gap isn't in the features, it's in the context.</p>
           <p class="why-build-body">That said — custom building isn't always the right answer. The honest test:</p>
           <div class="cost-benefit-grid">
             <div class="cost-benefit-card cost-benefit-card--build">
@@ -309,37 +309,37 @@
 </section>
 
 <!-- TOOL 03 -->
-<section class="tool-section" id="-decision-intelligence">
+<section class="tool-section" id="workforce-intelligence">
   <div class="container">
     <div class="tool-card">
       <div class="tool-card-header">
         <div class="tool-number">03</div>
         <div class="tool-header-content">
-          <div class="tool-status tool-status--building" style="color:var(--green);">
+          <div class="tool-status tool-status--building" style="color:var(--green)">
             <span class="tool-status-dot" style="background:var(--green);box-shadow:0 0 6px var(--green);"></span>
             Live demo available
           </div>
           <div class="tool-proof-type">Decision-support layer</div>
-          <a href="onyx--intelligence.html" target="_blank" class="tool-meta-demo-link" style="display:inline-flex;margin-top:var(--space-3);">Open live demo →</a>
-          <h2 class="tool-title"> Decision Intelligence</h2>
-          <p class="tool-subtitle">Decision-ready  visibility for leaders</p>
+          <h2 class="tool-title">Workforce Decision Intelligence</h2>
+          <p class="tool-subtitle">Decision-ready visibility for workforce leaders</p>
+          <a href="onyx-workforce-intelligence.html" target="_blank" class="tool-meta-demo-link" style="display:inline-flex;margin-top:var(--space-3);">Open live demo →</a>
         </div>
       </div>
       <div class="tool-meta-strip">
         <div class="tool-meta-pill"><span class="tool-meta-pill-label">Built for</span><span class="tool-meta-pill-value">Onyx — all divisions</span></div>
         <div class="tool-meta-pill"><span class="tool-meta-pill-label">Stack</span><span class="tool-meta-pill-value">Google Apps Script + Sheets</span></div>
-        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Decision domain</span><span class="tool-meta-pill-value"> visibility</span></div>
+        <div class="tool-meta-pill"><span class="tool-meta-pill-label">Decision domain</span><span class="tool-meta-pill-value">Workforce visibility</span></div>
         <div class="tool-meta-pill"><span class="tool-meta-pill-label">Status</span><span class="tool-meta-pill-value" style="color:var(--green)">Live demo available</span></div>
-        <div class="tool-meta-pill tool-meta-pill--demo"><a href="onyx-workforce-intelligence(3).html" target="_blank" class="tool-meta-demo-link">Open live demo →</a></div>
+        <div class="tool-meta-pill tool-meta-pill--demo"><a href="onyx-workforce-intelligence.html" target="_blank" class="tool-meta-demo-link">Open live demo →</a></div>
       </div>
       <div class="tool-single-col">
         <div class="tool-block">
           <h3 class="tool-block-label">The problem</h3>
-          <p>Most workforce reporting tells you what happened — FTE by division, attrition rate, tenure distribution. It doesn't tell you what decision to make next. Performance, engagement, pay position, movement, and lifecycle data sit in separate systems, pulled manually, reported separately. By the time the report reaches a decision-maker it's already stale and the interpretation is left to the reader.</p>
+          <p>Most workforce dashboards tell you what happened. They rarely tell you what decision is needed now. Headcount sits in one system, performance in another, engagement in a third, and pay context somewhere else again. Leaders get reporting, but not a joined-up view of consequence. The real question is not whether attrition moved or engagement dropped in isolation. It is whether a specific workforce issue now requires intervention, and why.</p>
         </div>
         <div class="tool-block">
           <h3 class="tool-block-label">The design decision</h3>
-          <p>Integrate the data sources that actually drive workforce decisions — not just headcount, but movement, performance tier, engagement signal, pay position, flight risk, and representation — and surface them in a single decision-ready layer. The output isn't a dashboard. It's a set of prioritised signals with clear decision prompts attached.</p>
+          <p>Integrate the signals that actually drive workforce decisions — not just headcount, but movement, performance tier, engagement signal, pay position, flight risk, and representation — and surface them in a single decision-ready layer. The output is not a dashboard. It is a prioritised set of workforce signals with clear decision prompts attached.</p>
         </div>
         <div class="tool-block">
           <h3 class="tool-block-label">What it demonstrates</h3>
@@ -350,21 +350,25 @@
             <li>The difference between a dashboard and a decision support surface</li>
           </ul>
         </div>
+        <div class="tool-block">
+          <h3 class="tool-block-label">How the product works</h3>
+          <p>The experience is designed around a small number of connected signals rather than a large number of disconnected charts. Executive Overview surfaces what changed, why it matters, and what decision is needed. Signal cards summarise the affected cohort, severity, and the evidence behind the signal. The drill-down view acts as the intelligence centre — combining workforce movement, performance, salary context, engagement, historical comparison, and next-action framing in one place.</p>
+        </div>
         <div class="tool-block tool-block--data">
           <h3 class="tool-block-label">Data sources</h3>
           <div class="data-source-list">
             <div class="data-source-row"><span class="data-source-system">BambooHR</span><span class="data-source-desc">Headcount snapshots, attrition events, tenure distribution, lifecycle stage, hire/exit dates</span></div>
-            <div class="data-source-row"><span class="data-source-system">Lattice</span><span class="data-source-desc">Performance tier distribution by division and manager — layered as a signal on top of headcount data</span></div>
-            <div class="data-source-row"><span class="data-source-system">Lattice (Engagement)</span><span class="data-source-desc">Quarterly engagement survey results — manually pushed after each survey cycle closes</span></div>
-            <div class="data-source-row"><span class="data-source-system">Monday.com</span><span class="data-source-desc">Parental leave tracker — integrated as a workforce lifecycle signal, not just an absence record</span></div>
+            <div class="data-source-row"><span class="data-source-system">Lattice</span><span class="data-source-desc">Performance tier distribution by division and manager — layered as a signal on top of workforce data</span></div>
+            <div class="data-source-row"><span class="data-source-system">Lattice (Engagement)</span><span class="data-source-desc">Quarterly engagement survey results — used as evidence behind retention, manager effectiveness, and career-growth signals</span></div>
+            <div class="data-source-row"><span class="data-source-system">Salary positioning layer</span><span class="data-source-desc">Band position, midpoint comparison, and pay-pressure context surfaced behind priority workforce decisions</span></div>
           </div>
         </div>
         <div class="tool-block tool-block--stakeholders">
           <h3 class="tool-block-label">Stakeholders involved</h3>
           <div class="stakeholder-list">
-            <div class="stakeholder-row"><span class="stakeholder-role">CPO / Executive</span><span class="stakeholder-desc">Cross-divisional snapshot — headcount movement, attrition signals, performance distribution</span></div>
-            <div class="stakeholder-row"><span class="stakeholder-role">People Partners</span><span class="stakeholder-desc">Division-level signals — flight risk indicators, lifecycle events, exception flags</span></div>
-            <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Owns the data integration layer, monthly refresh cycle, signal design, and distribution</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">CPO / Executive</span><span class="stakeholder-desc">Cross-divisional decision brief — movement, workforce signals, attrition exposure, and where intervention is required now</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">People Partners</span><span class="stakeholder-desc">Division-level signal review — retention risk, progression bottlenecks, manager pressure, and workforce exceptions</span></div>
+            <div class="stakeholder-row"><span class="stakeholder-role">People Ops</span><span class="stakeholder-desc">Owns the integration layer, refresh cycle, signal design, and decision-surface maintenance</span></div>
           </div>
         </div>
         <div class="tool-block tool-block--integrations">
@@ -372,17 +376,17 @@
           <div class="integration-current">
             <div class="integration-state-label">Current state</div>
             <ul class="tool-governance-list">
-              <li>Monthly manual refresh — People Ops pulls from BambooHR, Lattice, and Monday.com into a consolidated data model</li>
-              <li>Automated email sent to stakeholders on refresh — role-based view links, no login required</li>
-              <li>Quarterly engagement data manually pushed after each survey cycle closes</li>
+              <li>Integrated Onyx demo environment joins workforce, performance, engagement, and salary-position signals into one synthetic decision layer</li>
+              <li>Division filter updates the decision surface so leaders can move from whole-of-company view to a specific operating area</li>
+              <li>Signal logic is intentionally bounded — designed to surface where a decision is needed, not to automate the decision itself</li>
             </ul>
           </div>
           <div class="integration-future">
-            <div class="integration-state-label integration-state-label--future">Future state — with Engineering / Data support</div>
+            <div class="integration-state-label integration-state-label--future">Future state</div>
             <ul class="tool-governance-list">
-              <li>Real-time or weekly data pipeline replaces monthly manual refresh</li>
-              <li>Weekly Slack digest to People Partners surfacing division-level anomalies and decision prompts</li>
-              <li>Flight risk scoring layer using performance + tenure + engagement signal combination</li>
+              <li>Live refresh from systems of record rather than manual scenario data</li>
+              <li>Alerting layer for emerging workforce issues that cross a decision threshold</li>
+              <li>Tighter linkage into manager and executive operating workflows so action can be taken directly from the signal</li>
             </ul>
           </div>
         </div>

@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nilan Vagh — People Infrastructure</title>
-  <meta name="description" content="Nilan Vagh builds the orchestration layer between People teams and systems of record — governed workflows, decision support, and selectively applied AI assistance.">
-<meta property="og:title" content="Nilan Vagh — People Infrastructure">
-<meta property="og:description" content="Stop designing HR around systems of record. Start designing it around how decisions actually get made.">
+<title>Nilan Vagh — People Infrastructure Lab</title>
+<meta name="description" content="Nilan Vagh builds the operating layer beneath People decisions: governed workflows, decision systems and AI-ready internal tools for People teams.">
+<meta property="og:title" content="Nilan Vagh — People Infrastructure Lab">
+<meta property="og:description" content="Infrastructure First. AI Second. The plumbing matters more than the prompt.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,7 +14,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <header class="site-nav" id="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
@@ -50,201 +49,216 @@
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">
-      <span class="eyebrow-tag">People Infrastructure</span>
-    </div>
-    <h1 class="hero-thesis">
-      Stop designing HR around<br>
-      <span class="hero-thesis--accent">systems of record.</span><br>
-      Start designing it around<br>
-      how decisions actually get made.
-    </h1>
-    <p class="hero-positioning">
-        I build the orchestration layer between People teams and systems of record. Governed workflows, decision-support systems, and selectively applied AI assistance that change how workforce decisions get made at scale.
-    </p>
-    <div class="hero-meta">
-      <span class="hero-meta-item">Nilan Vagh</span>
-      <span class="hero-meta-sep">·</span>
-      <span class="hero-meta-item">People Infrastructure</span>
-      <span class="hero-meta-sep">·</span>
-      <span class="hero-meta-item">Melbourne</span>
-    </div>
-    <div class="hero-actions">
-      <a href="builds.html" class="btn btn--primary">See the builds</a>
-      <a href="thinking.html" class="btn btn--ghost">Read the thesis</a>
-    </div>
-  </div>
-  <div class="hero-grid-overlay" aria-hidden="true"></div>
-</section>
-
-<!-- CATEGORY DEFINITION -->
-<section class="section-category">
-  <div class="container">
-    <div class="category-grid">
-      <div class="category-label-col">
-        <span class="section-eyebrow">The category</span>
-        <h2 class="category-heading">People Infrastructure</h2>
+<main>
+  <section class="v2-hero" id="top">
+    <div class="v2-hero-grid" aria-hidden="true"></div>
+    <div class="container v2-hero-inner">
+      <div class="v2-hero-copy">
+        <span class="eyebrow-tag">People Infrastructure Lab</span>
+        <h1 class="v2-hero-title">I build the operating layer beneath People decisions.</h1>
+        <p class="v2-hero-subtitle">I design governed workflows, decision systems and AI-ready internal tools for People teams — the infrastructure that sits between intent, action and systems of record.</p>
+        <div class="v2-manifesto-line">
+          <span>Infrastructure First. AI Second.</span>
+          <span>The plumbing matters more than the prompt.</span>
+        </div>
+        <div class="hero-actions">
+          <a href="builds.html" class="btn btn--primary">Enter the Build Lab</a>
+          <a href="#philosophy" class="btn btn--ghost">Explore the philosophy</a>
+          <a href="connect.html" class="btn btn--ghost">Connect</a>
+        </div>
       </div>
-      <div class="category-body-col">
-        <p class="category-body">
-          People Infrastructure is the layer that sits between workforce intent and workforce outcome. Not the policies, not the systems, not the headcount — the governed logic that routes decisions to the right people, at the right moment, with the right guardrails.
-        </p>
-        <p class="category-body">
-          Most People functions have the systems. Few have the infrastructure. The difference is whether the work is mainly about updating a record — or mainly about helping the right people make the right decision in the right order.
-        </p>
-        <a href="thinking.html" class="text-link">The full thesis <span aria-hidden="true">→</span></a>
+      <aside class="v2-hero-panel" aria-label="People Infrastructure thesis">
+        <div class="panel-kicker">The argument</div>
+        <p>Your problem is not BambooHR, Lattice, Slack, Jira, Confluence or AI adoption.</p>
+        <p class="panel-emphasis">Your problem is that the decision path is not designed.</p>
+        <div class="mini-flow" aria-label="Decision path flow">
+          <span>Intent</span><span>Rules</span><span>Workflow</span><span>Approval</span><span>Audit</span><span>AI assist</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="v2-section v2-section--tight" id="decision-path">
+    <div class="container">
+      <div class="v2-section-header">
+        <span class="section-eyebrow">Decision Path Explorer</span>
+        <h2 class="section-heading">Choose a People decision. See what actually needs designing.</h2>
+        <p class="section-sub">Most teams see the form, dashboard, policy page or prompt. The real work is underneath: rules, evidence, permissions, exceptions, approvals, state and auditability.</p>
+      </div>
+      <div class="decision-explorer" data-decision-explorer>
+        <div class="decision-tabs" role="tablist" aria-label="People decisions">
+          <button class="decision-tab is-active" data-decision="promote" type="button">Promote someone</button>
+          <button class="decision-tab" data-decision="role" type="button">Change a role</button>
+          <button class="decision-tab" data-decision="rem" type="button">Plan rem review</button>
+          <button class="decision-tab" data-decision="calibration" type="button">Run calibration</button>
+          <button class="decision-tab" data-decision="risk" type="button">Investigate workforce risk</button>
+          <button class="decision-tab" data-decision="eor" type="button">Convert EOR to entity</button>
+          <button class="decision-tab" data-decision="help" type="button">Ask for help</button>
+        </div>
+        <div class="decision-output" aria-live="polite">
+          <div class="decision-card">
+            <span class="decision-label">What most teams see</span>
+            <h3 id="decision-surface-title">A promotion form and a performance rating.</h3>
+            <p id="decision-surface-copy">The visible artefact is the form. The actual decision depends on role scope, level evidence, calibration context, budget, timing and approval rights.</p>
+          </div>
+          <div class="decision-card decision-card--active">
+            <span class="decision-label">What actually needs designing</span>
+            <h3 id="decision-infra-title">Eligibility, evidence, approval paths and exception handling.</h3>
+            <p id="decision-infra-copy">A promotion decision needs structured evidence, level criteria, manager input, People review, compensation impact checks, decision state and audit trail.</p>
+            <a id="decision-link" class="text-link" href="calibration-onyx-demo.html" target="_blank">Open related prototype →</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- WHAT I'VE BUILT -->
-<section class="section-builds-preview">
-  <div class="container">
-    <div class="builds-header">
-      <span class="section-eyebrow">What I've built</span>
-      <h2 class="section-heading">Five proof objects.<br>One decision architecture.</h2>
-      <p class="section-sub">Five live demonstrations of decision infrastructure: each addresses a specific workforce decision, makes the governing logic visible, and keeps consequential judgment with accountable people.</p>
+  <section class="v2-section v2-section--alt" id="philosophy">
+    <div class="container">
+      <div class="v2-split">
+        <div>
+          <span class="section-eyebrow">Operating philosophy</span>
+          <h2 class="section-heading">AI is only useful when the operating layer underneath is clear.</h2>
+          <p class="section-sub">AI can accelerate the experience. It should not own the judgment. The work starts with the infrastructure: source of truth, process ownership, decision rules, approvals and the human review points that keep consequential work accountable.</p>
+        </div>
+        <div class="stack-visual" aria-label="Infrastructure first stack">
+          <div class="stack-layer">Source of truth</div>
+          <div class="stack-layer">Process ownership</div>
+          <div class="stack-layer">Decision rules</div>
+          <div class="stack-layer">Exceptions & approvals</div>
+          <div class="stack-layer">Workflow state</div>
+          <div class="stack-layer">Audit trail</div>
+          <div class="stack-layer">Human review points</div>
+          <div class="stack-layer stack-layer--ai">AI assist layer</div>
+        </div>
+      </div>
+      <div class="principle-grid">
+        <div class="principle-card"><h3>Infrastructure First. AI Second.</h3><p>The plumbing matters more than the prompt.</p></div>
+        <div class="principle-card"><h3>Workflow before automation.</h3><p>Automate the path only after the path is understood.</p></div>
+        <div class="principle-card"><h3>Rules before agents.</h3><p>Agents need bounded decisions, trusted sources and clear stop points.</p></div>
+        <div class="principle-card"><h3>Human-in-the-loop by design.</h3><p>Consequential People decisions stay accountable to humans.</p></div>
+        <div class="principle-card"><h3>Decision quality over dashboard volume.</h3><p>Visibility is useful when it changes what leaders do next.</p></div>
+        <div class="principle-card"><h3>Governance from the start.</h3><p>Auditability, permissions and escalation are product requirements.</p></div>
+      </div>
     </div>
-    <div class="builds-grid">
-      <a href="calibration-onyx-demo.html" target="_blank" class="build-card build-card--live build-card--flagship">
-        <div class="build-card-number">01</div>
-        <div class="build-card-content">
+  </section>
+
+  <section class="v2-section" id="build-lab-preview">
+    <div class="container">
+      <div class="v2-section-header">
+        <span class="section-eyebrow">Build Lab</span>
+        <h2 class="section-heading">Live proof objects, built around People decision paths.</h2>
+        <p class="section-sub">The tools are not the point. The operating logic behind the tools is the point. Each prototype uses synthetic Onyx data to make a decision system tangible.</p>
+      </div>
+
+      <div class="lab-group-heading">
+        <span>Featured systems</span>
+        <p>The strongest end-to-end examples of governed People workflow design.</p>
+      </div>
+      <div class="v2-build-grid v2-build-grid--featured">
+        <article class="v2-build-card v2-build-card--featured">
           <div class="build-card-status build-card-status--flagship">Flagship build</div>
-          <h3 class="build-card-title">Calibration Engine</h3>
-          <p class="build-card-desc">Performance calibration as a governed decision workflow. Async triage, promotion guardrails, role-based visibility, divisional roll-up, full audit trail.</p>
-        </div>
-        <div class="build-card-arrow" aria-hidden="true">→</div>
-      </a>
+          <h3>Calibration Engine</h3>
+          <p>Performance calibration as a governed workflow: async triage, promotion guardrails, role-based visibility, divisional roll-up and audit trail.</p>
+          <div class="badge-row"><span>Live HTML prototype</span><span>Workflow system</span><span>Human review</span></div>
+          <a href="calibration-onyx-demo.html" target="_blank" class="btn btn--ghost">Open demo</a>
+        </article>
+        <article class="v2-build-card v2-build-card--featured">
+          <div class="build-card-status" style="color:#2ECC71">Live demo</div>
+          <h3>Rem Review Planning Studio</h3>
+          <p>Budget modelling and cohort logic for annual remuneration review — governance-ready before execution moves downstream.</p>
+          <div class="badge-row"><span>Planning infrastructure</span><span>GAS-ready</span><span>Synthetic data</span></div>
+          <a href="rem-review-demo.html" target="_blank" class="btn btn--ghost">Open demo</a>
+        </article>
+        <article class="v2-build-card v2-build-card--featured">
+          <div class="build-card-status" style="color:#2ECC71">Live demo</div>
+          <h3>Role Architecture Studio</h3>
+          <p>Rule-based role assessment, hiring-range guidance and internal-change review. AI-assist future state; governance remains outside the model.</p>
+          <div class="badge-row"><span>Rule-based simulation</span><span>Decision record</span><span>AI-ready</span></div>
+          <a href="onyx-role-architecture-studio.html" target="_blank" class="btn btn--ghost">Open demo</a>
+        </article>
+      </div>
 
-      <a href="rem-review-demo.html" target="_blank" class="build-card">
-        <div class="build-card-number">02</div>
-        <div class="build-card-content">
-          <div class="build-card-status" style="color:#2ECC71;font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Live demo</div>
-          <h3 class="build-card-title">Rem Review Planning Studio</h3>
-          <p class="build-card-desc">Governed planning infrastructure for remuneration review. Budget envelopes, cohort distribution logic, eligibility rules, and governance-ready outputs — built in, not bolted on.</p>
-        </div>
-        <div class="build-card-arrow" aria-hidden="true">→</div>
-      </a>
-
-      <a href="onyx-workforce-intelligence.html" target="_blank" class="build-card">
-        <div class="build-card-number">03</div>
-        <div class="build-card-content">
-          <div class="build-card-status" style="color:#2ECC71;font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Live demo</div>
-          <h3 class="build-card-title">Workforce Decision Intelligence</h3>
-          <p class="build-card-desc">Decision-ready visibility for workforce leaders. Integrated signals across movement, performance, pay position, engagement, and retention risk — surfaced where action is needed now.</p>
-        </div>
-        <div class="build-card-arrow" aria-hidden="true">→</div>
-      </a>
-
-      <a href="onyx-role-architecture-studio.html" target="_blank" class="build-card">
-        <div class="build-card-number">04</div>
-        <div class="build-card-content">
-          <div class="build-card-status" style="color:#2ECC71;font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Live demo</div>
-          <h3 class="build-card-title">Onyx Role Architecture Studio</h3>
-          <p class="build-card-desc">Structured role assessment, hiring-range guidance and internal-change review. Deterministic architecture rules with exception routing and a reusable decision record.</p>
-        </div>
-        <div class="build-card-arrow" aria-hidden="true">→</div>
-      </a>
-
-        <a href="eor-matrix.html" target="_blank" class="build-card">
-        <div class="build-card-number">05</div>
-        <div class="build-card-content">
-          <div class="build-card-status" style="color:#2ECC71;font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Live demo</div>
-          <h3 class="build-card-title">EOR Entity Readiness Matrix</h3>
-          <p class="build-card-desc">Weighted governance framework for EOR-to-entity conversion. Seven exit triggers across Finance, Legal, and Business — hard override logic, RAG scoring, full audit trail.</p>
-        </div>
-        <div class="build-card-arrow" aria-hidden="true">→</div>
-      </a>
+      <div class="lab-group-heading lab-group-heading--secondary">
+        <span>Signal + governance tools</span>
+        <p>Decision surfaces for workforce visibility and global operating risk.</p>
+      </div>
+      <div class="v2-build-grid v2-build-grid--secondary">
+        <article class="v2-build-card">
+          <div class="build-card-status" style="color:#2ECC71">Live demo</div>
+          <h3>Workforce Decision Intelligence</h3>
+          <p>Integrated workforce signals across movement, performance, pay position, engagement and retention risk.</p>
+          <div class="badge-row"><span>Signal layer</span><span>Cross-source data</span><span>Decision prompts</span></div>
+          <a href="onyx-workforce-intelligence.html" target="_blank" class="btn btn--ghost">Open demo</a>
+        </article>
+        <article class="v2-build-card">
+          <div class="build-card-status" style="color:#2ECC71">Live demo</div>
+          <h3>EOR Entity Readiness Matrix</h3>
+          <p>Weighted governance framework for EOR-to-entity conversion across Finance, Legal, Business and People inputs.</p>
+          <div class="badge-row"><span>Governance matrix</span><span>Hard overrides</span><span>Audit trail</span></div>
+          <a href="eor-matrix.html" target="_blank" class="btn btn--ghost">Open demo</a>
+        </article>
+      </div>
+      <div class="builds-footer"><a href="builds.html" class="btn btn--primary">View the full Build Lab</a></div>
     </div>
+  </section>
 
-    <div class="builds-in-development">
-      <span class="section-eyebrow section-eyebrow--muted">Next on the roadmap</span>
-      <div class="builds-future-row">
-        <a href="roadmap.html#internal-moves" class="build-future-item">
-          <span class="build-future-title">Internal Moves Infrastructure</span>
-          <span class="build-future-desc">Internal mobility as a governed workflow. Approvals, compensation checks, document logic, signatures, and handoffs across fragmented systems.</span>
-        </a>
-        <a href="roadmap.html#manager-portal" class="build-future-item">
-          <span class="build-future-title">Manager Operating Portal</span>
-          <span class="build-future-desc">A manager-facing decision surface that sits on top of governed workflow, visibility, and orchestration layers already built underneath.</span>
-        </a>
+  <section class="v2-section v2-section--alt" id="method">
+    <div class="container">
+      <div class="v2-section-header">
+        <span class="section-eyebrow">How I build</span>
+        <h2 class="section-heading">From messy People work to durable operating infrastructure.</h2>
+      </div>
+      <div class="method-steps">
+        <div><span>01</span><h3>Map the decision path</h3><p>What is the user trying to do, who owns the call, and where does the work break today?</p></div>
+        <div><span>02</span><h3>Define rules and exceptions</h3><p>Eligibility, thresholds, approvals, guardrails and where the system must stop.</p></div>
+        <div><span>03</span><h3>Design workflow state</h3><p>Make progress, ownership, routing and auditability visible by default.</p></div>
+        <div><span>04</span><h3>Add AI selectively</h3><p>Use AI to assist retrieval, summarisation or evidence extraction — not to own consequential judgment.</p></div>
+        <div><span>05</span><h3>Prototype, test, iterate</h3><p>Build just enough to make the operating model tangible, then harden what proves useful.</p></div>
       </div>
     </div>
-    <div class="builds-footer">
-      <a href="roadmap.html" class="btn btn--ghost">See the roadmap</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- HOW I WORK -->
-<section class="section-category">
-  <div class="container">
-    <div class="category-grid">
-      <div class="category-label-col">
-        <span class="section-eyebrow">How I work</span>
-        <h2 class="category-heading">From decision<br>to durable system.</h2>
-      </div>
-      <div class="category-body-col">
-        <p class="category-body">I diagnose the decision first, then design the governance around it: decision rights, evidence, guardrails, exceptions and the record that needs to exist. From there, I prototype the workflow, calibrate it with subject-matter experts, and scale the parts that prove useful into the existing stack.</p>
-        <p class="category-body">The result is not automation for its own sake. It is a clearer operating system for the people who still own the decision.</p>
-        <a href="about.html" class="text-link">How I approach the work <span aria-hidden="true">-&gt;</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ONYX SECTION -->
-<section class="section-onyx-note">
-  <div class="container">
-    <div class="onyx-note-inner">
-      <div class="onyx-note-content">
-        <span class="onyx-note-label">The sandbox environment</span>
-        <h2 class="onyx-note-heading">Every demo is built for the same company.</h2>
-        <p class="onyx-note-text">Onyx is a fictional 260-person AI-native SaaS company (235 permanent FTE + 25 EOR across 5 markets) — designed as the consistent data environment for every demo. One org, one workforce, five tools all running against the same context. Real governance logic. Synthetic data.</p>
-        <a href="onyx.html" class="onyx-note-link">Meet Onyx →</a>
-      </div>
-      <div class="onyx-note-stats">
-        <div class="onyx-note-stat">
-          <span class="onyx-note-stat-value">260</span>
-          <span class="onyx-note-stat-label">Total headcount</span>
-        </div>
-        <div class="onyx-note-stat">
-          <span class="onyx-note-stat-value">$58M</span>
-          <span class="onyx-note-stat-label">ARR</span>
-        </div>
-        <div class="onyx-note-stat">
-          <span class="onyx-note-stat-value">6</span>
-          <span class="onyx-note-stat-label">Divisions</span>
-        </div>
-        <div class="onyx-note-stat">
-          <span class="onyx-note-stat-value">Series C</span>
-          <span class="onyx-note-stat-label">Stage</span>
+  <section class="v2-section" id="inside-work">
+    <div class="container">
+      <div class="inside-work-card">
+        <span class="section-eyebrow">Built from inside the work</span>
+        <h2>These are not speculative software concepts.</h2>
+        <p>I’ve spent 13+ years in HR and People Operations, working across systems, process, governance, employee experience and execution. These prototypes are built from the failure points I’ve seen inside real People functions — where the policy exists, the system exists, but the decision path still breaks.</p>
+        <div class="inside-work-links">
+          <a href="about.html" class="text-link">About Nilan →</a>
+          <a href="thinking.html" class="text-link">Read the thesis →</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
+  <section class="section-onyx-note">
+    <div class="container">
+      <div class="onyx-note-inner">
+        <div class="onyx-note-content">
+          <span class="onyx-note-label">The sandbox environment</span>
+          <h2 class="onyx-note-heading">Every demo is built for the same fictional company.</h2>
+          <p class="onyx-note-text">Onyx is a fictional 260-person AI-native SaaS company (235 permanent FTE + 25 EOR across 5 markets). It gives the portfolio one consistent workforce context: real governance logic, synthetic data.</p>
+          <a href="onyx.html" class="onyx-note-link">Meet Onyx →</a>
+        </div>
+        <div class="onyx-note-stats">
+          <div class="onyx-note-stat"><span class="onyx-note-stat-value">260</span><span class="onyx-note-stat-label">Total headcount</span></div>
+          <div class="onyx-note-stat"><span class="onyx-note-stat-value">$58M</span><span class="onyx-note-stat-label">ARR</span></div>
+          <div class="onyx-note-stat"><span class="onyx-note-stat-value">6</span><span class="onyx-note-stat-label">Divisions</span></div>
+          <div class="onyx-note-stat"><span class="onyx-note-stat-value">Series C</span><span class="onyx-note-stat-label">Stage</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
 <footer class="site-footer">
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-left">
-        <span class="footer-name">Nilan Vagh</span>
-        <span class="footer-role">People Infrastructure · Melbourne, AU</span>
-      </div>
-      <div class="footer-right">
-        <a href="connect.html" class="footer-link">Connect</a>
-        <a href="https://linkedin.com/in/nilanvagh" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
-      </div>
+      <div class="footer-left"><span class="footer-name">Nilan Vagh</span><span class="footer-role">People Infrastructure · Melbourne, AU</span></div>
+      <div class="footer-right"><a href="connect.html" class="footer-link">Connect</a><a href="https://linkedin.com/in/nilanvagh" target="_blank" rel="noopener" class="footer-link">LinkedIn</a></div>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-note">The data is dummy. The thinking is not.</span>
-    </div>
+    <div class="footer-bottom"><span class="footer-note">The data is dummy. The thinking is not.</span></div>
   </div>
 </footer>
 

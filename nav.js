@@ -57,43 +57,43 @@
   const cases = {
     calibration: {
       title: 'Calibration Engine',
-      context: 'A recurring performance cycle where ratings, promotion recommendations and executive review need a single governed decision state.',
-      path: 'Manager prep → async triage → People Partner review → live calibration → divisional roll-up → executive sign-off.',
-      logic: 'Distribution guardrails, promotion eligibility, role-based visibility and audit trail are embedded in the workflow.',
-      human: 'Managers, People Partners and executives own the judgment; the tool structures the evidence and routes exceptions.',
-      ai: 'Future AI could summarise review evidence or flag inconsistencies, but it should not decide ratings or promotions.'
+      context: 'Calibration brings together manager judgment, performance evidence, promotion recommendations and fairness checks under time pressure.',
+      path: 'Manager prep → People Partner triage → live calibration → divisional review → executive sign-off.',
+      logic: 'The prototype makes the status, guardrails and decision record visible before and after the meeting.',
+      human: 'Managers, People Partners and executives still own the judgment; the tool reduces the mess around the judgment.',
+      ai: 'AI could summarise review evidence or flag inconsistencies later, but it should not decide ratings or promotions.'
     },
     rem: {
       title: 'Rem Review Planning Studio',
-      context: 'Annual compensation planning where budget choices, eligibility logic and cohort impact need to be tested before execution.',
-      path: 'Budget envelope → cohort modelling → eligibility checks → scenario comparison → Finance/CPO review → ChartHop execution.',
-      logic: 'Planning rules and modelling assumptions sit upstream of the system of record so the decision is governed before rollout.',
-      human: 'Total Rewards, Finance and the CPO own the final allocation and exceptions.',
-      ai: 'Future AI could explain scenario movements or summarise exceptions, but budget authority stays with humans.'
+      context: 'Rem review requires leaders to balance budget, fairness, performance context, salary bands and exceptions at the same time.',
+      path: 'Budget envelope → eligibility checks → cohort modelling → scenario comparison → Finance/CPO review → execution.',
+      logic: 'The prototype puts the planning rules where the planning work actually happens, before outcomes move downstream.',
+      human: 'Total Rewards, Finance and the CPO still own final allocation and exceptions.',
+      ai: 'AI could explain scenario movements or summarise exceptions later, but budget authority stays with humans.'
     },
     role: {
       title: 'Role Architecture Studio',
-      context: 'Role level and hiring range decisions where a job description alone is not enough to justify title, level or compensation movement.',
-      path: 'Role intake → architecture assessment → range guidance → internal change review → exception routing → decision certificate.',
-      logic: 'The current demo is deterministic: structured evidence plus architecture thresholds plus review routing.',
-      human: 'People and Total Rewards review boundary cases, L5/L6 movements, overrides and compensation exceptions.',
-      ai: 'Future AI could extract evidence from approved JD libraries and prior decisions; rules and approvals stay outside the model.'
+      context: 'Role changes affect pay, fairness, hiring, internal moves and career growth — not just title wording.',
+      path: 'Role intake → level assessment → hiring range guidance → internal change review → exception routing → decision record.',
+      logic: 'The current demo uses rule-based evidence and architecture thresholds so the reasoning is visible.',
+      human: 'People and Total Rewards review boundary cases, senior-level moves, overrides and pay exceptions.',
+      ai: 'AI could extract evidence from approved JDs and prior decisions later; rules and approvals stay outside the model.'
     },
     workforce: {
       title: 'Workforce Decision Intelligence',
-      context: 'Workforce leaders need a joined-up signal of where action is required, not a disconnected collection of charts.',
-      path: 'Workforce movement → performance context → engagement signal → pay position → risk interpretation → next action prompt.',
-      logic: 'The prototype combines signals into a decision-ready surface, with division-aware views and priority prompts.',
-      human: 'Leaders and People Partners decide what intervention is appropriate; the tool does not automate action.',
-      ai: 'Future AI could generate briefings or investigate drivers, but the signal thresholds and action ownership remain governed.'
+      context: 'Leaders often have data, but not always a clear signal of where action is needed now.',
+      path: 'Movement → performance context → engagement signal → pay position → risk interpretation → next action prompt.',
+      logic: 'The prototype joins signals that usually sit apart so leaders can ask better questions faster.',
+      human: 'Leaders and People Partners decide the intervention; the tool does not automate the action.',
+      ai: 'AI could generate briefings or investigate drivers later, but action ownership remains governed.'
     },
     eor: {
       title: 'EOR Entity Readiness Matrix',
-      context: 'EOR-to-entity decisions require Finance, Legal, Business and People to contribute domain-specific input to a shared recommendation.',
-      path: 'Market inputs → weighted trigger assessment → hard override check → RAG status → cross-functional escalation.',
-      logic: 'Finance owns Tax PE and break-even inputs; Legal owns compliance exposure; Business owns strategic commitment; People operates the framework.',
+      context: 'EOR-to-entity decisions cut across People, Finance, Legal and Business, so each team needs a shared view of the risk.',
+      path: 'Market inputs → trigger assessment → hard override check → RAG status → cross-functional escalation.',
+      logic: 'Each function owns its input while People operates the shared framework and decision record.',
       human: 'Domain experts own their inputs and leaders own the entity decision.',
-      ai: 'Future AI could summarise market risk notes, but it should not override Finance or Legal ownership.'
+      ai: 'AI could summarise market risk notes later, but it should not override Finance or Legal ownership.'
     }
   };
   const casePanel = document.querySelector('[data-case-panel]');
@@ -107,12 +107,12 @@
             <span class="section-eyebrow">Prototype anatomy</span>
             <h2>${data.title}</h2>
             <div class="case-anatomy-grid">
-              <div><strong>Context</strong><p>${data.context}</p></div>
-              <div><strong>Decision path</strong><p>${data.path}</p></div>
-              <div><strong>Workflow logic</strong><p>${data.logic}</p></div>
-              <div><strong>Human review point</strong><p>${data.human}</p></div>
-              <div><strong>Governance guardrail</strong><p>Human-in-the-loop by design. Exceptions route to accountable owners, not automated final judgment.</p></div>
-              <div><strong>AI opportunity</strong><p>${data.ai}</p></div>
+              <div><strong>The real-world problem</strong><p>${data.context}</p></div>
+              <div><strong>The path that needs clarity</strong><p>${data.path}</p></div>
+              <div><strong>What sits underneath</strong><p>${data.logic}</p></div>
+              <div><strong>Where humans stay involved</strong><p>${data.human}</p></div>
+              <div><strong>The guardrail</strong><p>Human-in-the-loop by design. Exceptions route to accountable owners, not automated final judgment.</p></div>
+              <div><strong>Where AI could help later</strong><p>${data.ai}</p></div>
             </div>
           </div>`;
         casePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });

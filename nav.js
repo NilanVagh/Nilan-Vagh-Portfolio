@@ -36,81 +36,8 @@
   }, { passive: true });
 })();
 
-// V2 interactions: Decision Path Explorer, Build Lab filters, and case logic panel
+// V2 interactions: Build Lab filters and case logic panel
 (function () {
-  const decisions = {
-    promote: {
-      surfaceTitle: 'A promotion form and a performance rating.',
-      surfaceCopy: 'The visible artefact is the form. The actual decision depends on role scope, level evidence, calibration context, budget, timing and approval rights.',
-      infraTitle: 'Eligibility, evidence, approval paths and exception handling.',
-      infraCopy: 'A promotion decision needs structured evidence, level criteria, manager input, People review, compensation impact checks, decision state and audit trail.',
-      href: 'calibration-onyx-demo.html'
-    },
-    role: {
-      surfaceTitle: 'A rewritten job description or new title.',
-      surfaceCopy: 'Most teams focus on wording, title and hiring urgency. The risk is that the level and salary decision becomes hidden inside a document edit.',
-      infraTitle: 'Role architecture, scope evidence, pay range and review routing.',
-      infraCopy: 'Role change needs level criteria, scope comparison, band impact, internal equity checks, manager rationale and approval thresholds.',
-      href: 'onyx-role-architecture-studio.html'
-    },
-    rem: {
-      surfaceTitle: 'A compensation spreadsheet.',
-      surfaceCopy: 'The spreadsheet shows numbers, but the real decision is how budget lands across cohorts, eligibility rules, risk cases and approval boundaries.',
-      infraTitle: 'Budget envelopes, cohort logic, eligibility and governance-ready outputs.',
-      infraCopy: 'Rem review needs modelling rules, exception handling, Finance review, People leadership visibility and a clean handoff to execution systems.',
-      href: 'rem-review-demo.html'
-    },
-    calibration: {
-      surfaceTitle: 'A calibration meeting.',
-      surfaceCopy: 'The live session is only the visible moment. Most inconsistency happens before the meeting when evidence, distributions and recommendations are not governed.',
-      infraTitle: 'Async triage, distribution guardrails and persistent decision state.',
-      infraCopy: 'Calibration needs pre-work, role-based visibility, promotion checks, divisional roll-up and an audit trail that survives the meeting.',
-      href: 'calibration-onyx-demo.html'
-    },
-    risk: {
-      surfaceTitle: 'A workforce dashboard.',
-      surfaceCopy: 'Dashboards report what changed. Leaders still need to know what matters, where the risk is concentrated and what decision is required now.',
-      infraTitle: 'Cross-source signals and decision prompts.',
-      infraCopy: 'Workforce risk needs movement, performance, pay position, engagement and retention signals joined into a prioritised decision surface.',
-      href: 'onyx-workforce-intelligence.html'
-    },
-    eor: {
-      surfaceTitle: 'A country headcount threshold.',
-      surfaceCopy: 'Headcount alone cannot decide whether to establish an entity. Finance, Legal, Business and People each own part of the risk picture.',
-      infraTitle: 'Weighted triggers, hard overrides and stakeholder-owned inputs.',
-      infraCopy: 'EOR conversion needs a shared framework, domain-owned ratings, audit trail and escalation when existential risk cannot be averaged away.',
-      href: 'eor-matrix.html'
-    },
-    help: {
-      surfaceTitle: 'A wiki search or chatbot answer.',
-      surfaceCopy: 'The user asks a question, finds a policy page, then still has to work out what to do next and which team or workflow owns the action.',
-      infraTitle: 'Trusted knowledge, role-aware guidance and workflow routing.',
-      infraCopy: 'The future front door should help Zipsters, managers and leaders move from intent to trusted answer to the right workflow or human team.',
-      href: 'thinking.html'
-    }
-  };
-
-  const explorer = document.querySelector('[data-decision-explorer]');
-  if (explorer) {
-    const surfaceTitle = document.getElementById('decision-surface-title');
-    const surfaceCopy = document.getElementById('decision-surface-copy');
-    const infraTitle = document.getElementById('decision-infra-title');
-    const infraCopy = document.getElementById('decision-infra-copy');
-    const link = document.getElementById('decision-link');
-    explorer.querySelectorAll('[data-decision]').forEach(button => {
-      button.addEventListener('click', () => {
-        const data = decisions[button.dataset.decision];
-        if (!data) return;
-        explorer.querySelectorAll('[data-decision]').forEach(item => item.classList.toggle('is-active', item === button));
-        surfaceTitle.textContent = data.surfaceTitle;
-        surfaceCopy.textContent = data.surfaceCopy;
-        infraTitle.textContent = data.infraTitle;
-        infraCopy.textContent = data.infraCopy;
-        link.href = data.href;
-      });
-    });
-  }
-
   const filterRoot = document.querySelector('[data-build-filters]');
   const buildCards = Array.from(document.querySelectorAll('[data-build-card]'));
   if (filterRoot && buildCards.length) {

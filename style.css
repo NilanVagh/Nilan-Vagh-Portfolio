@@ -6,6 +6,7 @@
 
 :root {
   --black:      #0A0A0A;
+  --bg:         #0A0A0A;
   --ink:        #111111;
   --charcoal:   #1A1A1A;
   --slate:      #242424;
@@ -14,6 +15,7 @@
   --mid:        #5A5A5A;
   --mist:       #888888;
   --white:      #F0F0F0;
+  --white-dim:  #C8C8C8;
   --white-pure: #FFFFFF;
   --red:        #C0392B;
   --red-light:  #E8503F;

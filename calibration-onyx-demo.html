@@ -31,7 +31,7 @@ function showError(err) {
 
   <style>
     :root {
-      --onyx-ink: #111111; --onyx-primary: #C0392B; --onyx-primary-2: #E8503F;
+      --onyx-ink: #111111; --onyx-primary: #C0392B; --onyx-primary-2: #F0B3AC;
       --onyx-bg: #F5F5F5; --onyx-border: #D8D8D8; --onyx-soft: #F3E4E2;
       --muted: rgba(17, 17, 17, 0.65); --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
@@ -57,7 +57,7 @@ function showError(err) {
 
     .table-container { background: white; border-radius: 12px; border: 1px solid var(--onyx-border); box-shadow: var(--shadow); overflow-x: auto; margin-bottom: 24px; padding-bottom: 10px;}
     
-    table { width: max-content; min-width: 100%; table-layout: auto; border-collapse: collapse; text-align: left; white-space: nowrap; }
+    table { width: max-content; min-width: 100%; border-collapse: collapse; text-align: left; white-space: nowrap; }
     
     th { background: #F9FAFB; color: var(--onyx-primary); font-weight: 800; font-size: 11px; padding: 10px 14px; border-bottom: 2px solid var(--onyx-border); border-right: 1px solid var(--onyx-border); text-transform: uppercase; vertical-align: top; }
     td { padding: 10px 14px; border-bottom: 1px solid var(--onyx-border); border-right: 1px solid #F3F4F6; font-size: 13px; vertical-align: top; }
@@ -67,10 +67,10 @@ function showError(err) {
     th.freeze-col { background-color: #F9FAFB; z-index: 6; }
 
     .th-group { text-align: center; border-bottom: none !important; padding: 8px !important; font-size: 13px; background: var(--onyx-primary); color: white; }
-    .th-group-live { background: #10B981; color: var(--onyx-ink); }
-    .th-group-promo { background: var(--onyx-primary-2); color: var(--onyx-ink); }
+    .th-group-live { background: #EAF7EF; color: #166534; }
+    .th-group-promo { background: #FDEDEA; color: #7F1D1D; }
     
-    .col-filter { display: block; width: 100%; min-width: 150px; max-width: none; box-sizing: border-box; margin-top: 6px; padding: 6px 28px 6px 8px; border: 1px solid var(--onyx-border); border-radius: 4px; font-size: 10px; font-weight: bold; color: var(--onyx-primary); outline: none; cursor: pointer; white-space: nowrap; }
+    .col-filter { width: 100%; max-width: 130px; margin-top: 6px; padding: 4px; border: 1px solid var(--onyx-border); border-radius: 4px; font-size: 10px; font-weight: bold; color: var(--onyx-primary); outline: none; cursor:pointer;}
     .score-input { width: 55px; padding: 6px; border: 2px solid var(--onyx-border); border-radius: 6px; font-size: 14px; font-weight: 800; color: var(--onyx-primary); text-align: center; background: white; cursor:pointer;}
     .text-input { width: 100%; min-width: 150px; padding: 6px; border: 1px solid var(--onyx-border); border-radius: 6px; font-size: 12px; outline: none; box-sizing: border-box; }
     
@@ -83,6 +83,10 @@ function showError(err) {
     .note-input { width: 100%; border: 1px solid var(--onyx-border); border-radius: 8px; padding: 8px; font-size: 12px; resize: vertical; min-height: 40px; outline:none;}
     .view-section { display: none; }
     .view-section.active { display: block; animation: fadeIn 0.3s; }
+    .curve-chart-host { width: 100%; min-height: 560px; }
+    .distribution-curve-svg { width: 100%; height: 560px; min-height: 560px; display: block; }
+    .gender-curve-svg { width: 100%; height: 560px; min-height: 560px; display: block; }
+
 
 
 /* ------------------------------------------------------------------
@@ -160,9 +164,6 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
 /* Onyx demo hero strip */
 .onyx-demo-shell-note{background:var(--onyx-red-dim)!important;border:1px solid var(--onyx-red-mid)!important;color:#DDAAAA!important;}
 
-  
-/* Header dropdown visibility: original table behaviour retained. */
-
   </style>
 </head>
 <body>
@@ -184,7 +185,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       <a href="builds.html" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-bold text-xs hover:bg-gray-50 shadow no-underline"><i class="fas fa-arrow-left mr-1"></i> Portfolio</a>
       <button id="nav-demo-btn" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-bold text-xs cursor-pointer hover:bg-gray-50 shadow" onclick="openDemoGuide()"><i class="fas fa-compass mr-1"></i> How to Use This Demo</button>
       <button id="nav-help-btn" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-bold text-xs cursor-pointer hover:bg-gray-50 shadow" onclick="openHelpGuide()"><i class="fas fa-circle-question mr-1"></i> Help</button>
-      
+      <button id="nav-pack-btn" class="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded-lg font-bold text-xs cursor-pointer hover:bg-gray-50 shadow" onclick="openLeaderPackPreview()"><i class="fas fa-file-lines mr-1"></i> Leader Pack Preview</button>
       <div id="impersonator-container" class="hidden mr-4">
         <select id="demo-impersonator" onchange="simulateLogin(this.value)" class="impersonate-select"></select>
       </div>
@@ -208,12 +209,10 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         <select class="filter-select" id="dept-filter" onchange="updateFilters('dept')"><option value="All">All Departments</option></select>
         <select class="filter-select hidden bg-purple-50" id="session-filter" onchange="applyDataFilter()">
           <option value="All">All Executive Review Cohorts</option>
-          <option value="COHORT_PD">Product & Design Cohort</option>
           <option value="COHORT_ENG">Engineering & Platform Cohort</option>
+          <option value="COHORT_PD">Product & Design Cohort</option>
           <option value="COHORT_GTM">Sales & Marketing Cohort</option>
           <option value="COHORT_OPS">Customer & Operations Cohort</option>
-          <option value="COHORT_DATA">Data & AI Cohort</option>
-          <option value="COHORT_PF">People & Finance Cohort</option>
         </select>
         <button id="btn-lock" onclick="toggleLock()" class="hidden px-4 py-1.5 rounded-lg text-xs font-bold shadow"></button>
         <div id="threshold-warning" class="hidden bg-amber-100 text-amber-800 border border-amber-300 px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm items-center">
@@ -240,8 +239,8 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         <div id="slt-demo-status" class="text-sm text-indigo-900 font-medium">Preview the executive review workspace before and after the Executive Review unlock.</div>
       </div>
       <div class="flex flex-wrap gap-2">
-        <button id="preview-memo-tech-btn" class="demo-btn bg-indigo-600 hover:bg-indigo-700 mr-0" onclick="previewMemoStage('tech_only', this)"><i class="fas fa-user-lock mr-1"></i> Preview Executive Review: One Division Example</button>
-        <button id="preview-memo-unlock-btn" class="demo-btn bg-green-600 hover:bg-green-700 mr-0" onclick="previewMemoStage('all_locked', this)"><i class="fas fa-user-check mr-1"></i> Preview Executive Review: Full Executive Population</button>
+        <button id="preview-memo-tech-btn" class="demo-btn bg-indigo-600 hover:bg-indigo-700 mr-0" onclick="previewMemoStage('tech_only', this)"><i class="fas fa-user-lock mr-1"></i> Preview Executive Review: Engineering & Platform</button>
+        <button id="preview-memo-unlock-btn" class="demo-btn bg-green-600 hover:bg-green-700 mr-0" onclick="previewMemoStage('all_locked', this)"><i class="fas fa-user-check mr-1"></i> Preview Executive Review: All Divisions Locked</button>
         <button id="restore-preview-btn" class="demo-btn bg-gray-600 hover:bg-gray-700 mr-0" onclick="restoreMemoPreview(this)"><i class="fas fa-rotate-left mr-1"></i> Restore Admin View</button>
       </div>
     </div>
@@ -250,7 +249,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       <i class="fas fa-lock text-amber-600 text-xl mr-3"></i>
       <div>
         <h3 class="text-amber-900 font-black text-sm">Executive Review Workspace Still Locked</h3>
-        <p id="slt-locked-message" class="text-xs text-amber-800">Executive Review only becomes relevant once the current calibration scope is closed and escalated cases are ready.</p>
+        <p id="slt-locked-message" class="text-xs text-amber-800">The executive reviewer should not see the Executive Review button until every required division review is locked.</p>
       </div>
     </div>
 
@@ -259,7 +258,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         <i class="fas fa-crown text-green-700 text-xl mr-3"></i>
         <div>
           <h3 class="text-green-900 font-black text-sm">Executive Review Workspace Unlocked</h3>
-          <p id="slt-ready-message" class="text-xs text-green-800">The current calibration scope is ready for Executive Review.</p>
+          <p id="slt-ready-message" class="text-xs text-green-800">All required Business Review cohorts are complete. The executive reviewer can now enter Executive Review.</p>
         </div>
       </div>
       <button id="slt-ready-btn" class="bg-green-600 text-white px-4 py-2 rounded-lg font-black text-xs hover:bg-green-700 shadow" onclick="enterSltMode()"><i class="fas fa-crown mr-1"></i> Enter Executive Review Mode</button>
@@ -326,12 +325,17 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       <table class="strict-table" style="border: 1px solid var(--onyx-border);">
         <thead><tr>
           <th class="freeze-col" style="width: 15%; cursor:pointer;" onclick="setSort('name_asc')">Name <i class="fas fa-sort ml-1 text-gray-400 hover:text-gray-600"></i></th>
-          <th style="width: 12%;">Department</th>
-          <th style="width: 12%;">Manager</th>
-          <th style="width: 8%;">Grade</th>
+          <th style="width: 12%;">Department<br><select id="triage-dept-flt" class="col-filter" onchange="renderTriage()"></select></th>
+          <th style="width: 12%;">Manager<br><select id="triage-mgr-flt" class="col-filter" onchange="renderTriage()"></select></th>
+          <th style="width: 8%;">Grade<br><select id="triage-grd-flt" class="col-filter" onchange="renderTriage()"></select></th>
           <th style="width: 14%;">History & Pre-Calibration</th>
-          <th class="triage-system-flags-col" style="width: 12%;">System Flags</th>
-          <th style="width: 29%;">Collaborative Async Notes
+          <th class="triage-system-flags-col" style="width: 12%;">System Flags<br><select id="triage-risk-flt" class="col-filter" onchange="renderTriage()"></select></th>
+          <th style="width: 29%;">Collaborative Async Notes<br>
+            <select id="triage-notes-flt" class="col-filter" onchange="renderTriage()">
+              <option value="All">All</option>
+              <option value="Has Notes">Has Notes</option>
+              <option value="No Notes">No Notes</option>
+            </select>
           </th>
         </tr></thead>
         <tbody id="triage-body"></tbody>
@@ -363,25 +367,25 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
           <tr>
             <th class="freeze-col" style="width: 15%; cursor:pointer;" onclick="setSort('name_asc')">Name <i class="fas fa-sort ml-1 text-gray-400 hover:text-gray-600"></i></th>
             <th style="width: 10%;">Emp ID</th>
-            <th style="width: 12%;">Manager</th>
+            <th style="width: 12%;">Manager<br><select id="calib-mgr-flt" class="col-filter" onchange="renderCalibration()"></select></th>
             <th style="width: 15%;">Title</th>
-            <th style="width: 8%;">Job Grade</th>
-            <th style="width: 11%;">Division</th>
-            <th style="width: 12%;">Department</th>
-            <th style="width: 8%;">Gender</th>
-            <th style="width: 8%;">Company Tenure<br>in Years</th>
-            <th style="width: 8%;">Total Tenure In Current<br>Role in Months</th>
-            <th style="width: 8%;">Role Change In<br>Last 12 Months</th>
-            <th style="width: 8%;">Mid Year FY26</th>
-            <th class="calib-system-flags-col" style="width: 8%;">Conduct/PIP</th>
-            <th style="width: 8%;">Reten Risk</th>
+            <th style="width: 8%;">Level<br><select id="calib-grd-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th style="width: 11%;">Division<br><select id="calib-div-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th style="width: 12%;">Department<br><select id="calib-dept-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th style="width: 8%;">Gender<br><select id="calib-gen-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th style="width: 8%;">Company Tenure<br>in Years<br><select id="calib-tenureyrs-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th style="width: 8%;">Total Tenure In Current<br>Role in Months<br><select id="calib-tenuremos-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th style="width: 8%;">Role Change In<br>Last 12 Months<br><select id="calib-rolechange-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th style="width: 8%;">Mid Year FY26<br><select id="calib-mid26-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th class="calib-system-flags-col" style="width: 8%;">Conduct/PIP<br><select id="calib-risk-flt" class="col-filter" onchange="renderCalibration()"></select></th>
+            <th style="width: 8%;">Reten Risk<br><select id="calib-ret-flt" class="col-filter" onchange="renderCalibration()"></select></th>
             <th style="width: 5%;">Outcomes</th><th style="width: 5%;">Behaviours</th><th style="width: 5%;">Growth</th><th style="width: 5%;">Self Wgt</th>
             <th style="width: 70px; white-space: normal; cursor:pointer;" onclick="setSort('pre_desc')">Pre Calibrated<br>Weighted score <i class="fas fa-sort ml-1 text-gray-300 hover:text-white"></i></th>
-            <th style="width: 15%;">Pre Calibrated Rating</th>
+            <th style="width: 15%;">Pre Calibrated Rating<br><select id="calib-pre-flt" class="col-filter" onchange="renderCalibration()"></select></th>
             <th style="min-width: 260px;">Change Flags</th>
-            <th style="width: 6%;">Outcomes</th><th style="width: 6%;">Behaviours</th><th style="width: 6%;">Growth</th>
+            <th style="width: 6%;">Outcomes<br><select id="calib-calwhat-flt" class="col-filter" onchange="renderCalibration()"></select></th><th style="width: 6%;">Behaviours<br><select id="calib-calhow-flt" class="col-filter" onchange="renderCalibration()"></select></th><th style="width: 6%;">Growth<br><select id="calib-calgrowth-flt" class="col-filter" onchange="renderCalibration()"></select></th>
             <th style="width: 70px; white-space: normal; cursor:pointer;" onclick="setSort('post_desc')">Calibrated<br>Weighted score <i class="fas fa-sort ml-1 text-gray-300 hover:text-white"></i></th>
-            <th style="width: 15%;">Calibrated Rating</th>
+            <th style="width: 15%;">Calibrated Rating<br><select id="calib-cal-flt" class="col-filter" onchange="renderCalibration()"></select></th>
           </tr>
         </thead>
         <tbody id="calib-body"></tbody>
@@ -420,20 +424,20 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
           </tr>
           <tr>
             <th class="freeze-col" style="width: 10%; cursor:pointer;" onclick="setSort('name_asc')">Name <i class="fas fa-sort ml-1 text-gray-400 hover:text-gray-600"></i></th>
-            <th style="width: 9%;">Manager</th>
-            <th style="width: 8%;">Division</th>
-            <th style="width: 8%;">Department</th>
+            <th style="width: 9%;">Manager<br><select id="promo-mgr-flt" class="col-filter" onchange="renderPromotions()"></select></th>
+            <th style="width: 8%;">Division<br><select id="promo-div-flt" class="col-filter" onchange="renderPromotions()"></select></th>
+            <th style="width: 8%;">Department<br><select id="promo-dept-flt" class="col-filter" onchange="renderPromotions()"></select></th>
             <th style="width: 9%;">Title</th>
-            <th style="width: 5%;">Job Grade</th>
-            <th style="width: 5%;">Gender</th>
-            <th style="width: 5%;">Company Tenure<br>in Years</th>
-            <th style="width: 5%;">Total Tenure In Current<br>Role in Months</th>
+            <th style="width: 5%;">Level<br><select id="promo-grd-flt" class="col-filter" onchange="renderPromotions()"></select></th>
+            <th style="width: 5%;">Gender<br><select id="promo-gen-flt" class="col-filter" onchange="renderPromotions()"></select></th>
+            <th style="width: 5%;">Company Tenure<br>in Years<br><select id="promo-tenureyrs-flt" class="col-filter" onchange="renderPromotions()"></select></th>
+            <th style="width: 5%;">Total Tenure In Current<br>Role in Months<br><select id="promo-tenuremos-flt" class="col-filter" onchange="renderPromotions()"></select></th>
             
             <th class="text-center" style="width: 5%;">FY24 Rating</th>
             <th class="text-center" style="width: 5%;">FY25 Rating</th>
             <th class="text-center" style="width: 5%;">Mid Year FY26</th>
-            <th class="text-center" style="width: 8%;">FY26 Calibrated<br>Score</th>
-            <th class="text-center promo-risk-col" style="width: 5%;">Conduct/PIP</th>
+            <th class="text-center" style="width: 8%;">FY26 Calibrated<br>Score<br><select id="promo-calweighted-flt" class="col-filter" onchange="renderPromotions()"></select></th>
+            <th class="text-center promo-risk-col" style="width: 5%;">Conduct/PIP<br><select id="promo-risk-flt" class="col-filter" onchange="renderPromotions()"></select></th>
             
             <th class="text-center" style="width: 5%;">Min 12mo Tenure?</th>
             <th class="text-center" style="width: 6%;">Promoted in past 12 mos?</th>
@@ -441,10 +445,10 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
             <th class="text-center" style="width: 5%;">Not on PIP in past 12 mos?</th>
             
             <th style="width: 5%;">Proposed Business Case</th>
-            <th style="width: 170px;">Change Type</th>
+            <th style="width: 170px;">Change Type<br><select id="promo-type-flt" class="col-filter" onchange="renderPromotions()"></select></th>
             <th style="width: 260px;">New Title</th>
-            <th style="width: 100px;">New Grade</th>
-            <th style="width: 180px;">Executive / Rem Approval</th>
+            <th style="width: 100px;">New Level</th>
+            <th style="width: 180px;">Executive / Rem Approval<br><select id="promo-slt-flt" class="col-filter" onchange="renderPromotions()"></select></th>
           </tr>
         </thead>
         <tbody id="promo-body"></tbody>
@@ -458,12 +462,13 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     <div id="standard-insights-top">
         <div class="chart-panel bg-white p-6 border rounded-xl shadow-sm mb-6">
           <h2 class="text-xl font-black mb-1" style="color: var(--onyx-primary);">Performance Distribution</h2>
-          <p class="text-sm text-gray-500 mb-6 tracking-tight">Analytics on overall performance distribution against Onyx guidelines, including an adjusted curve for confirmed performance exits and redundancies.</p>
+          <p class="text-sm text-gray-500 mb-6 tracking-tight">Analytics on overall performance distribution against Onyx guidelines.</p>
           <div class="table-container p-0 border shadow-none mb-6" id="distribution-table-container"></div>
-          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-              <div class="chart-box border shadow-none rounded-lg p-4 bg-white"><h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Pre-Calibration vs Recommended</h3><div id="chart_pre" style="height: 350px;"></div></div>
-              <div class="chart-box border shadow-none rounded-lg p-4 bg-white"><h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Calibrated vs Recommended</h3><div id="chart_post" style="height: 350px;"></div></div>
-              <div class="chart-box border shadow-none rounded-lg p-4 bg-white"><h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Adjusted Calibrated vs Recommended</h3><div id="chart_adjusted" style="height: 350px;"></div><div id="chart_adjusted_note" class="text-xs text-gray-400 mt-3 leading-relaxed"></div></div>
+          <div class="grid grid-cols-1 gap-6">
+              <div class="chart-box border shadow-none rounded-lg p-5 bg-white">
+                <h3 class="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">Recommended vs Pre-Calibration vs Calibrated Curves</h3>
+                <div id="chart_distribution_curves" class="curve-chart-host"></div>
+              </div>
           </div>
         </div>
 
@@ -471,9 +476,9 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
           <h2 class="text-xl font-black mb-1" style="color: var(--onyx-primary);">Gender Distribution & Equity</h2>
           <p class="text-sm text-gray-500 tracking-tight">Analyzing the performance distribution mix and average scores between genders.</p>
           <div class="table-container p-0 border shadow-none mb-6" id="gender-table-container"></div>
-          <div class="grid grid-cols-2 gap-6 items-start">
-              <div class="chart-box border shadow-none rounded-lg p-4 bg-white"><h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Pre-Calibration Gender Distribution</h3><div id="chart_gender_pre" style="height: 350px;"></div></div>
-              <div class="chart-box border shadow-none rounded-lg p-4 bg-white"><h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Calibrated Gender Distribution</h3><div id="chart_gender" style="height: 350px;"></div></div>
+          <div class="grid grid-cols-1 gap-6 items-start">
+              <div class="chart-box border shadow-none rounded-lg p-5 bg-white"><h3 class="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">Recommended vs Male vs Female - Pre-Calibration Curves</h3><div id="chart_gender_pre" class="curve-chart-host"></div></div>
+              <div class="chart-box border shadow-none rounded-lg p-5 bg-white"><h3 class="text-sm font-bold text-gray-600 uppercase tracking-wide mb-3">Recommended vs Male vs Female - Calibrated Curves</h3><div id="chart_gender" class="curve-chart-host"></div></div>
           </div>
         </div>
     </div>
@@ -481,26 +486,26 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     <div id="slt-insights-top" class="hidden">
         <div id="slt-div-dropdown-container" class="mb-6 flex items-center bg-white p-4 rounded-xl shadow-sm border border-gray-200">
             <label class="font-black text-sm text-gray-700 mr-4 uppercase tracking-widest"><i class="fas fa-filter mr-2 text-yellow-500"></i>Executive Review Drilldown:</label>
-            <select id="slt-div-select" class="filter-select bg-yellow-50 border border-yellow-300 text-yellow-900 shadow-sm" onchange="drawCharts()"><option value="All">All Onyx</option></select>
+            <select id="slt-div-select" class="filter-select bg-yellow-50 border border-yellow-300 text-yellow-900 shadow-sm" onchange="drawCharts()"><option value="All">All Onyx Divisions</option></select>
             <span class="text-xs text-gray-400 italic ml-4">Select a division to compare executive cohort against their specific divisional baseline.</span>
         </div>
 
         <div class="chart-panel bg-white p-6 border border-yellow-300 rounded-xl shadow-md mb-6">
           <h2 class="text-xl font-black mb-1 text-yellow-800" id="slt-chart-title-1">Onyx Executive Comparative Distribution</h2>
-          <p class="text-sm text-gray-500 mb-6 tracking-tight">Comparing Business Review baselines versus executive cohort (pre-calibration and calibrated) versus the final combined result and adjusted end-state curve.</p>
-          <div class="chart-box border shadow-none rounded-lg p-4 bg-gray-50"><div id="chart_slt_anz" style="height: 400px;"></div><div id="chart_slt_adjusted_note" class="text-xs text-gray-400 mt-3 leading-relaxed"></div></div>
+          <p class="text-sm text-gray-500 mb-6 tracking-tight">Comparing Business Review baselines versus executive cohort and final calibrated outcomes.</p>
+          <div class="chart-box border shadow-none rounded-lg p-4 bg-gray-50"><div id="chart_slt_anz" style="height: 400px;"></div></div>
         </div>
 
         <div class="chart-panel bg-white p-6 border border-yellow-300 rounded-xl shadow-md mb-6">
           <h2 class="text-xl font-black mb-1 text-yellow-800" id="slt-chart-title-2">Executive Cohort Only - Isolation View</h2>
-          <p class="text-sm text-gray-500 mb-6 tracking-tight">Zooming in strictly on the executive cohort cohort (pre-calibration versus calibrated).</p>
+          <p class="text-sm text-gray-500 mb-6 tracking-tight">Zooming in strictly on the executive cohort (pre-calibration versus calibrated).</p>
           <div class="chart-box border shadow-none rounded-lg p-4 bg-gray-50"><div id="chart_slt_iso" style="height: 400px;"></div></div>
         </div>
         
         <div class="chart-panel bg-white p-6 border border-yellow-300 rounded-xl shadow-md mb-6">
           <h2 class="text-xl font-black mb-1 text-yellow-800" id="slt-chart-title-3">Onyx Final Gender Distribution</h2>
           <p class="text-sm text-gray-500 mb-6 tracking-tight">The final combined population gender curve (Male vs Female vs Recommended).</p>
-          <div class="chart-box border shadow-none rounded-lg p-4 bg-gray-50"><div id="chart_slt_gen" style="height: 400px;"></div></div>
+          <div class="chart-box border shadow-none rounded-lg p-5 bg-gray-50"><div id="chart_slt_gen" class="curve-chart-host"></div></div>
         </div>
     </div>
     
@@ -530,7 +535,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         <div class="chart-panel p-6 border rounded-xl shadow-sm bg-white mb-6">
           <h3 class="text-lg font-black mb-2" style="color: var(--onyx-primary);" id="bar-chart-title">Average Rating by Department</h3>
           <p class="text-sm text-gray-500 mb-6 tracking-tight">Average calibrated score (1-5) across different teams.</p>
-          <div id="chart_bar" style="height: 350px;"></div>
+          <div id="chart_bar" style="height: 390px;"></div>
         </div>
 
         <div class="chart-panel bg-white p-6 border rounded-xl shadow-sm mb-6">
@@ -548,7 +553,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
             <div class="chart-panel border shadow-none"><h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-2">Gender Split (Endorsed Only)</h3><div id="chart_promo_donut" style="height: 300px;"></div></div>
           </div>
           <div class="mt-6">
-              <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">Promotions by Seniority (Job Grade)</h3>
+              <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4">Promotions by Level</h3>
               <div class="grid grid-cols-3 gap-6" id="promo-seniority-cards"></div>
           </div>
         </div>
@@ -595,12 +600,11 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
 
     <div class="chart-panel bg-gray-900 p-6 border border-gray-700 rounded-xl shadow-xl mb-6">
       <h2 class="text-xl font-black mb-1 text-white">Performance Distribution</h2>
-      <p class="text-sm text-gray-400 mb-6 tracking-tight">Onyx baseline (pre-calibration) versus locked calibrated outcomes, plus the adjusted curve once confirmed exits are factored in.</p>
+      <p class="text-sm text-gray-400 mb-6 tracking-tight">Onyx baseline (pre-calibration) versus locked calibrated outcomes.</p>
       <div class="table-container p-0 border border-gray-700 shadow-none mb-6 bg-gray-800" id="god-distribution-table-container"></div>
-          <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            <div class="chart-box border border-gray-700 shadow-none rounded-lg p-4 bg-gray-800"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-2">Onyx Pre-Calibration vs Recommended</h3><div id="chart_anz_pre" style="height: 350px;"></div></div>
-            <div class="chart-box border border-gray-700 shadow-none rounded-lg p-4 bg-gray-800"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-2">Onyx Calibrated vs Recommended</h3><div id="chart_anz_post" style="height: 350px;"></div></div>
-            <div class="chart-box border border-gray-700 shadow-none rounded-lg p-4 bg-gray-800"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-2">Onyx Adjusted Calibrated vs Recommended</h3><div id="chart_anz_adjusted" style="height: 350px;"></div><div id="chart_anz_adjusted_note" class="text-xs text-gray-400 mt-3 leading-relaxed"></div></div>
+          <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            <div class="chart-box border border-gray-700 shadow-none rounded-lg p-4 bg-gray-800"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-2">Onyx Pre-Calibration Curve vs Recommended</h3><div id="chart_anz_pre" style="height: 430px;"></div></div>
+            <div class="chart-box border border-gray-700 shadow-none rounded-lg p-4 bg-gray-800"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-2">Onyx Calibrated Curve vs Recommended</h3><div id="chart_anz_post" style="height: 430px;"></div></div>
           </div>
         </div>
 
@@ -608,9 +612,9 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       <h2 class="text-xl font-black mb-1 text-white">Gender Distribution & Equity</h2>
       <p class="text-sm text-gray-400 mb-6 tracking-tight">Regional analysis of performance distribution by gender.</p>
       <div class="table-container p-0 border border-gray-700 shadow-none mb-6 bg-gray-800" id="god-gender-table-container"></div>
-      <div class="grid grid-cols-2 gap-6">
-          <div class="chart-box border border-gray-700 shadow-none rounded-lg p-4 bg-gray-800"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-2">Pre-Calibration Gender Distribution</h3><div id="chart_anz_gen_pre" style="height: 350px;"></div></div>
-          <div class="chart-box border border-gray-700 shadow-none rounded-lg p-4 bg-gray-800"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-2">Calibrated Gender Distribution</h3><div id="chart_anz_gen" style="height: 350px;"></div></div>
+      <div class="grid grid-cols-1 gap-6">
+          <div class="chart-box border border-gray-700 shadow-none rounded-lg p-5 bg-gray-800"><h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide mb-3">Recommended vs Male vs Female - Pre-Calibration Curves</h3><div id="chart_anz_gen_pre" class="curve-chart-host"></div></div>
+          <div class="chart-box border border-gray-700 shadow-none rounded-lg p-5 bg-gray-800"><h3 class="text-sm font-bold text-gray-300 uppercase tracking-wide mb-3">Recommended vs Male vs Female - Calibrated Curves</h3><div id="chart_anz_gen" class="curve-chart-host"></div></div>
       </div>
     </div>
     
@@ -622,13 +626,13 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         <div class="chart-panel border border-gray-700 bg-gray-800 shadow-none"><h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-2">Gender Split (Endorsed Only)</h3><div id="chart_god_promo_donut" style="height: 300px;"></div></div>
       </div>
       <div class="mt-6">
-          <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-4">Promotions by Seniority (Job Grade)</h3>
+          <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wide mb-4">Promotions by Level</h3>
           <div class="grid grid-cols-3 gap-6" id="god-promo-seniority-cards"></div>
       </div>
     </div>
 
     <div class="bg-gray-900 border border-gray-700 rounded-xl p-6 mb-6 shadow-sm">
-      <h3 class="text-gray-200 font-black text-lg mb-3"><i class="fas fa-list-check mr-2"></i>Session Readiness Check</h3>
+      <h3 class="text-gray-200 font-black text-lg mb-3"><i class="fas fa-list-check mr-2"></i>Admin Readiness Checklist</h3>
       <div id="session-readiness-checklist" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-300"></div>
     </div>
 
@@ -679,8 +683,19 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     const managers = ['Alex Mercer','Jordan Blake','Casey Quinn','Taylor Shaw','Morgan Hayes','Riley Foster','Sam Bennett','Jamie Parker'];
     const ratings = ['Below Expectations','Approaching Expectations','Meets Expectations','Exceeds Expectations','Exceptional Impact'];
     const genders = ['Female','Male','Female','Male','Non-binary'];
-    function ratingFromScore(score){ if(score >= 4.7) return 'Exceptional Impact'; if(score >= 3.8) return 'Exceeds Expectations'; if(score >= 2.8) return 'Meets Expectations'; if(score >= 1.8) return 'Approaching Expectations'; return 'Below Expectations'; }
+    function ratingFromScore(score){ score = Number(score); if(score >= 5) return 'Exceptional Impact'; if(score >= 3.8) return 'Exceeds Expectations'; if(score >= 2.8) return 'Meets Expectations'; if(score >= 1.8) return 'Approaching Expectations'; return 'Below Expectations'; }
     function scoreFromBucket(bucket){ return Math.min(5, Math.max(1, bucket + ((bucket % 2) ? 0.1 : -0.1))); }
+    function componentsFromBucket(bucket){
+      const b = Math.max(1, Math.min(5, Number(bucket) || 3));
+      if (b >= 5) return {what:5, how:5, growth:5};
+      if (b === 4) return {what:4, how:4, growth:4};
+      if (b === 3) return {what:3, how:3, growth:3};
+      if (b === 2) return {what:2, how:2, growth:2};
+      return {what:1, how:1, growth:1};
+    }
+    function weightedFromComponents(what, how, growth){
+      return Math.round(((Number(what)||0) * 0.6 + (Number(how)||0) * 0.3 + (Number(growth)||0) * 0.1) * 100) / 100;
+    }
     function buildEmployees(){
       const out = [];
       const onyxDivs = [
@@ -698,141 +713,117 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         {country:'Canada', entity:'Onyx CA (EOR)', hc:3},
         {country:'Netherlands', entity:'Onyx NL (EOR)', hc:2}
       ];
-      const execLeadByDivision = {
-        'Product & Design':'Nora Hale',
-        'Engineering & Platform':'Ethan Price',
-        'Sales & Marketing':'Mia Brooks',
-        'Customer & Operations':'Lucas Flynn',
-        'Data & AI':'Priya Warren',
-        'People & Finance':'Asha Cole'
-      };
-      const managersByDivision = {
-        'Product & Design':['Avery Quinn','Theo Mercer','Ruby Blake'],
-        'Engineering & Platform':['Jordan Shaw','Morgan Hayes','Sam Bennett','Riley Foster'],
-        'Sales & Marketing':['Casey Nolan','Jamie Brooks','Harper Ellis'],
-        'Customer & Operations':['Taylor Walsh','Mina Dawson','Leo Cross'],
-        'Data & AI':['Ivy Monroe','Owen Price','Lena Cole'],
-        'People & Finance':['Clara Hayes','Noah Bishop']
-      };
-      const execQuota = {'Product & Design':3,'Engineering & Platform':4,'Sales & Marketing':3,'Customer & Operations':2,'Data & AI':2,'People & Finance':1};
-      const cohortByDivision = {
-        'Product & Design':'COHORT_PD',
-        'Engineering & Platform':'COHORT_ENG',
-        'Sales & Marketing':'COHORT_GTM',
-        'Customer & Operations':'COHORT_OPS',
-        'Data & AI':'COHORT_DATA',
-        'People & Finance':'COHORT_PF'
-      };
-      const bucketPatterns = {
-        'Product & Design':[3,3,4,3,4,3,2,3,4,3],
-        'Engineering & Platform':[3,4,3,4,3,2,3,4,3,3],
-        'Sales & Marketing':[2,3,3,4,3,2,3,4,3,3],
-        'Customer & Operations':[2,3,3,3,4,2,3,3,4,3],
-        'Data & AI':[3,4,4,3,3,4,3,2,4,3],
-        'People & Finance':[3,3,4,3,3,4,2,3,4]
-      };
-      const firstNames = ['Avery','Rowan','Maya','Felix','Zara','Noah','Ivy','Elliot','Sienna','Leo','Aria','Milo','Nina','Jasper','Chloe','Theo','Priya','Owen','Ruby','Ethan','Lena','Isaac','Poppy','Lucas','Mina','Hugo','Asha','Reid','Clara','Rory','Sam','Jordan','Taylor','Morgan','Casey','Riley'];
-      const lastNames = ['Parker','Hale','Santos','Bennett','Quinn','Mercer','Shaw','Reeves','Patel','Harper','Blake','Foster','Nolan','Bishop','Singh','Hayes','Morrison','Khan','Walsh','Brooks','Cole','Ellis','Monroe','Cross','Dawson','Flynn','Warren','Price'];
-      const genders = ['Female','Male','Female','Male','Non-binary'];
+      // Target distributions: realistic centre of gravity in Meets Expectations
+      const preBuckets = []
+        .concat(Array(18).fill(1))
+        .concat(Array(40).fill(2))
+        .concat(Array(132).fill(3))
+        .concat(Array(54).fill(4))
+        .concat(Array(16).fill(5));
+      const postBuckets = []
+        .concat(Array(16).fill(1))
+        .concat(Array(34).fill(2))
+        .concat(Array(140).fill(3))
+        .concat(Array(54).fill(4))
+        .concat(Array(16).fill(5));
       let idx = 0;
-      const divCounter = {};
-      function ratingFromScore(score){ if(score >= 4.7) return 'Exceptional Impact'; if(score >= 3.8) return 'Exceeds Expectations'; if(score >= 2.8) return 'Meets Expectations'; if(score >= 1.8) return 'Approaching Expectations'; return 'Below Expectations'; }
-      function scoreFromBucket(bucket){ return Math.min(5, Math.max(1, bucket + ((bucket % 2) ? 0.1 : -0.1))); }
+      function pairedPost(pre, target){
+        if(pre===target) return target;
+        if(pre===4 && target===3) return 3;
+        return target;
+      }
       function addEmployee(div, dept, isEor, market){
-        const seq = divCounter[div] || 0;
-        divCounter[div] = seq + 1;
-        const executiveCohort = seq < execQuota[div];
-        const grade = executiveCohort ? (seq === 0 ? 'L6' : 'L5') : ['L1','L2','L3','L3','L4','L4','L5','L6'][idx % 8];
-        const pattern = bucketPatterns[div];
-        const preBucket = executiveCohort ? [4,4,3,4,3][seq % 5] : pattern[seq % pattern.length];
-        let calBucket = preBucket;
-        if (!executiveCohort) {
-          if (idx % 15 === 0) calBucket = Math.max(1, preBucket - 1);
-          else if (idx % 9 === 0) calBucket = Math.min(5, preBucket + 1);
-          else if (preBucket === 3 && idx % 7 !== 0) calBucket = 3;
-        } else {
-          if (seq % 4 === 0) calBucket = Math.min(5, preBucket + 1);
-          else if (seq % 5 === 0) calBucket = Math.max(1, preBucket - 1);
-        }
-        const preWeighted = scoreFromBucket(preBucket);
-        const calWeighted = scoreFromBucket(calBucket);
-        const reviewCohort = cohortByDivision[div];
-        const country = isEor ? market.country : (idx % 9 === 0 ? 'United States' : idx % 7 === 0 ? 'New Zealand' : 'Australia');
+        const executiveCohort = idx < 12;
+        const grade = executiveCohort ? (idx < 5 ? 'L6' : 'L5') : ['L1','L2','L3','L3','L4','L4','L5'][idx % 7];
+        const preBucket = preBuckets[idx % preBuckets.length];
+        let calBucket = postBuckets[idx % postBuckets.length];
+        // introduce explicit up/down movement with unchanged as majority
+        if (idx % 11 === 0) calBucket = Math.max(1, preBucket - 1);
+        else if (idx % 9 === 0) calBucket = Math.min(5, preBucket + 1);
+        else if (idx % 23 === 0) calBucket = Math.max(1, preBucket - 1);
+        else calBucket = preBucket;
+        // keep overall centre of gravity in 3
+        if (preBucket === 3 && idx % 7 !== 0 && idx % 11 !== 0) calBucket = 3;
+        const preScores = componentsFromBucket(preBucket);
+        const calScores = componentsFromBucket(calBucket);
+        const preWeighted = weightedFromComponents(preScores.what, preScores.how, preScores.growth);
+        const calWeighted = weightedFromComponents(calScores.what, calScores.how, calScores.growth);
+        const reviewCohort = div === 'Product & Design' ? 'COHORT_PD' : (div === 'Engineering & Platform' ? 'COHORT_ENG' : (div === 'Sales & Marketing' ? 'COHORT_GTM' : (div === 'Customer & Operations' ? 'COHORT_OPS' : (div === 'Data & AI' ? 'COHORT_DATA' : 'COHORT_PF'))));
+        const session = reviewCohort;
+        const country = isEor ? market.country : (idx % 7 === 0 ? 'New Zealand' : idx % 10 === 0 ? 'United States' : 'Australia');
         const entity = isEor ? market.entity : (country === 'United States' ? 'Onyx US' : country === 'New Zealand' ? 'Onyx NZ' : 'Onyx AU');
         const planningRegion = isEor ? 'EOR' : (country === 'United States' ? 'US' : 'ANZ');
-        const promoLane = ['L1','L2'].includes(grade) ? 'Junior' : (['L3','L4'].includes(grade) ? 'Mid-Level' : 'Senior');
-        let isPromo = false;
-        if (executiveCohort) isPromo = seq % 3 === 0;
-        else if (promoLane === 'Junior') isPromo = idx % 29 === 0 || idx % 31 === 0;
-        else if (promoLane === 'Mid-Level') isPromo = idx % 17 === 0 || idx % 23 === 0;
-        else isPromo = idx % 19 === 0 || idx % 27 === 0;
-        let promoStage = '';
+        const promoLane = grade === 'L1' || grade === 'L2' ? 'Foundation / Developing' : (grade === 'L3' || grade === 'L4' ? 'Professional / Senior' : 'Lead / Director');
+        const isPromo = executiveCohort ? (idx % 9 === 0) : (idx % 11 === 0 || idx % 13 === 0 || idx % 17 === 0);
+        let promoStage = 'Pending';
         if (isPromo) {
-          if (executiveCohort) promoStage = seq % 2 === 0 ? 'Endorsed for Executive Review' : 'Approved';
-          else if (promoLane === 'Junior') promoStage = ['Approved','Pending','Declined'][idx % 3];
-          else if (promoLane === 'Mid-Level') promoStage = ['Approved','Pending','Endorsed for Executive Review','Pending'][idx % 4];
-          else promoStage = ['Endorsed for Executive Review','Approved','Pending','Declined'][idx % 4];
+          if (promoLane === 'Foundation / Developing') promoStage = (idx % 2 === 0 ? 'Approved' : 'Endorsed for Executive Review');
+          else if (promoLane === 'Professional / Senior') promoStage = (idx % 3 === 0 ? 'Approved' : 'Endorsed for Executive Review');
+          else promoStage = (idx % 4 === 0 ? 'Approved' : 'Endorsed for Executive Review');
         }
-        const manager = executiveCohort ? execLeadByDivision[div] : managersByDivision[div][seq % managersByDivision[div].length];
-        const deptTitle = dept.replace('Revenue Operations','Revenue Ops').replace('Customer Success','Customer Success');
         out.push({
           rowIndex: idx+2,
           email: `employee${String(idx+1).padStart(3,'0')}@onyx.example`,
           empId: `ONX-${String(idx+1).padStart(3,'0')}`,
           name: `${firstNames[idx % firstNames.length]} ${lastNames[Math.floor(idx / firstNames.length) % lastNames.length]}`,
-          manager,
-          jobTitle: executiveCohort ? `${grade} ${deptTitle} Director` : `${grade} ${deptTitle} Specialist`,
+          manager: executiveCohort ? 'Executive Team' : managers[idx % managers.length],
+          jobTitle: executiveCohort ? `${grade} ${dept} Director` : `${grade} ${dept} Specialist`,
           jobGrade: grade,
           division: div,
           department: dept,
-          country,
+          country: country,
           employmentEntity: entity,
-          planningRegion,
-          tenureYrs: executiveCohort ? 4 + (seq % 5) : Math.round((((seq % 8) + 1.2) * 10)) / 10,
-          tenureMos: executiveCohort ? 18 + (seq % 18) : 6 + ((idx * 3) % 54),
+          planningRegion: planningRegion,
+          tenureYrs: executiveCohort ? (4 + (idx % 4)) : Math.round(((idx % 9) + 0.5) * 10) / 10,
+          tenureMos: executiveCohort ? 24 + (idx % 18) : (idx % 42) + 3,
           gender: genders[idx % genders.length],
-          riskStatus: idx % 47 === 0 ? 'PIP' : idx % 29 === 0 ? 'Warning' : 'None',
-          fy24Rating: ratingFromScore(scoreFromBucket(Math.max(1, preBucket - (idx % 8 === 0 ? 1 : 0)))),
-          fy25Rating: ratingFromScore(scoreFromBucket(Math.max(1, preBucket - (idx % 10 === 0 ? 1 : 0)))),
-          mid26Rating: String(Math.min(5, Math.max(1, preBucket + (idx % 12 === 0 ? 1 : 0) - (idx % 20 === 0 ? 1 : 0)))),
+          riskStatus: idx % 37 === 0 ? 'PIP' : idx % 31 === 0 ? 'Warning' : 'None',
+          fy24Rating: ratings[Math.max(0,preBucket-1)],
+          fy25Rating: ratings[Math.max(0,preBucket-1)],
+          mid26Rating: String(Math.min(5, Math.max(1, preBucket + (idx % 13 === 0 ? 1 : 0)))),
           promotedLast12Mos: idx % 41 === 0 ? 'Yes' : 'No',
-          roleChangedLast12Mos: idx % 18 === 0 ? 'Yes' : 'No',
-          selfWhat: preBucket,
-          selfHow: Math.max(1, preBucket - (idx % 6 === 0 ? 1 : 0)),
-          selfGrowth: Math.min(5, preBucket + (idx % 5 === 0 ? 1 : 0)),
+          roleChangedLast12Mos: idx % 19 === 0 ? 'Yes' : 'No',
+          selfWhat: preScores.what,
+          selfHow: preScores.how,
+          selfGrowth: preScores.growth,
           selfWeighted: preWeighted,
           selfRating: ratingFromScore(preWeighted),
-          preWhat: preBucket,
-          preHow: Math.max(1, preBucket - 1),
-          preGrowth: Math.min(5, preBucket + 1),
+          preWhat: preScores.what,
+          preHow: preScores.how,
+          preGrowth: preScores.growth,
           preWeighted: preWeighted.toFixed(1),
           preRating: ratingFromScore(preWeighted),
-          calWhat: calBucket,
-          calHow: Math.max(1, calBucket - 1),
-          calGrowth: Math.min(5, calBucket + 1),
+          calWhat: calScores.what,
+          calHow: calScores.how,
+          calGrowth: calScores.growth,
           calWeightedRaw: calWeighted.toFixed(1),
           calRatingRaw: ratingFromScore(calWeighted),
           calWeighted: calWeighted.toFixed(1),
           calRating: ratingFromScore(calWeighted),
           promoProp: isPromo ? 'Yes' : 'No',
-          businessCase: isPromo ? `Synthetic Onyx ${promoLane.toLowerCase()} promotion case: stronger scope, sustained delivery, and evidence of operating at the next level. Requires calibration alignment${promoStage.includes('Executive Review') ? ' and executive review' : ''}.` : '',
-          propTitle: isPromo ? `${['L1','L2'].includes(grade)?'L3':['L3','L4'].includes(grade)?'L5':'L6'} ${deptTitle} ${promoLane==='Senior' ? 'Lead' : 'Specialist'}` : '',
-          changeType: isPromo ? (idx % 2 === 0 ? 'Job Grade Change' : 'Title Change Only') : '',
+          businessCase: isPromo ? `Synthetic Onyx ${promoLane.toLowerCase()} promotion case: sustained impact, broader scope, and evidence of operating at the next level. Requires calibration alignment${executiveCohort ? ', executive cohort review' : ''} and final approval.` : '',
+          propTitle: isPromo ? (executiveCohort ? `${grade} VP ${dept}` : promoLane === 'Foundation / Developing' ? `${grade} Associate ${dept}` : promoLane === 'Professional / Senior' ? `${grade} Lead / Director ${dept} Specialist` : `${grade} Principal ${dept}`) : '',
+          changeType: isPromo ? (idx % 2 === 0 ? 'Level Change' : 'Title Change Only') : '',
           sltStatus: promoStage,
-          retentionRisk: idx % 22 === 0 ? 'Yes' : 'No',
-          asyncNotes: (idx % 8 === 0 || promoStage.includes('Executive Review')) ? `[People Partner | Demo]: Evidence reviewed before session. Calibration notes captured for discussion.
-
-[Manager | Demo]: Scope and impact reviewed against role expectations.` : '',
-          newGrade: isPromo ? 'L' + Math.min(6, parseInt(grade.slice(1))+1) : '',
-          empSession: reviewCohort,
+          retentionRisk: idx % 23 === 0 ? 'Yes' : 'No',
+          asyncNotes: idx % 8 === 0 ? `[People Partner | Demo]: Evidence reviewed before session. Manager context added for calibration discussion.\n\n[Manager | Demo]: Scope shifted during H2 and peer calibration may need review.` : '',
+          newGrade: isPromo && idx % 2 === 0 ? 'L' + Math.min(6, parseInt(grade.slice(1))+1) : '',
+          empSession: session,
           isLocked: false,
           isDirectReport: executiveCohort,
-          promoLane
+          promoLane: promoLane
         });
         idx++;
       }
-      onyxDivs.forEach(d => { for(let i=0;i<d.hc;i++) addEmployee(d.name, d.depts[i % d.depts.length], false, null); });
-      eorMarkets.forEach((m, mi) => { for(let i=0;i<m.hc;i++){ const d = onyxDivs[(mi+i) % onyxDivs.length]; addEmployee(d.name, d.depts[(mi+i) % d.depts.length], true, m); } });
+      onyxDivs.forEach(d => {
+        for(let i=0;i<d.hc;i++) addEmployee(d.name, d.depts[i % d.depts.length], false, null);
+      });
+      eorMarkets.forEach((m, mi) => {
+        for(let i=0;i<m.hc;i++){
+          const d = onyxDivs[(mi+i) % onyxDivs.length];
+          addEmployee(d.name, d.depts[(mi+i) % d.depts.length], true, m);
+        }
+      });
       return out;
     }
     let demoEmployees = buildEmployees();
@@ -846,10 +837,12 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     }
     function scopedEmployees(user){
       let rows = demoEmployees.map(e => ({...e}));
-      rows.forEach(e => { e.isLocked = !!demoLocks[e.division]; });
-      if(user.role === 'Calibration Attendee') rows = rows.filter(e => e.division === 'Engineering & Platform' && !e.isDirectReport);
-      if(user.role === 'People Partner') rows = rows.filter(e => !e.isDirectReport);
-      if(user.role === 'Executive Review') rows = rows.filter(e => e.isDirectReport || getPromoStage(e.sltStatus) === 'endorsed');
+      rows.forEach(e => {
+        e.isLocked = !!demoLocks[e.division] || (e.empSession.includes('COHORT_ENG') && demoLocks.COHORT_ENG) || (e.empSession.includes('COHORT_PD') && demoLocks.COHORT_PD) || (e.empSession.includes('COHORT_GTM') && demoLocks.COHORT_GTM) || (e.empSession.includes('COHORT_OPS') && demoLocks.COHORT_OPS) || (e.empSession.includes('COHORT_DATA') && demoLocks.COHORT_DATA) || (e.empSession.includes('COHORT_PF') && demoLocks.COHORT_PF);
+      });
+      if(user.role === 'Calibration Attendee') rows = rows.filter(e => e.department === 'Engineering' || e.department === 'Platform' || e.manager === 'Alex Mercer');
+      if(user.role === 'People Partner') rows = rows.filter(e => ['Product & Design','Engineering & Platform','Data & AI','People & Finance'].includes(e.division));
+      if(user.role === 'Executive Review') rows = rows.filter(e => e.isDirectReport || String(e.sltStatus||'').includes('Executive Review'));
       return rows;
     }
     function payload(email){
@@ -870,38 +863,88 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         canUseSltWorkspace: user.isAdmin || user.isSLT
       };
       return {
-        actualUserIsAdmin: !!user.isAdmin,
-        actualUserEmail: user.email,
+        actualUserIsAdmin: true,
+        actualUserEmail: 'admin@onyx.example',
         previewStage: previewStage,
         demoViewOptions: DEMO_VIEW_OPTIONS,
-        curveAdjustments: {'Engineering & Platform':{adjustmentCount:2,buckets:{'1':2,'2':0,'3':0,'4':0,'5':0}}, 'Customer & Operations':{adjustmentCount:1,buckets:{'1':1,'2':0,'3':0,'4':0,'5':0}}},
+        curveAdjustments: {},
         rbac: user,
         employees: scopedEmployees(user),
-        auditLogs: [
-          {emp:'Avery Parker',log:'[OVERRIDE Demo by Platform Admin]: Rating adjusted after evidence review.'},
-          {emp:'Maya Santos',log:'[People Partner Demo]: Promotion case escalated for executive review.'}
-        ]
+        auditLogs: [{emp:'Avery Parker',log:'[OVERRIDE Demo by Platform Admin]: Rating adjusted after evidence review.'},{emp:'Maya Santos',log:'[OVERRIDE Demo by People Partner]: Promotion case escalated for executive review.'}]
       };
     }
     function chain(){
       let success = function(){}, failure = function(e){ console.error(e); };
+      const resetHandlers = () => { success = function(){}; failure = function(e){ console.error(e); }; };
+      const respond = (result, delay = 20) => {
+        const handler = success;
+        resetHandlers();
+        setTimeout(() => handler(result), delay);
+        return api;
+      };
+      const fail = (err, delay = 20) => {
+        const handler = failure;
+        resetHandlers();
+        setTimeout(() => handler(err), delay);
+        return api;
+      };
       const api = {
-        withSuccessHandler(fn){ success = fn; return api; },
-        withFailureHandler(fn){ failure = fn; return api; },
-        getDashboardData(email){ setTimeout(()=>success(payload(email)),20); return api; },
-        previewSltUser(stage,email){ previewStage = stage; if(stage === 'tech_only'){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=true); ['Engineering & Platform'].forEach(d=>demoLocks[d]=false); demoLocks.COHORT_ENG=false; } if(stage === 'all_locked'){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=true); } setTimeout(()=>success(payload(email || 'exec.reviewer@onyx.example')),20); return api; },
-        restoreSltPreviewUser(email){ previewStage = ''; Object.keys(demoLocks).forEach(k=>demoLocks[k]=false); setTimeout(()=>success(payload(email || 'admin@onyx.example')),20); return api; },
-        toggleSessionLock(key){ demoLocks[key] = !demoLocks[key]; setTimeout(()=>success({...demoLocks}),80); return api; },
-        appendAsyncNote(rowIndex,note){ const emp=demoEmployees.find(e=>e.rowIndex===rowIndex); if(emp){ emp.asyncNotes += (emp.asyncNotes?'\n\n':'') + '[Demo User | Now]: ' + note; } setTimeout(()=>success({success:true}),80); return api; },
-        saveMultipleUpdates(rowIndex,updates){ const emp=demoEmployees.find(e=>e.rowIndex===rowIndex); if(emp){ Object.assign(emp,updates); } setTimeout(()=>success({success:true}),80); return api; },
-        runDemoScenario1(){ demoEmployees.forEach((e,i)=>{ if(i%3===0 && !e.asyncNotes) e.asyncNotes='[People Partner | Demo]: Triage note simulated for review.'; }); setTimeout(()=>success({success:true,msg:'Calibration simulation notes applied.'}),100); return api; },
-        undoTriageDemo(){ demoEmployees.forEach(e=>{ if(e.asyncNotes.includes('simulated')) e.asyncNotes=''; }); setTimeout(()=>success({success:true,msg:'Demo notes restored.'}),100); return api; },
-        runCalibrationDemo(){ demoEmployees.forEach((e,i)=>{ if(!e.isDirectReport){ const c = Math.min(5, Math.max(1, Number(e.calWhat || 3) + (i%5===0?1:0))); e.calWhat=c; e.calHow=Math.max(1,c-1); e.calGrowth=Math.min(5,c+1); e.calWeighted=(c-0.1).toFixed(1); e.calRating=ratingFromScore(Number(e.calWeighted)); e.calRatingRaw=e.calRating; e.calWeightedRaw=e.calWeighted; }}); setTimeout(()=>success({success:true,msg:'Calibration simulation applied.'}),100); return api; },
-        undoCalibrationDemo(){ setTimeout(()=>success({success:true,msg:'Calibration demo restored.'}),100); return api; },
-        runPromotionsDemo(){ demoEmployees.forEach((e,i)=>{ if(e.promoProp==='Yes' && i%2===0) e.sltStatus='Endorsed for Executive Review'; }); setTimeout(()=>success({success:true,msg:'Promotion simulation applied.'}),100); return api; },
-        undoPromotionsDemo(){ setTimeout(()=>success({success:true,msg:'Promotion demo restored.'}),100); return api; },
-        runLevel1CompleteDemo(){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=true); setTimeout(()=>success({success:true,msg:'Business review completion simulation applied.'}),100); return api; },
-        undoLevel1CompleteDemo(){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=false); setTimeout(()=>success({success:true,msg:'Business review state restored.'}),100); return api; }
+        withSuccessHandler(fn){ success = typeof fn === 'function' ? fn : function(){}; return api; },
+        withFailureHandler(fn){ failure = typeof fn === 'function' ? fn : function(e){ console.error(e); }; return api; },
+        getDashboardData(email){ return respond(payload(email), 20); },
+        previewSltUser(stage,email){
+          previewStage = stage;
+          if(stage === 'tech_only'){
+            Object.keys(demoLocks).forEach(k=>demoLocks[k]=true);
+            ['Engineering & Platform'].forEach(d=>demoLocks[d]=false);
+            demoLocks.COHORT_ENG=false;
+          }
+          if(stage === 'all_locked'){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=true); }
+          return respond(payload(email || 'exec.reviewer@onyx.example'), 20);
+        },
+        restoreSltPreviewUser(email){
+          previewStage = '';
+          Object.keys(demoLocks).forEach(k=>demoLocks[k]=false);
+          return respond(payload(email || 'admin@onyx.example'), 20);
+        },
+        toggleSessionLock(key){ demoLocks[key] = !demoLocks[key]; return respond({...demoLocks}, 80); },
+        appendAsyncNote(rowIndex,note){
+          const emp=demoEmployees.find(e=>e.rowIndex===rowIndex);
+          if(emp){ emp.asyncNotes += (emp.asyncNotes?'\n\n':'') + '[Demo User | Now]: ' + note; }
+          return respond({success:true},80);
+        },
+        saveMultipleUpdates(rowIndex,updates){
+          const emp=demoEmployees.find(e=>e.rowIndex===rowIndex);
+          if(emp){ Object.assign(emp,updates); }
+          return respond({success:true},80);
+        },
+        runDemoScenario1(){
+          demoEmployees.forEach((e,i)=>{ if(i%3===0 && !e.asyncNotes) e.asyncNotes='[People Partner | Demo]: Triage note simulated for review.'; });
+          return respond({success:true,msg:'Calibration simulation notes applied.'},100);
+        },
+        undoTriageDemo(){
+          demoEmployees.forEach(e=>{ if(e.asyncNotes.includes('simulated')) e.asyncNotes=''; });
+          return respond({success:true,msg:'Demo notes restored.'},100);
+        },
+        runCalibrationDemo(){
+          demoEmployees.forEach((e,i)=>{
+            if(!e.isDirectReport){
+              const c = Math.min(5, Math.max(1, Number(e.calWhat || 3) + (i%5===0?1:0)));
+              e.calWhat=c; e.calHow=Math.max(1,c-1); e.calGrowth=Math.min(5,c+1);
+              const weighted = weightedFromComponents(e.calWhat, e.calHow, e.calGrowth);
+              e.calWeighted=weighted.toFixed(2); e.calRating=ratingFromScore(weighted); e.calRatingRaw=e.calRating; e.calWeightedRaw=e.calWeighted;
+            }
+          });
+          return respond({success:true,msg:'Calibration simulation applied.'},100);
+        },
+        undoCalibrationDemo(){ return respond({success:true,msg:'Calibration demo restored.'},100); },
+        runPromotionsDemo(){
+          demoEmployees.forEach((e,i)=>{ if(e.promoProp==='Yes' && i%2===0) e.sltStatus='Endorsed for Executive Review'; });
+          return respond({success:true,msg:'Promotion simulation applied.'},100);
+        },
+        undoPromotionsDemo(){ return respond({success:true,msg:'Promotion demo restored.'},100); },
+        runLevel1CompleteDemo(){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=true); return respond({success:true,msg:'Business review completion simulation applied.'},100); },
+        undoLevel1CompleteDemo(){ Object.keys(demoLocks).forEach(k=>demoLocks[k]=false); return respond({success:true,msg:'Business review state restored.'},100); }
       };
       return api;
     }
@@ -921,6 +964,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
   let watchlistModalRegistry = {};
   let actualUserIsAdmin = false, actualUserEmail = '', activePreviewStage = '';
   let currentSort = 'default';
+  let activeViewId = 'triage';
   let isSltMode = false;
   let sltPromoView = 'executive_directs'; 
   let isGodMode = false;
@@ -961,10 +1005,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     });
     return summary;
   };
-  const buildAdjustedCurveNote = summary => {
-    if (!summary || !summary.total) return 'No confirmed termination or redundancy adjustments are configured for the visible divisions in this view.';
-    return `Adjusted curve adds ${summary.total} confirmed exit adjustment${summary.total === 1 ? '' : 's'} across the visible divisions. All confirmed adjustments are added back into headcount and treated as rating 1 in the adjusted end-state curve.`;
-  };
+  const buildAdjustedCurveNote = summary => { return ''; };
   const buildHelpGuideHtml = mode => {
     const isCommandCentre = mode === 'command_centre';
     const role = String((sysUser && sysUser.role) || '');
@@ -1079,8 +1120,8 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
           <p>Use the distribution charts to check whether calibrated outcomes look sensible against Onyx recommended curve. A curve that leans materially high or low is a prompt for discussion, not proof that the outcomes are wrong.</p>
         </div>
         <div>
-          <p class="font-bold text-gray-900">Adjusted Curve</p>
-          <p>The adjusted curve adds confirmed exits or redundancies back into the population. This helps show the likely end-state performance distribution across the full cohort, not only employees who remain in seat.</p>
+          <p class="font-bold text-gray-900">Performance curves</p>
+          <p>Use the distribution charts to compare the starting view with the final calibrated outcomes. These views support discussion; they do not replace judgement.</p>
         </div>
         <div>
           <p class="font-bold text-gray-900">Rating movement</p>
@@ -1442,6 +1483,23 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
   function openDemoGuide() {
     openInfoModal('How to Use This Demo', getDemoGuideHtml());
   }
+  function openLeaderPackPreview() {
+    const scope = isSltMode ? 'Executive review pack' : (isGodMode ? 'Admin command centre summary pack' : 'Division leader pack');
+    const sample = `
+      <div class="space-y-4">
+        <section class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+          <h4 class="text-base font-black text-gray-900 mb-2">${scope}</h4>
+          <ul class="ml-5 list-disc space-y-2 text-sm text-gray-700">
+            <li>Current calibration curve vs recommended guardrail</li>
+            <li>Changed ratings with rationale and moderation tags</li>
+            <li>Promotion cases by stage, lane, and exception status</li>
+            <li>Equity watch items and distribution outliers</li>
+            <li>Session readiness and unresolved exception queue</li>
+          </ul>
+        </section>
+      </div>`;
+    openInfoModal('Leader Pack Preview', sample);
+  }
 
   function showWatchlistModal(key) {
     const config = watchlistModalRegistry[key];
@@ -1569,7 +1627,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     const shouldShowReadyBanner = sysUser.level1Finished && sysUser.isSLT && !isSltMode;
     if (shouldShowReadyBanner) {
       const meta = PREVIEW_STAGE_META[activePreviewStage];
-      readyMessage.textContent = meta && meta.title ? `${meta.title}. The executive reviewer can now enter Executive Review.` : 'The current calibration scope is ready for Executive Review.';
+      readyMessage.textContent = meta && meta.title ? `${meta.title}. The executive reviewer can now enter Executive Review.` : 'All required Business Review cohorts are complete. The executive reviewer can now enter Executive Review.';
       readyBanner.classList.remove('hidden');
     } else {
       readyBanner.classList.add('hidden');
@@ -1587,7 +1645,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     if (showWrap) wrap.classList.remove('hidden');
     else wrap.classList.add('hidden');
 
-    const showSltBtn = !isSltMode && (sysUser.isSLT || sysUser.isAdmin);
+    const showSltBtn = !isSltMode && sysUser.level1Finished && (sysUser.isSLT || sysUser.isAdmin);
     sltBtn.classList.toggle('hidden', !showSltBtn);
     exitBtn.classList.toggle('hidden', !isSltMode);
     godBtn.classList.toggle('hidden', !sysUser.isAdmin || isSltMode);
@@ -1711,8 +1769,8 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     let p2=d('#promo-demo-controls button:nth-child(2)'); if(p2) p2.innerHTML = `<i class="fas fa-rotate-left mr-1"></i> Reset Simulation`;
     let g1=d('#god-demo-controls button:nth-child(1)'); if(g1) g1.innerHTML = `<i class="fas fa-fast-forward mr-1"></i> Simulate Business Review Completion`;
     let g2=d('#god-demo-controls button:nth-child(2)'); if(g2) g2.innerHTML = `<i class="fas fa-rotate-left mr-1"></i> Reset Simulation`;
-    let pm1 = gid('preview-memo-tech-btn'); if (pm1) { pm1.disabled = false; pm1.innerHTML = `<i class="fas fa-user-lock mr-1"></i> Preview Executive Review: One Division Example`; }
-    let pm2 = gid('preview-memo-unlock-btn'); if (pm2) { pm2.disabled = false; pm2.innerHTML = `<i class="fas fa-user-check mr-1"></i> Preview Executive Review: Full Executive Population`; }
+    let pm1 = gid('preview-memo-tech-btn'); if (pm1) { pm1.disabled = false; pm1.innerHTML = `<i class="fas fa-user-lock mr-1"></i> Preview Executive Review: Engineering & Platform`; }
+    let pm2 = gid('preview-memo-unlock-btn'); if (pm2) { pm2.disabled = false; pm2.innerHTML = `<i class="fas fa-user-check mr-1"></i> Preview Executive Review: All Divisions Locked`; }
     let pm3 = gid('restore-preview-btn'); if (pm3) { pm3.disabled = false; pm3.innerHTML = `<i class="fas fa-rotate-left mr-1"></i> Restore Admin View`; }
   }
 
@@ -1837,7 +1895,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     gid('div-filter').value = 'All'; gid('triage-notes-flt').value = 'All'; gid('sort-filter').value = 'default'; currentSort = 'default'; updateFilters('init'); 
   }
   
-  function resetInTabFilters() {}
+  function resetInTabFilters() { document.querySelectorAll('.col-filter').forEach(el => { if(el.id !== 'triage-notes-flt') el.value = 'All'; }); }
 
   function updateFilters(sourceTrigger) {
     const divFilterEl = gid('div-filter'); if(!divFilterEl) return;
@@ -1848,17 +1906,18 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       if(sourceTrigger === 'init') {
         let html = optionTag('All', 'All Divisions');
         divs.forEach(d => { html += optionTag(d, d); });
-        divFilterEl.innerHTML = html; div = divFilterEl.value;
+        divFilterEl.innerHTML = html; div = divFilterEl.value; 
       }
       const deptSet = new Set();
-      allData.forEach(e => { if(div === 'All' || e.division === div) deptSet.add(e.department); });
+      allData.forEach(e => { if(div === "All" || e.division === div) deptSet.add(e.department); });
       deptFilter.innerHTML = optionTag('All', 'All Departments');
       [...deptSet].filter(Boolean).sort().forEach(d => { deptFilter.innerHTML += optionTag(d, d); });
-      // Executive cohort selector is restricted to Executive Review/Admin only.
-      sessFilter.classList.toggle('hidden', !(isSltMode || (sysUser && sysUser.isAdmin)));
-      sessFilter.innerHTML = `<option value="All">All Executive Review Cohorts</option>` +
-        ['Product & Design','Engineering & Platform','Sales & Marketing','Customer & Operations','Data & AI','People & Finance']
-          .map((d,i)=> optionTag(['COHORT_PD','COHORT_ENG','COHORT_GTM','COHORT_OPS','COHORT_DATA','COHORT_PF'][i], `${d} Cohort`)).join('');
+      
+      let isTechDiv = (div.includes("Technology") || div.includes("Data, Analytics") || div.includes("Data & AI") || div === "All");
+      if (isTechDiv) {
+        sessFilter.classList.remove('hidden');
+        if (sessFilter.options.length <= 1) sessFilter.innerHTML = `<option value="All">All Executive Review Cohorts</option><option value="COHORT_PD">Product & Design Cohort</option><option value="COHORT_ENG">Engineering & Platform Cohort</option><option value="COHORT_GTM">Sales & Marketing Cohort</option><option value="COHORT_OPS">Customer & Operations Cohort</option><option value="COHORT_DATA">Data & AI Cohort</option><option value="COHORT_PF">People & Finance Cohort</option>`;
+      } else { sessFilter.classList.add('hidden'); }
     }
     resetInTabFilters(); applyDataFilter();
   }
@@ -1866,34 +1925,37 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
   function applyDataFilter() {
     const div = gid('div-filter').value; const dept = gid('dept-filter').value; const sessFilter = gid('session-filter');
     const lockBtn = gid('btn-lock'); const thw = gid('threshold-warning'); const sess = sessFilter.value;
-    let lockTarget = div;
+    let isTechDiv = (div.includes("Technology") || div.includes("Data, Analytics") || div.includes("Data & AI") || div === "All");
+    let lockTarget = isTechDiv ? sess : div;
 
     if (!isSltMode && (sysUser.isPP || sysUser.isAdmin)) {
       lockBtn.classList.remove('hidden');
-      if (lockTarget === 'All') {
-        lockBtn.innerHTML = `<i class="fas fa-lock mr-2"></i>Select specific division to close`; lockBtn.disabled = true; lockBtn.className = "px-4 py-1.5 rounded-lg text-xs font-bold shadow bg-gray-200 text-gray-500 cursor-not-allowed opacity-75";
+      if (lockTarget === "All" || lockTarget === "SLT") {
+        lockBtn.innerHTML = `<i class="fas fa-lock mr-2"></i>Select specific review cohort to lock`; lockBtn.disabled = true; lockBtn.className = "px-4 py-1.5 rounded-lg text-xs font-bold shadow bg-gray-200 text-gray-500 cursor-not-allowed opacity-75";
+      } else if (isTechDiv && lockTarget === "All") {
+        lockBtn.innerHTML = `<i class="fas fa-lock mr-2"></i>Select review cohort to lock`; lockBtn.disabled = true; lockBtn.className = "px-4 py-1.5 rounded-lg text-xs font-bold shadow bg-gray-200 text-gray-500 cursor-not-allowed opacity-75";
       } else {
-        lockBtn.disabled = false; lockBtn.style.cursor = 'pointer';
-        if (sysUser.locks[lockTarget]) { lockBtn.innerHTML = `<i class="fas fa-unlock mr-2"></i>Re-open ${lockTarget}`; lockBtn.className = "px-4 py-1.5 rounded-lg text-xs font-bold shadow bg-red-100 text-red-700 hover:bg-red-200 cursor-pointer"; }
-        else { lockBtn.innerHTML = `<i class="fas fa-check-circle mr-2"></i>Mark ${lockTarget} Ready to Close`; lockBtn.className = "px-4 py-1.5 rounded-lg text-xs font-bold shadow bg-green-500 text-white hover:bg-green-600 cursor-pointer"; }
+        lockBtn.disabled = false; lockBtn.style.cursor = "pointer";
+        if (sysUser.locks[lockTarget]) { lockBtn.innerHTML = `<i class="fas fa-unlock mr-2"></i>Unlock ${lockTarget}`; lockBtn.className = "px-4 py-1.5 rounded-lg text-xs font-bold shadow bg-red-100 text-red-700 hover:bg-red-200 cursor-pointer"; } 
+        else { lockBtn.innerHTML = `<i class="fas fa-check-circle mr-2"></i>Mark ${lockTarget} Complete`; lockBtn.className = "px-4 py-1.5 rounded-lg text-xs font-bold shadow bg-green-500 text-white hover:bg-green-600 cursor-pointer"; }
       }
     } else { lockBtn.classList.add('hidden'); }
 
     globalFilteredData = allData.filter(e => {
       if (isSltMode) {
-          if (gid('view-promotions').classList.contains('active') && sltPromoView === 'level1_endorsed') return getPromoStage(e.sltStatus) === 'endorsed';
-          if (sess !== 'All' && e.empSession !== sess) return false;
-          return e.isDirectReport === true || getPromoStage(e.sltStatus) === 'endorsed';
+          if (gid('view-promotions').classList.contains('active') && sltPromoView === 'level1_endorsed') return !e.isDirectReport && (String(e.sltStatus).includes("Endorsed") || String(e.sltStatus).includes("Approved"));
+          return e.isDirectReport === true;
       } else {
           if (e.isDirectReport) return false;
-          if (div !== 'All' && e.division !== div) return false;
-          if (dept !== 'All' && e.department !== dept) return false;
+          if (div !== "All" && e.division !== div) return false;
+          if (dept !== "All" && e.department !== dept) return false;
+          if (!sessFilter.classList.contains('hidden') && sess !== "All" && !e.empSession.includes(sess)) return false;
           return true;
       }
     });
 
     if(thw && !isSltMode) {
-        if(globalFilteredData.length > 0 && globalFilteredData.length < 10) { thw.classList.remove('hidden'); thw.classList.add('flex'); }
+        if(globalFilteredData.length > 0 && globalFilteredData.length < 10) { thw.classList.remove('hidden'); thw.classList.add('flex'); } 
         else { thw.classList.add('hidden'); thw.classList.remove('flex'); }
     } else if (thw) { thw.classList.add('hidden'); thw.classList.remove('flex'); }
 
@@ -1967,17 +2029,35 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
   }
 
   function toggleLock() {
-    const div = gid('div-filter').value;
-    let lockTarget = div;
-    if (lockTarget === 'All') return;
-
-    gid('btn-lock').innerText = 'Updating...';
+    const div = gid('div-filter').value; const sess = gid('session-filter').value;
+    let isTechDiv = (div.includes("Technology") || div.includes("Data, Analytics") || div.includes("Data & AI") || div === "All");
+    let lockTarget = isTechDiv ? sess : div;
+    if (lockTarget === "All" || lockTarget === "SLT") return;
+    
+    gid('btn-lock').innerText = "Updating...";
     demoApi.withSuccessHandler(newLocks => {
       sysUser.locks = newLocks;
-      allData.forEach(e => { e.isLocked = !!sysUser.locks[e.division]; });
+      allData.forEach(e => {
+        let isLocked = false;
+        if (sysUser.locks[e.division]) isLocked = true;
+        if ((e.empSession||"").includes("COHORT_ENG") && sysUser.locks["COHORT_ENG"]) isLocked = true;
+        if ((e.empSession||"").includes("COHORT_PD") && sysUser.locks["COHORT_PD"]) isLocked = true;
+        if ((e.empSession||"").includes("COHORT_GTM") && sysUser.locks["COHORT_GTM"]) isLocked = true;
+        if ((e.empSession||"").includes("COHORT_OPS") && sysUser.locks["COHORT_OPS"]) isLocked = true;
+        e.isLocked = isLocked;
+      });
       sysUser.level1Finished = LEVEL1_COMPLETION_DIVISIONS.every(d => sysUser.locks[d] === true);
       applyDataFilter();
+    }).withFailureHandler(err => {
+      alert(err.message || err);
+      applyDataFilter();
     }).toggleSessionLock(lockTarget);
+  }
+
+  function updateSel(id, options) {
+    const el = gid(id); if(!el) return;
+    const val = el.value; el.innerHTML = optionTag('All', 'All') + options.map(o => optionTag(o, o)).join('');
+    if(options.includes(val)) el.value = val;
   }
 
   function populateColumnFilters() {
@@ -2036,6 +2116,45 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     gid('triage-body').innerHTML = html;
   }
 
+  function getActiveViewId() {
+    const active = document.querySelector('.view-section.active');
+    return active && active.id ? active.id.replace(/^view-/, '') : activeViewId || 'triage';
+  }
+
+  function captureScrollState() {
+    return {
+      x: window.scrollX || 0,
+      y: window.scrollY || 0,
+      tableScrolls: Array.from(document.querySelectorAll('.table-scroll')).map((el, index) => ({ index, top: el.scrollTop, left: el.scrollLeft }))
+    };
+  }
+
+  function restoreScrollState(state) {
+    if (!state) return;
+    requestAnimationFrame(() => {
+      Array.from(document.querySelectorAll('.table-scroll')).forEach((el, index) => {
+        const saved = state.tableScrolls.find(item => item.index === index);
+        if (saved) { el.scrollTop = saved.top; el.scrollLeft = saved.left; }
+      });
+      window.scrollTo(state.x || 0, state.y || 0);
+    });
+  }
+
+  function refreshActiveViewAfterInlineEdit() {
+    const view = getActiveViewId();
+    const scrollState = captureScrollState();
+    try {
+      if (view === 'calibration') renderCalibration();
+      else if (view === 'promotions') renderPromotions();
+      else if (view === 'triage') renderTriage();
+      else if (view === 'insights') drawCharts();
+      else applyDataFilter();
+    } catch(e) {
+      console.error(e);
+    }
+    restoreScrollState(scrollState);
+  }
+
   function handleScoreUpdate(rowIndex, field, val, isLocked) {
     let emp = allData.find(e => e.rowIndex === rowIndex); let auditReason = "";
     if (isLocked && sysUser.isAdmin && !isSltMode) {
@@ -2056,9 +2175,10 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
           emp.calWeighted = newWgt.toFixed(2); emp.calRating = getRatingLabel(newWgt);
       }
     demoApi
+      .withSuccessHandler(() => {})
       .withFailureHandler(err => { alert(err.message || err); refreshData(); })
       .saveMultipleUpdates(rowIndex, {calWhat: emp.calWhat, calHow: emp.calHow, calGrowth: emp.calGrowth, calWeighted: emp.calWeighted, calRating: emp.calRating}, auditReason);
-    applyDataFilter();
+    refreshActiveViewAfterInlineEdit();
   }
 
   function saveStringData(rowIndex, field, val, isLocked) {
@@ -2074,9 +2194,10 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     } else if (isLocked && !canEditLockedRow()) return;
     
     demoApi
+      .withSuccessHandler(() => {})
       .withFailureHandler(err => { alert(err.message || err); refreshData(); })
       .saveMultipleUpdates(rowIndex, {[field]: val}, auditReason);
-    emp[field] = val; applyDataFilter();
+    emp[field] = val; refreshActiveViewAfterInlineEdit();
   }
 
   function renderCalibration() {
@@ -2153,12 +2274,12 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       if(!emp.fy25Rating || emp.fy25Rating.trim() === '') fy25Check = '❌';
 
       const canEdit = sysUser.isAdmin || (canWriteCalibration() && (!emp.isLocked || sysUser.role === 'People Partner')) || (isSltMode && sysUser.isSLT);
-      let cType = String(emp.changeType || "").trim(); let isTitleChange = cType.toLowerCase().includes("title"); let isLateral = cType.toLowerCase().includes("lateral"); let isGradeChange = cType.toLowerCase().includes("grade");
+      let cType = String(emp.changeType || "").trim(); let isTitleChange = cType.toLowerCase().includes("title"); let isLateral = cType.toLowerCase().includes("lateral"); let isGradeChange = cType.toLowerCase().includes("grade") || cType.toLowerCase().includes("level");
 
-      let changeTypeHtml = canEdit ? `<select onchange="saveStringData(${emp.rowIndex}, 'changeType', this.value, ${emp.isLocked})" class="text-input"><option value="" disabled ${!isTitleChange && !isLateral && !isGradeChange ? 'selected' : ''}>Select...</option><option value="Title Change Only" ${isTitleChange ? 'selected' : ''}>Title Change Only</option><option value="Lateral Move" ${isLateral ? 'selected' : ''}>Lateral Move</option><option value="Job Grade Change" ${isGradeChange ? 'selected' : ''}>Job Grade Change</option></select>` : `<div class="text-xs">${escapeHtml(isTitleChange ? "Title Change Only" : (isLateral ? "Lateral Move" : (isGradeChange ? "Job Grade Change" : cType || '-')))}</div>`;
+      let changeTypeHtml = canEdit ? `<select onchange="saveStringData(${emp.rowIndex}, 'changeType', this.value, ${emp.isLocked})" class="text-input"><option value="" disabled ${!isTitleChange && !isLateral && !isGradeChange ? 'selected' : ''}>Select...</option><option value="Title Change Only" ${isTitleChange ? 'selected' : ''}>Title Change Only</option><option value="Lateral Move" ${isLateral ? 'selected' : ''}>Lateral Move</option><option value="Level Change" ${isGradeChange ? 'selected' : ''}>Level Change</option></select>` : `<div class="text-xs">${escapeHtml(isTitleChange ? "Title Change Only" : (isLateral ? "Lateral Move" : (isGradeChange ? "Level Change" : cType || '-')))}</div>`;
 
       let titleHtml = canEdit ? `<input type="text" data-initial="${escapeAttr(emp.propTitle || '')}" onblur="if(this.value !== this.dataset.initial) saveStringData(${emp.rowIndex}, 'propTitle', this.value, ${emp.isLocked})" class="text-input" value="${escapeAttr(emp.propTitle || '')}">` : `<div class="text-xs">${safeCell(emp.propTitle)}</div>`;
-      let grdHtml = (isGradeChange || cType === 'Job Grade Change') ? (canEdit ? `<input type="text" data-initial="${escapeAttr(emp.newGrade || '')}" onblur="if(this.value !== this.dataset.initial) saveStringData(${emp.rowIndex}, 'newGrade', this.value, ${emp.isLocked})" class="text-input" value="${escapeAttr(emp.newGrade || '')}" placeholder="e.g L5">` : `<div class="text-xs">${safeCell(emp.newGrade)}</div>`) : '-';
+      let grdHtml = isGradeChange ? (canEdit ? `<input type="text" data-initial="${escapeAttr(emp.newGrade || '')}" onblur="if(this.value !== this.dataset.initial) saveStringData(${emp.rowIndex}, 'newGrade', this.value, ${emp.isLocked})" class="text-input" value="${escapeAttr(emp.newGrade || '')}" placeholder="e.g. L5">` : `<div class="text-xs">${safeCell(emp.newGrade)}</div>`) : '-';
       
       const sltStatusOptions = isSltMode
         ? [
@@ -2236,16 +2357,19 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       viewId = 'triage';
       element = gid('tab-triage');
     }
+    activeViewId = viewId;
+    const tabElement = element || gid('tab-' + viewId) || document.querySelector(`.tab[onclick*="${viewId}"]`);
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    if(element) element.classList.add('active');
+    if(tabElement) tabElement.classList.add('active');
     document.querySelectorAll('.view-section').forEach(v => { v.classList.add('hidden'); v.classList.remove('active'); });
-    
     const target = gid('view-' + viewId);
     if(target) { target.classList.remove('hidden'); target.classList.add('active'); }
-    
+
     if (viewId === 'promotions' && isSltMode) gid('slt-promo-toggles').classList.remove('hidden');
     else if (gid('slt-promo-toggles')) gid('slt-promo-toggles').classList.add('hidden');
-    
+
+    try { applyDataFilter(); } catch(e) { console.error(e); }
+
     if(viewId === 'insights') {
         if(isSltMode) { gid('standard-insights-top').classList.add('hidden'); gid('slt-insights-top').classList.remove('hidden'); } 
         else { gid('standard-insights-top').classList.remove('hidden'); gid('slt-insights-top').classList.add('hidden'); }
@@ -2280,6 +2404,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     let html = '';
     divs.forEach(d => {
         let isDone = sysUser.locks[d] || false;
+        
         html += `<div class="p-3 rounded-lg border ${isDone ? 'bg-green-900 border-green-700' : 'bg-gray-800 border-gray-700'} flex justify-between items-center"><span class="text-xs font-bold ${isDone ? 'text-green-400' : 'text-gray-400'}">${d}</span><span>${isDone ? '✅' : '⏳'}</span></div>`;
     });
     gid('cmd-div-status').innerHTML = html;
@@ -2288,11 +2413,11 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
   const getPcts = (d, t) => { let tV = t || 1; return { "1": mRnd((d["1"]/tV)*100)||0, "2": mRnd((d["2"]/tV)*100)||0, "3": mRnd((d["3"]/tV)*100)||0, "4": mRnd((d["4"]/tV)*100)||0, "5": mRnd((d["5"]/tV)*100)||0 }; };
   const getGenPcts = (g, tm, tf) => { let m = tm || 1; let f = tf || 1; return { M: { "1": mRnd((g.M["1"]/m)*100)||0, "2": mRnd((g.M["2"]/m)*100)||0, "3": mRnd((g.M["3"]/m)*100)||0, "4": mRnd((g.M["4"]/m)*100)||0, "5": mRnd((g.M["5"]/m)*100)||0 }, F: { "1": mRnd((g.F["1"]/f)*100)||0, "2": mRnd((g.F["2"]/f)*100)||0, "3": mRnd((g.F["3"]/f)*100)||0, "4": mRnd((g.F["4"]/f)*100)||0, "5": mRnd((g.F["5"]/f)*100)||0 } }; };
 
-  function buildDistTable(pre, post, adjusted, nPre, nPost, nAdjusted, isGod) {
-     let p = getPcts(pre, nPre); let po = getPcts(post, nPost); let pa = getPcts(adjusted, nAdjusted); let cBg = isGod ? "bg-gray-800" : "bg-gray-100"; let cTh = isGod ? "text-gray-300 border-gray-700" : "text-gray-600 border-b border-r"; let cTb = isGod ? "hover:bg-gray-700" : "hover:bg-gray-50";
-     let html = `<table class="w-full text-left border-collapse text-xs" style="table-layout: auto;"><thead><tr><th class="${cBg} ${cTh} px-3 py-2 font-bold uppercase">Distribution</th><th class="${cBg} text-gray-400 ${cTh} px-3 py-2 font-bold uppercase text-center">Recommended</th><th class="${cBg} text-purple-400 ${cTh} px-3 py-2 font-bold uppercase text-center">Pre Calibration (N=${nPre})</th><th class="${cBg} text-green-400 ${cTh} px-3 py-2 font-bold uppercase text-center">Calibrated (N=${nPost})</th><th class="${cBg} text-orange-400 ${isGod?'border-b border-gray-700':'border-b px-3 py-2'} font-bold uppercase text-center">Adjusted (N=${nAdjusted})</th></tr></thead><tbody>`;
+  function buildDistTable(pre, post, adjusted, nPre, nPost, nFinal, isGod) {
+     let p = getPcts(pre, nPre); let po = getPcts(post, nPost); let cBg = isGod ? "bg-gray-800" : "bg-gray-100"; let cTh = isGod ? "text-gray-300 border-gray-700" : "text-gray-600 border-b border-r"; let cTb = isGod ? "hover:bg-gray-700" : "hover:bg-gray-50";
+     let html = `<table class="w-full text-left border-collapse text-xs" style="table-layout: auto;"><thead><tr><th class="${cBg} ${cTh} px-3 py-2 font-bold uppercase">Distribution</th><th class="${cBg} text-gray-400 ${cTh} px-3 py-2 font-bold uppercase text-center">Recommended</th><th class="${cBg} text-red-700 ${cTh} px-3 py-2 font-bold uppercase text-center">Pre Calibration (N=${nPre})</th><th class="${cBg} text-gray-900 ${isGod?'border-b border-gray-700':'border-b'} px-3 py-2 font-bold uppercase text-center">Calibrated (N=${nPost})</th></tr></thead><tbody>`;
      const rows = [ ["Exceptional Impact", 5, "5"], ["Exceeds Expectations", 20, "4"], ["Meets Expectations", 50, "3"], ["Approaching Expectations", 20, "2"], ["Below Expectations", 5, "1"] ];
-     rows.forEach(r => { html += `<tr class="${cTb}"><td class="font-bold border-r border-b ${isGod?'border-gray-700 text-gray-200':'text-gray-700'} px-3 py-1.5">${r[0]}</td><td class="text-center text-gray-400 border-r border-b ${isGod?'border-gray-700':''} px-3 py-1.5 font-medium">${r[1]}%</td><td class="text-center border-r border-b ${isGod?'border-gray-700':''} px-3 py-1.5 ${isGod?'text-purple-400':'text-purple-600'} font-medium">${p[r[2]]}%</td><td class="text-center border-r border-b ${isGod?'border-gray-700':''} px-3 py-1.5 ${isGod?'text-green-400':'text-green-600'} font-bold">${po[r[2]]}%</td><td class="text-center border-b ${isGod?'border-gray-700':''} px-3 py-1.5 ${isGod?'text-orange-300':'text-orange-600'} font-bold">${pa[r[2]]}%</td></tr>`; });
+     rows.forEach(r => { html += `<tr class="${cTb}"><td class="font-bold border-r border-b ${isGod?'border-gray-700 text-gray-200':'text-gray-700'} px-3 py-1.5">${r[0]}</td><td class="text-center text-gray-400 border-r border-b ${isGod?'border-gray-700':''} px-3 py-1.5 font-medium">${r[1]}%</td><td class="text-center border-r border-b ${isGod?'border-gray-700':''} px-3 py-1.5 ${isGod?'text-red-300':'text-red-700'} font-medium">${p[r[2]]}%</td><td class="text-center border-b ${isGod?'border-gray-700':''} px-3 py-1.5 ${isGod?'text-gray-100':'text-gray-900'} font-bold">${po[r[2]]}%</td></tr>`; });
      return html + `</tbody></table>`;
   }
 
@@ -2307,8 +2432,118 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
   const makeDistData = (d, t, actualLabel) => { let p = getPcts(d, t); return gData([ ['Rating', 'Recommended Distribution', {type:'string',role:'annotation'}, actualLabel || 'Actual', {type:'string',role:'annotation'}], ['Below Expectations', 5, '5%', p["1"], p["1"]+'%'], ['Approaching Expectations', 20, '20%', p["2"], p["2"]+'%'], ['Meets Expectations', 50, '50%', p["3"], p["3"]+'%'], ['Exceeds Expectations', 20, '20%', p["4"], p["4"]+'%'], ['Exceptional Impact', 5, '5%', p["5"], p["5"]+'%'] ]); };
   const makeGenData = (g, tm, tf) => { let p = getGenPcts(g, tm, tf); return gData([ ['Rating', 'Recommended Distribution', {type:'string',role:'annotation'}, 'Male', {type:'string',role:'annotation'}, 'Female', {type:'string',role:'annotation'}], ['Below Expectations', 5, '5%', p.M["1"], p.M["1"]+'%', p.F["1"], p.F["1"]+'%'], ['Approaching Expectations', 20, '20%', p.M["2"], p.M["2"]+'%', p.F["2"], p.F["2"]+'%'], ['Meets Expectations', 50, '50%', p.M["3"], p.M["3"]+'%', p.F["3"], p.F["3"]+'%'], ['Exceeds Expectations', 20, '20%', p.M["4"], p.M["4"]+'%', p.F["4"], p.F["4"]+'%'], ['Exceptional Impact', 5, '5%', p.M["5"], p.M["5"]+'%', p.F["5"], p.F["5"]+'%'] ]); };
 
-  const getBellOpts = (color, isDark) => ({ curveType:'function', seriesType:'line', backgroundColor:'transparent', series:{ 0:{type:'line', color:'#5A5A5A', lineWidth:3, lineDashStyle: [4, 4]}, 1:{type:'line', color:color, lineWidth:4, pointSize:6} }, chartArea:{left:72,width:'82%',height:'70%'}, legend:{position:'bottom', textStyle:{color:'#8A8A8A'}}, vAxis: {format: '#\'%\'', minValue: 0, maxValue: 100, textStyle:{color:'#8A8A8A'}, gridlines:{color:'#242424'}}, hAxis:{textStyle:{color:'#8A8A8A'}}, annotations:{textStyle:{fontSize:11, bold:true, color: color}, alwaysOutside: true} });
-  const getGenOpts = (isDark) => ({ curveType:'function', seriesType:'line', backgroundColor:'transparent', series:{0:{type:'line', color:'#5A5A5A', lineWidth:3, lineDashStyle: [4,4]}, 1:{type:'line', color:'#4A90D9', lineWidth:4, pointSize:6}, 2:{type:'line', color:'#C0392B', lineWidth:4, pointSize:6} }, chartArea:{left:72,width:'82%',height:'70%'}, vAxis: {format: '#\'%\'', minValue: 0, maxValue: 100, textStyle:{color:'#8A8A8A'}, gridlines:{color:'#242424'}}, hAxis:{textStyle:{color:'#8A8A8A'}}, legend:{position:'bottom', textStyle:{color:'#8A8A8A'}}, annotations:{textStyle:{fontSize:11, bold:true, color:'#F5F5F5'}} });
+  const getBellOpts = (color, isDark) => ({
+    curveType:'function',
+    seriesType:'line',
+    backgroundColor:'transparent',
+    areaOpacity: 0.15,
+    series:{
+      0:{type:'line', color:isDark ? '#A3A3A3' : '#94A3B8', lineWidth:3, lineDashStyle:[5,5], pointSize:5},
+      1:{type:'area', color:color, lineWidth:4, pointSize:8}
+    },
+    chartArea:{left:70, top:26, width:'84%', height:'72%'},
+    legend:{position:'bottom', textStyle:{color:isDark ? '#D1D5DB' : '#334155', fontSize:12}},
+    vAxis:{format:'#\'%\'', minValue:0, maxValue:100, textStyle:{color:isDark ? '#D1D5DB' : '#475569', fontSize:12}, gridlines:{color:isDark ? '#2A2A2A' : '#E5E7EB'}},
+    hAxis:{textStyle:{color:isDark ? '#D1D5DB' : '#475569', fontSize:12}},
+    annotations:{textStyle:{fontSize:12, bold:true, color:color}, alwaysOutside:true}
+  });
+  const getGenOpts = (isDark) => ({
+    curveType:'function',
+    seriesType:'line',
+    backgroundColor:'transparent',
+    areaOpacity: 0.08,
+    series:{0:{type:'line', color:isDark ? '#A3A3A3' : '#94A3B8', lineWidth:3, lineDashStyle:[5,5]}, 1:{type:'area', color:'#4A90D9', lineWidth:4, pointSize:7}, 2:{type:'area', color:'#C0392B', lineWidth:4, pointSize:7}},
+    chartArea:{left:70, top:26, width:'84%', height:'72%'},
+    vAxis:{format:'#\'%\'', minValue:0, maxValue:100, textStyle:{color:isDark ? '#D1D5DB' : '#475569', fontSize:12}, gridlines:{color:isDark ? '#2A2A2A' : '#E5E7EB'}},
+    hAxis:{textStyle:{color:isDark ? '#D1D5DB' : '#475569', fontSize:12}},
+    legend:{position:'bottom', textStyle:{color:isDark ? '#D1D5DB' : '#334155', fontSize:12}},
+    annotations:{textStyle:{fontSize:12, bold:true, color:isDark ? '#F5F5F5' : '#111827'}}
+  });
+
+
+  const CURVE_POINTS = [
+    {key:'1', label:'Below'},
+    {key:'2', label:'Approaching'},
+    {key:'3', label:'Meets'},
+    {key:'4', label:'Exceeds'},
+    {key:'5', label:'Exceptional'}
+  ];
+  const RECOMMENDED_CURVE = {'1':5, '2':20, '3':50, '4':20, '5':5};
+  function curvePath(points) {
+    if (!points.length) return '';
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 0; i < points.length - 1; i++) {
+      const p0 = points[i - 1] || points[i];
+      const p1 = points[i];
+      const p2 = points[i + 1];
+      const p3 = points[i + 2] || p2;
+      const cp1x = p1.x + (p2.x - p0.x) / 6;
+      const cp1y = p1.y + (p2.y - p0.y) / 6;
+      const cp2x = p2.x - (p3.x - p1.x) / 6;
+      const cp2y = p2.y - (p3.y - p1.y) / 6;
+      d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+    }
+    return d;
+  }
+  function buildCurveSvg(series, opts = {}) {
+    const width = 1100;
+    const height = opts.height || 500;
+    const margin = {left:76, right:34, top:32, bottom:92};
+    const plotW = width - margin.left - margin.right;
+    const plotH = height - margin.top - margin.bottom;
+    const maxVal = Math.max(60, ...series.flatMap(s => Object.values(s.values || {}).map(Number)));
+    const maxY = Math.ceil(maxVal / 10) * 10;
+    const xFor = i => margin.left + (plotW * i / (CURVE_POINTS.length - 1));
+    const yFor = v => margin.top + plotH - ((Number(v) || 0) / maxY * plotH);
+    const gridVals = [0, Math.round(maxY * .25), Math.round(maxY * .5), Math.round(maxY * .75), maxY];
+    const grid = gridVals.map(v => {
+      const y = yFor(v);
+      return `<line x1="${margin.left}" y1="${y}" x2="${width-margin.right}" y2="${y}" stroke="${opts.dark ? '#2A2A2A' : '#E6E7EB'}" stroke-width="1"/><text x="${margin.left-14}" y="${y+4}" text-anchor="end" font-size="12" fill="${opts.dark ? '#CBD5E1' : '#64748B'}">${v}%</text>`;
+    }).join('');
+    const xLabels = CURVE_POINTS.map((p, i) => `<text x="${xFor(i)}" y="${height-48}" text-anchor="middle" font-size="13" font-weight="800" fill="${opts.dark ? '#E5E7EB' : '#334155'}">${p.label}</text>`).join('');
+    const rendered = series.map((ser, si) => {
+      const pts = CURVE_POINTS.map((p, i) => ({x:xFor(i), y:yFor(ser.values[p.key]), v:Number(ser.values[p.key]) || 0}));
+      const path = curvePath(pts);
+      const area = `${path} L ${pts[pts.length-1].x} ${margin.top+plotH} L ${pts[0].x} ${margin.top+plotH} Z`;
+      const dash = ser.dashed ? 'stroke-dasharray="9 7"' : '';
+      const fill = ser.fill ? `<path d="${area}" fill="${ser.color}" opacity="${ser.fillOpacity || 0.10}"/>` : '';
+      const circles = pts.map(pt => `<circle cx="${pt.x}" cy="${pt.y}" r="${ser.pointRadius || 5}" fill="${opts.dark ? '#111827' : '#FFFFFF'}" stroke="${ser.color}" stroke-width="3"/>`).join('');
+      const labelOffset = ser.labelOffset == null ? -12 : ser.labelOffset;
+      const labelFontSize = opts.labelFontSize || 13;
+      const labels = opts.hideLabels ? '' : pts.map(pt => `<text x="${pt.x}" y="${pt.y + labelOffset}" text-anchor="middle" font-size="${labelFontSize}" font-weight="900" fill="${ser.color}">${pt.v}%</text>`).join('');
+      return `${fill}<path d="${path}" fill="none" stroke="${ser.color}" stroke-width="${ser.width || 5}" stroke-linecap="round" stroke-linejoin="round" ${dash}/>${circles}${labels}`;
+    }).join('');
+    const legend = series.map((ser, i) => {
+      const x = margin.left + i * 230;
+      return `<g transform="translate(${x}, ${height-22})"><line x1="0" y1="0" x2="30" y2="0" stroke="${ser.color}" stroke-width="5" stroke-linecap="round" ${ser.dashed ? 'stroke-dasharray="8 6"' : ''}/><text x="42" y="5" font-size="13" font-weight="800" fill="${opts.dark ? '#E5E7EB' : '#334155'}">${ser.label}</text></g>`;
+    }).join('');
+    return `<svg class="distribution-curve-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Performance distribution curves: recommended, pre-calibration and calibrated">${grid}${xLabels}${rendered}${legend}</svg>`;
+  }
+  function renderDistributionCurves(containerId, pre, post, nPre, nPost, isDark) {
+    const prePct = getPcts(pre, nPre || 1);
+    const postPct = getPcts(post, nPost || 1);
+    const host = gid(containerId);
+    if (!host) return;
+    host.innerHTML = buildCurveSvg([
+      {label:'Recommended', values:RECOMMENDED_CURVE, color:isDark ? '#A3A3A3' : '#94A3B8', dashed:true, width:4},
+      {label:'Pre-calibrated', values:prePct, color:'#E8B84B', fill:true, fillOpacity:0.10, width:6},
+      {label:'Calibrated', values:postPct, color:'#C0392B', fill:true, fillOpacity:0.13, width:6}
+    ], {dark:!!isDark, height:560, labelFontSize:13});
+  }
+
+  function renderGenderCurves(containerId, genderBuckets, maleCount, femaleCount, phaseLabel, isDark) {
+    const host = gid(containerId);
+    if (!host) return;
+    const malePct = getPcts((genderBuckets && genderBuckets.M) || emptyDistBuckets(), maleCount || 1);
+    const femalePct = getPcts((genderBuckets && genderBuckets.F) || emptyDistBuckets(), femaleCount || 1);
+    const svg = buildCurveSvg([
+      {label:'Recommended', values:RECOMMENDED_CURVE, color:isDark ? '#A3A3A3' : '#94A3B8', dashed:true, width:4, labelOffset:-14, pointRadius:5},
+      {label:`Male ${phaseLabel}`, values:malePct, color:'#4A90D9', fill:true, fillOpacity:0.10, width:7, labelOffset:-28, pointRadius:6},
+      {label:`Female ${phaseLabel}`, values:femalePct, color:'#C0392B', fill:true, fillOpacity:0.12, width:7, labelOffset:22, pointRadius:6}
+    ], {dark:!!isDark, height:560, labelFontSize:14}).replace('class="distribution-curve-svg"', 'class="gender-curve-svg"').replace('Performance distribution curves: recommended, pre-calibration and calibrated', `Gender distribution curves: recommended, male ${phaseLabel} and female ${phaseLabel}`);
+    host.innerHTML = svg;
+  }
+
   const renderBucket = (name, b, tEnd, isGod) => { let pct = tEnd ? mRnd((b.total / tEnd) * 100) : 0; let mPct = b.total ? mRnd((b.m / b.total) * 100) : 0; let fPct = b.total ? mRnd((b.f / b.total) * 100) : 0; let cBg = isGod ? "bg-gray-800 border-gray-700" : "bg-gray-50 border-gray-200"; let cText = isGod ? "text-gray-200" : "text-indigo-900"; let cLine = isGod ? "bg-gray-700" : "bg-gray-200"; return `<div class="${cBg} p-4 rounded-lg border shadow-sm"><div class="text-xs font-bold text-gray-500 uppercase tracking-wide">${name}</div><div class="text-2xl font-black ${cText} mt-1">${pct}% <span class="text-sm font-normal text-gray-500">(${b.total} promos)</span></div><div class="mt-3 text-xs font-bold text-gray-400 flex justify-between"><span><i class="fas fa-mars text-blue-400"></i> Male: ${b.m} (${mPct}%)</span><span><i class="fas fa-venus text-pink-400"></i> Female: ${b.f} (${fPct}%)</span></div><div class="w-full ${cLine} h-2 rounded-full mt-1 flex overflow-hidden"><div class="bg-blue-400 h-2" style="width: ${mPct}%"></div><div class="bg-purple-400 h-2" style="width: ${fPct}%"></div></div></div>`; };
 
   function drawCharts() {
@@ -2372,7 +2607,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     });
 
     const adjustmentSummary = getCurveAdjustmentSummary(globalFilteredData);
-    const dAdjusted = addDistBuckets(dPost, adjustmentSummary.buckets);
+    const dFinal = addDistBuckets(dPost, adjustmentSummary.buckets);
     const adjustedCount = postCount + adjustmentSummary.total;
     let topTalent = pctOf(exc+gc, postCount); let underperf = pctOf(und+app, postCount); let delivers = pctOf(del, postCount);
     let rateWomen = totalWomen ? Math.round((pFemale / totalWomen) * 100) : 0; let rateMen = totalMen ? Math.round((pMale / totalMen) * 100) : 0;
@@ -2394,7 +2629,6 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     if (outlierManagers.length > 0) insightsHtml += `<div class="flex items-start"><i class="fas fa-gavel text-orange-500 mt-1 mr-2 w-4"></i><div><strong>Manager Leniency / Severity:</strong> Outliers vs div avg (${divAvg.toFixed(1)}): ${outlierManagers.join(', ')}.</div></div>`;
     if (shift !== 0) insightsHtml += `<div class="flex items-start"><i class="fas fa-sync-alt text-green-500 mt-1 mr-2 w-4"></i><div><strong>Calibration Shift:</strong> 'Exceeds+' pool ${shift > 0 ? 'increased' : 'reduced'} by ${Math.abs(shift)}% vs baseline.</div></div>`;
     insightsHtml += `<div class="flex items-start"><i class="fas fa-balance-scale-right text-indigo-500 mt-1 mr-2 w-4"></i><div><strong>Promotion Equity Rate:</strong> ${rateWomen}% of women in this view were endorsed for promotion compared to ${rateMen}% of men.</div></div>`;
-    if (adjustmentSummary.total > 0) insightsHtml += `<div class="flex items-start"><i class="fas fa-user-slash text-orange-500 mt-1 mr-2 w-4"></i><div><strong>Adjusted Curve:</strong> ${buildAdjustedCurveNote(adjustmentSummary)}</div></div>`;
     insightsHtml += `</div>`;
     gid('smart-insights-container').innerHTML = insightsHtml;
 
@@ -2411,15 +2645,12 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     renderRatingMovementSection(globalFilteredData, 'this filtered view');
     renderPromoFunnelSection(globalFilteredData, 'this filtered view');
 
-    gid('distribution-table-container').innerHTML = buildDistTable(dPre, dPost, dAdjusted, preCount || 0, postCount || 0, adjustedCount || 0, false);
-    new google.visualization.LineChart(gid('chart_pre')).draw(makeDistData(dPre, preCount || 1, 'Pre-Calibration'), getBellOpts('#6542BE', false));
-    new google.visualization.LineChart(gid('chart_post')).draw(makeDistData(dPost, postCount || 1, 'Calibrated'), getBellOpts('#10B981', false));
-    new google.visualization.LineChart(gid('chart_adjusted')).draw(makeDistData(dAdjusted, adjustedCount || 1, 'Adjusted'), getBellOpts('#F97316', false));
-    gid('chart_adjusted_note').textContent = buildAdjustedCurveNote(adjustmentSummary);
+    gid('distribution-table-container').innerHTML = buildDistTable(dPre, dPost, null, preCount || 0, postCount || 0, 0, false);
+    renderDistributionCurves('chart_distribution_curves', dPre, dPost, preCount || 1, postCount || 1, false);
 
     gid('gender-table-container').innerHTML = buildGenTable(gPre, gPost, preMenCount||1, preWomenCount||1, postMenCount||1, postWomenCount||1, false);
-    new google.visualization.LineChart(gid('chart_gender_pre')).draw(makeGenData(gPre, preMenCount||1, preWomenCount||1), getGenOpts(false));
-    new google.visualization.LineChart(gid('chart_gender')).draw(makeGenData(gPost, mPop, fPop), getGenOpts(false));
+    renderGenderCurves('chart_gender_pre', gPre, preMenCount || 1, preWomenCount || 1, 'pre-calibrated', false);
+    renderGenderCurves('chart_gender', gPost, mPop, fPop, 'calibrated', false);
 
     gid('bar-chart-title').innerText = isAllDiv ? 'Average Rating by Division' : 'Average Rating by Department';
     let barArr = [['Group', 'Avg Score', {role:'style'}, {role:'annotation'}]];
@@ -2434,7 +2665,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     new google.visualization.BarChart(gid('chart_promo_bar')).draw(gData(promoBarArr), {backgroundColor:'transparent', chartArea:{left:230,width:'72%',height:'78%'}, hAxis:{textStyle:{color:'#AFAFAF'}, gridlines:{color:'#2A2A2A'}}, vAxis:{textStyle:{color:'#D6D6D6', fontSize:13}}, legend:{position:'none'}, annotations: {alwaysOutside: true, textStyle: {fontSize: 12, bold: true, color: '#F5F5F5'}}});
 
     new google.visualization.PieChart(gid('chart_promo_donut')).draw(gData([['Gender', 'Count'], ['Male', pMale], ['Female', pFemale]]), {pieHole: 0.5, backgroundColor: 'transparent', colors: ['#60A5FA', '#F472B6'], chartArea:{width:'80%',height:'80%'}, legend:{position:'bottom'}});
-    gid('promo-seniority-cards').innerHTML = renderBucket("Junior (L1-L2)", b1, totalEndorsedPromos, false) + renderBucket("Mid-Level (L3-L4)", b2, totalEndorsedPromos, false) + renderBucket("Senior (L5-L6)", b3, totalEndorsedPromos, false);
+    gid('promo-seniority-cards').innerHTML = renderBucket("L1-L2 Foundation / Developing", b1, totalEndorsedPromos, false) + renderBucket("L3-L4 Professional / Senior", b2, totalEndorsedPromos, false) + renderBucket("L5-L6 Lead / Director", b3, totalEndorsedPromos, false);
   }
 
   function drawSltCharts() {
@@ -2444,7 +2675,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     let sltBarMap={}; let promoMap={}; let pMale=0, pFemale=0; let b1={total:0, m:0, f:0}, b2={total:0, m:0, f:0}, b3={total:0, m:0, f:0}; let totalEndorsed=0;
     let sltExcCount=0, sltUndCount=0, sltDelCount=0; let sltMaleExc=0, sltFemExc=0, sltMaleTot=0, sltFemTot=0;
     const scopedData = allData.filter(e => divFilter === "All" || e.division === divFilter);
-    const adjustmentSummary = getCurveAdjustmentSummary(scopedData);
+    const adjustmentSummary = {total:0, buckets: emptyDistBuckets(), divisions: []};
 
     allData.forEach(e => {
         if (divFilter !== "All" && e.division !== divFilter) return;
@@ -2472,24 +2703,24 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         }
     });
 
-    const dAdjustedTotal = addDistBuckets(dTotal, adjustmentSummary.buckets);
+    const dFinalTotal = addDistBuckets(dTotal, adjustmentSummary.buckets);
     let s1 = tExcl || 1; let s2Pre = tSltPre || 1; let s2Post = tSltPost || 1; let s3 = tTotal || 1; let s4 = (tTotal + adjustmentSummary.total) || 1; let mPop = tMale || 1; let fPop = tFemale || 1;
     let titlePrefix = divFilter === "All" ? "Onyx" : divFilter;
     gid('slt-chart-title-1').innerText = `${titlePrefix} Executive Comparative Distribution`;
     gid('slt-chart-title-3').innerText = `${titlePrefix} Final Gender Distribution`;
 
     const makeCompData = () => gData([
-        ['Rating', 'Recommended Distribution', {type:'string',role:'annotation'}, 'Business Review Baseline (Excl Executive Cohort)', {type:'string',role:'annotation'}, 'Executive Cohort Pre-Calibration', {type:'string',role:'annotation'}, 'Executive Cohort Calibrated', {type:'string',role:'annotation'}, 'Total Final Combined', {type:'string',role:'annotation'}, 'Adjusted Total Final Combined', {type:'string',role:'annotation'}],
-        ['Below Expectations', 5, '5%', mRnd((dExcl["1"]/s1)*100)||0, (mRnd((dExcl["1"]/s1)*100)||0)+'%', mRnd((dSltPre["1"]/s2Pre)*100)||0, (mRnd((dSltPre["1"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["1"]/s2Post)*100)||0, (mRnd((dSltPost["1"]/s2Post)*100)||0)+'%', mRnd((dTotal["1"]/s3)*100)||0, (mRnd((dTotal["1"]/s3)*100)||0)+'%', mRnd((dAdjustedTotal["1"]/s4)*100)||0, (mRnd((dAdjustedTotal["1"]/s4)*100)||0)+'%'],
-        ['Approaching Expectations', 20, '20%', mRnd((dExcl["2"]/s1)*100)||0, (mRnd((dExcl["2"]/s1)*100)||0)+'%', mRnd((dSltPre["2"]/s2Pre)*100)||0, (mRnd((dSltPre["2"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["2"]/s2Post)*100)||0, (mRnd((dSltPost["2"]/s2Post)*100)||0)+'%', mRnd((dTotal["2"]/s3)*100)||0, (mRnd((dTotal["2"]/s3)*100)||0)+'%', mRnd((dAdjustedTotal["2"]/s4)*100)||0, (mRnd((dAdjustedTotal["2"]/s4)*100)||0)+'%'],
-        ['Meets Expectations', 50, '50%', mRnd((dExcl["3"]/s1)*100)||0, (mRnd((dExcl["3"]/s1)*100)||0)+'%', mRnd((dSltPre["3"]/s2Pre)*100)||0, (mRnd((dSltPre["3"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["3"]/s2Post)*100)||0, (mRnd((dSltPost["3"]/s2Post)*100)||0)+'%', mRnd((dTotal["3"]/s3)*100)||0, (mRnd((dTotal["3"]/s3)*100)||0)+'%', mRnd((dAdjustedTotal["3"]/s4)*100)||0, (mRnd((dAdjustedTotal["3"]/s4)*100)||0)+'%'],
-        ['Exceeds Expectations', 20, '20%', mRnd((dExcl["4"]/s1)*100)||0, (mRnd((dExcl["4"]/s1)*100)||0)+'%', mRnd((dSltPre["4"]/s2Pre)*100)||0, (mRnd((dSltPre["4"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["4"]/s2Post)*100)||0, (mRnd((dSltPost["4"]/s2Post)*100)||0)+'%', mRnd((dTotal["4"]/s3)*100)||0, (mRnd((dTotal["4"]/s3)*100)||0)+'%', mRnd((dAdjustedTotal["4"]/s4)*100)||0, (mRnd((dAdjustedTotal["4"]/s4)*100)||0)+'%'],
-        ['Exceptional Impact', 5, '5%', mRnd((dExcl["5"]/s1)*100)||0, (mRnd((dExcl["5"]/s1)*100)||0)+'%', mRnd((dSltPre["5"]/s2Pre)*100)||0, (mRnd((dSltPre["5"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["5"]/s2Post)*100)||0, (mRnd((dSltPost["5"]/s2Post)*100)||0)+'%', mRnd((dTotal["5"]/s3)*100)||0, (mRnd((dTotal["5"]/s3)*100)||0)+'%', mRnd((dAdjustedTotal["5"]/s4)*100)||0, (mRnd((dAdjustedTotal["5"]/s4)*100)||0)+'%']
+        ['Rating', 'Recommended Distribution', {type:'string',role:'annotation'}, 'Business Review Baseline (Excl Executive Cohort)', {type:'string',role:'annotation'}, 'Executive Cohort Pre-Calibration', {type:'string',role:'annotation'}, 'Executive Cohort Calibrated', {type:'string',role:'annotation'}, 'Total Final Combined', {type:'string',role:'annotation'}, 'Final Total Final Combined', {type:'string',role:'annotation'}],
+        ['Below Expectations', 5, '5%', mRnd((dExcl["1"]/s1)*100)||0, (mRnd((dExcl["1"]/s1)*100)||0)+'%', mRnd((dSltPre["1"]/s2Pre)*100)||0, (mRnd((dSltPre["1"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["1"]/s2Post)*100)||0, (mRnd((dSltPost["1"]/s2Post)*100)||0)+'%', mRnd((dTotal["1"]/s3)*100)||0, (mRnd((dTotal["1"]/s3)*100)||0)+'%', mRnd((dFinalTotal["1"]/s4)*100)||0, (mRnd((dFinalTotal["1"]/s4)*100)||0)+'%'],
+        ['Approaching Expectations', 20, '20%', mRnd((dExcl["2"]/s1)*100)||0, (mRnd((dExcl["2"]/s1)*100)||0)+'%', mRnd((dSltPre["2"]/s2Pre)*100)||0, (mRnd((dSltPre["2"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["2"]/s2Post)*100)||0, (mRnd((dSltPost["2"]/s2Post)*100)||0)+'%', mRnd((dTotal["2"]/s3)*100)||0, (mRnd((dTotal["2"]/s3)*100)||0)+'%', mRnd((dFinalTotal["2"]/s4)*100)||0, (mRnd((dFinalTotal["2"]/s4)*100)||0)+'%'],
+        ['Meets Expectations', 50, '50%', mRnd((dExcl["3"]/s1)*100)||0, (mRnd((dExcl["3"]/s1)*100)||0)+'%', mRnd((dSltPre["3"]/s2Pre)*100)||0, (mRnd((dSltPre["3"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["3"]/s2Post)*100)||0, (mRnd((dSltPost["3"]/s2Post)*100)||0)+'%', mRnd((dTotal["3"]/s3)*100)||0, (mRnd((dTotal["3"]/s3)*100)||0)+'%', mRnd((dFinalTotal["3"]/s4)*100)||0, (mRnd((dFinalTotal["3"]/s4)*100)||0)+'%'],
+        ['Exceeds Expectations', 20, '20%', mRnd((dExcl["4"]/s1)*100)||0, (mRnd((dExcl["4"]/s1)*100)||0)+'%', mRnd((dSltPre["4"]/s2Pre)*100)||0, (mRnd((dSltPre["4"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["4"]/s2Post)*100)||0, (mRnd((dSltPost["4"]/s2Post)*100)||0)+'%', mRnd((dTotal["4"]/s3)*100)||0, (mRnd((dTotal["4"]/s3)*100)||0)+'%', mRnd((dFinalTotal["4"]/s4)*100)||0, (mRnd((dFinalTotal["4"]/s4)*100)||0)+'%'],
+        ['Exceptional Impact', 5, '5%', mRnd((dExcl["5"]/s1)*100)||0, (mRnd((dExcl["5"]/s1)*100)||0)+'%', mRnd((dSltPre["5"]/s2Pre)*100)||0, (mRnd((dSltPre["5"]/s2Pre)*100)||0)+'%', mRnd((dSltPost["5"]/s2Post)*100)||0, (mRnd((dSltPost["5"]/s2Post)*100)||0)+'%', mRnd((dTotal["5"]/s3)*100)||0, (mRnd((dTotal["5"]/s3)*100)||0)+'%', mRnd((dFinalTotal["5"]/s4)*100)||0, (mRnd((dFinalTotal["5"]/s4)*100)||0)+'%']
     ]);
 
     const optsComp = { curveType:'function', seriesType:'line', backgroundColor:'transparent', series:{0:{type:'line', color:'#8A8A8A', lineWidth:3, lineDashStyle:[4,4]}, 1:{type:'line', color:'#D1D5DB', lineWidth:3}, 2:{type:'line', color:'#FCA5A5', lineWidth:3, lineDashStyle:[2,2]}, 3:{type:'line', color:'#EF4444', lineWidth:4, pointSize:6}, 4:{type:'line', color:'#10B981', lineWidth:5, pointSize:8}, 5:{type:'line', color:'#F97316', lineWidth:4, pointSize:7, lineDashStyle:[6,3]}}, hAxis:{textStyle:{color:'#8A8A8A'}}, vAxis:{format: '#\'%\'', minValue: 0, maxValue: 100, textStyle:{color:'#8A8A8A'}, gridlines:{color:'#E5E7EB'}}, legend:{position:'bottom', textStyle:{color:'#8A8A8A'}}, annotations:{textStyle:{fontSize:11, bold:true}, alwaysOutside: true} };
     new google.visualization.LineChart(gid('chart_slt_anz')).draw(makeCompData(), optsComp);
-    gid('chart_slt_adjusted_note').textContent = buildAdjustedCurveNote(adjustmentSummary);
+    
 
     const makeIsoData = () => gData([
         ['Rating', 'Recommended Distribution', {type:'string',role:'annotation'}, 'Executive Cohort Pre-Calibration', {type:'string',role:'annotation'}, 'Executive Cohort Calibrated', {type:'string',role:'annotation'}],
@@ -2511,7 +2742,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         ['Exceptional Impact',5, '5%', mRnd((gTotal.M["5"]/mPop)*100)||0, (mRnd((gTotal.M["5"]/mPop)*100)||0)+'%', mRnd((gTotal.F["5"]/fPop)*100)||0, (mRnd((gTotal.F["5"]/fPop)*100)||0)+'%'] 
     ]);
     const optsGen = { curveType:'function', seriesType:'line', backgroundColor:'transparent', series:{0:{type:'line', color:'#8A8A8A', lineWidth:3, lineDashStyle:[4,4]}, 1:{type:'line', color:'#60A5FA', lineWidth:4, pointSize:6}, 2:{type:'line', color:'#F472B6', lineWidth:4, pointSize:6}}, hAxis:{textStyle:{color:'#8A8A8A'}}, vAxis:{format: '#\'%\'', minValue: 0, maxValue: 100, textStyle:{color:'#8A8A8A'}, gridlines:{color:'#8A8A8A'}}, legend:{position:'bottom'} };
-    new google.visualization.LineChart(gid('chart_slt_gen')).draw(makeGen(), optsGen);
+    renderGenderCurves('chart_slt_gen', gTotal, mPop, fPop, 'final', false);
 
     gid('bar-chart-title').innerText = 'Executive Cohort: Average Calibrated Rating by Division';
     let barArr = [['Group', 'Avg Score', {role:'style'}, {role:'annotation'}]];
@@ -2526,7 +2757,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
 
     new google.visualization.PieChart(gid('chart_promo_donut')).draw(gData([['Gender', 'Count'], ['Male', pMale], ['Female', pFemale]]), {pieHole: 0.5, backgroundColor: 'transparent', colors: ['#60A5FA', '#F472B6'], chartArea:{width:'80%',height:'80%'}, legend:{position:'bottom', textStyle:{color:'#8A8A8A'}}});
 
-    gid('promo-seniority-cards').innerHTML = renderBucket("Junior (L1-L2)", b1, totalEndorsed, false) + renderBucket("Mid-Level (L3-L4)", b2, totalEndorsed, false) + renderBucket("Senior (L5-L6)", b3, totalEndorsed, false);
+    gid('promo-seniority-cards').innerHTML = renderBucket("L1-L2 Foundation / Developing", b1, totalEndorsed, false) + renderBucket("L3-L4 Professional / Senior", b2, totalEndorsed, false) + renderBucket("L5-L6 Lead / Director", b3, totalEndorsed, false);
 
     let sltExcPct = tSltPost > 0 ? mRnd((sltExcCount/tSltPost)*100) : 0; let mExcPct = sltMaleTot > 0 ? mRnd((sltMaleExc/sltMaleTot)*100) : 0; let fExcPct = sltFemTot > 0 ? mRnd((sltFemExc/sltFemTot)*100) : 0;
     let sltUndPct = tSltPost > 0 ? mRnd((sltUndCount/tSltPost)*100) : 0; let sltDelPct = tSltPost > 0 ? mRnd((sltDelCount/tSltPost)*100) : 0;
@@ -2534,7 +2765,6 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     insightsHtml += `<div class="flex items-start"><i class="fas fa-chart-pie text-gray-400 mt-1 mr-2 w-4"></i><div><strong>Executive Cohort Mix:</strong> ${sltUndPct}% Below / Approaching, ${sltDelPct}% Meets Expectations, ${sltExcPct}% Exceeds+.</div></div>`;
     insightsHtml += `<div class="flex items-start"><i class="fas fa-venus-mars text-blue-500 mt-1 mr-2 w-4"></i><div><strong>Executive Cohort Gender Equity (Exceeds+):</strong> Male ${mExcPct}% vs Female ${fExcPct}%.</div></div>`;
     insightsHtml += `<div class="flex items-start"><i class="fas fa-rocket text-purple-500 mt-1 mr-2 w-4"></i><div><strong>Final Endorsed Promos (Company-wide):</strong> ${totalEndorsed} total promotions have been endorsed across Business Review and executive ranks.</div></div>`;
-    if (adjustmentSummary.total > 0) insightsHtml += `<div class="flex items-start"><i class="fas fa-user-slash text-orange-500 mt-1 mr-2 w-4"></i><div><strong>Adjusted Curve:</strong> ${buildAdjustedCurveNote(adjustmentSummary)}</div></div>`;
     insightsHtml += `</div>`;
     gid('smart-insights-container').innerHTML = insightsHtml;
     renderRatingMovementSection(scopedData, divFilter === "All" ? 'the Onyx executive drilldown' : `${divFilter} in the division-wide executive drilldown`);
@@ -2557,7 +2787,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
       : `<span>${tPost} Profiles Locked</span><span>${tPre} Total Onyx Population (${pctProgress}%)</span>`;
 
     const fData = allData; const t = fData.length;
-    if (tPost === 0) { gid('chart_anz_post').innerHTML = '<div class="text-gray-500 text-center py-10">No divisions locked yet.</div>'; gid('chart_anz_adjusted').innerHTML = '<div class="text-gray-500 text-center py-10">No divisions locked yet.</div>'; gid('chart_anz_gen').innerHTML = '<div class="text-gray-500 text-center py-10">No divisions locked yet.</div>'; }
+    if (tPost === 0) { gid('chart_anz_post').innerHTML = '<div class="text-gray-500 text-center py-10">No divisions locked yet.</div>'; gid('chart_anz_gen').innerHTML = '<div class="text-gray-500 text-center py-10">No divisions locked yet.</div>'; }
 
     let postM = 0, postF = 0; let dPost={"1":0,"2":0,"3":0,"4":0,"5":0}; let gPost={M:{"1":0,"2":0,"3":0,"4":0,"5":0}, F:{"1":0,"2":0,"3":0,"4":0,"5":0}};
     let postSum = 0, postExcCount = 0, postUndCount = 0, postDelCount = 0; let postMExc = 0, postFExc = 0, materialDrops = 0, totalEndorsed = 0;
@@ -2601,7 +2831,6 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
         godInsights += `<div class="flex items-start"><i class="fas fa-venus-mars text-blue-500 mt-1 mr-2 w-4"></i><div><strong>Gender Equity (Exceeds+):</strong> Male ${postMExcPct}% vs Female ${postFExcPct}%.</div></div>`;
         godInsights += `<div class="flex items-start"><i class="fas fa-balance-scale-right text-indigo-400 mt-1 mr-2 w-4"></i><div><strong>Promotion Equity Rate:</strong> ${promoEqF}% of women in locked divisions endorsed vs ${promoEqM}% of men.</div></div>`;
         if (materialDrops > 0) godInsights += `<div class="flex items-start"><i class="fas fa-arrow-down text-orange-500 mt-1 mr-2 w-4"></i><div><strong>Material Drops:</strong> ${materialDrops} material performance drop(s) detected across locked divisions.</div></div>`;
-        if (adjustmentSummary.total > 0) godInsights += `<div class="flex items-start"><i class="fas fa-user-slash text-orange-400 mt-1 mr-2 w-4"></i><div><strong>Adjusted Curve:</strong> ${buildAdjustedCurveNote(adjustmentSummary)}</div></div>`;
     } else { godInsights += `<div class="text-gray-500 italic">Awaiting divisions to lock calibration data to generate live insights.</div>`; }
     godInsights += `</div>`;
     gid('god-smart-insights-container').innerHTML = godInsights;
@@ -2609,24 +2838,22 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
 
     const readiness = [
       {label:'All visible ratings complete', ok: lockedData.filter(e => getPostRatingVal(e) > 0).length === lockedData.length && lockedData.length > 0},
-      {label:'Flagged cases reviewed', ok: lockedData.filter(e => getTriageSystemFlags(e).length > 0 && !String(e.asyncNotes || '').trim()).length === 0},
+      {label:'Async notes reviewed for flagged cases', ok: lockedData.filter(e => getTriageSystemFlags(e).length > 0 && !String(e.asyncNotes || '').trim()).length === 0},
       {label:'Promotion decisions captured', ok: lockedData.filter(e => e.promoProp === 'Yes' && (!String(e.sltStatus || '').trim() || String(e.sltStatus || '').trim() === 'Pending')).length === 0},
-      {label:'Exceptions reviewed', ok: materialDrops === 0 || lockedData.length > 0},
-      {label:'Final curve reviewed before close', ok: tPost > 0}
+      {label:'Exception queue reviewed', ok: materialDrops === 0 || lockedData.length > 0},
+      {label:'Final curve acknowledged', ok: tPost > 0}
     ];
     const readinessEl = gid('session-readiness-checklist');
-    if (readinessEl) readinessEl.innerHTML = readiness.map(item => `<div class="rounded-lg border ${item.ok ? 'border-green-700 bg-green-950/20' : 'border-amber-700 bg-amber-950/20'} px-4 py-3"><div class="font-black ${item.ok ? 'text-green-400' : 'text-amber-400'}">${item.ok ? '✓' : '•'} ${item.label}</div><div class="text-xs text-gray-400 mt-1">${item.ok ? 'Ready / complete in this session state' : 'Still requires review before the People Partner closes this session'}</div></div>`).join('');
+    if (readinessEl) readinessEl.innerHTML = readiness.map(item => `<div class="rounded-lg border ${item.ok ? 'border-green-700 bg-green-950/20' : 'border-amber-700 bg-amber-950/20'} px-4 py-3"><div class="font-black ${item.ok ? 'text-green-400' : 'text-amber-400'}">${item.ok ? '✓' : '•'} ${item.label}</div><div class="text-xs text-gray-400 mt-1">${item.ok ? 'Ready / complete in this simulation state' : 'Still requires admin / CPO review in this simulation state'}</div></div>`).join('');
 
     let tVal = (postM + postF) || 1;
-    gid('god-distribution-table-container').innerHTML = buildDistTable(dPre, dPost, adjustedDist, preM + preF, postM + postF, adjustedCount, true);
+    gid('god-distribution-table-container').innerHTML = buildDistTable(dPre, dPost, null, preM + preF, postM + postF, 0, true);
     new google.visualization.LineChart(gid('chart_anz_pre')).draw(makeDistData(dPre, tPre, 'Pre-Calibration'), getBellOpts('#A78BFA', true));
     if(tPost > 0) new google.visualization.LineChart(gid('chart_anz_post')).draw(makeDistData(dPost, tVal, 'Calibrated'), getBellOpts('#10B981', true));
-    if(tPost > 0) new google.visualization.LineChart(gid('chart_anz_adjusted')).draw(makeDistData(adjustedDist, adjustedCount || 1, 'Adjusted'), getBellOpts('#F97316', true));
-    gid('chart_anz_adjusted_note').textContent = buildAdjustedCurveNote(adjustmentSummary);
 
     gid('god-gender-table-container').innerHTML = buildGenTable(gPre, gPost, preM||1, preF||1, postM||1, postF||1, true);
-    new google.visualization.LineChart(gid('chart_anz_gen_pre')).draw(makeGenData(gPre, preM||1, preF||1), getGenOpts(true));
-    if(tPost > 0) new google.visualization.LineChart(gid('chart_anz_gen')).draw(makeGenData(gPost, postM||1, postF||1), getGenOpts(true));
+    renderGenderCurves('chart_anz_gen_pre', gPre, preM || 1, preF || 1, 'pre-calibrated', true);
+    if(tPost > 0) renderGenderCurves('chart_anz_gen', gPost, postM || 1, postF || 1, 'calibrated', true);
 
     let promoBarArr = [['Division', 'Count', {role:'style'}, {role:'annotation'}]];
     for(let k in promoDivMap) { let pct = totalEndorsed > 0 ? mRnd((promoDivMap[k] / totalEndorsed) * 100) : 0; promoBarArr.push([k, promoDivMap[k], '#AABFFF', `${promoDivMap[k]} (${pct}%)`]); }
@@ -2634,7 +2861,7 @@ th.freeze-col{background:var(--onyx-charcoal)!important;}
     new google.visualization.BarChart(gid('chart_god_promo_bar')).draw(gData(promoBarArr), {backgroundColor:'transparent', chartArea:{width:'70%',height:'80%'}, hAxis:{textStyle:{color:'#8A8A8A'}}, vAxis:{textStyle:{color:'#8A8A8A'}}, legend:{position:'none'}, annotations: {alwaysOutside: true, textStyle: {fontSize: 12, bold: true, color: '#D1D5DB'}}});
 
     new google.visualization.PieChart(gid('chart_god_promo_donut')).draw(gData([['Gender', 'Count'], ['Male', pMale], ['Female', pFemale]]), {pieHole: 0.5, backgroundColor: 'transparent', colors: ['#60A5FA', '#F472B6'], chartArea:{width:'80%',height:'80%'}, legend:{position:'bottom', textStyle:{color:'#8A8A8A'}}});
-    gid('god-promo-seniority-cards').innerHTML = renderBucket("Junior (L1-L2)", b1, totalEndorsed, true) + renderBucket("Mid-Level (L3-L4)", b2, totalEndorsed, true) + renderBucket("Senior (L5-L6)", b3, totalEndorsed, true);
+    gid('god-promo-seniority-cards').innerHTML = renderBucket("L1-L2 Foundation / Developing", b1, totalEndorsed, true) + renderBucket("L3-L4 Professional / Senior", b2, totalEndorsed, true) + renderBucket("L5-L6 Lead / Director", b3, totalEndorsed, true);
   }
 </script>
 </body>
